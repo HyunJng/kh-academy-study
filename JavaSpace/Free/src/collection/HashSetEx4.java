@@ -1,8 +1,9 @@
+package collection;
 import java.util.*;
 
 public class HashSetEx4 {
 	public static void main(String[] args) {
-		HashSetEx5 set = new HashSetEx5();
+		HashSet set = new HashSet();
 		
 		set.add(new String("abc"));
 		set.add(new String("abc"));

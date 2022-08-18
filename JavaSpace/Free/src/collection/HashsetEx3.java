@@ -1,3 +1,4 @@
+package collection;
 import java.util.*;
 
 public class HashsetEx3 {
