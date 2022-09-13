@@ -215,3 +215,72 @@ SELECT name, salesprice
 FROM Customer RIGHT OUTER JOIN   -- LEFT OUTER JOIN : 왼쪽 외부조인
 Orders ON Customer.custid = Orders.custid    -- ON : WHERE
 order by customer.custid;
+------------------------부속질의 - where 조건문 안에서 사용하는 부속 질의------------
+-- 가장 비싼 도서의 이름을 보이시오.
+select * from book
+where price = (select max(price) from book);
+
+-- 도서를 구매한 적이 있는 고객의 이름을 검색하시오
+select name from customer
+where custid in (select custid from orders); -- (1, 2, 3, 4)와 동일
+select * from orders;
+-- 외부조인 ver
+select distinct name
+from customer left outer join
+orders on customer.custid = orders.custid;
+-- 동등조인 ver
+select distinct name
+from customer, orders
+where customer.custid = orders.custid; -- 코드가 간단해도 계산속도는 더 느릴 수 있다.
+
+-- 대한미디어에서 출판한 도서를 구매한 고객의 이름을 보이시오.
+select name
+from customer
+where custid in (select custid
+                from orders
+                where bookid in (select bookid
+                                from book
+                                where publisher = '대한미디어'));
+-- 이상미디어에서 출판한 도서를 구매한 고객의 이름
+select name
+from customer
+where custid in (select custid from orders
+                            where bookid in (select bookid from book where publisher like('이상미디어')));
+select name
+from customer
+where custid in (select custid from orders
+                            where bookid in (select bookid from book where publisher in('이상미디어','대한미디어')));
+select name
+from customer
+where custid in (select custid from orders
+                            where bookid in (select bookid from book where publisher like('%미디어%')));
+
+-- 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오////////////////////////다시//
+select b1.bookname  -- b1은 생략 불가능
+from book b1    -- table 이름 별명(alias). 같은 테이블을 써주기 때문에 구별해주어야한다.
+where b1.price > (select avg(b2.price)
+                from book b2
+                where b2.publisher = b1.publisher);
+----------------------- 집합연산 ----------------------------------------------
+-- 도서를 주문하지 않은 고객의 이름을 보이시오 -- 
+-- minus : 차집합
+select name
+from customer
+minus
+select name
+from customer
+where custid in (select custid from orders);
+
+----------------exists: 어떤 행이 조건에 만족하면(참이면) 결과에 포함 -----------
+-- 주문이 있는 고객의 이름과 주소를 보이시오
+select name, address
+from customer cs
+where exists (select * from orders od where cs.custid = od.custid);
+-- 동일한 결과s
+select name
+from customer
+where custid in (select custid from orders);
+-- 도서를 주문하지 않은 고개의 이름
+select name, address
+from customer cs
+where not exists (select * from orders od where cs.custid = od.custid);
