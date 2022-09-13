@@ -69,16 +69,29 @@ select name, address
 from customer
 where name like('김%아');
 
--- <join>
--- 3.1. 박지성이 구매한 도서의 출판사 수
-select name
-from customer, orders, book
-where customer.custid = orders.custid and orders.bookid = book.bookid;
--- ////모르겠음
+-- <join, 부속질의>
+-- 3.1. 박지성이 구매한 도서의 출판사 수 >> 1. book, customer, order 테이블 필요.
+----- 방법1 : 무작정 join
+select * from customer, book, orders
+where customer.custid = orders.custid and book.bookid = orders.bookid
+and customer.name = '박지성';
+
+----- 방법2 : 부속질의
+select count(distinct publisher)
+from book
+where bookid in (select bookid from orders
+                where custid in (select custid from customer where name = '박지성'));
 -- 3.2. 박지성이 구매한 도서의 이름, 가격, 정가와의 판매가격의 차이
+select bookname, price, (price - salesprice)
+from book, orders
+where book.bookid = orders.bookid
+and orders.custid in (select custid from customer where name = '박지성');
+
 -- 3.3. 박지성이 구매하지 않은 도서의 이름
-
-
+select bookname
+from book
+where not exists (select * from order od
+                where exists(select 
 ---///////////////////////////수업예제복습////////////////////
 
 -- 3-5 가격이 10,000원 이상 20,000 이하인 도서를 검색하시오
@@ -202,5 +215,43 @@ where orders.custid = customer.custid and orders.bookid = book.bookid;
 select name, bookname, salesprice
 from orders, customer, book
 where orders.custid = customer.custid and orders.bookid = book.bookid
-and salesprice >= 20000
+and salesprice >= 20000;
+-------------------------------------------------------------------------------
+-- 3-27 도서를 구매하지 않은 고객을 포함하여 고객의 이름과 고객이 주문한 도서의 판매가격을 구하시오.
+select customer.name, orders.salesprice
+from customer left outer join orders
+on customer.custid = orders.custid;
 
+-- 3-28 가장 비싼 도서의 이름을 알아보시오.
+select bookname, price
+from book
+where price = (select max(price) from book);
+
+--------------- [부속질의] -----------------
+-- 3-29 도서를 구매한 적이 있는 고객의 이름을 검색하시오.
+select name
+from customer
+where custid in (select distinct custid from orders);
+
+-- 3-30 대한미디어에서 출판한 도서를 구매한 고객의 이름을 알아보시오
+select name
+from customer
+where custid in (select custid from orders
+                where bookid in (select bookid from book where publisher = '대한미디어'));
+
+-- 3-31 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오.
+select bookname 
+from book b1
+where b1.price > (select avg(b2.price) from book b2 where b2.publisher = b1.publisher);
+------ 집계함수는 group by 를 하지 않았을 때는 집계함수랑만 select 할 수 있다.
+------ 집계함수도 where절로 특정 것만 집어 구할 수 있다. group by는 모든 것을 구할 때 사용하기
+
+-- 3-32 도서를 주문하지 않은 고객의 이름을 보이시오.
+select name
+from customer cs
+where cs.custid not in(select od.custid from orders od);
+
+-- 3-33 도서를 주문한 고객의 이름을 보이시오.
+select name
+from customer cs
+where exists(select * from orders od where cs.custid = od.custid);

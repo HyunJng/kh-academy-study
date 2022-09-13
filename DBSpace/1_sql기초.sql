@@ -111,6 +111,7 @@ select * from book order by price, publisher;
 -- 도서의 가격을 내림차순으로 검색하시오. 만약 가격이 같다면 출판사의 오름차순으로 검색한다.
 select * from book order by price desc, publisher asc;
 
+--------------------- [집계] -----------------------
 -- 고개이 주문한 도서의 총 판매액을 고하시오
 select * from orders;
 select sum(salesprice) from orders;
@@ -130,7 +131,7 @@ FROM Orders;
 -- 마당 서점의 도서 판매 건수를 구하시오.
 select * from orders;
 select count(*) from orders;
-select count(*), custid from orders; -- 오류, 집계는 기준속성 혹은 집계와 함께 쓸 수 있음
+select count(*), custid from orders; -- 오류, 집계는 (group by했을 때)기준속성 혹은 집계와 함께 쓸 수 있음
 
 -- 고객별로 주문한 도서의 총 수량과 총 판매액을 구하시오.
 -- 그룹을 지정해주면 집계는 그룹별로 해줌
