@@ -44,7 +44,7 @@ select distinct publisher from book;
 --  - 내림차순으로 하고 싶으면 DESC, 오름차순은 ASC
 --      ex) order by price DESC, bookname ASC : price는 내림차순, bookname은 오름차순으로 정렬
 
--- 7. 집계 : 모드 행을 하나의 행으로 표현
+-- 7. 집계 : 모드 행을 하나의 행으로 표현, select문에서만 사용할 수 있다.
 -- # 주의. 집계함수, distinct 등 여러개의 행을 압축하여 1개 혹은 단축 행으로 변환되는 속성들은 
 --         일반적인 다른 속성과 같이 사용할 수 없다.
 --         단, projection할 속성들이 모두 집계함수인 경우는 같이 사용 가능.

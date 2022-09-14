@@ -4,7 +4,9 @@ select distinct custid from orders;
 select bookname, bookid from book where mod(bookid, 2) = 0;
 select count(*) - count(distinct custid) from orders;
 
-select bookname, length(bookname)from book where length(bookname) = max(length(bookname));
+select bookname, length(bookname)
+from book 
+where length(bookname) = max(length(bookname));
 --///////////////////////연습문제//////////////////////
 -- <기본>
 -- 1.1. 도서번호가 1인 도서의 이름
