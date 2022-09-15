@@ -1,4 +1,4 @@
--- 1. 수학함수
+-- -------------------< 1. 숫자 함수 >----------------------------------
 ---1.1 ABS(숫자) : 절대값을 구하는 함수
 select abs(-78), abs(78) from dual; -- dual: dummy table
 
@@ -6,13 +6,12 @@ select abs(-78), abs(78) from dual; -- dual: dummy table
 select round(4.879, 1) from dual;
 select round(562, -2) from dual;
 
----1.3 연습
-----  고객별 평균 주문 금액을 백 원 단위로 반올림한 값을 구하시오
+---- 고객별 평균 주문 금액을 백 원 단위로 반올림한 값을 구하시오
 select custid "고객번호", round(sum(salesprice)/count(*), -2) "평균금액"
 from orders 
 group by custid;
 
--- 2. 문자함수
+-------------------------------< 2. 문자함수>------------------------------------
 ---2.1 replace(속성, 이전속성, 바뀐 속성) : 문자열을 치환하는 함수
 select bookid, replace(bookname, '야구', '농구') bookname, publisher, price
 from book;
@@ -35,7 +34,7 @@ from customer
 group by substr(name, 1, 1)
 order by substr(name, 1, 1); -- order by는 select에 있는 것만 가능
 
--- 3. 날짜 시간함수
+----------------------------------< 3. 날짜 시간함수>---------------------
 select orderid "주문번호" , orderdate "주문일", orderdate + 10 "확정"
 from orders;
 select orderid "주문번호" , orderdate "주문일", orderdate + 1 "확정"
@@ -57,7 +56,7 @@ where orderdate = to_date('2014/07/07', 'yyyy/mm/dd');
 select sysdate, to_char(sysdate, 'yyy/mm/dd day hh24:mi:ss') "SYSDATE_1"
 from dual;
 
--- 4. Null값 처리
+-- ------------------------------<4. Null값 처리>---------------------
 select * from book;
 
 insert into book values(11, 'Olympic Champions2', 'Pearson', null);
@@ -81,8 +80,8 @@ where price is not null;
 --- 4.3 nvl : Null값을 다른 값으로 대치하여 연산하거나 다른 값으로 출력
 select name "이름", NVL(phone, '연락처없음') "전화번호"
 from customer;
-------------------------------------------------------------------------------------------
--- 5. ROWNUM : select문에서 where조건문을 통과한 행들에 대하여 동적으로 순번을 매김(1부터 시작)
+-------------------------<<<<<<<<부속질의 & 추가명령문 >>>>>>------------------------------------------------
+-- 1. ROWNUM : select문에서 'where조건문을 통과한 행'들에 대하여 동적으로 순번을 매김(1부터 시작)
 --- 사용처 : 테이블을 정렬하여 상위, 하위 개수를 구할 때 사용
 select rownum "순번", custid, name, phone
 from customer
@@ -92,31 +91,32 @@ select rownum, custid, name, address, phone
 from customer
 where custid >= 4;
 
--- rownum은 where조건문에서 결정이 되고 order by로는 rownum에 영향이 없다.
+----- rownum은 where조건문에서 결정이 되고 order by로는 rownum에 영향이 없다.
 select rownum, bookid, bookname, price from book where rownum <= 5;
 select * from book
 where rownum <= 5 order by price;
--- 6. from (select문) -> SQL은 내부적으로 table로 간주함
+
+-- 2. from (select문) -> SQL은 내부적으로 table로 간주함
 -- 가격이 가장 낮은 책부터 5개를 가져옴.
 select rownum, b.*
 from (select*from book order by price) b
 where rownum <= 5;
 
--- 책 중에서 가격이 가장 높은 상위 3개의 행을 가져오라
+---- 책 중에서 가격이 가장 높은 상위 3개의 행을 가져오라
 select * 
 from (select * from book where price is not null order by price DESC)
 where rownum <= 3;
 
--- 7. inline : dynamic 하게 생성된 table(create table로 생성되지 않은 테이블)
+-- 3. 용어 inline : dynamic 하게 생성된 table(create table로 생성되지 않은 테이블)
 select custid, sum(salesprice)
 from Orders od
 group by custid;
--------------------- group by 로 행이 몇개인지는 결정이 남. 그러니 od.custid는 결정난 뒤 select문 돌아간다 생각.
+-----group by 로 행이 몇개인지는 결정이 남. 그러니 od.custid는 결정난 뒤 select문 돌아간다 생각.
 select custid,(select name from customer cs where cs.custid = od.custid) name, sum(salesprice)
 from Orders od
 group by custid;
 
--- 고객 번호가 2 이하인 고객의 판매액을 보이시오(결과는 고객이름과 고객별 판매액 출력)
+---- 고객 번호가 2 이하인 고객의 판매액을 보이시오(결과는 고객이름과 고객별 판매액 출력)
 select cs.name, sum(od.salesprice) "total"
 from (select custid, name
      from customer
@@ -130,18 +130,18 @@ from customer cs, orders od
 where cs.custid = od.custid and cs.custid <= 2
 group by cs.name;
 
--- 8. where 부속질의 : 비교연산자
+-- 4. where 부속질의 : 비교연산자
 -- 평균 주문 금액 이하의 주문에 대해서 주문번호와 금액을 보이시오
 select orderid, salesprice
 from orders
 where salesprice <= (select avg(salesprice)from orders);
 
--- 각 고객의 평균 주문 금액보다 큰 금액의 주문 내역에서 주문번호 고객번호 금액을 보이시오
+---- 각 고객의 평균 주문 금액보다 큰 금액의 주문 내역에서 주문번호 고객번호 금액을 보이시오
 select orderid, custid, salesprice
 from orders od
 where salesprice > (select avg(salesprice) from orders so where od.custid = so.custid);
 
--- 대한민국에 거주하는 고객에게 판매한 도서의 총 판매액을 구하시오. >> customer, orders
+---- 대한민국에 거주하는 고객에게 판매한 도서의 총 판매액을 구하시오. >> customer, orders
 select sum(salesprice)
 from (select * from customer where address like('%대한민국%')) cs , orders od
 where cs.custid = od.custid;
@@ -150,9 +150,10 @@ select sum(salesprice)
 from orders
 where custid in (select custid from customer where address like('%대한민국%'));
 
--- 9. ALL : 모든 요소를 만족 해야한다는 개념
---    Some(any) : 최소한 한 개를 만족
--- 3번 고객이 주문한 도서의 최고 금액보다 더 비싼 도서를 구입한 주문의 주문번호와 금액을 보이시오
+-- 5. ALL (select 문) : select문의 모든 요소를 만족 해야한다는 개념
+--    Some (select 문): select문의 최소한 한 개를 만족 (any도 된다)
+
+---- 3번 고객이 주문한 도서의 최고 금액보다 더 비싼 도서를 구입한 주문의 주문번호와 금액을 보이시오
 select orderid, salesprice
 from orders
 where salesprice > all (select salesprice from orders where custid = 3);
@@ -163,9 +164,10 @@ from orders
 where salesprice > some (select salesprice from orders where custid = 3);
 -- where salesprice > (select min(salesprice) from orders where custid = 3);
 
--- 10. exists : 최소한 한 개라도 존재하면 true 
---     not exists : 한 개도 존재하지 않는다면
--- 대한민국에 거주하는 고객에게 판매한 도서의 총 판매액을 구하시오
+-- 6. exists (select문): select문의 최소한 한 개라도 존재하면 true 
+--    not exists (select문) : select문의 한 개도 존재하지 않는다면
+
+---- 대한민국에 거주하는 고객에게 판매한 도서의 총 판매액을 구하시오
 select sum(salesprice)
 from orders od
 where exists (select * from customer cs where address like ('%대한민국%') and od.custid = cs.custid);
@@ -174,3 +176,4 @@ where exists (select * from customer cs where address like ('%대한민국%') an
 select sum(salesprice)
 from orders od
 where exists (select * from customer cs where address like ('%대한민국%'));
+
