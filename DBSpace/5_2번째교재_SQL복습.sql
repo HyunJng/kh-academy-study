@@ -315,3 +315,34 @@ select deptno, avg(sal) from emp group by deptno having avg(sal)>=2000;
 
 ---- 부서의 최대값 최소값을 구하되 최대 급여가 2900이상인 부서만 출력
 select deptno, max(sal), min(sal) from emp group by deptno having max(sal) >= 2900;
+
+---------------------------<서브쿼리>---------
+---- 부서별로 가장 많은 급여를 받느 사원의 정보 출력
+------(방법 1)
+select ename, sal, deptno from emp e
+where sal = (select max(sal)from emp k where k.deptno = e.deptno);
+------(방법 2)
+select ename, sal, deptno from emp 
+where sal = some(select max(sal)from emp group by deptno);
+------(방법 3)
+select ename, sal, deptno from emp
+where sal in(select max(sal) from emp group by deptno);
+
+---- 직급이 MANAGER인 사람이 속한 부서벊와 부서명 지역을 구하라
+select deptno, dname, loc from dept
+where deptno in (select deptno from emp where job = upper('manager'));
+
+---- 영업사원들보다 급여를 많이 받는 사원들의 이름과 급여와 직무를 출력, 영업사원은 제외
+select ename, sal, job from emp
+where sal > all(select sal from emp where job = upper('salesman'))
+and not (job = upper('salesman'));
+
+---- 영업사원들의 최소 급여보다 많이 받는 사원들의 이름과 급여 직급을 출력하되 영업사원은 제외
+------(방법 1)
+select ename, sal, job from emp
+where sal > some(select sal from emp where job = 'SALESMAN')
+and job <> 'SALESMAN';
+------(방법 2)
+select ename, sal, job from emp
+where sal > (select min(sal)from emp where job = 'SALESMAN')
+and job <> 'SALESMAN';
