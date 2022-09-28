@@ -136,10 +136,79 @@ where deptno = 30;
 select * from notable_view;
 
 ---------------------------- 8. check option
--- 8.1 with check
-create or replace view emp_view30
+-- 8.1 체크 제약조건 없을경우
+create or replace view view_chk30
 as
 select empno, ename, deptno, sal
 from emp_copy
 where deptno = 30;
 
+select * from emp_view30;
+
+-- emp_view30의 정의 : deptno = 30인 행들
+-- 문제점: update문에 의해서 deptno를 수정할 수 있음 < 결과는 원하는대로 안나옴
+update view_chk30 set deptno = 20
+where sal >= 1200;
+
+rollback;  -- create or replace view를 해도 commit되어서 rollback안됨
+
+drop table emp_copy;
+create table emp_copy
+as
+select * from emp;
+
+-- 8.2. with check option: 수정할 수 없도록 하는 제약조건
+-- view table을 update, delete, insert할 때 많은 문제 야기
+-- * 원본 table의 column 데이터들의 일부가 insert되고 나머지는 null되는 것도 문제
+-- * 원본 table을 행들을 삭제 수정할 수 있는 것이 문제.
+-- * view table을 사용하는 가장 큰 목적은 select SQL명령어 사용하기 위함.
+create or replace view view_chk30
+as
+select empno, ename, sal, comm, deptno
+from emp_copy
+where deptno = 30
+with check option; -- deptno를 수정할 수 없도록 하는 제한조건
+
+select * from view_chk30;
+
+update view_chk30 set deptno = 20 -- error. deptno를 변경하려 함
+where sal >= 1200;
+
+update view_chk30 set comm = 1000;
+----------------------- 9. with read only
+rollback;
+-- 9.1 with read only : view테이블을 DML(insert, update, delete)불가
+create or replace view view_read30
+as
+select empno, ename, sal, comm, deptno
+from emp_copy
+where deptno = 30
+with read only;
+
+select * from view_read30;
+
+update view_read30 set comm=1000; -- error
+insert into view_read30
+values(1234, 'TEST', 1300, 20, 30);-- error
+------------------------- 10. INLINE view
+-- 10.1 rownum특성
+select rownum, empno, ename, hiredate from emp;
+
+select rownum, empno, ename, hiredate from emp -- 순서 바뀌어 있음
+order by hiredate desc;
+
+-- rownum은 order by에 영향 안받으므로 from에서 inline subquery사용
+select rownum, empno, ename, hiredate
+from (select * from emp order by hiredate desc)
+where rownum <= 3;
+
+-- 10.2 view table에서 rownum사용
+-- 원본 테이블에서 subquery에서 order by 등을 사용하여 view table을 생성하면
+-- order by가 적용된 새로운 rownum을 생성
+create or replace view view_hire
+as
+select empno, ename, hiredate
+from emp
+order by hiredate;
+
+select rownum, v.* from view_hire v;
