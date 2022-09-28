@@ -8,7 +8,7 @@ public class PlSqlEx {
 		 try {
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","madang","madang");
-			 String sql = "{call sel_empno(?, ?, ?, ?)}";
+			 String sql = "{call sel_empno(?, ?, ?, ?)}"; // sel_empno : procedure만들어 둔 것
 			 // stored procedure 메모리에 load
 			 CallableStatement cs = con.prepareCall(sql);
 			 // 첫번째 값 설정
