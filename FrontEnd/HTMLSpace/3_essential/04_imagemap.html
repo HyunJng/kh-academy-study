@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Images Map</h2>
+    <p> 컴퓨터나, 폰이나 ,커피컵을 클릭하라. 새로운 페이지로 가거나 글을 
+        더 읽기 위해
+    </p>
+    <!-- usemap attribute의 값이 #workmap으로 지정되어 있는데
+    이 것은 map tag의 name attribute값이 workmap인 것을 적용하겠다는 것을 의미-->
+    <img src="../images/workplace.jpg" alt="workplace" usemap="#workmap" width="400" height="379">
+
+    <map name="workmap">
+        <!-- coords attribute의 값으로 
+        rect인 경우 (x1, y1, x2, y2)으로 구성(왼쪽위가 기준)
+        circle인 경우 (x, y, r)로 구성-->
+        <area shape="rect"coords="34,44,270,350" alt="computer" href="computer.html">
+        <area shape="rect" coords="290, 172, 333, 250" alt="phone" href="phone.html">
+        <area shape="circle" coords="337, 300, 44" alt="cp of coffee" href="coffee.html">
+    </map>
+</body>
+</html>
