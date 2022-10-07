@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Textarea</h2>
+    <p>The textarea element defines a multi-line input field.</p>
+
+    <form action="/action_page.php">
+        <!-- 여러 line 텍스트를 입력하여 서버로 전송할 때 사용
+            - rows="10": 행이 10 line을 보여달라
+            - cols="30": 컬럼의 크기가 30byte입력하도록 보여달라 -->
+        <textarea name="message" rows="10" cols="30">the cat was playing in the garden.</textarea>       
+        <br><br>
+        <!-- button tag : button을 만드는 tag -->
+        <button type="button" onclick="alert('Hello Wold!')">Click me!</button>
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

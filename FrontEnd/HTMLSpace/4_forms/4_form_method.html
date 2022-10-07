@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>HTML Form</h2>
+    <!-- 
+        method : 
+        1. get (default) : server로 데이터 보낼 때 url에 포함하여 보내는 방식
+            => google, naver 등 검색엔진에서 특정 데이터를 검색할 때 사용
+        2. post : server로 데이터를 보낼 떄 본문에 포함하여 보내는 방식(url에는 데이터 표현X)
+            => url에 노출되면 안되는 데이터를 서버에 전송할 때 사용
+    -->
+    <form action="http://www.w3schools.com/html/action_page" method="get">
+        <label for="fname">Firstname:</label><br>
+        <input type="text" id="fname" name="fname" ><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname" ><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>"submit"버튼을 클릭하면, form-data가 "action_page.php"페이지로 보내짐</p>
+</body>
+</html>

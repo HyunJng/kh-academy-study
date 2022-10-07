@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The form novalidate attribute</h1>
+
+    <p>The novalidate attribute indicates that the form input is not to be validated on submit:</p>    
+    <!-- novalidate: html input tag에서 기본으로 error체크하는 기능을 전부 무효화-->
+    <form action="/action_page.php" novalidate>
+        <label for="email">Enter your email</label>
+        <!-- type이 email인 경우는 기본적으로 입력하는 문자열에 '@'가 포함되는지 확인
+            @가 없으면 입력하라는 popup message를 보여줌 -->
+        <input type="email" id="email" name="email"><br><br>
+        <input type="submit" value="submit">
+    </form>
+    <p><strong>Note:</strong> The novalidate attribute of the form tag is not supported in Safari 10 (or earlier).</p>
+</body>
+</html>

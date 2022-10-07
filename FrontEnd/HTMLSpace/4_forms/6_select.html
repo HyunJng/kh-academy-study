@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Select Element</h1>
+    
+    <p>The select element defines a drop-down list:</p>
+
+    <form action="/action_page.php">
+        <label for="cars">Choose a car:</label>
+        <select id="cars" name="cars">
+            <!-- servr에 데이터 전달방식 키=value, 키는 select tag의 name값
+                value는 option tag중에 선택된 tag의 value값이 전달된다.-->
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option> 
+        </select>
+        <input type="submit">
+    </form>
+
+    <h2>Allow Multiple Selections</h2>
+
+    <p>Use the multiple attribute to allow the user to select more than one value.</p>
+    <!-- size: 화면에 보이는 option개수, multiple: server에 여러개의 option값을 전송 가능 -->
+    <form action="/action_page.php">
+        <label for="cars">Choose a car:</label>
+        <select id="cars" name="cars" size="4" multiple>
+            <!-- servr에 데이터 전달방식 키=value, 키는 select tag의 name값
+                value는 option tag중에 선택된 tag의 value값이 전달된다.-->
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat">Fiat</option>
+            <option value="audi">Audi</option> 
+        </select>
+        <input type="submit">
+    </form>
+    <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+
+</body>
+</html>

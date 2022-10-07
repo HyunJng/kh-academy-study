@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/action_page.php">
+        <!-- list attribute의 값으로 datalist tag들 중 id값이 동일한 것을 가져옴 
+            server에 데이터 전송할 때, 키는 input tag의 name속성 값이고, 
+            value는 datalist tag안의 option tag에 있는 value값이 서버에 전송됨 -->
+        <input list="browsers" name="browaser">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome"></option>
+            <option vlaue="Opera"></option>
+            <option value="Safari"></option>
+        </datalist>
+        <input type="submit">
+    </form>
+</body>
+</html>

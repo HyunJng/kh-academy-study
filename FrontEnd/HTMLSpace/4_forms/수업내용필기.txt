@@ -6,3 +6,22 @@ ex2) 뱅킹에서 송금할 때 송금액 작성할 때 사용
 Web browser에서 web server로 데이터 전송 방법
 1. HTML form tag사용
 2. AJAX사용 (javascript coding)
+
+method에서 
+1. get : 보낼 수 있는 데이터에 한계 존재
+2. post : 한계 X, 큰 데이터는 post로 보내야함.
+
+Notes on GET:
+
+Appends the form data to the URL, in name/value pairs
+NEVER use GET to send sensitive data! (the submitted form data is visible in the URL!)
+The length of a URL is limited (2048 characters)
+Useful for form submissions where a user wants to bookmark the result
+GET is good for non-secure data, like query strings in Google
+Notes on POST:
+
+Appends the form data inside the body of the HTTP request (the submitted form data is not shown in the URL)
+POST has no size limitations, and can be used to send large amounts of data.
+Form submissions with POST cannot be bookmarked
+
+
