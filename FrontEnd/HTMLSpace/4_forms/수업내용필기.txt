@@ -1,0 +1,8 @@
+<form> tag
+web browser에서 web server로 데이터를 전달하는 핵심 HTML 요소
+ex1) 회원가입할 때 id, pw, 주소, 연락처 등 정보 전달할 때 사용
+ex2) 뱅킹에서 송금할 때 송금액 작성할 때 사용
+
+Web browser에서 web server로 데이터 전송 방법
+1. HTML form tag사용
+2. AJAX사용 (javascript coding)

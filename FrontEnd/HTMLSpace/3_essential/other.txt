@@ -1,7 +1,0 @@
-head안에 들어가는 것 중 base attribute는 본문 안의 
-중복되는 앞 경로를 넣어 상대경로처럼 짧게 만들기 위해 사용
-
-Responsive Web Design
-1. Responsive(반응형) : HW의 width 와 height에 반응
-2. html content는 동일하나 HW size에 따라서 CSS를 다르게 적용
-3. <meta name="viewport" content="width=device-width, initial~> 들어가야함

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTML Entity Example</h1>
+    <!-- Entity를 사용할 때의 장점: 영문, 한글 등이 font로 간주
+        1. font-size로 크기를 마음대로 조정 가능하고,
+        2. 화면에 보일 떄 꺠져서 보이지 않음
+    -->
+    <h3>1. space : "& nbsp", "& #160'</h3>
+    <p> 
+    아무리         space          눌러도     한칸만 띄어짐<br>
+    A space character사용: test &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; test<br>
+    A space character사용: test &#160;&#160;&#160;&#160;&#160;&#160;&#160; test<br>
+    
+    - 특징 non-breaking임 : 뒤에 오는 문자가 하나의 문자로 취급해서 라인이 구분되지 않도록 해줌<br>
+    4 km/s을 4&nbsp;km/s로 쓰면 km/s가 떨어지지 않아서 더 바람직하다.
+    </p>
+
+    <h3>2. &#880;</h3>
+    <span style="font-size: 30px">&#880;</span>
+    <!-- 10진수-->
+    <p>I will display &#880;</p>
+    <!-- 16진수-->
+    <p>I will display &#x370;</p>
+</body>
+</html>

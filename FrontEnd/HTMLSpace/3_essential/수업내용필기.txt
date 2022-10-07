@@ -1,0 +1,23 @@
+head안에 들어가는 것 중 base attribute는 본문 안의 
+중복되는 앞 경로를 넣어 상대경로처럼 짧게 만들기 위해 사용
+
+Responsive Web Design
+1. Responsive(반응형) : HW의 width 와 height에 반응
+2. html content는 동일하나 HW size에 따라서 CSS를 다르게 적용
+3. <meta name="viewport" content="width=device-width, initial~> 들어가야함
+
+암기
+scheme - 인터넷 서비스 종류의 타입 (가장 흔한건 http or https)
+prefix - 도메인 prefix 정의 (http의 default는 www)
+domain - 인터넷도메인 이름 정의(like w3schools.com)
+port - defines the port number at the host (default for http is 80)
+path - defines a path at the server (If omitted: the root directory of the site)
+filename - defines the name of a document or resource
+
+<URL Encoding>
+url encoding은 URL안에 한글 등 특수 문자가 포함되어 있는 경우에 %를 사용한 문자들로 변환하는 것.
+=> URL 안에는 항상 ASCII character-set만 존재.
+
+XHTML = XML + HTML 
+- HTML 문법을 사용하는데 문법이 엄격하게 적용
+- XML : 문법이 엄격한 문서언어  
