@@ -24,4 +24,23 @@ Appends the form data inside the body of the HTTP request (the submitted form da
 POST has no size limitations, and can be used to send large amounts of data.
 Form submissions with POST cannot be bookmarked
 
+----------------------------
+input 제한 << 중요
+속성        	설명
+checked 	Specifies that an input field should be pre-selected when the page loads (for type="checkbox" or type="radio")
+disabled	Specifies that an input field should be disabled
+max	        Specifies the maximum value for an input field
+maxlength	Specifies the maximum number of character for an input field
+min	        Specifies the minimum value for an input field
+pattern	    Specifies a regular expression to check the input value against
+readonly	Specifies that an input field is read only (cannot be changed)
+required	Specifies that an input field is required (must be filled out)
+size	    Specifies the width (in characters) of an input field
+step	    Specifies the legal number intervals for an input field
+value	    Specifies the default value for an input field
+
+그냥 form과 관련된 내용은 다 숙지하고 있어야한다.
+------------------------------
+이 다음 html 커리큘럼인 graphics와 media는 웹에서 잘 안씀. 
+media만 그나마 있구나 정도만알면 훑으면 됨
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* grouping selector: 여러개의 selector를 컴마(,)를 사용하여 grouping해서
+        공통 style을 적용 가능 */
+        h1, h2, p{
+            text-align: center;
+            color: red;
+        }
+
+        .a{
+            font-size: 20px;
+        }
+
+        .b{
+            background-color: yellowgreen;
+        }
+        /* h2.a : 복합 selector, h2 tag와 class이름인 .a를 결합한 selector  */
+        h2.a{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <!-- class attribute의 value가 2개 존재("a", "b")  -->
+    <h1 class="a b">Hello World!</h1>
+    <h2 class="a">Smaller heading!</h2>
+    <p class="a">This is a paragraph.</p>
+    
+</body>
+</html>

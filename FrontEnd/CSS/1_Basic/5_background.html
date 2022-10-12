@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            background-color: green;
+        }
+        div{
+            background-color: lightblue;
+        }
+        p{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>css background</h1>
+    <div>
+        this is a text inside a div element
+        <!-- 부모 tag인 div에서 background-color을 지정했더라도 자식인 p tag에서 
+        새로운 background color을 지정하면 자식의 background color 적용함
+        => cascading rule -->
+        <p> this paragraph ha its own backgound color.</p>
+        we are still in the div element.
+    </div>
+</body>
+</html>l
