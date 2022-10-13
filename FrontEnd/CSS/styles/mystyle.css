@@ -1,5 +1,6 @@
+/* 4_css_where.html 에서 header에서 stylesheet로 사용 */
 body{
-    
+    background-color: lightblue;
 }
 
 h1{

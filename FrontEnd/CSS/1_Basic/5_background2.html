@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div{ /* -- div를 쓰면서 영역이 넓어짐 */
+            border: 2px solid black;
+            background-color: green;
+        }
+        /* 같은 div여도 class를 나눠서 해줄 수 있다. */
+        div.first {
+            /* opacity(투명도) : 0 ~ 1 사이의 값. 0에 가까울 수록 투명해짐 */
+            opacity: 0.1;
+        }
+        div.second {
+            opacity: 0.3;
+        }
+        div.third {
+            opacity: 0.6;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>    
+    <h1>투명 박스</h1>
+    <p>opacity property는 element의 background에 투명도를 더할 때 사용한다.</p>
+
+    <div class="first"> 
+        <h1>opacity 0.1</h1>
+    </div>
+    <div class="second">
+        <h1>opacity 0.3</h1>
+    </div>
+    <div class="third">
+        <h1>opacity 0.6</h1>
+    </div>
+    <div>
+        <h1>opacity 1 (deefault)</h1>
+    </div>
+</body>
+</html>

@@ -7,11 +7,29 @@
     <!-- style sheet : external fiel로 존재,
     가장 추천하는 방법 -->
     <link rel="stylesheet" href="../styles/mystyle.css">
+    <style>
+        /* 스타일 적용 우선순위
+        external style < internal style < inline style 
+        즉 external에서 h1에 대해 navy color로 지정했으나
+        internal에서 orage로 color을 지정하면 orange로 보임
+        ==> cascading rule */
+        h1, p{
+            color: orange;
+        }
+    </style>
     <title>Document</title>
 </head>
-<body>
-    
+<body>   
     <h1>This is a heading</h1>
     <p>This is a paragraph.</p>
+
+    <!-- inline style : tag안에 style attribute를 사용하여 style sheet를 작성
+    사용 비추천, 꼭 필요한 경우여도 진짜 필요한지 검토해야함. 
+    - inine style로 작성한 css가 최고 우선순위를 가짐, 
+    즉 external, internal style sheet에서 특정 style을 중복 적용했더라도 inline style으로 적용-->
+    <h1 style="color: blue; text-align:center">This is a 2nd heading</h1>
+    <p style="color: red">THis is a 2nd paragraph</p>
+
+    <p style="border:1px solid tomato;">tomato</p>
 </body>
 </html>
