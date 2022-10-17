@@ -21,3 +21,6 @@ url encoding은 URL안에 한글 등 특수 문자가 포함되어 있는 경우
 XHTML = XML + HTML 
 - HTML 문법을 사용하는데 문법이 엄격하게 적용
 - XML : 문법이 엄격한 문서언어  
+
+backword compatibility : 옛날 version 을 지원한다.
+-> Chrome과 같은 web browser들이 

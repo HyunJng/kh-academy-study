@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #survey{
+            text-align: center;
+        }
+    </style>
+    <title>Survey form</title>
+</head>
+<body>
+    <div id="survey">
+        <h1>Employee Interests Survey form</h1>
+        <form action="">
+            <label for="name">Enter your name: </label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="depart">Enter your department: </label>
+            <input type="text" id="depart" name="depart"><br><br>
+            <label for="introduce">Tell us a little about yourself: </label>
+            <textarea id="introduce" rows="5" cols="30"></textarea><br>
+            
+            <div>Do you exercise at Home 
+            <input type="radio" id="atHome" name="site" value="Home">
+            <label for="atHome">Yes</label>
+            <input type="radio" id="atOther" name="site" value="Other">
+            <label for="atOther">No</label>
+             <div>
+            
+             <div>How do you like to read about your favorite topics?<br>
+                <input type="checkbox" id="books" name="ftopic" value="Books">
+                <label for="books">Books</label>
+                <input type="checkbox" id="online_resource" name="ftopic" value="Online_resources">
+                <label for="online_resource">Online resources</label>
+                <input type="checkbox" id="phone_apps" name="ftopic" value="Phone_apps">
+                <label for="phone_apps">Phone apps</label>
+                <input type="checkbox" id="magazines" name="ftopic" value="magazines">
+                <label for="magazines">Magazines</label>
+             </div>
+
+             <div>What genre of movies do you like?<br>
+                <input list="movie" name="movie_genre">
+                <datalist id="movie">
+                    <option value="comedy"></option>
+                    <option value="romance"></option>
+                    <option value="thriller"></option>
+                    <option value="horror"></option>
+                    <option value="action"></option>
+                </datalist><br>                
+             </div>
+             
+             <input type="submit" value="Submit form">            
+        </form>
+    </div>
+</body>
+</html>

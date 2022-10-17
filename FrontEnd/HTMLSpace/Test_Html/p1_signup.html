@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       table, th, td{
+           border:1px solid black;         
+       }
+       #class{
+            display: contents;
+       }
+
+    </style>
+    <title>Sign Up</title>
+</head>
+<body>
+    <div id="headerImg">
+        <img src="../images/webDeveloper.png" alt="webDeveloper">
+    </div>
+    <div name="About">
+        <h1>About</h2>
+        <p>
+            It can be intimidating for women to learn and ask questions when they are in an <strong>extrem minority</strong>
+            while open and welcoming, today's budding developer community is up to <strong>91% male</strong>
+            if we can landscape.        
+        </p>
+    </div>
+
+    <div id="Locations">
+        <h3>Our Locations</h3>
+        <ul>
+            <li>USA</li>
+            <ul>
+                <li><a href="https://www.google.co.kr/maps/place/%EB%AF%B8%EA%B5%AD+%EB%89%B4%EC%9A%95/@40.6976701,-74.2598607,10z/data=!3m1!4b1!4m5!3m4!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!8m2!3d40.7127753!4d-74.0059728?hl=ko">New York</a></li>
+                <li><a href="https://www.google.co.kr/maps/search/COlumbus/@40.7678601,-73.9837106,17z/data=!3m1!4b1?hl=ko"> Columbus</a></li>
+                <li><a href="https://www.google.co.kr/maps/place/%EB%AF%B8%EA%B5%AD+%ED%85%8D%EC%82%AC%EC%8A%A4+%EC%98%A4%EC%8A%A4%ED%8B%B4/@30.3080553,-98.0359259,10z/data=!3m1!4b1!4m5!3m4!1s0x8644b599a0cc032f:0x5d9b464bd469d57a!8m2!3d30.267153!4d-97.7430608?hl=ko">Austin</a></li>
+                <li><a href="https://www.google.co.kr/maps/place/%EB%AF%B8%EA%B5%AD+%ED%8E%9C%EC%8B%A4%EB%B2%A0%EC%9D%B4%EB%8B%88%EC%95%84+%ED%95%84%EB%9D%BC%EB%8D%B8%ED%94%BC%EC%95%84/@40.0026867,-75.3982083,10z/data=!3m1!4b1!4m5!3m4!1s0x89c6b7d8d4b54beb:0x89f514d88c3e58c1!8m2!3d39.9525839!4d-75.1652215?hl=ko"> Phily</a></li>
+            </ul>
+            <li>World</li>
+            <ul>
+                <li>Ottawa</li>
+                <li>Sydney</li>
+            </ul>
+        </ul>
+    </div>
+    
+    <div id="classes">
+        <h2>Upcoming Classes</h2>
+        <table align="center">
+            <tr>
+                <th>Location</th>
+                <th>Topic</th>
+            </tr>
+            <tr>
+                <td>New York</td>
+                <td>Javascript & JQuery</td>
+            </tr>
+            <tr>
+                <td>San Francisco</td>
+                <td>HTML & CSS</td>
+            </tr>
+        </table> 
+    </div>
+
+    <div id="inform">
+        <h2>Sign Up!</h2>
+        <form action="">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name"><br>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="locaInput">Location: </label>
+            <input list="location" id="locaInput" name="location">
+            <datalist id="location">
+                <option value="San Francisco"></option>
+                <option value="New York"></option>
+            </datalist>
+            <br>
+
+            <fieldset>
+                <legend>Gender</legend>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </fieldset>
+            <label for="Exp">Experience: </label><br>
+            <textarea id="Exp" rows="5" cols="30"></textarea><br>
+    
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
+</body>
+</html>
