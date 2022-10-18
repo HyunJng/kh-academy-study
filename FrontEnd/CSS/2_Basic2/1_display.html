@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        li{
+            width: 100px;
+            height: 50px;
+            /* display : inline으로 설정하면, block-level element도 inline element로 속성 변경 */
+            display: inline;
+        }
+
+        span{
+            color: red;
+            width: 200px; /* inline이면 width, height는 적용 X*/
+            height: 50px;
+            /* display : block => inline-level이 block-level로 변경 */
+            display: block;
+        }
+        .hidden{
+            /* none : 화면에서 보이는 것을 제거하고, 화면 영역도 차지하지 않음*/
+            /* display: none; */
+
+            /* hidden : 화면에서 영역을 차지하나 보이지 않는 것 */
+            visibility: hidden;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is a visible heading</h1>
+    <h1 class="hidden">This is a hidden heading</h1>
+    <p>Display a list of links as a horizontal menu:</p>
+
+    <ul>
+        <!-- li: block-level element -->
+        <li><a href="/html/default.asp" target="_blank">HTML</a></li>
+        <li><a href="/css/default.asp" target="_blank">CSS</a></li>
+        <li><a href="/js/default.asp" target="_blank">JavaScript</a></li>
+    </ul>
+
+    <p>This is paragraph <span>this is inline element</span> end of sentence.</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* cascading rule에 의한 selector 우선순위 : id > class > element  */
+        /* 그러나 이 룰에 위배되도록 하고싶으면 !important를 넣는다. */
+        #myid {
+            background-color: blue;
+        }
+        .myclass {
+            background-color: gray;
+        }
+        p {
+            /* !important : cacading rule에 상관없이 강제적으로 우선순위가 가장 높도록 만듬 */
+            background-color: red !important;
+            color: white;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>This is some text in a paragraph.</p>
+
+    <p class="myclass">This is some text in a paragraph.</p>
+
+    <p id="myid">This is some text in a paragraph.</p>
+
+</body>
+</html>

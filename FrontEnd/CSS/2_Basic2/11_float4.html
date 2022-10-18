@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 모든 element의 width는 contents width가 아니라 border-box를 기준으로 한다. 관행적으로 위에 써줌 */
+        * {
+            box-sizing: border-box;
+        }
+        /* body의 모든 자식 element의 background-color 지정 */
+        body {
+            background-color: white;
+        }
+        .header, .footer{
+            background-color: grey;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .column {
+            float: left;
+            padding: 15px;
+        }
+        .clearfix::after {
+            content:"";
+            clear: both;
+            display: table;
+        }
+        .menu {
+            width: 25%;
+        }
+        .content {
+            width: 75%;
+        }
+        .menu ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+        }
+        .menu li {
+            padding: 8px;
+            margin-bottom: 8px;
+            background-color: skyblue;
+            color: white;
+        }
+        .menu li:hover {
+            background-color: silver;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- web page의 header 영역 -->
+    <div class="header">
+        <h1>Chania</h1>
+    </div>
+    
+    <!-- web page의 body 영역 -->
+    <div class="clearfix">
+        <!-- body의 menu 영역-->
+        <div class="column menu"> <!-- class이름 두개(column, menu) 갖고 있는 것-->
+        <ul>
+            <li>The Flight</li>
+            <li>The City</li>
+            <li>The Island</li>
+            <li>The Food</li>
+        </ul>
+        </div>
+        <!-- body의 content 영역 -->
+        <div class="column content">
+        <h1>The City</h1>
+        <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        <p>You will learn more about web layout and responsive web pages in a later chapter.</p>
+        </div>
+    </div>
+    <!-- web page의 footer 영역 -->
+    <div class="footer">
+        <p>Footer Text</p>
+    </div>
+  
+</body>
+</html>

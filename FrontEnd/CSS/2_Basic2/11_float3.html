@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            border: 3px solid gold;
+            padding: 5px;
+        }
+        .img1 {
+            float: right;
+        }
+        .img2 {
+            float: right;
+        }
+        /* image가 overflow되면 부모 div의 width 를 image가 포함되도록 자동 조정 */
+        /* 1. 첫번째 방법 
+        .clearfix {
+            overflow: auto;
+        }*/
+        /* 2. 두번째 방법 */
+        /* contents가 넘치게 된다면 작동. */
+        .clearfix::after {
+            content: "";
+            clear: both; /* float: left, right 모두 제거하는 것*/
+            display: table;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h2>Without Clearfix</h2>
+
+    <p>This image is floated to the right. It is also taller than the element containing it, so it overflows outside of its container:</p>
+
+    <div>
+        <img class="img1" src="../images/pineapple.jpg" alt="Pineapple" width="170" height="170">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet...
+    </div>
+    <!-- clear : right -> 그 이후부터는 더이상 float :right로 채워넣기가 적용이 안됨. -->
+    <h2 style="clear:right">With Clearfix</h2>
+    <p>We can fix this by adding a clearfix class with overflow: auto; to the containing element:</p>
+
+    <div class="clearfix">
+        <img class="img2" src="../images/pineapple.jpg" alt="Pineapple" width="170" height="170">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet...
+    </div>
+</body>
+</html>

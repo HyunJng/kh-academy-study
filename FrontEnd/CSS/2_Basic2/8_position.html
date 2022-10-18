@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* web browser가 내부 로직에 의해 element의 보이는 위치(좌표계)를 결정 */
+        div.static {
+            /* static : default값. web browser가 아닌 외부에서 좌표계를 변환하여 이동시키더라도 이동 못함.*/
+            position: static;
+            left: 30px; /* CSS좌표계 기준이 left top인 것.*/
+            top: 50px;
+            border: 3px solid skyblue;
+        }
+        div.relative{
+            /* relative : web browser가 결정한 element의 기본 위치에서 좌표계 값을 주어
+            element의 위치를 이동시킬 수 있따. */
+            position: relative;
+            left: 30px;
+            top: 50px;
+            border: 3px solid yellowgreen;
+        }
+        div.fixed{
+            /* fixed : web browser가 결정한 좌표계를 무시하고 viewport(좌표계) 기준으로 이동시킴.
+            이동된 위치에서 고정(fixed)되어 화면이 scroll되도라도 항상 그 위치에 존재 */
+            position: fixed;
+            top : 50px; 
+            left: 50px;
+            width: 50%;
+            background-color: white;
+            border: 3px solid pink;
+        }
+
+        div.relative2{
+            position: relative;
+            width: 400px;
+            height: 200px;
+            border: 3px solid lemonchiffon;
+        }
+        div.absolute {
+        /* absolute
+            1. 부모 element가 position이 relative로 되어있는 상태에서 사용 가능
+            2. 부모 element의 좌표계를 기준으로 위치 이동*/
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            bottom: 10px;
+            right: 20px;
+            border: 3px solid thistle;
+        }
+        div.sticky {
+            /* sticky : 최초 windows화면 내에서는 정상적으로 보이다가 scroll되어서 안보여질 시점에는
+                position이 fixed로 변환되어 항상 window의 고정 위치에 존재*/
+            position: sticky;
+            top: 50px;
+            padding: 5px;
+            background-color: #cae8ca;
+            border: 3px solid teal;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>position: static;</h2>
+
+    <p>An element with position: static; is not positioned in any special way; it is always positioned according to the normal flow of the page:</p>
+
+    <div class="static">
+    This div element has position: static;
+    </div>
+    <br><br><br><hr>
+    
+    <h2>position: relative;</h2>
+
+    <p>An element with position: relative; is positioned relative to its normal position:</p>
+
+    <div class="relative">
+    This div element has position: relative;
+    </div>
+    <br><br><br><hr>
+    
+    <h2>position: fixed;</h2>
+
+    <p>An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled:</p>
+
+    <div class="fixed">
+    This div element has position: fixed;
+    </div>
+
+    <br><br><br><hr>
+
+    <h2>position: absolute;</h2>
+
+    <p>An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed):</p>
+
+    <div class="relative2">This div element has position: relative;
+    <div class="absolute">This div element has position: absolute;</div>
+    </div>
+    <br><br><br><hr>
+
+    <p>Try to <b>scroll</b> inside this frame to understand how sticky positioning works.</p>
+
+    <div class="sticky">I am sticky!</div>
+    
+    <div style="padding-bottom:2000px">
+      <p>In this example, the sticky element sticks to the top of the page (top: 0), when you reach its scroll position.</p>
+      <p>Scroll back up to remove the stickyness.</p>
+      <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+      <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+    </div>
+
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+    <p>dummy paragraph</p>
+
+</body>
+</html>

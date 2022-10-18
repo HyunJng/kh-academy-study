@@ -1,0 +1,4 @@
+sprite : 꼬마요정
+
+responsive web design 과 관련
+-> mobile, table, desktop

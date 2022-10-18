@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        img{
+            /* relative와 쓰지만 absolute로만도 쓸 수 있긴 함. */
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /* z-index :  겹치는 다른 element들이 3차원인 z축을 넣어 표현. 
+                숫자를 넣어 순서를 변경할 수 있다.
+                => 0 보다 작다는 것은 가장 밑에 있다는 것이라 background처럼 쓸 수 있음*/
+            z-index: -1;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>    
+    <h1>This is a heading</h1>
+    <img src="../images/img_tree.png">
+    <p>Because the image has a z-index of -1, it will be placed behind the text.</p>
+</body>
+</html>

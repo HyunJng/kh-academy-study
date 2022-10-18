@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* width < 600 이면, style적용 */
+        body {
+            background-color: pink;
+        }
+        /* width >= 600 이면, media query 본문에 있는 style적용 */
+        @media screen and (min-width:600px) {
+            body {
+                background-color: lightblue;
+            }
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h2>Resize the browser window to see the effect!</h2> 
+    <p> When the width of this document is 600 pixels or less, 
+        the background-color is "lightblue", otherwise it is "lightgreen".</p>
+
+</body>
+</html>
