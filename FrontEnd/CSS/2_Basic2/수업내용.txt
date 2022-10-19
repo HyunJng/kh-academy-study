@@ -1,3 +1,16 @@
+combinator selector
+: 여러 selector을 조합해서 사용할 수 있다.
+- +
+- space
+- ~
+- > 
+-------------------------
+Pseudo-class selector: HTML element의 상태(state)를 선택해서 style을 줄 수 있다.
+Pseudo element selector: HTML element의 일부분을 선택해서 style을 줄 수 있다.
+--------------------------
+selector 연습하는 사이트
+https://flukeout.github.io/
+---------------------
 sprite : 꼬마요정
 
 responsive web design 과 관련

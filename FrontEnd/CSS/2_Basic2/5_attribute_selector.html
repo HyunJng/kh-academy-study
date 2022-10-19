@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* [] : tag가 아닌, 특정한 속성을 가진 것들만 모아서 style을 주고 싶을 때 사용. */
+        a[target="_blank"] {
+            background-color: yellow;
+        }
+        /* ~ : 해당 word가 매칭되는 것이 있다면 적용. 
+         즉, title안에 flower이라는 word가 독립적으로 존재하는 경우에 적용 */
+        [title~="flower"] {
+            border: 3px solid yellow;
+        }
+        /* | : 정확한 word와 matching되거나, -으로 연결된 문장이 있다면 적용 */
+        [class|="top"] {
+            background-color: green;
+        }
+        /* ^ : 특정한 문자열 시작한 경우 모두 해당  */
+        [class^="top"] {
+            color: burlywood;
+        }
+        /* $ : 특정한 문자열로 끝나는 경우 모두 해당 */
+        [class$="content"] {
+            font-size: 30px;
+        }
+        /* * : 특정 문자열이 포함만 된다면 모두 해당 */
+        [class*="te"] {
+            background-color: aquamarine;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>CSS [attribute="value"] Selector</h2>
+    <p>The link with target="_blank" gets a yellow background:</p>
+
+    <a href="https://www.w3schools.com">w3schools.com</a>
+    <a href="http://www.disney.com" target="_blank">disney.com</a>
+    <a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+
+    <br><hr>
+    
+    <h2>CSS [attribute~="value"] Selector</h2>
+    <p>All images with the title attribute containing the word "flower" get a yellow border.</p>
+
+    <img src="../images/klematis.jpg" title="klematis flower" width="150" height="113">
+    <img src="../images/img_flwr.gif" title="flower" width="224" height="162">
+    <img src="../images/img_tree.gif" title="tree" width="200" height="358">
+
+    <br><br><hr>
+    
+    <h2>CSS [attribute|="value"] Selector</h2>
+
+    <h1 class="top-header">Welcome</h1>
+    <p class="top-text">Hello world!</p>
+    <p class="top">Hello world!</p>
+    <p class="topcontent">Are you learning CSS?</p>
+    <p class="bottomcontent">Are you learning CSS?</p>
+
+    <br><hr>
+    <h2>CSS [attribute*="value"] Selector</h2>
+
+    <div class="first_test">The first div element.</div>
+    <div class="second">The second div element.</div>
+    <div class="my-test">The third div element.</div>
+    <p class="mytest">This is some text in a paragraph.</p>
+
+</body>
+</html>

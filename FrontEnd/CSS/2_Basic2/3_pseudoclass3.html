@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* first-child : p가 다른 tag의 첫번째 자식인 경우에만 style적용 */
+        p:first-child {
+            color: red;
+        }
+        /* last-child : 마지막 자식 tag에 적용 */
+        p:last-child {
+            color: blue;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- body의 첫번째 자식 -->
+    <p>This is some text.</p>
+    <p>This is some text.</p>
+
+    <div>
+        <!-- div의 첫번째 자식 -->
+        <p>This is some text.</p>
+        <p>This is some text.</p>
+    </div>
+
+    <div>
+        <h3>hello</h3>
+        <!-- 첫번째가 아니라 적용 X -->
+        <p>This is some text.</p>
+        <p>This is some text.</p>
+    </div>
+    <p>last!</p>
+</body>
+</html>
