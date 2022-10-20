@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- file이름에 min : minimization => file을 압축한 것. 네트워크상에서 가져오는 것이기 때문에 속도를 위함.
+                                         먼저 css파일을 만들고 압축툴로 minify함.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- class 는 or의 개념. 이름 추가할 때마다 새로운 CSS효과가 추가됨-->
+    <!-- p-3 : padding 3, bg : background -->
+    <!-- container-fluid : 옆에 공백 없이 꽉 참, containerd : 옆에 공백  -->
+    <div class="container-fluid p-3 bg-danger text-white text-center">
+        <h1>My First Bootstrap Page</h1>
+        <p>Resize this responsive page to see the effect!</p>
+    </div>
+    <!-- mt : margin top -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- sm: breakpoint 중 small device, 핸드폰크기 전 후로 화면 레이아웃 적용 
+                 col-4 : 12등분 중 4 크기로 차지-->
+            <div class="col-sm-4">
+                <h3>Column 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Column 2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+            <div class="col-sm-4">
+                <h3>Column 3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
