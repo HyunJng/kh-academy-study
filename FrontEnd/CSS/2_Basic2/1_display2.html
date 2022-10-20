@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .nav {
+            background-color: yellow;
+            list-style-type: none;
+            text-align: center;
+            margin: 0px;
+            padding: 0;
+        }   
+         /* 부모가 nav인 li를 지정하겠다.  */
+        .nav li {
+            display: inline-block;
+            font-size: 20px;
+            padding: 20px;
+            border: 1px solid grey;
+        }
+        /* 링크의 표시를 삭제. */
+        .nav a {
+            text-decoration: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Horizontal Navigation Links</h1>
+    <p>By default, list items are displayed vertically. In this example we use display: inline-block to display them horizontally (side by side).</p>
+    <p>Note: If you resize the browser window, the links will automatically break when it becomes too crowded.</p>
+
+    <div>
+        <ul class="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#clients">Our Clients</a></li>  
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+
+        <ul class="nav2">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#clients">Our Clients</a></li>  
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        
+    </div>
+</body>
+</html>

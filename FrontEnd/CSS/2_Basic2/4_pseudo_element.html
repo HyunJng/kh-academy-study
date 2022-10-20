@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* pseudo element(=tag) : real element는 아니지만 상황에 따라서 element처럼 selector로 사용 가능한 경우*/
+        /* first-line은 크기가 변화해도 항상 첫번쨰 줄에 적용됨 */
+        p.line::first-line {
+            color: red;
+            font-variant: small-caps;
+        }
+        p.letter::first-letter {
+            color: red;
+            font-size: xx-large;
+        }
+        /* before : 문장이 시작하기 전에 끼워넣기 */
+        h1::before {
+            content:url("../images/smiley.gif");
+        }
+        h1::after {
+            content: url("../images/smiley.gif");
+        }
+        /* marker : 앞에 tag가 없으면 모든 <li>를 갖는 곳의 mark에 적용 */
+        ::marker {
+            color: red;
+            font-size: 30px;
+        }
+        /* selection : 앞에 tag가 없으면 모든 문장을 drag할 때 적용 */
+        ::selection {
+            background-color: yellow;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <p class="line">You can use the ::first-line pseudo-element to add a special effect to the first line of a text. 
+        Some more text. And even more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more, and more.</p>
+
+    <p class="letter">You can use the ::first-letter pseudo-element to add a special effect to the first character of a text!</p>
+    <br><hr>
+
+    <h1>This is a heading</h1>
+    <p>The ::before pseudo-element inserts content before the content of an element.</p>
+    <h1>This is a heading</h1>
+    <br><hr>
+
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+      </ul>
+      
+      <ol>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+      </ol>
+      
+</body>
+</html>

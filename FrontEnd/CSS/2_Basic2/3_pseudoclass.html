@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* pseudo(가상) class(종류) selector : 사용자의 마우스 움직임 등의 동작 유형(종류)에 따라
+                        selector을 만들 수 있다. */
+        /* tag이름 + : + peuso class name */
+        /* 1. link : anchor tag에서 사용하는 pseudo class. 한번도 click을 안 한 경우
+           2. visited : anchor tag에서 사용. 최소 한 번 이상 방문한 경우
+           3. hover : 모든 tag에서 사용 가능. 마우스로 해당 element위로 올리면 발생
+           4. active : 모든 tag에서 사용 가능. 마우스로 해당 element를 클릭하면 발생*/
+        a:link {
+            color: red;
+        }
+        a:visited {
+            color: green;
+        }
+        a:hover {
+            color: hotpink;
+        }
+        a:active {
+            color: blue;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2>Styling a link depending on state</h2>
+
+    <p><b><a href="http://www.naver.com" target="_blank">This is a link</a></b></p>
+    <p><b>Note:</b> a:hover MUST come after a:link and a:visited in the CSS definition in order to be effective.</p>
+    <p><b>Note:</b> a:active MUST come after a:hover in the CSS definition in order to be effective.</p>
+
+</body>
+</html>

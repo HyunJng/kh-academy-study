@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* input에 checked속성을 넣으면 작동 */
+        input:checked{
+            height: 40px;
+            width: 40px;
+        }
+        /* input중 text에서 diabled가 아닌 것에 작동 */
+        input[type="text"]:enabled {
+            background-color: yellow;
+        }
+        /* input중 속성에 disabled="disabled"로 넣었으면 작동 */
+        input[type="text"]:disabled {
+            background-color: darkgrey;
+        }
+        /* input에 클릭하면 작동 < 여기선 enabled가 있어서 안됨*/
+        input:focus {
+            background-color: aqua;
+        }
+        
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- checked -->
+    <form action="">
+        <input type="radio" checked="checked" value="male" name="gender"> Male<br>
+        <input type="radio" value="female" name="gender"> Female<br>
+        <input type="checkbox" checked="checked" value="Bike"> I have a bike<br>
+        <input type="checkbox" value="Car"> I have a car 
+    </form>
+
+    <br><hr><br>
+    <!-- enable/disabled -->
+    <form action="">
+        First name: <input type="text" value="Mickey"><br>
+        Last name: <input type="text" value="Mouse"><br>
+        Country: <input type="text" disabled="disabled" value="Disneyland">
+    </form>
+  
+    <br><hr><br>
+    <!-- focus -->
+    <form>
+        First name: <input type="text" name="firstname"><br>
+        Last name: <input type="text" name="lastname">
+    </form>
+      
+  
+</body>
+</html>
