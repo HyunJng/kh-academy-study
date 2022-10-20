@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* viewport가 992px 이상일 때 적용됨. */
+        body{
+            background-color: tan;
+            color: black;
+        }
+
+        /* 0 ~ 992px일 떄 적용 */
+        @media screen and (max-width: 992px) {
+            body {
+                background-color: blue;
+                color: white;
+            }
+            
+        }
+
+        /* 0 ~ 600px일 떄 적용.*/
+        /* 가장 밑에 있기 때문에 500일 땐 아래 것이 적용됨. */
+        @media screen and (max-width: 600px) {
+            body {
+                background-color: olive;
+                color: white;
+            }
+            
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Resize the browser window to see the effect!</h1>
+    <p>By default, the background color of the document is "tan". If the screen size is 992px or less, the color will
+        change to "blue". If it is 600px or less, it will change to "olive".</p>
+
+</body>
+
+</html>

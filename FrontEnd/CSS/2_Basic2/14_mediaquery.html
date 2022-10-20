@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* width < 600 이면, style적용 */
+        /* width < 600 이면, 아래 style적용 */
         body {
             background-color: pink;
         }
         /* width >= 600 이면, media query 본문에 있는 style적용 */
+        /* @media screen : hw 기기 종류에 따라 반응하는 css명령어 */
+        /* 단, 위에 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        가 반드시 적혀있어야함. */
         @media screen and (min-width:600px) {
             body {
                 background-color: lightblue;

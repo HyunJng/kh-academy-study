@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* flex 
+            - flex도 layout할 때 사용
+            - float로 하면 layout하기 힘들 때가 있는데 flex는 덜함  
+            - float로 하면 clear같은 후처리르 해야하는데 그런 것이 없음.*/
+        * {
+            box-sizing: border-box;
+        }
+        .flex-container {
+            /* display : inline-block */
+            display: flex;
+            flex-direction: row; /* element가 세로로, reverse로 하면 뒤집어짐.*/
+            background-color: dodgerblue;
+            flex-wrap: wrap; /* 화면 좁아지면 자동으로 아래로 내려가게 함.*/
+            justify-content: center;
+        }
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+            width: 33.3%;
+            text-align: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Create a Flex Container</h1>
+
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <p>A Flexible Layout must have a parent element with the <em>display</em> property set to <em>flex</em>.</p>
+
+    <p>Direct child elements(s) of the flexible container automatically becomes flexible items.</p>
+
+</body>
+
+</html>
