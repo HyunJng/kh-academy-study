@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* margin collapse(붕괴) : web browser가 기본적으로 2개의 element사이의
+            margin이 모두 적용되는 것이 아니라 margin이 큰 쪽의 element로 압축되는 효과
+            상위 element의 bottom margin과 하위 element의 top margin 사이에 적용  */
+        h1 {
+            /* margin-bottom : 50px */
+            /* 즉, h1과 h2사이에는 70px이 아니라 50px이 떨어짐 */
+            margin: 0 0 50px 0;
+        }
+        h2 {
+            /* margin-top : 20px */
+            margin: 20px 0 0 0 ;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>In this example the h1 element has a bottom margin of 50px and the h2 element has a top margin of 20px. So, the
+        vertical margin between h1 and h2 should have been 70px (50px + 20px). However, due to margin collapse, the
+        actual margin ends up being 50px.</p>
+
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+</body>
+
+</html>

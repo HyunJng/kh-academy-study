@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p.normal {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 2.5em; /*통상적으로 1em = 16px정도. 그러나 1em은 web browser에서 설정되는 font크기를 말함.*/
+        }
+        p.italic {
+            font-style: italic;
+            font-size: 1.875em; /*1.875 * 16 = 30px*/
+        }
+        p.oblique {
+            font-style: oblique;
+            font-size: 0.875em; /*0.875 * 16 = 14px*/
+        }
+        h1 {
+            /* viewport: desktop, laptop, smartphone등의 툴의 화면사이즈 */
+            /* vw : viewport width. 1vw: viewport 전체 width의 1%
+             => responsive font size를 정의
+             => responsive 정의 : web content가 HW크기에 맞춰 CSS가 적용된다는 의미*/
+            font-size: 10vw;/* 10vw : 전체 viewport width의 10%*/
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>The font-style property</h1>
+
+    <p class="normal">This is a paragraph in normal style.</p>
+    <p class="italic">This is a paragraph in italic style.</p>
+    <p class="oblique">This is a paragraph in oblique style.</p>
+</body>
+
+</html>

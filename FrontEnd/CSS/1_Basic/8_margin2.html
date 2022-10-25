@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div {
+            border: 1px solid red;
+            margin-left: 100px;
+        }
+        p.ex1 {
+            /* inherit : 부모 tag의 margin값을 상속받아 적용하라는 뜻 */
+            margin-left: inherit;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Use of the inherit value</h2>
+    <p>Let the left margin be inherited from the parent element:</p>
+
+    <div>
+        <p class="ex1">This paragraph has an inherited left margin (from the div element).</p>
+    </div>
+
+</body>
+
+</html>

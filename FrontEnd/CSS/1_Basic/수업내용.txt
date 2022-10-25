@@ -9,3 +9,13 @@
 - 필요한 부분만 차지
 - 띄어쓰기가 되지 않음
 <span> <a> <img>
+
+실제로는 css보다는 bootstrap같이 library를 써서 생산성을 높임.
+그러나 지금 HTML/CSS를 배우는 이유는
+1. 만약 js같은 frontend 코딩할 때 css 속성을 바꿔서 효과를 낼 수 있고
+2. js와 연계가 되는 부분도 있기 때문이고
+3. Frontend의 사람과 협엽할 때 대화가 되라고 하는 것
+=> 그래서 너무 세세하게 할 필요가 없다.
+
+WebSafe font
+: 모든 Web browser이 쓸 수 있는 font

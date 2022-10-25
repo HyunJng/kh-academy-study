@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p.one {
+            border-style: solid double dashed;
+            /* top right left bottom 이 모두 5px */
+            /* border-width: 5px; */
+
+            /* top것을 bottom이 복사, right ->left 복사 */
+            /* border-width: 5px 20px; */
+
+            /* top right bottom순, left는 right것을 복사 */
+            /* border-width:  5px 20px 30px; */
+
+            /* top right bottom left순 */
+            border-width: 10px 5px 20px 15px;
+
+            border-color: red green yellow blue;
+
+            /* 이렇게 여러개를 쓰는 것은 shot-hand에서는 적용X */
+            /* border: 5px 10px solid red; /* <<안먹음*/
+        }
+
+        p.two {
+            border-style: solid;
+            border-width: medium;
+        }
+
+        p.three {
+            border-style: dotted;
+            border-width: 2px;
+        }
+
+        p.four {
+            border-style: dotted;
+            border-width: thick;
+        }
+
+        p.five {
+            border-style: double;
+            border-width: 15px;
+        }
+
+        p.six {
+            border-style: double;
+            border-width: thick;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>The border-width Property</h2>
+    <p>This property specifies the width of the four borders:</p>
+
+    <p class="one">Some text.</p>
+    <p class="two">Some text.</p>
+    <p class="three">Some text.</p>
+    <p class="four">Some text.</p>
+    <p class="five">Some text.</p>
+    <p class="six">Some text.</p>
+
+    <p><b>Note:</b> The "border-width" property does not work if it is used alone.
+        Always specify the "border-style" property to set the borders first.</p>
+</body>
+
+</html>

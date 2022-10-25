@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .p1 {
+            /* 3개의 font-family를 사용
+            => web browser에게 첫번째 font가 존재하면 사용
+            없으면 2번째, 또 없으면 3번째 것을 사용하라는 뜻
+            => 뒤로 갈수록 general한 font */
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .p2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .p3 {
+            font-family: 'Lucida Console', 'Courier New', monospace;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>CSS font-family</h1>
+    <p class="p1">This is a paragraph, shown in the Times New Roman font.</p>
+    <p class="p2">This is a paragraph, shown in the Arial font.</p>
+    <p class="p3">This is a paragraph, shown in the Lucida Console font.</p>
+</body>
+
+</html>

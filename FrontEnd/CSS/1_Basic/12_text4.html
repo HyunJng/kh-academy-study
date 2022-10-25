@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* indent: 첫번쨰 라인의 맨 앞글자 부분을 띄우고 싶을 떄 사용 */
+        p.indent {
+            text-indent: 50px;
+        }
+
+        /* line-height 는 text-size뿐만 아니라 그 위아래 간격까지를 말함
+                        default는 1 */
+        p.small {
+            line-height: 0.8;
+        }
+
+        p.big {
+            line-height: 1.8;
+        }
+        p.nowrap {
+            /* white-space : 일반 space*/
+            /* wrap : default, window크기에 의해 text가 다음 라인으로 넘어갈 때 space를 기준으로 했음*/
+            /* nowrap : window크기에 상관없이 한줄로만 씀*/
+            white-space: nowrap;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Using text-indent</h1>
+
+    <p class="indent">In my younger and more vulnerable years my father gave me some advice that I've been turning over
+        in my mind ever
+        since. 'Whenever you feel like criticizing anyone,' he told me, 'just remember that all the people in this world
+        haven't had the advantages that you've had.'
+    </p>
+
+
+    <p class="small">
+        This is a paragraph with a smaller line-height.<br>
+        This is a paragraph with a smaller line-height.<br>
+    </p>
+
+    <p class="big">
+        This is a paragraph with a bigger line-height.<br>
+        This is a paragraph with a bigger line-height.<br>
+    </p>
+
+    <p class="nowrap">
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+        This is some text that will not wrap.
+    </p>
+</body>
+
+</html>
