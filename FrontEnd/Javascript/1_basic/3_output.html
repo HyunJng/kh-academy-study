@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>My First Web Page</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        // 1. innerHTML
+        document.getElementById('demo').innerHTML=5+6;
+        // 2. document.write(사용권장 X)
+        document.write(10+20);
+        document.write('hello document write');
+        // 3. window.alert(사용 권장 X)
+        // 웹브라우저가 HTML의 element들을 화면에 display하기 전에 먼저 실행 
+        window.alert('Hello, Javascript');
+        window.alert('Hello, Javascript again');
+        // 4. console.log(추천)
+        // : web browser의 development tool안의 console tab에서 뜸. 
+        // javascript code의 error debugging용으로 많이 사용
+        console.log(30 + 80);
+        console.log('hello, console log');
+    </script>
+    안녕하세요,,,, 반갑습니다. javascript님!!
+
+    <!-- button에서 document.write는 아예 새로운 page가 나옴. 사용X -->
+    <button type="button" onclick="document.write(30+40) ">document write사용</button>
+    <button type="button" onclick="window.alert('pop up alert window')">window alert사용</button>
+    <!-- 5. window.print() : web page 전체를 출력(print)하는 별도 popup화면 나옴-->
+    <button onclick="window.print()">Print this page</button>
+</body>
+
+</html>

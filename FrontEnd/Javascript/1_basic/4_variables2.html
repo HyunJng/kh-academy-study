@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../scripts/myScript.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS Valueable keyword</h1>   
+    <p>1. var 변수는 중복 선언 가능.</p>
+    <p>2. 데이터타입은 넣는 값에 따라 달라짐</p>
+    <p> <strong style="background-color: red;">절대 var은 쓰지 말 것</strong> </p>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        // var keyword 사용 : ES5(2009년)에 만들어짐
+        var x = 5;
+        var y = 6;
+        // 1. var은 변수에 대해서 중복 선언하는 것도 가능(나중걸로 적용)
+        var x = 10;
+        var z = x + y + 0.5;
+        // 2. javascript의 일반적 특징
+        // - 변수에 data type이 다른 값을 넣으면, 다른 data type으로 변경.
+        z = "hello, javascript";
+        document.getElementById('demo').innerHTML = 
+        "this value of z is " + z;
+        document.getElementById('demo1').innerHTML = "typeof z: " + typeof z;
+    </script>
+</body>
+</html>

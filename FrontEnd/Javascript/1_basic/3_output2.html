@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>JavaScript Statements</h2>
+    <p>A <b>JavaScript program</b> is a list of <b>statements</b> to be executed by a computer.</p>
+    <p id="demo"></p>
+
+    <script>
+        // 변수선언, 반복문 등을 사용하여 코딩 가능
+        let x, y, z;
+        x = 5;
+        y = 6;
+        z = x + y;
+
+        // innerHTML, innerText 모두 element content를 새로 setting하는 것
+        // 1. innerHTML: HTML <tag>를 사용하면 동적으로 html tag를 새로 생성하여 
+        //              web browser화면에 반영할 수 있다.
+        // 2. innerText : html tag를 사용하더라도 단순하게 문자열로 인식
+        document.getElementById('demo').innerHTML = "<h1>" + "z = " + z + "</h1>" + "<ul><li>Coffee</li><li>Tea</li><li>Juice</li>";
+        // document.getElementById('demo').innerText="<h1>" + "z = " + z + "</h1>";
+
+    </script>
+</body>
+
+</html>

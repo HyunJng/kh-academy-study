@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../scripts/myScript.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS Valueable keyword</h1>   
+    <p> 1. let은 중복선언 불가능</p>
+    <p style="color:red"> 2. 무조건 var대신 let을 사용할 것</p>
+   <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        // let keyword 사용 : ES6(2015년)에 만들어짐
+        let x;
+        x = 5;
+        let y = 6;
+        // 1. let키워드는 중복선언 불가능
+        // 2. var대신에 반드시 let을 사용할 것
+        // let x = 10;
+        let z = x + y + 0.5;
+        // z = "hello, javascript";
+        document.getElementById('demo').innerHTML = 
+        "this value of z is " + z;
+        document.getElementById('demo1').innerHTML = "typeof z: " + typeof z;
+    </script>
+</body>
+</html>
