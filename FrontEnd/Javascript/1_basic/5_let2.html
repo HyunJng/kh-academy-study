@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Redeclaring a Variable Using let</h2>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <script>
+        // 2. let은 무조건 변수 이름 동일하면 error이지만 web browser에서만 확인할 수 있음.
+        var a = 10;
+        let a = 20;
+        document.getElementById('demo3').innerHTML = a;
+
+
+        let x = 10; // global variable
+        // let x = 5; // error
+        {
+            // 1. block scope 에서 선언된 x는 global scope에서 선언된 변수 x와 다른 변수.
+            let x = 2; // local variable
+            document.getElementById('demo1').innerHTML = x; // x = 2
+        }
+        document.getElementById('demo2').innerHTML = x; // x = 10
+    </script>
+    
+</body>
+
+</html>

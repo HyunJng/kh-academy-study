@@ -14,7 +14,7 @@
   Python
   - machine learning, data 분석
 
-===============================================================
+=============================================================== OK
 <h2>Hello</h2>
 => 실제로는 하나의 객체가 메모리에 생성. new HTMLH('hello'); < 대충 이런 식.
   - feild
@@ -22,24 +22,31 @@
   - style(내부클래스) -> field, method
       - CSS 관련
   - Javascript는 이 field들을 변경하는 것.
-=========================================================
+========================================================= OK
 filed 이름 규칙?
 CSS : font-size
 JS : fontSize
 비슷하다.
-============================================================
+============================================================ OK
 javascript에는
-- datatype : var, let, const 3가지만 존재
+- datatype선언 : var, let, const 3가지만 존재
 - 함수 format
   function function_name (x, y) {  }
-- primitive : 숫자형(number), 문자열형(string), 논리형(boolean), 심벌형(symbol), 특수형(null/undefined)
+- 데이터 타입
+  primitive : 숫자형(number), 문자열형(string), 논리형(boolean), 심벌형(symbol), 특수형(null/undefined)
   reference : 배열(array), 객체(object), 함수(function)
-  keyword: var, let, const 은 아무거나 가능.?
+- 데이터 선언 keyword: var, let, const
+- JS의 object와 function이 Java의 class의 역할을 한다. (function안에 field, method존재)
 
 Java와 Javascript의 데이터차이
 - String -> JS에서는 primitive type임
 - short, int, long, float, double -> number
 - class -> JS에서는 object.
+
+데이터타입 변환
+- 자동 형변환(auto conversion)
+  => javascript는 자동형변환이 java보다 더 다양하고 막강함(너무 막강해서 개발자가 혼동)
+- 강제 형변환(casting)
 ===========================================================
 JS와 Java의 공통점
 1. 문자열의 합
@@ -47,4 +54,48 @@ JS와 Java의 공통점
   => "가나다 " + "마바사"
   => "가나다 마바사"
 2. 대소문자 구분
+============================================================
+scope
+- Javascript : global scope, function scope << es5버전, var을 사용하여 변수를 선언하거나, 
+              ketword없이 변수 선언한 경우 block scope << ex6, le/const를 사용할 경우에만 허용.
+- Java : block scope
 
+block scope이란?
+{
+  int sum;
+  -- sum 변수는 {} 사이에만 존재함
+}
+==========================================================
+react.js => const로 변수선언하여 많이 사용(let은 거의 사용 X)
+javascript에서는 global scope일 떄 
+나중에 바뀌어도 어디서 바뀌었는 것이 모름.
+reac.js는 변수를 포함해서 모든 수정은 내부에서 control
+===========================================================
+Operator
+Java와의 차이를 중점으로 적음
+1. ** : JS에서는 제곱 연산자가 존재
+2. ==
+   === : java와 동일한 의미
+3. !=
+   !== : java와 동일한 의미
+
+4. typeof : 변수의 타입 리턴 (문제 존재)
+   instanceof : java와 동일
+===============================================================
+javascript의 초기값
+var x = 0;
+var x = false;
+var x = "";
+var x = undefined;
+var x = [];
+var x = {}; // object
+================================================================
+JavaScript          Java
+ function           class
+- property        - field
+- method          - method
+
+  object => new function()을 실행하여 만든 instance
+- property
+- method
+==================================================================

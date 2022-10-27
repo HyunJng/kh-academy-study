@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>JavaScript Functions</h2>
+
+    <p>Outside myFunction() carName is undefined.</p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <script>
+        // myfunction 실행
+        // 1. function hoisting 발생
+        // - function 선언한 것이 실행한 것보다 뒤에 있어도 JS엔진이 실행할 때, 
+        //   선언된 function을 앞으로 옮겨서 인지
+        myFunction();
+        // myfunction 선언
+        function myFunction() {
+            let carName = "Volvo"; // local variable
+            document.getElementById('demo1').innerHTML =
+                typeof carName + " " + carName;
+        }
+
+        document.getElementById('demo2').innerHTML = typeof carName;
+    </script>
+
+</body>
+
+</html>

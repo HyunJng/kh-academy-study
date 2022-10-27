@@ -8,11 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>JS Valueable keyword</h1>   
+    <h1>JS Valueable keyword:let</h1>   
     <p> 1. let은 중복선언 불가능</p>
     <p style="color:red"> 2. 무조건 var대신 let을 사용할 것</p>
    <p id="demo"></p>
     <p id="demo1"></p>
+    <p id="demo2"></p>
     <script>
         // let keyword 사용 : ES6(2015년)에 만들어짐
         let x;
@@ -23,9 +24,15 @@
         // let x = 10;
         let z = x + y + 0.5;
         // z = "hello, javascript";
+        
+        // 3. 변수만 선언한 경우는 => undefined 타입
+        //   undefined라고 넣어도 된다.
+        let sum = 10;
+        sum = undefined;
         document.getElementById('demo').innerHTML = 
         "this value of z is " + z;
         document.getElementById('demo1').innerHTML = "typeof z: " + typeof z;
+        document.getElementById('demo2').innerHTML = "typeof z: " + typeof sum;
     </script>
 </body>
 </html>

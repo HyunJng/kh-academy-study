@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>JavaScript Objects</h2>
+    <p id="demo"></p>
+
+    <script>
+        const person = {
+            // 2. object property의 datatype은 String이다. 
+            //   -> "" 처리를 하지 않아도 JS engine에서 자동으로 string 처리함.
+            // 3. value에는 함수도 들어갈 수 있다.
+            //  => function인자에도 method를 넣을 수 있다, 
+            "firstName": "Jogn",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+        };
+        // 1. object property 를 사용할 떄, . 또는 [] 사용 가능
+        document.getElementById('demo').innerHTML = 
+        // person.firstName + " is " + person.age + " years old.";
+        person["firstName"] + " is " + person["age"] + " years old.";
+        
+    </script>
+
+</body>
+
+</html>

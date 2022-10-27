@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>even : onchange 실습 </h2>
+    <div>
+        <p> 1. Select를 쓸 때 onchange활용</p>
+        <!-- onchange : input element의 value 값이 변경이 되면 event가 발생 -->
+        <select name="car" id="mySelect" onchange="myFunction()">
+            <option value="Audi1">Audi</option>
+            <option value="BMW1">MBW</option>
+            <option value="Merceds1">Mercedes</option>
+            <option value="Volvo1">Volvo</option>
+        </select>
+        <p id="demo"></p>
+    </div>
+    
+    <div>
+        <p>2. text를 쓸 때 onchagne활용(수업외)</p>
+        Enter your name: <input type="text" id="fname" onchange="nameChange()">
+    </div>
+    
+
+    <script>
+        function myFunction(){
+            // var Object = document.getElementById('mySelect');
+            // var x = mySelect.value;
+            let x = document.getElementById('mySelect').value;
+            document.getElementById('demo').innerHTML = 
+            "Your selected: " + x;
+        }
+
+        function nameChange() {
+            var x = document.getElementById('fname');
+            x.value = x.value.toUpperCase();
+        }
+    </script>
+</body>
+</html>

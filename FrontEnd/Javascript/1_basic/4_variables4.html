@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,14 @@
     <script src="../scripts/myScript.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <h1>JS Valueable keyword</h1>   
+    <h1>JS Valueable keyword : const</h1>
     <p> 1. const는 상수를 선언할 떄 사용</p>
     <p> 2. 선언된 이후 다른 값을 넣으면 error발생</p>
     <p> 3. const는 중복선언 불가능</p>
-   <p id="demo"></p>
+    <p> 4. const는 반드시 initialize해야함</p>
+    <p id="demo"></p>
     <p id="demo1"></p>
     <script>
         // const keyword 사용 : ES6(2015년)에 만들어짐
@@ -27,9 +30,10 @@
         //    let, const로 만든 es6 js파일을 var을 사용한 es5 js파일로 자동 transfer해주는
         //    tool (예 : babel)을 사용하면 된다.
         //  => 무조건 es6으로 개발하라.
-        document.getElementById('demo').innerHTML = 
-        "this value of z is " + z;
+        document.getElementById('demo').innerHTML =
+            "this value of z is " + z;
         document.getElementById('demo1').innerHTML = "typeof z: " + typeof z;
     </script>
 </body>
+
 </html>

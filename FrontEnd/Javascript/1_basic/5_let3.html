@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>JavaScript Hoisting</h2>
+    <p>With <b>var</b>, you can use a variable before it is declared:</p>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        // var을 사용하여 변수 선언한 것이 변수 사용한 것보다 나중에 존재하더라도
+        // javascript engine(web browser에 존재)이 실행할 떄
+        // source 코드 내부에서 나중에 선언된 변수를 변수 사용하기 전으로 자동으로 끌어올림
+        //  => hosting
+        carName = "Volvo"; // 변수 선언하기 전에 변수에 값을 할당
+        document.getElementById('demo').innerHTML = carName;
+        L = carName;
+        var carName;
+        document.getElementById('demo1').innerHTML = carName;
+    </script>
+
+    <p id="demo3"></p>
+
+    <script>
+        // let으로 선언된 변수는 hosting 효과가 발생되지 않아, 에러가 발생한다.
+        carName1 = "Volvo"; // 변수가 선언하기 전에 변수 값 할당.
+        document.getElementById('demo3').innerHTML = carName1;
+        let carName1;
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>JavaScript const</h2>
+    <p>Declaring a constant array does NOT make the elements unchangeable:</p>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        const PI = 3.14159; // PI의 number type 데이터 값을 넣음
+        
+        // Create an Array
+        const cars = ["Saab", "Volvo", "BMW"];
+        // 1. const로 선언했으나 배열 원소를 변경할 수 있다.
+        //  - 배열은 reference 변수이기 때문.
+        //  - cars에 들어가있는 주소값을 const로 선언한 것이고
+        //    참조 주소 안에 있는 element들은 수정/삭제/추가 가능하다.
+        // => const 문제 : 배열, 객체, 함수와 같이 참조 데이터 타입에 사용할 때는 
+        //                 해당 원소를 변경 할 수 있는 것이 문제
+        //             (const의 사용 목적 : 수정할 수 없도록 만들기 위해서이므로 문제임)
+        cars[0] = "Toyota";
+        // cars = ["Kia", "HyunDai"]; // 주소가 바뀌는 거라서 error
+
+        // 2. 자바와 달리 배열에 여러 메소드가 존재한다.
+        //  - push : array 객체 함수의 method로 새로운 배열 원소를 끝에 추가할 때 사용
+        cars.push("Audi");
+
+        document.getElementById('demo').innerHTML = cars;
+        L = cars;
+
+        document.getElementById('demo1'),innerHTML = L;
+    </script>
+</body>
+
+</html>

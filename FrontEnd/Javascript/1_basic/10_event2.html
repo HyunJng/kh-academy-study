@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>event: mouseover 실습</h2>
+    <!-- onmouseover : mouse가 element 위에 있을 경우에 event가 발생 
+         onmouseout : mouse가 element 위에 있다가 element 밖으로 나갈 경우에 event가 발생
+    -->
+    <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" 
+        src="../images/smiley.gif" alt="smiley" width="36px">
+
+    <script>
+        function bigImg(x) {
+            x.style.height = "64px";
+            x.style.width = "64px";
+        }
+
+        function normalImg(x) {
+            x.style.height = "40px";
+            x.style.width = "40px"
+        }
+    </script>
+</body>
+</html>

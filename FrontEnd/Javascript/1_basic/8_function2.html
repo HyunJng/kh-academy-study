@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>JavaScript Functions</h2>
+    
+    <p>This example calls a function to convert from Fahrenheit to Celsius:</p>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        function toCelsicus(f){
+            return (5/9) * (f-32);
+        }
+        // 1. 함수를 실행할 떄 괄호를 넣지 않으면, 함수 본문 내용이 출력.
+        document.getElementById('demo').innerHTML = toCelsicus;
+        // 2. 함수 실행 방법 : 함수이름 + ()
+        document.getElementById('demo1').innerHTML = toCelsicus(77);
+    </script>
+</body>
+
+</html>
