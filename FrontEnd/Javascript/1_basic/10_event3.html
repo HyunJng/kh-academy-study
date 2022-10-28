@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>keydown/keyup event 실습</h2>
+    <p>user가 input field에 글자가 입력될 떄 function은 트리거 됨</p>
+    <!-- onkeydown : input tag 등에서 키보드에 글자가 입력되 떄 event 발생 -->
+    <!--             키보드에서 입력된 글자가 web browser에 display되기 전에 발생  -->
+    <input type="text" onkeydown="myFunction()">
+    <!-- onkeyup : 키보드에서 입력된 글자가 web browser에 display된 후에 발생 -->
+    <input type="text" onkeyup="myFunction1()">
+    <script>
+        function myFunction() {
+            alert("onkeydown반응");
+        }
+        function myFunction1() {
+            alert("onkeyup반응");
+        }
+    </script>
+</body>
+</html>

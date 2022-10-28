@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- onload: 
+    1. web browser가 발생시키는 event (이전 것은 사용자가 발생)
+    2. web browser에 있는 js engine이 html문서안에 있는 모든 html element들을 
+        객체로 만든 후에 web browser에 htl element들을 화면에 display하기 직전에 
+        자동 호출되는 event
+-->
+<!-- event handler : event가 발생할 때 처리되는 함수(function) -->
+<body onload="myFunction()">
+    <h2>onload event 실습</h2>
+    <script>
+        function myFunction() {
+            alert("page is loaded")
+        }
+    </script>
+</body>
+
+</html>

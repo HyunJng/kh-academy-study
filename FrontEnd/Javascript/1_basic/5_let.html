@@ -14,11 +14,12 @@
 
     <p id="demo1"></p>
     <p id="demo2"></p>
-
+    <p id="demo3"></p>
+    <p id="demo4"></p>
     <script>
         // global scope : function 내에 선언되지 않은 변수들 모두
         // - 정의 : 어디서든지 사용 가능 (function으로 선언된 함수에서도 사용 가능)
-        // var x = 10; // global variable
+        var x = 10; // global variable
         {
         // - var 변수는 block scope안에서 global로 선언된 변수를 
         //   local variable로 다시 선언하여도 global variable고 동일한 객체로 인식
@@ -26,6 +27,10 @@
             document.getElementById('demo1').innerHTML = x;
         }
         document.getElementById('demo2').innerHTML = x;
+        function main() {
+            var x = 3;
+        }
+        document.getElementById('demo4').innerHTML = x;
     </script>
     
 </body>

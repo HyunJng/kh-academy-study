@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript String</h1>
+    <h2>7. Back-Tick(`) <small>중요함</small></h2>
+
+    <p id="demo"></p>
+
+    <script>
+        // back tick(`)
+        // 1. string 문자열에서도 사용 가능('', "", ``)
+        //  => ``으로 감싸면 문자열 안에 ', "을 자유롭게 사용 가능        
+        // let text = `He's ofen called "Johnny"`;
+
+        // 2. multi line에 적용 가능 (""은 여러 라인일 경우 + 를 사용해야만함)
+        // let text = `The quick
+        //             brown fox
+        //             jumps over
+        //             the lazy dog`;
+        
+        // 3. 변수 값을 읽어올 수 있다: ${변수}
+        // let firstName = "John";
+        // let lastName = "Doe";
+        // let text = `Welcome ${firstName}, ${lastName}!`;
+        // document.getElementById('demo').innerHTML = text;
+
+        // 4. 수식도 계산할 수 있다: ${수식(expression)}
+        // let price = 10;
+        // let VAT = 0.25;
+        // let total = `Total: ${(price * (1 + VAT)).toFixed(2)}`;
+        // document.getElementById('demo').innerHTML = total;
+        
+        // 5. 응용
+        let header = "Templates Literals";
+        let tags = ["template literals", "javascript", "es6"];
+
+        let html = `<h3>${header}</h3><ul>`;
+        for(const x of tags){
+            html += `<li>${x}</li>`;
+        }
+        html += '</ul>';
+        document.getElementById('demo').innerHTML = html;
+    </script>
+</body>
+</html>

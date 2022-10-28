@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript String</h1>
+    <h2>3. slice 메소드</h2>
+    <p id="demo"></p>
+
+    <script>
+        let text = "Apple, Banana, Kiwi";
+        let part = text.slice(7, 13);
+        // let part = text.slice(-12); // 뒤에서 12번째부터
+        document.getElementById('demo').innerHTML = part;
+    </script>
+
+    <h2>4. replace 메소드</h2>
+    <p>replace함수는 첫번째 matching 된 것만 바뀐다.</p>
+    <button onclick="myFunction()">Click</button>
+    <p id="demo1">Please visit Microsoft and MiCrOsOfT and MICROSOFT!</p>
+
+    <script>
+        function myFunction() {
+            let text = document.getElementById('demo1').innerHTML;
+            // web page log에서 text 제대로 들어갔는지 확인
+            console.log("text = ", text);
+            // replace 메소드는 첫번째 matching된 것만 적용.
+            // /MICROSOFT/ig : 정규표현식     
+            // - i : ignore, 대소문자 무시
+            // - g : global, 매칭되는 모든 문자열에 적용
+            document.getElementById('demo1').innerHTML =
+                                                text.replace(/MICROSOFT/ig, "W3School");
+        }
+    </script>
+    <h2>5. String 원소를 배열처럼 가져올 수 있음</h2>
+    <p id="demo2">가나다라마바사</p>
+    <p id="demo3"></p>
+    <script>
+        let text2 = document.getElementById('demo2').innerHTML;
+        document.getElementById('demo3').innerHTML = "text2[1] = " + text2[1];
+    </script>
+
+    <h2>6. search 메소드</h2>
+    <p>문자의 index출력, 예제없음</p>
+
+</body>
+</html>

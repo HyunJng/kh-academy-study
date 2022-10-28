@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>JavaScript Numbers</h2>
+
+    <p>The toString() method can output numbers from base 2 to 36:</p>
+
+    <p id="demo"></p>
+
+    <script>
+        let myNumber = 32;
+        // number type도 엄밀히 말하면 object에 속함.
+        // => property, method가 존재
+        // toString method : 숫자를 문자열로 변환
+        document.getElementById("demo").innerHTML =
+            "Decimal 32 = " + "<br><br>" +
+            "Hexatrigesimal (base 36): " + myNumber.toString(36) + "<br>" +
+            "Duotrigesimal (base 32): " + myNumber.toString(32) + "<br>" +
+            "Hexadecimal (base 16): " + myNumber.toString(16) + "<br>" +
+            "Duodecimal (base 12): " + myNumber.toString(12) + "<br>" +
+            "Decimal (base 10): " + myNumber.toString(10) + "<br>" +
+            "Octal (base 8): " + myNumber.toString(8) + "<br>" +
+            "Binary (base 2): " + myNumber.toString(2);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>JavaScript Global Methods</h2>
+    <p>The Number() method converts variables to numbers:</p>
+
+    <p id="demo"></p>
+
+    <script>
+        //  Number() 전역함수
+        // - string타입 변수를 비교연산자로 비교할 때 자동 Number함수를 이용하여 변환되어 비교
+        // 1. JavaScript에서는 true == 1. false == 0
+        // 2. space가 있어도 인정 숫자로 인정
+        document.getElementById('demo').innerHTML =
+            Number(true) + "<br>" +         // true : 1
+            Number(false) + "<br>" +        // false : 0
+            Number("10") + "<br>" +         // 10
+            Number("   10") + "<br>" +      // 10
+            Number("10   ") + "<br>" +      // 10
+            Number(" 10    ") + "<br>" +    // 10
+            Number("10.33") + "<br>" +      //10.33
+            Number("10,33") + "<br>" +      // NaN
+            Number("10 33") + "<br>" +      // NaN
+            Number("John");                 // NaN
+    </script>
+
+    <p id="demo1"></p>
+
+    <script>
+        // 모든 data 관련 프로그램이 1970년 01월 01일 0시 0분 0초 기준으로 숫자로 변한하여 게산
+        // 계산방법 
+        // - 1일 : 24시간 * 60분 * 60초 * 1000 (ms)
+        // 이 것은 Java, JavaScript, C, C++ 모두 적용되는 방식
+        let x = new Date("1970-01-02");
+        document.getElementById('demo1').innerHTML = "data를 숫자로 변환한 결과 : " + Number(x);
+    </script>
+</body>
+
+</html>

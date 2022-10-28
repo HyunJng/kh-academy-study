@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript String</h1>
+    <h2>1. length property</h2>
+
+    <p>The length of the string is </p>
+    <p id="demo"></p>
+
+    <script>
+        let text = "ABCDEEEEE";
+        // string property 중에 length가 존재
+        document.getElementById('demo').innerHTML = text.length;
+    </script>
+
+    <h2>2. String object</h1>
+    <p id="demo1"></p>
+    <p id="demo2"d></p>
+
+    <script>
+        let x = "John";
+        // 생성자(function constoructer) => object 생성 (String 기능을 하는 object)
+        // 사용은 가능하나, 절대 사용하지 말 것. new 를 쓰는 것은 직접 생성한 구조체만 할 것
+        let y = new String("John");
+        
+        document.getElementById('demo1').innerHTML = 
+        "'John'의 타입은 " + typeof x + "<br>"+ 
+        "new String('John')의 타입은" + typeof y;
+
+        // a == b : a와 b의 데이터 타입들을 자동 형변환하여 비교
+        //       -> object 타입인 y를 string으로 자동 형변환하여 비교하므로 true return 
+        document.getElementById('demo2').innerHTML = "x == y : " + (x == y) + "<br>x === y : " + (x === y);
+    </script>
+
+</body>
+</html>
