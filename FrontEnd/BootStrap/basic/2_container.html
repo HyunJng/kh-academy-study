@@ -11,13 +11,18 @@
 </head>
 
 <body>
-    <!-- my : margin top + bottom 
-         p-5 : padding  -->
+    <!-- <Container>
+        1. 기본 grid를 사용하고 싶을 때 쓴다.
+        - container : 좌우에 margin존재
+        - container-fluid : 좌우에 margin 없음
+        2. p : padding     응용) pt-5 : padding top, p-t :모든 곳에 padding
+        3. m : margin      응용) my-5 : margin y축(top/botom)
+    -->
     <div class="container p-5 my-5 border">
         <h1>My First Bootstrap Page</h1>
         <p>This container has a border and some extra padding and margins.</p>
     </div>
-    <!--  -->
+
     <div class="container p-5 my-5 bg-dark text-white">
         <h1>My First Bootstrap Page</h1>
         <p>This container has a dark background color and a white text, and some extra padding and margins.</p>
@@ -27,7 +32,15 @@
         <h1>My First Bootstrap Page</h1>
         <p>This container has a blue background color and a white text, and some extra padding and margins.</p>
     </div>
-
+    <!-- <Grid : col> 
+        1. bootstrap에서는 12등분하여 grid를 관리
+        2. 타겟하는 screen 크기에 따라 6가지 col 클래스로 나눌 수 있다.
+        => col-(없음), col-sm, md, lg, xl, xxl
+        => 만약 타겟하는 스크린에 여러가지인경우, 작은 것을 선택한다.
+        3. screen을 선택했으면 이제 12등분 중 몇등분을 사용할 것인지 선택
+        ex) 한줄(row)에서 스크린까지만 쓰고 몇등분 쓸 건지 안쓰면 개수에 따라 알아서 비율 맞춰준다.
+        ex) col-sm-4 : col-sm-8 = 4:8의 비율
+     -->
 
     <div class="container-fluid mt-3">
         <h1>Three equal width columns</h1>
