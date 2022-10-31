@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript Arrays</h2>
+    <p>typeof 연산자를 array에서 적용하면 array가 나와야 하는데, object로 나옴</p>
+    <p id="demo"></p>
+
+    <script>
+        const fruits = ["Banana", "Apple"];
+        // typeof 를 array에서 적용하면 array가 나와야 하는데, object로 나옴
+        // document.getElementById('demo').innerHTML = typeof fruits;
+
+        // 해결책 1. Array.isArray()
+        // document.getElementById('demo').innerHTML = Array.isArray(fruits);// true, false
+
+        // 해결책 2. instanceof
+        document.getElementById('demo').innerHTML = fruits instanceof Array;
+    </script>
+</body>
+</html>

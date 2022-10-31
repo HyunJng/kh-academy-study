@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript : Array.sort()</h2>
+    <p>sort와 정렬function</p>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+
+    <script>
+        const points = [40, 100, 1, 5, 25, 10];
+        document.getElementById('demo1').innerHTML = points;
+
+        // 오름차순 정렬
+        // 1) a - b <= 0 : a와 b의 순서 유지
+        // 2) a - b > 0 : a와 b의 순서를 바꿈.
+        points.sort(function(a, b) {return a - b});
+
+        // 내림차순 정렬
+        poitnsn.sort(function(a, b) {return -(a - b)});
+
+        // 기본 sort method는 모든 원소이 정소라도 문자열로 변환하여 정렬 수행.
+        // points.sort();
+        document.getElementById('demo2').innerHTML = points;
+    </script>
+</body>
+</html>
