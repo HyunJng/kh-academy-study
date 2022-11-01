@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript global variable</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        // global variable 정확한 의미 
+        // 1. web browser가 html파일을 읽어서 window에 display할 때, 
+        //    내부적으로 "window"라는 object를 생성
+        // 2. global variable은 내부적으로 window object에 property로 설정됨.
+        // - var로 선언된 global variable또는 var없이 선언된 global variable은 window에 들어감
+        // - 단, let으로 선언된 global variable은 window객체에 들어가지 않음
+        var globalvariable = 10;
+        let letvariable = 20;
+
+        myFunction();
+        // golbal variable이기 때문에 함수 안에 적어도 사용할 수 있다. 
+        document.getElementById('demo').innerHTML = "I can display " + window.carName;
+
+        function myFunction() {
+            // function 내에서 var로 변수를 선언하면 function scope이므로 
+            // functino 외부에서 해당 변수 접근 불가.
+            // var carName = "Volvo";
+
+            // function 내부에서 선언 없이 변수를 사용하면, global variable로 인식
+            carName = "Volvo";
+            console.log(globalvariable);
+            console.log(window.letvariable);
+        }
+    </script>
+</body>
+</html>

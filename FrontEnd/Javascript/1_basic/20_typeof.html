@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>JavaScript Operators</h1>
+    <h2>The typeof Operator</h2>
+
+    <p>The typeof operator returns the type of a variable, object, function or expression:</p>
+
+    <p id="demo"></p>
+
+    <script>
+        document.getElementById("demo").innerHTML =
+            "'John' is " + typeof "John" + "<br>" +             // string
+            "3.14 is " + typeof 3.14 + "<br>" +                 // number
+            "NaN is " + typeof NaN + "<br>" +                   // number
+            "false is " + typeof false + "<br>" +               // boolean
+            "[1, 2, 3, 4] is " + typeof [1, 2, 3, 4] + "<br>" + // object
+            "{name:'John', age:34} is " + typeof { name: 'John', age: 34 } + "<br>" +   // object
+            "new Date() is " + typeof new Date() + "<br>" +     // object
+            "function () {} is " + typeof function () { } + "<br>" +    //function
+            "myCar is " + typeof myCar + "<br>" +               // undefined
+            "null is " + typeof null;                           // object
+    </script>
+
+</body>
+
+</html>

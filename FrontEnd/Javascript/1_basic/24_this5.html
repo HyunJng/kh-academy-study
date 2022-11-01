@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The Javascript this keyword</h1>
+    
+    <p id="demo"></p>
+    <script>
+        const person = {
+            firstName: "John",
+            lastName: "Doe",
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+        };
+
+        const member = {
+            firstName: "Hege",
+            lastName: "Nilsen"
+        };
+        // call은 function이 return한 결과를 fullname에 저장
+        // bind는 member을 적용한 method를 fullname에 저장.
+
+        // bind(member) => person.fullName의 this를 member객체를 사용. 
+        // - return 데이터 타입이 function임.(내부적으로 member를 thisfh 한 새로운 function을 만들어 return)
+        // - bind는 function의 method임.
+        let fullName = person.fullName.bind(member);
+
+        document.getElementById('demo').innerHTML = fullName();
+    </script>
+</body>
+</html>

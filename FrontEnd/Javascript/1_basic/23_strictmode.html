@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>With "use strict"</h2>
+    <h3>Using a variable without declaring it, is not allowed </h3>
+    <script>
+        // 문법을 엄격하게 처리하라는 의미. 잘못된 문법 사용에 대해서는 error을 무조건 발생
+        // maintanace를 위해 선언하고 코딩하는 것이 좋다.
+        "use strict";
+        x = 3.14; // error
+    </script>
+</body>
+</html>

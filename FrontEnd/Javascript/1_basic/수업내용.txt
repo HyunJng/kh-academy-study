@@ -138,3 +138,15 @@ for문
 literables란
 - object, Array, String
 - for of 를 다 쓸 수 있다.
+=================================================================================
+Number : function constructor(생성자)
+Number = function() {
+  name : "hong",
+  print : function(){}
+};
+
+let n = new Number();
+================================================================================
+global scope / function scope(local scope) - var
+block scope - let, const
+================================================================================

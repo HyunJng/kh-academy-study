@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript Operators</h1>
+    <h2>The instanceof Operator</h2>
+    <p>The instanceof operator return true if an object is an instance of a specified object</p>
+    <p id="demo"></p>
+
+    <script>
+        const cars = ["Saab", "Volvo", "BMW"];
+        
+        document.getElementById('demo').innerHTML = 
+        (cars instanceof Array) + "<br>"  +         // true          
+        (cars instanceof Object) + "<br>" +         // true -> Array가 Object의 자식 
+        (cars instanceof String) + "<br>" +         // false
+        (cars instanceof Number);                   // false
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The Javascript this keyword</h1>
+
+    <p id="demo"></p>
+    <script>
+        var globalvariable = 10;
+        // this의 의미
+        // 2. 단독으로 this를 사용한 경우 => window object를 의미
+        let x = this;
+        // document.getElementById('demo').innerHTML = x;
+        document.getElementById('demo').innerHTML = this.globalvariable;
+    </script>
+</body>
+</html>

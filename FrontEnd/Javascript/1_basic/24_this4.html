@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person1 = {
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        // person2의 객체 object에 없는 person1의 method인 fullName()을 사용하는 방법 
+        const person2 = {
+            firstName: "John",
+            lastName: "Doe"
+        }
+        // call(person2) => person1.fullName의 method안에 있는 this는 person2가 됨
+        // - call() method : funciton data type의 method
+        //  => 결론 function data type의 부모도 object data type임
+        let x = person1.fullName.call(person2);
+
+        document.getElementById('demo').innerHTML = x;
+    </script>
+</body>
+</html>
