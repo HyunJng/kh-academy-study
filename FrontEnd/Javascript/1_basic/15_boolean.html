@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <p id="demo"></p>
     <script>
+        // 논리 연산자 수식에서 Boolean 생성자가 자동 실행(web browser내의 javascript engine이 수행)
+        // 예 ) "" || (x > 10) => Boolean("") || (x > 10) => false;
         document.getElementById('demo').innerHTML =
-        "Boolean(100) is " + Boolean(100) + "<br>" +    // 100: true
-        "Boolean(3.14) is " + Boolean(3.14) + "<br>" +   // 3.14 : true
-        "Boolean(-15) is " + Boolean(-15) + "<br>" +    // -15 : true
-        " Boolean('hello') is " + Boolean("hello") + "<br>" +    // "hello" : true
-        "Boolean('false') is " + Boolean("false") + "<br>" +    // "false" : true
-        "Boolean(1+7+3.14) is " + Boolean(1+7+3.14);
+            "Boolean(100) is " + Boolean(100) + "<br>" +    // 100: true
+            "Boolean(3.14) is " + Boolean(3.14) + "<br>" +   // 3.14 : true
+            "Boolean(-15) is " + Boolean(-15) + "<br>" +    // -15 : true
+            " Boolean('hello') is " + Boolean("hello") + "<br>" +    // "hello" : true
+            "Boolean('false') is " + Boolean("false") + "<br>" +    // "false" : true
+            "Boolean(1+7+3.14) is " + Boolean(1 + 7 + 3.14);
     </script>
 
     <p id="demo1"></p>
     <script>
         // 0, -0, "", false, NaN, null, undefined => false
         // 위의 6가지를 제외한 나머지는 모두 true
-         document.getElementById('demo1').innerHTML =
-        "" + Boolean(0) + "<br>" +    // false
-        "" + Boolean(-0) + "<br>" +   
-        "" + Boolean("") + "<br>" +    
-        "" + Boolean(false) + "<br>" +    
-        "" + Boolean(10/"hello") + "<br>" + 
-        "" + Boolean(undefined) + "<br>" + 
-        "" + Boolean(null);
+        document.getElementById('demo1').innerHTML =
+            "" + Boolean(0) + "<br>" +    // false
+            "" + Boolean(-0) + "<br>" +
+            "" + Boolean("") + "<br>" +
+            "" + Boolean(false) + "<br>" +
+            "" + Boolean(10 / "hello") + "<br>" +
+            "" + Boolean(undefined) + "<br>" +
+            "" + Boolean(null);
     </script>
 </body>
+
 </html>

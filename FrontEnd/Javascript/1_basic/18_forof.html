@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript For Of</h1>
+    <p>The for of statement loops through the values of any iteratable object</p>
+    <p id="demo"></p>
+    <script>
+        const cars = ["BMW", "Volvo", "Mini"];
+
+        let text = "";
+        // for ~ of : x 는 key가 아니라 value를 가짐.
+        for(let x of cars) {
+            text += x + "<br>";
+        }
+        document.getElementById('demo').innerHTML = text;
+    </script>
+
+    <p id="demo1"></p>
+    <script>
+        let text1 = "Javascript";
+
+        let result = ""
+        for(let x of text1){
+            result += x + "<br>";
+        }
+        document.getElementById("demo1").innerHTML = result;
+    </script>
+</body>
+</html>

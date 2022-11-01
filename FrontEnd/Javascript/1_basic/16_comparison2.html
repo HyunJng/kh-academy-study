@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript operator</h1>
+    <h2>The ?? operator</h2>
+    <p id="demo"></p>
+    <script>
+        let name = null;
+        let text = "missing";   
+        // A ?? B => A가 null이거나 undefined라면 B를 실행, 아니면 A를 실행
+        // let result = name ?? text;
+        // null || "missing" => Bollean(null) || "missiong" => false || "missing";
+        // 1. A || B => A가 false이면 무조건 B를 실행
+        // 2. A && B => A가 true이면 B를 무조건 실행
+        let result = name || text;
+        document.getElementById('demo').innerHTML = result;
+    </script>
+
+    <p id="demo1"></p>
+    <script>
+        const car = {type : "Fiat", model: "500", color:"white"};
+
+        // car object에서 name property가 없기 때문에 undefined 
+        // ? : object에서 property가 없거나(undefined) null인 경우에
+        //     undefined를 return (throw error 발생하는 것을 미연에 방지하는 효과)
+        document.getElementById('demo1').innerHTML = car?.name;
+    </script>
+</body>
+</html>

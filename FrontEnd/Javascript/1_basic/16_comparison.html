@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>javascript comparison</h1>
+    <h2>the == Operator</h2>
+    <p id="demo"></p>
+
+    <script>
+        let x = 5;
+        // 비교연산자를 연산할 때 한 쪽이 number이면 다른 쪽을 nuber로 변환 => Number("5");
+        // document.getElementById('demo').innerHTML = (x == 8); // false
+        // document.getElementById('demo').innerHTML = (x == "5"); // true
+
+        // === : java의 '=='와 동일한 기능
+        // 1. true조건 : 양 쪽의 data type이 동일하고, value까지 같은 경우
+        // 2. 숫자가 아닌 경우에도 Number로 자동 형변환 안 시키고 비교. 
+        // 웬만하면 == 보단 ===을 쓸 것.
+        document.getElementById('demo').innerHTML = (x === "5"); // false
+    </script>
+</body>
+</html>
