@@ -1,0 +1,6 @@
+Web browser                Web Server
+1. form      get / post     JSP/ Spring
+2. ajax         <->
+ object타입   json타입       class타입
+ ===========================================
+ 

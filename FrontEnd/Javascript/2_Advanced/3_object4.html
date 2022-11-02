@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        // prototype 객체에 property, method를 추가하는 목적
+        // - prototype객체가 java의 class의 개념과 동일
+        //   즉, 자바에서 new ClassName() 으로 객체를 생성하면 
+        //   method는 객체마다 생성되는 것이 아니라 한 개만 생성
+        //   => 마찬가지로 prototype 객체에 method를 추가하면 new로 object를 생성할 때마다    
+        //      method가 추가로 생성되지 않음.
+        // - prototype 객체는 하나고 모든 Person이 같은 주소를 공유하고 있는 것
+        function Person(first, last, age, eye) {
+            this.firstname = first;
+            this.lastname= last;
+            this.age = age;
+            this.eye = eye;
+        }
+        // Person function constructor의 prototype객체(object data type)의 속성으로
+        // nationality 추가.
+        Person.prototype.natinality = "English";
+
+        Person.prototype.name = function() {
+            return this.firstname + " " + this.lastname;
+        }
+        // person function constructor의 object 생성
+        // Person 의 new로 만든 객체는 prototype에 추가된 property가 자동으로 따라옴
+        const myfather = new Person("John", "Doe", 55, "bleu");
+        document.getElementById('demo').innerHTML = 
+        "The nationality of my father is " + myfather.natinality;
+
+        document.getElementById('demo1').innerHTML =
+            "my father is " + myfather.name();
+    </script>
+</body>
+</html>

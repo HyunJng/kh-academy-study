@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        const person = {
+            firstName : "John",
+            lastName : "Doe",
+            fullName : function() {
+                return this.firstName + " " + this.lastName;
+            }
+        };
+
+        const member =  {
+            firstName : "Hege",
+            lastName: "nilsen"
+        };
+        // bind: fullName method에서 사용된 this 객체를 member라고 지정해줌
+        //      => this가 member인 fullName function을 return해줌
+        //         (코드를 복붙해서 새로운 function이 만들어짐)
+        let newfullName = person.fullName.bind(member);
+        document.getElementById('demo').innerHTML = newfullName();
+
+        let arr = [1, 2, 3, 4];
+        document.getElementById('demo1').innerHTML = typeof arr;
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        // Math.max method를 활용
+        // - 원래 Max.max는 parameter를 개별로 받고 array를 받지 않으나 
+        //   apply를 이용하여 넣음.
+        //   (객체를 넘기는 것은 의미가 없기 떄문에 null로 처리
+        document.getElementById('demo').innerHTML = Math.max.apply(null, [1, 2, 3, 4, 5]);
+
+
+        // function 개인연습
+        // function A() {
+        //     this.a = 1;
+        //     this.b = 2;
+        //     this.c = function() {
+        //         return a + b;
+        //     }            
+        // }
+        // // function A(a, b) {
+        // //     this.a = a;
+        // //     this.b = b;
+        // //     this.c = function() {
+        // //         return a + b;
+        // //     }            
+        // // }
+        // let variable = new A();
+        // document.getElementById('demo').innerHTML = variable.b;
+    </script>
+</body>
+</html>

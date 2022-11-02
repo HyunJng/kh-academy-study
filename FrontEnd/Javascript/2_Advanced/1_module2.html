@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript Module</h1>
+    <p id="demo"></p>
+    
+    <!-- 외부 module을 사용할 때 반드시 <script>에 type="module" 선언해 주어야 한다. -->
+    <script type="module">
+        // export default로 선언된 변수를 받기 때문에, 함수들은 {} 사용안하고 직접 가져올 수 있다.
+        import message from "../scripts/message.js";
+
+        document.getElementById('demo').innerHTML = message();
+    </script>
+
+</body>
+</html>

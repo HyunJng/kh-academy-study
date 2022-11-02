@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Create Ojbect from Json String</h2>
+
+    <p id="demo"></p>
+
+    <script>
+        let text = '{"employees":[' +
+        '{"firstName":"John","lastName":"Doe"},' +
+        '{"firstName":"Anne","lastName":"Smith"},' +
+        '{"firstName":"Peter","lastName":"Jones"}]}';
+
+        // JSON : Java Script Object Rotation
+        // - Web browser와 web server 간에 data를 주고받을 때 가장 popular한 방식;
+        // JSON.parse function이  json data를 javascript object로 변환해줌.
+        const obj = JSON.parse(text);
+        document.getElementById('demo').innerHTML =
+        obj.employees[1].firstName + " " + obj.employees[1].lastName;
+    </script>
+</body>
+</html>

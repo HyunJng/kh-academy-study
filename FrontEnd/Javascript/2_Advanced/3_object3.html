@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript Getter/Setter</h2>
+    
+    <p id="demo"></p>
+    <script>
+        // JS accessor(setter/getter) 사용 목적 
+        // 1. method를 사용하는 것보다 간결하기 때문
+        // 2. function 내부에서 다양한 프로그래밍 가능
+        const person = {
+            firstName : "John",
+            lastName : "Doe",
+            language: "en",
+
+            // function으로 쓴다면
+            getLang: function() {return this.language},
+            setLang: function(lang) {return this.langguage = lang},
+            // language property에 대한 getter 선언
+            //  => method가 아닌 property처럼 쓸 수 있다.
+            get lang() {
+                return this.language;
+            },
+            // language property에 대한 setter 선언
+            set lang(language){
+                this.language = language;
+            }
+        };
+
+        // person lang property(가상 property)에 'kr'
+        person.lang = "kr";
+        // person.lang을 실행하면, JS engine이 lang()으로 선언된 getter function 실행
+        document.getElementById('demo').innerHTML = person.lang;
+    </script>
+</body>
+</html>

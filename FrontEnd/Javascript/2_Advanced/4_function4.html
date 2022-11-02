@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        const person = {
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+
+        const person1 = {
+            firstName : "John",
+            lastName : "Doe"
+        };
+
+        const person2 = {
+            firstName : "Mary",
+            lastName : "Doe"
+        };
+
+        // document.getElementById('demo').innerHTML = person.fullName(); // name에 관한게 없음
+        // call : function consturctor의 method
+        // ->이것 덕에 라이브러리에 있는 함수를 제 것 처럼 쓸 수 있게 됨
+
+        // document.getElementById('demo').innerHTML = person.fullName.call(person1);
+
+        // apply : call method와 동일한 기능. 그러나 둘 이상의 parameter을 부를 때 배열로 넣어야함.
+        document.getElementById('demo').innerHTML = person.fullName.apply(person1);
+    </script>
+</body>
+</html>

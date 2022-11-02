@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        // rest parameter(...) : 입력된 pararmeter을 args 배열로 만듬.ㄴ
+        function sum(...args){
+            let sum = 0;
+            for(let arg of args){
+                sum += arg;
+            }
+            return sum;
+        }
+
+        document.getElementById('demo').innerHTML = sum(1,4,3,5,100, 88, 77);
+    </script>
+</body>
+</html>

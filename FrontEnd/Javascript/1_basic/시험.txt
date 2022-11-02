@@ -1,0 +1,26 @@
+6. div(block -level), span(inline-level)
+7. javascript 전역객체 window의 NaN의 의미? Not a Number
+8. js array 초기화 방법 2가지 이상
+- var 변수명 = [초기값, 초기값, ...]
+- var arr = new Array(초기값, 초기값, ...)
+9. Infinity(무한대) 의 타입? Number
+10. functional scope
+- function내에서 var로 선언된 변수는 function내에서만 사용 가능
+11. block scope
+- es6, let/const를 사용, 자바의 {}와 동일
+12. js의 primitive 타입 : Number, string, boolean, null, defined, Symbol
+13. JS의 primitive, reference의 차이점
+14. JS에서 변수의 값이 어떤 타입인지 알기 위해 사용하는 연산자? typeof 변수
+15. 인자(parameter)로 JS코드로 이루어진 문자열(string)을 받아서 
+    js code로 변환한 뒤 실행하는 전역 function? eval("JS코드문자열")
+16. undefind
+    -> 초기값 주지 않고 변수만 선언했을 때(혹은 선언되지 않은 변수를 사용했을 떄)
+17. class attribute가 'testClass'인 html element 객체를 변수 e로 지정하여 반환하는 코드를 작성
+    var e = document.getElementByClassName('testClass');
+18. id 속성 값이 'testId'인 html element객체를 변수 e로 지정하여 반환하는 코드 작성
+    var e = document.QuerySelector('#testId');
+19. window 객체의 onload attribute에 대해서 설명하라
+    - web browser javascript engine이 html문서 안에 있는 모든 html element들을 객체로 만든 후에 
+    web browser에 html element들을 화면에 display하기 직전에 자동 호출되는 event
+20. javascript browser 객체 모델에 속한 객체 3개 이상을 작성하시오
+    - window, location, navigation, history, screen.

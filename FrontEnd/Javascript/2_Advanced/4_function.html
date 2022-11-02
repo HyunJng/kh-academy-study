@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <script>
+        // function을 호출할 때 해당 parameter에 값을 넣지 않으면 undefined가 됨.
+        // javascript는 java처럼 method overloading이 존재하지 않음
+        // function 내에서 조건절로 지정
+        // function myFunction(x, y) {
+        //     if(y === undefined){
+        //         y = 2;
+        //     }
+        //     return x * y;   // 4 * undefined => 4 * NaN => NaN
+        // }
+        // y = 10 (default value setting => y값이 넘어오지 않으면 10으로 설정)
+        function myFunction(x, y = 10) {
+            return x + y;
+        }
+        document.getElementById('demo').innerHTML = myFunction(2);
+    </script>
+</body>
+</html>
