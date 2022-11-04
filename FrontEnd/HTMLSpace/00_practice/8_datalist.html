@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        form fieldset{
+            margin-bottom: 25px;
+        }
+        form legend {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        form .rg {
+            width: auto;
+            color: #390;
+            font-weight: bold;
+            text-align: right;
+            float: left;
+            margin-right: 10px;
+        }
+        form ul li{
+            list-style-type: none;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .subm {
+            display: block;
+            background-color: #fff;
+            border: 1px solid #dedede;
+            cursor:pointer;
+            padding: 5px 10px 6px 7px;
+            width: 100%;
+        }
+        .subm img {
+            border: 0;
+            padding: 0;
+            width: 16px;
+        }
+        .subm:hover {
+            background-color: #e6efc2;
+            border: 1px solid #c6d880;
+            color: #529215;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>여름방학 특강 신청</h1>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>수강 신청인</legend>
+            <ul>
+                <li>
+                    <label for="id" class="rg">학번</label>
+                    <input type="text" id="id" autofocus>
+                </li>
+                <li>
+                    <label for="name" class="rg">이름</label>
+                    <input type="text" id="name">
+                </li>
+                <li>
+                    <label for="class" class="rg">학과</label>
+                    <select name="class" id="class">
+                        <optgroup label="공과대학">
+                            <option value="elect">전자전기공학부</option>
+                            <option value="computer">컴퓨터공학과</option>
+                            <option value="machin">기계공학과</option>
+                        </optgroup>
+                        <optgroup label="인문학">
+                            <option value="philo">철학과</option>
+                            <option value="history">역사학과</option>
+                        </optgroup>
+                    </select>
+                </li>
+            </ul>
+        </fieldset>
+        <!-- datalist  -->
+        <fieldset>
+            <legend>수강 과목을 선택하세요</legend>
+            <ul>
+                <li>
+                    <label for="interest" class="rg">관심분야</label>
+                    <input type="text" id="interest" list="choices">
+                    <datalist id="choices">
+                        <!-- value : 서버로 넘겨질 값, label : 사용자에게 설명 -->
+                        <option value="grammer" label="문법"></option>
+                        <option value="voca" label="어휘"></option>
+                    </datalist>
+                </li>
+            </ul>
+        </fieldset>
+        <!-- 버튼 -->
+        <button type="submit" class="subm">
+            <img src="../images/check.jpg" alt="">전송하기
+        </button>
+    </form>
+</body>
+</html>

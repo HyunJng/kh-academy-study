@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        fieldset {
+            border: 0;
+        }
+        legend {
+            font-weight: bold;
+            padding: 10px 5px;
+            font-size: 15px;
+        }
+        .title {
+            padding: 1px;
+            float: left;
+        }
+        .check {
+            display: block;
+            padding: 3px;
+        }
+        textarea {
+            width: 80%;
+            height: 50px;
+        }
+        ul li {
+            list-style-type: none;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>프론트엔드 개발자 지원서</h2>
+        <p>HTML, CSS, Javascript에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</p>
+        <hr>
+        <form action="#" method="post">
+            <fieldset>
+                <legend>개인정보</legend>
+                <ul>
+                    <li>
+                        <label for="name" class="title">이름</label>
+                        <input type="text" id="name" placeholder="공백없이 입력하세요">
+                    </li>
+                    <li>
+                        <label for="tel" class="title">연락처</label>
+                        <input type="tel" id="tel">
+                    </li>
+                </ul>
+            </fieldset>
+
+            <fieldset>
+                <legend>지원분야</legend>
+                <label class="check"><input type="radio" name="reg" value="webpub">웹퍼블리싱</label>
+                <label class="check"><input type="radio" name="reg" value="webapp">웹어플리케이션</label>
+                <label class="check"><input type="radio" name="reg" value="devsetting">개발 환경 개선</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>지원동기</legend>
+                <textarea placeholder="본사 지원 동기를 간략히 써주세요."></textarea>
+            </fieldset>
+
+            <button type="submit">접수하기</button>
+            <button type="reset">다시쓰기</button>
+        </form>
+    </div>
+    
+</body>
+</html>

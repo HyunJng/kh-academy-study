@@ -1,0 +1,32 @@
+#container,
+nav {
+    width: 310px;
+    margin: 0 auto;
+}
+
+#intro {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#intro img {
+    max-width: 100%;
+}
+
+#desc {
+    width: 100%;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+footer {
+    width: 100%;
+    height: 60px;
+    padding: 20px;
+    background-color: #37001c;
+    color: white;
+}
+
+footer p {
+    text-align: center;
+}

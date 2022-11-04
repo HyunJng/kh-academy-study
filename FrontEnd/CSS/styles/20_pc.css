@@ -1,0 +1,21 @@
+#container, nav {
+    width: 1000px;
+    margin: 0 auto;
+}
+#intro img {
+    float: left;
+}
+#desc {
+    display: inline-block;
+    width: 250px;
+    height: 200px;
+    padding: 5px;
+    border: 1px dotted #ccc;
+}
+footer {
+    height: 200px;
+    clear: both;
+}
+footer p{
+    line-height: 200px;
+}

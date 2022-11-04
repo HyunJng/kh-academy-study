@@ -1,0 +1,21 @@
+#container, nav {
+    width: 750px;
+    margin: 0, auto;
+}
+#intro {
+    width: 100%;
+}
+#intro img {
+    width: 200px;
+    margin: 20px;
+}
+#desc {
+    width: 100%;
+    padding: 0px;
+    margin: 10px auto;
+}
+footer {
+    height: 150px;
+    background: url(../images/footer.jpg) no-repeat center ;
+    background-size: cover;
+}

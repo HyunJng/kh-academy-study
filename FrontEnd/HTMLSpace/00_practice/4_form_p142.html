@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- foram의 action, method, autocapitalize 연습 -->
+    <form action="search.php" method="post" autocapitalize="off">
+       <ul de>
+        <li>
+            <label for="id">아이디</label>
+            <input type="text" id="id">
+        </li>
+        <li>
+            <label for="password">비밀번호</label>
+            <input type="text" id="password">
+        </li>
+        <li>
+            <input type="submit" title="로그인" value="로그인">
+        </li>
+       </ul>
+    </form>
+
+    <!-- label연습 -->
+    <form action="#">
+        <h3>수강 분야(1과목 선택)</h3>
+        <ul>
+            <li>
+                <label><input type="radio" name="subject" value="eng">English</label>
+            </li>
+            <li>
+                <label><input type="radio" name="subject" value="ch">중국어회화</label>
+            </li>
+        </ul>
+    </form>
+    <!-- fieldset, legend연습 -->
+    <form action="#">
+        <fieldset>
+            <legend>개인 정보</legend>
+            <label for="name">이름</label>
+            <input type="text" id="name">
+
+            <label for="mail">메일 주소</label>
+            <input type="text" id="mail">
+        </fieldset>
+
+    </form>
+</body>
+</html>
