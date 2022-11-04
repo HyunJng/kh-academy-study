@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            background-color: #e2e2e2;
+        }
+        .shadow1 {
+            color: orange;
+            text-shadow: 1px 1px;
+        }
+        .shadow2 {
+            text-shadow: 5px 5px 3px #f00;
+        }
+        .shadow3 {
+            color: #fff;
+            text-shadow: 7px -7px 5px #000;
+        }
+        .shadow4 {
+            color: #000;
+            text-shadow: 0 0 4px #ccc, 0 -5px 4px #ff3,2px -10px 6px #fd3, -2px -15px 11px #f80, 2px -19px 18px #f20;
+        }
+        a {
+            text-decoration: none;
+        }
+        .nowrap {
+            white-space: nowrap;
+        }
+        p.content {
+            border: 1px solid;
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        p.content:hover {
+            overflow: visible;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <a href="eee">text-decoration예제</a>
+    <h1 class="shadow1">HTML5</h1>
+    <h1 class="shadow2">HTML5</h1>
+    <h1 class="shadow3">HTML5</h1>
+    <h1 class="shadow4">HTML5</h1>
+
+    <!-- white space 예시 -->
+    <p class="nowrap">
+        줄바꿈없음 줄바꿈없음 줄바꿈없음 줄바꿈없음 줄바꿈없음 줄바꿈없음
+    </p>
+
+    <!-- text-overflow예시 
+        : 텍스트가 nowrap으로 넘칠 때 어떻게 처리할지. clip: 자름, ellipsis: 말줄임표
+    - overflow속성값이 hidden, scroll, auto 중 하나이고
+    white-space:nowrap 이어야 text-overflow사용 가능.
+    -->
+    <p class="content">귀리는 베타글루칸(항암 면역증강작용을 가지고 있는 불소화성 다당류) 성분을 포함하고 있다.</p>
+</body>
+</html>

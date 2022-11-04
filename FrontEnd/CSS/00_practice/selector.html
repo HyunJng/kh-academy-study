@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* class가 bluetext인 것 중에서도 h2태그만 적용 */
+        h2.bluetext {
+            color: blue;
+        }
+        /* 요소 전체(태그)가 아니라 일부에만 적용하고 싶을 땐
+            <span>사용 */
+        .redtext {
+            color: red;
+        }
+        * {
+            background-color: #e2e2e2;
+        }
+        /* 같이 적용할 땐 콤마(,) 사용 */
+        h1, h2{
+            text-align: center;
+            background-color: #eee;
+            /* width: 300px; */
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>블루베리</h1>
+    <h2 class="bluetext">블루베리와 황산화 효능</h2>
+    <p class="bluetext">블루베리는 <span class="redtext"> 황산제인 어쩌저쩌구 포함</span>하고 있다.</p>
+    <p>매사츄세츠 보스톤에 어쩔저쩔 황산화 작용이 뛰어난 과일이라고 한다.</p>
+    <h2>블루베리와 노화</h2>
+    <p>누가누가 쥐들에게 블루베리를 먹여 <span class="redtext">노화에 의한 인지능력 손실을 예방</span>해주는
+        것을 발견했다. </p>
+</body>
+</html>

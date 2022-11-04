@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .parent {
+            width: 200px;
+            margin: 0%;
+            padding: 0;
+            background-color: #ccc;
+        }
+        .child{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            color: white;
+            font-weight: bolder;
+            margin: 0 auto;
+            line-height: 200px;
+        }
+        [class ~= red] {
+            /* width: 100px; */
+            background-color: red;
+            float: left;
+        }
+        [class ~= yellow] {
+            background-color: yellow;
+            float: left;
+        }
+        [class ~= blue] {
+            background-color: blue;
+            float: left;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="child red">Child</div>
+        <div class="child yellow">Child</div>
+        <div class="child blue">Child</div>
+    </div>
+</body>
+</html>
