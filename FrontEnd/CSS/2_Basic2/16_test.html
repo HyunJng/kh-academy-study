@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        fieldset {
+            margin: 0 auto;
+            width: 600px;
+        }
+        label {
+            font-weight: bolder;
+        }
+        input {
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        input[type=submit] {
+            display: block;
+            margin: 10px auto;
+        }
+        ul {
+            list-style: none;
+            margin: 20px;
+        }
+        hr {
+            margin: 20px auto;
+        }
+        table {
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        table th {
+            background-color: coral;
+        }
+        table td {
+            background-color: antiquewhite;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>포트폴리오 문제</h1>
+    <hr>
+    <form action="insert.no" method="post">
+        <fieldset>
+            <legend>공지사항 작성하기</legend>
+            <ul>
+                <li>
+                    <label for="title">제목</label>
+                    <input type="text" name="title" id="title" placeholder="제목을 입력하시오." style="width: 300px;" required>
+                </li>
+                <li>
+                    <label for="content">내용</label>
+                    <input type="text" name="content" id="content" placeholder="내용을 입력하시오." style="width: 300px; height:200px" required>
+                </li>
+                <li>
+                    <label for="uploadFile">첨부파일</label>
+                    <input type="file" name="uploadFile" id="uploadFile">
+                </li>
+            </ul>
+            <input type="submit" value="작성하기">
+        </fieldset>
+    </form>
+    <hr>
+    <table>
+        <colgroup>
+            <col>
+            <col>
+            <col style="width: 75px;">
+            <col>
+        </colgroup>
+        <tr>
+            <th>번호</th>
+            <th colspan="2">제목</th>
+            <th>작성자</th>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>공지사항 제목 9</td>
+            <td><button type="button">바로가기</button></td>
+            <td>user01</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>공지사항 제목 6</td>
+            <td><button type="button">바로가기</button></td>
+            <td>user01</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>공지사항 제목 3</td>
+            <td><button type="button">바로가기</button></td>
+            <td>user01</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>공지사항 제목 2</td>
+            <td><button type="button">바로가기</button></td>
+            <td>user01</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>공지사항 제목 1</td>
+            <td><button type="button">바로가기</button></td>
+            <td>user01</td>
+        </tr>
+        <tr>
+            <th colspan="4">공지사항개수</th>
+        </tr>
+    </table>
+</body>
+</html>
