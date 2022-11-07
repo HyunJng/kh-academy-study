@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javscript HTML DOM</h2>
+    <p>Add a new HTML Element</p>
+
+    <div id="div1">
+        <p id="p1">This is a paragraph</p>
+        <p id="p2">This is another paragraph</p>
+    </div>
+
+    <script>
+        const para =document.createElement("p");    // <p> tag 생성
+        const node = document.createTextNode("This is new.");   // p tag의 자식 node인 text node 생성
+        para.appendChild(node);                     // p tag에 자식인 text node를 붙임
+
+        const element = document.getElementById('div1');
+        element.appendChild(para);          // div tag의 자식 node 맨 마지막에 p tag를 붙임.
+    </script>
+</body>
+</html>

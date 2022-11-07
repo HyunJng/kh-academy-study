@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript timing</h2>
+    <p>A script on this page starts this clock</p>
+    <p id="demo"></p>
+    <!-- clearInterval() : 반복 되는 것 삭제 -->
+    <button onclick="clearInterval(myVar)"> stop time </button>
+
+    <script>
+        // setInterval(function, seconds) : 설정한 시간에 맞춰 function 반복 실행
+        let myVar = setInterval(myTimer, 1000);
+        function myTimer() {
+            const d = new Date()
+            document.getElementById('demo').innerHTML = d.toLocaleTimeString();
+        }
+    </script>
+</body>
+</html>

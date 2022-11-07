@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript addEventListenr() </h2>
+
+    <button id="myBtn">Try it</button>
+    <button id="remove">remove it</button>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        // 가급적 html을 손대지 않으며 <script>안에서 해결하도록 할 것.
+            
+        // addEventListenr: event 등록 method 
+        // 1. event 이름에 'on'이 앞에 붙지 않음
+        // 2. 하나의 element에 동일 event를 여러개 등록 가능(ex. click event 여러번 등록 가능)
+        // 3. 하나의 element에 다른 event를 여러개 등록 가능 
+        // removeEventListenr : event 삭제 method
+        document.getElementById("myBtn").addEventListener("click", displayDate);
+        document.getElementById('myBtn').addEventListener("click", displayHello);
+        document.getElementById('remove').addEventListener('click', removeDisplay);
+        // document.getElementById('myBtn').onclick = displayDate; // 위와 달리 하나만 등록 됨
+        function removeDisplay(){
+            document.getElementById('myBtn').removeEventListener('click', displayDate);
+        }
+        function displayDate() {
+            document.getElementById('demo').innerHTML = Date();
+        }
+        
+        function displayHello() {
+            document.getElementById('demo1').innerHTML = "Hello, 2nd click"
+        }
+    </script>
+</body>
+</html>

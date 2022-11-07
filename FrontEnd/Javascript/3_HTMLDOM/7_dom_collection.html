@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript HTML DOM</h2>
+
+    <p>Hello World!</p>
+    <p>Hello Norway!</p>
+    <p>Click the button to change the color of all p elementsw</p>
+    <button id="btn">Try it</button>
+
+    <script>
+        (document.getElementById("btn")).onclick = myFunction;
+        function myFunction() {
+            // const myColection = document.getElementsByTagName("p");
+            const myNodelist = document.querySelectorAll('p');
+            for(let i = 0; i<myNodelist.length; i++ ) {
+                myNodelist[i].style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

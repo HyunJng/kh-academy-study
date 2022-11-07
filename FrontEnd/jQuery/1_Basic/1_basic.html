@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- jQeury : javascript문법을 더 쉽게 쓸 수 있도록 한 library -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // 1. $ : function 이름
+        // 2. $(document) => object data type을 return 함
+        //  - .ready => document의 ready() method를 실행
+        //  - ready(function f) : onload event를 의미, onload event 발생 시 parameter로 넘긴 callback함수 실행.
+        // 3. $("p") => $("css selector 사용") => css selector에 해당하는 js object를 return
+        //    $("#id") => id에 해당하는 js object return
+        //  - click(function f) : click event발새 시 f 실행
+        //  - $("p")에 해당하는 모든 object에 대하여 click event를 등록시켜 주는 효과
+        // 4. $(this): event가 발생한 해당 <p> object.
+        //  - hide() => display:none;
+        $(document).ready(
+            // call back function
+            function () {
+                $("p").click(
+                    function () {
+                        $(this).hide();
+                    }
+                );
+            }
+        );
+        // $(document).ready(function() {
+        //     $("p").click(function() {
+        //         $(this).hide();
+        //     });
+        // });
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <p>If you click on me, I will disappear.</p>
+    <p>Click me away!</p>
+    <p>Click me too!</p>
+</body>
+
+</html>

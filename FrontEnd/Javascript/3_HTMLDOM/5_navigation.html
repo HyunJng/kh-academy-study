@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="id01">My First Page</h1>
+    <p id="id02"></p>
+
+    <script>
+        // 잘 사용 안함. jQuery library, React.js, Vue.js에서 안 쓰기 때문.
+        // 1. <h1>의 firstChild는 text node(My First Page) 이다.  
+        // 2. nodeValue : text node안의 문자 value
+        document.getElementById('id02').innerHTML =
+            // document.getElementById('id01').firstChild.nodeValue;
+            document.getElementById('id01').childNodes[0].nodeValue;
+    </script>
+</body>
+</html>

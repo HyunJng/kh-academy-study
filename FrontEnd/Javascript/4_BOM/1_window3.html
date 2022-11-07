@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>The window object</h1>
+    <h2>The open() and close() method</h2>
+    <button onclick="openWin()">open "myWindow"</button>
+    <button onclick="closeWin()">close "myWindow"</button>
+
+    <script>
+        let myWindow;
+
+        function openWin() {
+            myWindow = window.open("", "_blank", "width=200, height=100");
+        }
+        function closeWin() {
+            myWindow.close()
+        }
+    </script>
+
+</body>
+</html>

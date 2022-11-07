@@ -1,0 +1,9 @@
+html요소들을 부모형제자식 관계를 트리형태로 만들어 놓기 때문에
+element의 속성으로 다른 element를 접근할 수 있다. (근데 잘 사용 안함.)
+-----------------------------------------------------------------
+DOM (Document Object Model)
+BOM (Browser Object Model)
+- window: web browser에서 제공하는 기본 javascript Object
+
+That is why don't like about this;
+becautwe
