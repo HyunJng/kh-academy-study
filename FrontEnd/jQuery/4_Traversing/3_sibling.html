@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        .siblings * {
+            display: block;
+            border: 2px solid lightgrey;
+            color: lightgrey;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+    <script>
+        $(function(){
+            // siblings : h2 tag의 앞에 있는 형제와 뒤에 있는 모든 형제에 적용 
+            // $("h2").siblings().css({"color":"red", "border":"2px solid red"});
+
+            // siblings중에 p tag만 적용  
+            // $("h2").siblings("p").css({"color":"red", "border":"2px solid red"});
+
+            //  h2 tag의 다음  sibling tag 한개에 대해서만 css 적용
+            // $("h2").next().css({"color":"red", "border":"2px solid red"});
+            $("h2").nextUntil("div").css({"color":"red", "border":"2px solid red"});
+        });
+    </script>
+    <title>Document</title>
+</head>
+
+<body class="siblings">
+
+    <div>div (parent)
+        <p>p</p>
+        <span>span</span>
+        <h2>h2</h2>
+        <h3>h3</h3>
+        <p>p</p>
+    </div>
+</body>
+
+</html>

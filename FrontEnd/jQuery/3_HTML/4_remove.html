@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                // remove : 본인 포함, 자식들까지 모두 삭제
+                // $("#div1").remove();
+                // empty : 본인 제외, 자식들만 모두 삭제
+                // $("#div1").empty();
+
+                // remove할 때 filtering가능 (특정 element들만 삭제 가능)
+                $("p").remove(".text, .demo")
+            });
+        });
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+
+        This is some text in the div.
+        <p>This is a paragraph in the div.</p>
+        <p>This is another paragraph in the div.</p>
+
+    </div>
+    <br>
+
+    <button>Remove div element</button>
+
+    <p>This is some text in the div.</p>
+    <p class="text">This is a paragraph in the div.</p>
+    <p class="text">This is another paragraph in the div.</p>
+    <p class="demo">This is p element with class="demo"</p>
+</body>
+
+</html>

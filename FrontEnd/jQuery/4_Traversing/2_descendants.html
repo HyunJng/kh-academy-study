@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // children() : 손자는 제외, 자식 tag들에 대해서만 css 적용
+            // $("div").children().css({"color":"red", "border":"2px solid red"});
+            // 1. class로 범위 좁혀서 적용
+            $("div").children("p.first, p.second").css({"color":"red", "border":"2px solid red"});
+
+        });
+    </script>
+    <style>
+        .descendants * {
+            display: block;
+            border: 2px solid lightgrey;
+            color: lightgrey;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="descendants" style="width:500px;">div (current element)
+        <p class="first">p (child)
+            <span>span (grandchild)</span>
+        </p>
+        <p class="second">p (child)
+            <span>span (grandchild)</span>
+        </p>
+    </div>
+</body>
+
+</html>

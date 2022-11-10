@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // onload할 때 function실행
+        $(document).ready (function() {
+            // <button> 태그 가 click하면 funcion실행 
+            $("button").click(function() {
+                // "모든" <p> 태그에 hide()실행
+                $("p").hide()
+            });
+        });
+        /* 만약 hide() 를 CSS로 구현된다면 
+        var p = document.getElementsByTagName("p");
+        
+        for(let i = 0; i < p.length ; i++){
+            p[i].style.display = none;
+        }
+        */
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is heading </h1>
+    <p>This is paragraph</p>
+    <p>This is paragraph too</p>
+
+    <button>Click me to hide paragraphs</button>
+</body>
+</html>

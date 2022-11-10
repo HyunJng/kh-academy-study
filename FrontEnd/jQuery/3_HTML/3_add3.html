@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // before, after은 선택된 element의 형제 tag 생성 
+            $("#btn1").click(function(){
+                // before : 선택된 element의 형제 tag를 앞에 만듬
+                $("img").before("<b>Before</b>");
+            });
+
+            $("#btn2").click(function(){
+                // after : 선택된 element의 형제 tag를 뒤에 만듬
+                $("img").after("<i>After</i>");
+            });
+        });
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../images/w3jquery.gif" alt="jQuery" width="100" height="140"><br><br>
+
+    <button id="btn1">Insert before</button>
+    <button id="btn2">Insert after</button>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // $("div").first() : div객체 들 중에서 첫번째 div 객체에 대하여 css 적용 
+            // $("div").first().css("background-color","yellow");
+            // $("div").last().css("background-color","yellow");
+
+            // $("div").eq(index): div 객체 중에서 index가 1인 객체에 대하여 css 적용
+            // index는 0부터 시작.
+            // $("div").eq(1).css("background-color","yellow");
+            // $("div").eq(0).css("background-color","yellow");
+
+            // $("div").filter(".first") : "div"객체 중에서 class이름이 first인 객체들에 대해서 css 적용
+            // $("div").filter(".first").css("background-color", "yellow");
+            
+            // $("div").not(".first"): div객체 중에 class이름이 .first가 아닌 나머지 객체들에 대해서 css 적용
+            $("div").not(".first").css("background-color", "yellow");
+
+        })
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Welcome to My Homepage</h1>
+
+    <p>This is a paragraph.</p>
+
+    <div class="first" style="border: 1px solid black;">
+        <p>A paragraph in a div.</p>
+        <p>Another paragraph in a div.</p>
+    </div>
+    <br>
+
+    <div class="second" style="border: 1px solid black;">
+        <p>A paragraph in another div.</p>
+        <p>Another paragraph in another div.</p>
+    </div>
+    <br>
+
+    <div class="third" style="border: 1px solid black;">
+        <p>A paragraph in another div.</p>
+        <p>Another paragraph in another div.</p>
+    </div>
+</body>
+
+</html>

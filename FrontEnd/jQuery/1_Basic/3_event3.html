@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // on method의 argument로 
+            // 하나일 경우 - function으로 넘김 
+            // 여러 개라면 - object data type을 넘겨줌
+            $("p").on(
+                {   // $("p").mouseenter(function(){})
+                    mouseenter : function() {
+                        $(this).css("background-color", "lightgray");
+                    },
+                    // $(this).mouseleave(function() {})
+                    mouseleave: function() {
+                        $(this).css("background-color", "lightblue");
+                    },
+                    click: function() {
+                        $(this).css("background-color", "yellow");
+                    }
+                }
+            );
+
+        });
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <p>Click or move the mouse pointer over this paragraph</p>
+</body>
+</html>

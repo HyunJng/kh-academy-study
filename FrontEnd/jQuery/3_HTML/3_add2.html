@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function appendText(){
+            // 따로 새로운 element 생성 방법 3가지
+            let txt1 = "<p>Text.</p>";
+            // $("<p></p>") => p tag element를 생성하는 효과를 냄
+            let txt2 = $("<p></p>").text("Text.");
+            let txt3 = document.createElement("p");
+            txt3.innerHTML = "Text.";
+            $("body").append(txt1, txt2, txt3);
+        }
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <p>This is a paragraph</p>
+    <button onclick="appendText()">Append text</button>
+</body>
+</html>
