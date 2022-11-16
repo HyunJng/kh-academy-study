@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 // URL의 path부분을 setting하는 annotation임 (context root 다음의 path 지점)
 // context root: 기본적으로 project이름임(Ch01_ServletBasic)
 //@WebServlet("/HelloServlet")
-@WebServlet("/hello/jsp")
+//@WebServlet("/hello/jsp")
+//@WebServlet(name="hello", value={"/hello/jsp", "/jsp"})
+@WebServlet(name="hello", urlPatterns={"/hello/jsp", "/jsp"})
 public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	// constructor
@@ -30,13 +32,14 @@ public class HelloServlet extends HttpServlet {
 		// 1. web browser에서 전달한 정보 읽기(id, password 등 상황에 따라 다름)
 		// 2. id, pwd를 이용해서 DBMS를 연결해서 해당 table에서 있는지를 check
 		// 3. web browser에게 response결과값을 html형식으로 전송
+		// 3.1 response header정보를 setting
 		response.setContentType("text/html;charset=utf-8");
 
 		PrintWriter out = response.getWriter();
-
+		// 3.2 web browser에 보낼 실제 html data만들기
 		out.println("<html><head></head><body><h1>서블릿 작성 예제입니다.</h1></body></html>");
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

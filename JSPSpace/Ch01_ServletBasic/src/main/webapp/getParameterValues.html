@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>getInitPasrameterValues 실습</title>
+</head>
+<body>
+	<h1>getInitParamtersValues 실습</h1>
+	<!-- /Ch01_sServletBasic/ -->
+	<form action="test1" method="get"> <!-- test1의 doGet()을 부름 -->
+		<fieldset>
+			<legend>좋아하는 운동 및 성별</legend>
+			<ul>
+				<li>
+					<label>야구 <input type="checkbox" name="sport" value="야구"></label>
+					<label>농구 <input type="checkbox" name="sport" value="농구"></label>
+					<label>축구 <input type="checkbox" name="sport" value="축구"></label>
+				</li>
+				<li>
+					<label>남자 <input type="radio" name="gender" value="남자"></label>
+					<label>여자 <input type="radio" name="gender" value="여자"></label>
+				</li>
+				<li><button type="submit">전송</button></li>
+			</ul>
+		</fieldset>
+	</form>
+</body>
+</html>
