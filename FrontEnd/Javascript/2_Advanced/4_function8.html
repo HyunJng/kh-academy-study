@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript closure</h2>
+
+    <button type="button" onclick="myFunction()">Click</button>
+    <p id="demo"></p>
+    <script>
+        // 1. add function : function을 return
+        // higer order function : function의 parameter로 function을 대입하거나, function을 return하는 function
+        // 2. (function() {}) () : function을 선언함과 동시에 즉시 실행. IIFE(Imedeately Invoked Function Expression)
+        // 3. add = function() {counter += 1; return counter;}
+        //  - add의 부모 function에서 선언된 메모리에 존재하는 counter변수에 대하여 연결고리를 javascript engine이 만들어줌
+        //  - add() 함수를 실행할 떄마다, 연결고리를 가진 부모 function에서 선언된 counter 변수의 값을 계속 변경 가능
+        //  - 마치 java의 private으로 선언된 변수를 관리하는 효과를 가짐
+        //    . counter 값은 오직 add()함수를 실행할 때만 변경 가능 (기타 다른 방법으로 counter 변수 값을 직접 수정 불가)
+        //  => 부모 function에서 선언된 변수를 자식 함수에서 사용함으로써 자식 함수에서만 부모의 변수를 사용하는 것을 closure이라고 함. 
+        //    . 수학에서의 closure과 같은 개념(집합 A에서 원소 a1이 포함되어있다면 이 것을 close되어있다고 함)
+        // 4. closure 성립조건
+        //  1) 부모 function에서 자식 function을 return (hign order function)
+        //  2) 부모 function에서 선언된 변수를 자식 function에서 사용
+        // 5. closure 효과: 부모 functino에서 선언된 변수들을 private scope으로 사용 가능
+        
+        const add = (function() {
+            let counter = 0;    // 자바에서는 함수가 부모 내부에 있어도 본인 함수에서 선언된거 아니면 쓰질 못함.
+            return function() {counter += 1; return counter;} // 그러나 js는 부모에 있는 것을 쓰는 것이 허용.
+        })(); // 결국 add에는 내부 function이 들어가게 되고 변수 counter은 직접 못 만짐.
+        function myFunction(){
+            document.getElementById('demo').innerHTML = add();
+        }
+    </script>
+</body>
+</html>

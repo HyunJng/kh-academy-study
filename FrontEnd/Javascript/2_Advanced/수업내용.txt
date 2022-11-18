@@ -3,4 +3,21 @@ Web browser                Web Server
 2. ajax         <->
  object타입   json타입       class타입
  ===========================================
- 
+ 생명주기(lilfe cycle)
+ - global scope에 있는 변수들이 프로그램이 종료될 때까지 메모리에 존재(table형태, 이해 돕기 위한거지 실제 테이블 X)
+ - function마다 선언된 변수들이 해당 function이 사용 종료되기까지 메모리에 존재(table형태)
+ var global = 10;
+
+ function outerFunc(){ 
+    var outer = 20;
+
+    function innerFunc() {
+        var inner = 30;
+        if(1){
+            var in2 = 10
+        }
+    inner = inner + outer + global + in2;
+    // function scope이기 때문에 in2는 함수 안 어디서나 사용가능 
+    }
+    outer = inner * 20; // error
+ }

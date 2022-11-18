@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript callback</h2>
+    <p id="demo"></p>
+    <script>
+        function myDisplayer(some) {
+            document.getElementById('demo').innerHTML = some;
+        }
+        // callback function : function 의 parameter에 넘긴 function을 말함
+        // => Parameter로 넘긴 function 내부에서 다시실행()
+        function myCalculator(num1, num2, myCallback) {
+            let sum = num1 + num2;
+            myCallback(sum);
+        }
+        
+        // 자바에선 함수를 인자로 넘길 수 없으서 이런 식으로 이용했음.
+        // function myCalculator(num1, num2) {
+        //     let sum = num1 + num2;
+        //     myDisplayer(sum);
+        // }
+
+        // parameter로 function을 넘김 (high order function)
+        myCalculator(5, 5, myDisplayer);
+    </script>
+</body>
+</html>

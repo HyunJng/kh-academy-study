@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Javascript class method</h2>
+    <p id="demo"></p>
+
+    <script>
+        class Car {
+            constructor(name, year) {
+                this.name = name;
+                this.year = year;
+            }
+            // method는 prototype으로 만들어짐. 메모리관리 위함.
+            age(x) {
+                return x - this.year;
+            }
+        }
+
+        let date = new Date();
+        let year = date.getFullYear();
+
+        let myCar = new Car("Ford", 2014);
+        document.getElementById('demo').innerHTML =
+        "my car is " + myCar.age(year) + "years old"
+    </script>
+</body>
+</html>
