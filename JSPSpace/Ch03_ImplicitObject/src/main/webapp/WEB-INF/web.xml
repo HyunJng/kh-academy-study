@@ -1,29 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>Ch03_ImplicitObject</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.orㅁg/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>Ch03_ImplicitObject</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
 
-  <context-param>
- 	 <param-name>drivername</param-name>	
- 	 <param-value>oracle.jdbc.driver.OracleDriver</param-value>
-  </context-param>
-  <context-param>
- 	 <param-name>userid</param-name>	
- 	 <param-value>hong</param-value>
-  </context-param>
-  <context-param>
- 	 <param-name>password</param-name>	
- 	 <param-value>1234</param-value>
-  </context-param>
-  <context-param>
- 	 <param-name>savepath</param-name>	
- 	 <param-value>c:\\save</param-value>
-  </context-param>
+	<context-param>
+		<param-name>drivername</param-name>
+		<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>userid</param-name>
+		<param-value>hong</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>1234</param-value>
+	</context-param>
+	<context-param>
+		<param-name>savepath</param-name>
+		<param-value>c:\\save</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>InitParam</servlet-name>
+		<jsp-file>/8_Config/config.jsp</jsp-file>
+		<init-param>
+			<param-name>dirPath</param-name>
+			<param-value>C:\test</param-value>
+		</init-param>
+		<init-param>
+			<param-name>username</param-name>
+			<param-value>hong</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitParam</servlet-name>
+		<url-pattern>/init</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+		<error-code>404</error-code>	
+		<location>/error/error404.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/error500.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/error/errorNullPointer.jsp</location>
+	</error-page>
 </web-app>
