@@ -24,12 +24,12 @@ public class NullParameterRequestWrapper extends HttpServletRequestWrapper{
 	public void checkNull(String[] parameterNames) {
 		for(int i = 0 ; i<parameterNames.length; i++) {
 			if(!parameterMap.containsKey(parameterNames[i])){
-				 String[] values = new String[]{""};
+				 String[] values = new String[]{""}; // checkbox같이 여러개 올 수 있어서 배열로 둠.
 				 parameterMap.put(parameterNames[i], values);
 			}
 		}
 	}
-	@Override
+	@Override// get모두 request메소드 오버라이드
 	public String getParameter(String name) {
 		String[] values = getParameterValues(name);
 		if(values != null && values.length > 0)

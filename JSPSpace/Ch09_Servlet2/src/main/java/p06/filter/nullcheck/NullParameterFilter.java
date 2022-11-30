@@ -18,6 +18,8 @@ public class NullParameterFilter implements Filter{
 	private String[] parameterNames = null;
 
 	
+	// tomcat server가 web application을 메모리에 처음 올릴 때 Filter도 같이 메모리에 올리는데,
+	// filter를 메모리에 올릴 떄 1번만 init()
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		String names = filterConfig.getInitParameter("parameterNames");
