@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<display-name>Edu</display-name>
+
+	<filter>
+		<filter-name>flow1</filter-name>
+		<filter-class>com.edu.test.FlowFilterOne</filter-class>
+	</filter>
+	<filter>
+		<filter-name>flow2</filter-name>
+		<filter-class>com.edu.test.FlowFilterTwo</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>flow1</filter-name>
+		<url-pattern>/second</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>flow2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- ServletContext 변수 -->
+	<display-name>edu</display-name> <!-- 웹 애플리케이션 이름 지정 -->
+	<context-param> <!-- ServletContext객체에 변수를 설정할 때 사용  -->
+		<param-name>contextConfig</param-name>
+		<param-value>/WEB-INF/context.xml</param-value>
+	</context-param>
+	
+	<!-- 서버에 두는 변수 -->
+	<servlet>
+		<servlet-name>initParam</servlet-name> <!-- <servlet> 입력할 때 필수 설정-->
+		<servlet-class>com.edu.test.InitParamServlet</servlet-class> <!-- 다루는 Servlet파일의 이름 지정 -->
+		
+		<init-param>  <!--서블릿에 전달될 변수 설정 -->
+			<param-name>id</param-name>
+			<param-value>guest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>password</param-name>
+			<param-value>1004</param-value>
+		</init-param>
+		
+		<!-- 서블릿은 요청이 있을 때 서블릿 객체가 생성되는데 요청이 오기 전에 필요한 객체일 때 사용하는 태그 -->
+		<load-on-startup>1</load-on-startup> <!-- 그런 객체가 여러개일 때를 위해 우선순위 설정(낮을수록 높다)-->
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>initParam</servlet-name>
+		<url-pattern>/initParamTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>servletConfigTest</servlet-name>
+		<servlet-class>com.edu.test.ServletConfigTestServlet</servlet-class>
+		
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>servletConfigTest</servlet-name>
+		<url-pattern>/servletConfigTest</url-pattern>
+	</servlet-mapping>
+</web-app>

@@ -14,12 +14,21 @@ public class SecondServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("SecondServlet!!");
-		PrintWriter out = response.getWriter();
-		out.print("<html><head><title>Test</title></head>");
+		PrintWriter out = resp.getWriter();
+		out.print("<html><head><title></title></head>");
 		out.print("<body><h1>have a nice day!!</h1></body>");
 		out.print("</html>");
 		out.close();
 	}
+//	@Override
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		System.out.println("SecondServlet!!");
+//		PrintWriter out = response.getWriter();
+//		out.print("<html><head><title>Test</title></head>");
+//		out.print("<body><h1>have a nice day!!</h1></body>");
+//		out.print("</html>");
+//		out.close();
+//	}
 }
