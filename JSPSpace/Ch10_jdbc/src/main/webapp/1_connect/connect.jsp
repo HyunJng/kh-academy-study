@@ -13,7 +13,7 @@
 <% 
 	//1. driver class를 load
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	//2. database 연결
+	//2. database 연결(1521: oracle 포트번호(고정), XE: oracle instance이름(변경 가능))
 	Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "madang", "madang");
 %>
 	<p>madang 데이터베이스 연결 성공</p>

@@ -1,3 +1,4 @@
+<%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dto.Book"%>
@@ -12,7 +13,7 @@
 <body>
 	<h3>책 제목으로 조회한 결과 테이블</h3>
 	<%
-	List<Book> list = (ArrayList<Book>)request.getAttribute("list");
+	List<Map> list = (ArrayList<Map>)request.getAttribute("list");
 	if(list == null){
 	%>
 		<p>조회하는 도서가 없습니다.</p>
@@ -27,13 +28,13 @@
 				<th>PRICE</th>
 			</tr>
 			<%
-			for(Book book : list){
+			for(Map<String, Object> map: list){
 			%>
 			<tr>
-				<td><%= book.getId() %></td>
-				<td><%= book.getTitle() %></td>
-				<td><%=book.getPublisher() %></td>
-				<td><%=book.getPrice() %></td>			
+				<td><%=map.get("code")%></td>
+				<td><%=map.get("title")%></td>
+				<td><%=map.get("publisher")%></td>
+				<td><%=map.get("price")%></td>			
 			</tr>
 			<%
 			}
