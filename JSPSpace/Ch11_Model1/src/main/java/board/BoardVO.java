@@ -7,10 +7,13 @@ public class BoardVO {
 	private String title;
 	private String writer;
 	private String content;
-	private Date reqDate;
+	private Date regDate;
 	private int cnt;
+	private String searchCondition;  // web app 내부에서 사용할 목적
+	private String searchKeyword;
 	
 	public BoardVO() {
+		
 	}
 
 	public int getSeq() {
@@ -19,6 +22,22 @@ public class BoardVO {
 
 	public void setSeq(int seq) {
 		this.seq = seq;
+	}
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	public String getTitle() {
@@ -45,12 +64,12 @@ public class BoardVO {
 		this.content = content;
 	}
 
-	public Date getReqDate() {
-		return reqDate;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setReqDate(Date reqDate) {
-		this.reqDate = reqDate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 
 	public int getCnt() {
@@ -63,8 +82,8 @@ public class BoardVO {
 
 	@Override
 	public String toString() {
-		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", reqDate="
-				+ reqDate + ", cnt=" + cnt + "]";
+		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
+				+ regDate + ", cnt=" + cnt + "]";
 	}
 	
 }
