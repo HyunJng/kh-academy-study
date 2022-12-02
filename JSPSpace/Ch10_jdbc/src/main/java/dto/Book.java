@@ -1,5 +1,7 @@
 package dto;
 
+//Java Bean : form tag에서 입력된 value를 하나의 class로 관리한다. 
+// Web application model관점에서는 DTO(Data Transfer Object) 혹은 VO(Value Object)라고 부름
 public class Book {
 	private String id;
 	private String title;

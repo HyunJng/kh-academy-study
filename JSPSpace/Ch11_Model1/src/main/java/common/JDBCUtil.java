@@ -1,0 +1,54 @@
+package common;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class JDBCUtil {
+	public static Connection getConnection() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe");
+		} catch(Exception e) {
+			System.out.println("Connection Error");
+		}
+		return null;
+	}
+	
+	public static void close(PreparedStatement stmt, Connection conn) {
+		if(stmt != null) {
+			try {
+				if(!stmt.isClosed()) {
+					stmt.close();
+				}
+			}catch(SQLException e) {
+				System.out.println("preparedstatement close error");
+			}
+		}
+		if(conn != null) {
+			try {
+				if(!conn.isClosed()) {
+					conn.close();
+				}
+			}catch(SQLException e) {
+				System.out.println("connection close error");
+			}
+		}
+	}
+
+	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) {
+		// rs -> stmt -> conn 순서 유지해야함. 마지막에 만든 것을 먼저 검사.
+		if(rs != null) {
+			try {
+				if(!rs.isClosed()) {
+					rs.close();
+				}
+			}catch(SQLException e) {
+				System.out.println("resultset close error");
+			}
+		}
+		close(stmt, conn);
+	}
+}
