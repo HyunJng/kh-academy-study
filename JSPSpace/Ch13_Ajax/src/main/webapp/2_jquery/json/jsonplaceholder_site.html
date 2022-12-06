@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <title>jQury AJAX GETJSON</title>
+</head>
+<body>
+    <script>
+    $(document).ready(function () {
+        $.getJSON("https://jsonplaceholder.typicode.com/posts",
+           	function(data) {
+       		    $.each(data, function(key, obj){
+	   		   		var items = [];
+	  	   		  	$.each(obj, function( key, val ) {
+	   	   		    	items.push( "<li id='" + key + "'>" + val + "</li>" );
+	   	   		  	});
+	    	   		 
+	   	   		  	$( "<ul/>", {
+	   	   		    	html: items.join("") // 문자열로 합침
+	   	   		  	}).appendTo( "#results" );
+            });
+       	});
+    });
+    </script>
+
+    <h1>jQury AJAX GETJSON</h1>
+    
+	<div id="results">
+	
+	</div>
+    
+</body>
+</html>

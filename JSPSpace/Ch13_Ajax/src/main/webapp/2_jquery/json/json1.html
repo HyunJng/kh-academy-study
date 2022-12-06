@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// getJSON : ajax함수(method: GET), json data를 갖고 와서 JSON.parse를 내부적으로 자동 실행
+		$.getJSON('item.json', function(data,textStatus) {
+			$('#treeData').append('<tr><th>아이디</th><th>이름</th>'
+				+'<th>가격</th><th>설명</th></tr>');
+			// for each문, JS문법
+			$.each(data, function() { // 6번.
+				// this : Array이고 안의 원소가 object일 때 json data의 원소인 object를 의미
+				$('#treeData').append('<tr><td>'+this.id+'</td>'+
+					'<td>'+this.name+'</td><td>'+this.price+
+					'</td><td>'+this.description+'</td></tr>');
+			});
+		});
+	});
+</script></head><body>
+	<table id="treeData"></table>
+</body>
+</html>

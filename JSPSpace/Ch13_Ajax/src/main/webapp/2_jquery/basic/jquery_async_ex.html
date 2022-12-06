@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpRequest synchronous 실습</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		// $.ajax()
+		// 1. new XMLHttpRequest() 자동 생성해줌
+		// 2. request.open, request.send 자동 실행.
+		// 3. default method방식 : GET 방식
+		$.ajax('data.html', {
+			// 4. success : callback함수를 등록, request.readyState==4, request.status==200일 때 자동 실행
+			// 5. data : reques.responseText를 의미
+			success:function(data){
+				$('body').append(data);
+			}
+		
+		});
+	});
+/* 		
+ *  위의 것과 같은 의미. 위는 jQuery를 이용 한 것.
+ 		var request = new XMLHttpRequest();
+
+		request.onreadystatechange = function(event) {
+			if (request.readyState == 4) { // server로부터 모든 데이터를 받았다면
+				if (request.status == 200) {// response 객체의 status code (200: 정상처리, 404, 500)
+					document.body.innerHTML += request.responseText;
+				}
+			}
+		};
+		request.open('GET', 'data.html', true); // asynchronouse방식
+		request.send();
+
+		alert(request.responseText);*/	
+		
+		</script>
+</body>
+</html>

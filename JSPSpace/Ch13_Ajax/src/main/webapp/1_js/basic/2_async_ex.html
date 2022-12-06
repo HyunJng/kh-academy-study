@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpRequest synchronous 실습</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var request = new XMLHttpRequest();
+
+		// asynchronous를 사용하기 위해서는 callback 함수 등록 해주어야 한다.
+		// - callback 함수는 web server가 data를 보내주면, 
+		// 	 XMLHttpRequest객체가 call back 함수를 자동 실행시켜 준다.
+
+		// call back function 등록만 한 것. 돌아오면 알아서 실행됨. callback이니까!
+		request.onreadystatechange = function(event) {
+			if (request.readyState == 4) { // server로부터 모든 데이터를 받았다면
+				if (request.status == 200) {// response 객체의 status code (200: 정상처리, 404, 500)
+					document.body.innerHTML += request.responseText;
+				}
+			}
+		};
+		request.open('GET', 'data.html', true); // asynchronouse방식
+
+		request.send();
+
+		// request.responseText에 데이터가 없는 이유
+		// asynch라서 server로부터 아직 데이터를 받지 못했기 때문.
+		alert(request.responseText);
+		// document.body.innerHTML += request.responseText;
+	</script>
+</body>
+</html>

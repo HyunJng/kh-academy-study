@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<style type="text/css">
+	button {
+		margin: 20px;
+	}
+	div{
+		border: 2px solid green;
+		float: left;
+		margin: 10px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$('#menu1').click(function(){
+			$.ajax({
+				url:'menu.html',	// ajax에 이미 존재하는 key에 적절한 값을 넣으면 알아서 작동
+				dataType:'html',
+				success:function(data){
+					$('#list1').html(data);
+				}
+			})
+		});
+	});
+	$(function(){
+		$('#menu2').click(function(){
+			$.ajax({
+				url:'menu.html',
+				dataType:'html',
+				success:function(data){
+					$('#list2').html($(data).find('li'));
+				}
+			})
+		});		
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<button id="menu1">메뉴 1</button>
+	<button id="menu2">메뉴 2</button>
+	<div id="list1"></div>
+	<div id="list2"></div>
+</body>
+</html>

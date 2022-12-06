@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var httpRequest;
+	
+	function getXMLHttpRequest(){
+		if(window.ActiveXObject){	// Microsoft Internet Explorer 옛날 버전의 XMLHttpRequest
+			return new ActiveXObject("Msxml2.XMLHTTP")
+		}else if(window.XMLHttpRequest){
+			return new XMLHttpRequest();
+		}else{
+			return null;
+		}
+	}
+	function result(){
+		if(httpRequest.readyState == 4){
+			if(httpRequest.status == 200){
+				alert(httpRequest.responseText);
+			}else {
+				alert(httpRequest.status);
+			}
+			
+		}		
+	}
+	
+	function load(url){
+		httpRequest = getXMLHttpRequest();
+		httpRequest.onreadystatechange = result; // call back 함수를 assign
+		httpRequest.open('get', url, true); // asynch방식 설정
+		httpRequest.send();	// 실행
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="sm" onclick="load('simple.txt')"/>
+	<input type="button" value="sm2" onclick="load('simple2.txt')"/>
+	<input type="button" value="sj" onclick="load('simple.jsp')"/>
+	<input type="button" value="sj2" onclick="load('simple2.jsp')"/>
+</body>
+</html>

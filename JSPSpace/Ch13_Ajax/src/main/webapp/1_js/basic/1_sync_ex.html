@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpRequest synchronous 실습</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// XMLHttpRequest object 생성
+	var request = new XMLHttpRequest();
+
+	// open(method, path, async=true/false)
+	// - method : 'GET', 'POST', 'PUT'
+	// - path : web server의 local path, url을 의미
+	// - async: true(default)
+	request.open('GET', 'data.html', false); // synchronouse방식
+	
+	// send: ajax 를 사용하여 server에 데이터 요청
+	// synchronous라서 web server가 response를 보내줄 때까지 프로그램이 정지된 상태로 있음
+	request.send();
+	
+	alert("ajax synchronous test success");
+	
+	// web server가 보내준 데이터를 web browser의 XMLHttpRequest object가 받아 
+	// request의 response의 responseText property에 설정
+	// alert(request.responseText);
+	document.body.innerHTML += request.responseText;
+	</script>
+</body>
+</html>
