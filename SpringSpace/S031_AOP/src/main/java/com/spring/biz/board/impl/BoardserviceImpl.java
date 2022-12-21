@@ -17,6 +17,12 @@ public class BoardserviceImpl implements BoardService {
 	public void insertBoard(BoardVO vo) {
 		// 여러 비지니스 로직이 들어감
 		// 1. logging
+		
+		
+		if(vo.getSeq() == 0) { throw new
+		IllegalArgumentException("0번 글은 등록할 수 없습니다."); }
+		
+		
 		boardDAO.insertBoard(vo);
 		// 2. transaction
 		// 3. logging

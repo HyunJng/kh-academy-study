@@ -9,13 +9,81 @@
 
 	<context:component-scan base-package="com.spring.biz" />
 	
-	<bean id="log" class="com.spring.biz.common.LogAdvice" />
 	
+	<!-- pointcut : 실제로 AOP를 적용할 package 또는 class 또는 method -->
+	<!-- 
+	<bean id="log" class="com.spring.biz.common.LogAdvice" />
 	<aop:config>
-		<!-- pointcut : 실제로 AOP를 적용할 package 또는 class 또는 method -->
 		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
 		<aop:aspect ref="log">
 			<aop:before method="printLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="afterReturning" class="com.spring.biz.common.AfterReturningAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.get*(..))" id="getPointcut"/>	
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning method="afterLog" pointcut-ref="getPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="afterThrowing" class="com.spring.biz.common.AfterThrowingAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing method="exceptionLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="after" class="com.spring.biz.common.AfterAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="after">
+			<aop:after method="finallyLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="around" class="com.spring.biz.common.AroundAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="around">
+			<aop:around method="aroundLog" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+  	-->
+	
+	<!--
+	<bean id="log" class="com.spring.biz.common.LogAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="log">
+			<aop:around method="printLog2" pointcut-ref="allPointcut"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<bean id="afterReturning" class="com.spring.biz.common.AfterReturningAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.get*(..))" id="getPointcut"/>	
+		<aop:aspect ref="afterReturning">
+			<aop:after-returning method="afterLog2" returning="returnObj" pointcut-ref="getPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="afterThrowing" class="com.spring.biz.common.AfterThrowingAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="afterThrowing">
+			<aop:after-throwing method="exceptionLog2" pointcut-ref="allPointcut" throwing="exceptObj"/>
+		</aop:aspect>
+	</aop:config>
+	 -->
+	 
+	<bean id="around" class="com.spring.biz.common.AroundAdvice"/>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.spring.biz..*Impl.*(..))" id="allPointcut"/>	
+		<aop:aspect ref="around">
+			<aop:around method="aroundLog2" pointcut-ref="allPointcut"/>
 		</aop:aspect>
 	</aop:config>
 </beans>

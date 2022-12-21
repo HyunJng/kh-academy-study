@@ -17,10 +17,10 @@ public class BoardServiceClient {
 		
 		// 3. 글 등록 테스트
 		BoardVO vo = new BoardVO();
-//		vo.setSeq(1);
-		vo.setTitle("AOP Befor test 제목");
+		//vo.setSeq(0);
+		vo.setTitle("AOP Throwing Advice test 제목");
 		vo.setWriter("김길동");
-		vo.setContent("AOP Before test 내용 ....................");
+		vo.setContent("AOP Throwing Advice test 내용 ....................");
 		boardService.insertBoard(vo);
 		
 		// 4. 글 목록 검색 기능 테스트
