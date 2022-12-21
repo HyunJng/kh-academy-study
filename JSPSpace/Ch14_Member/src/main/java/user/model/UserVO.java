@@ -11,7 +11,11 @@ public class UserVO {
 	public UserVO() {
 
 	}
-
+	public UserVO(String name, String id, String pwd, String email, String tel, String level) {
+		this.name = name; this.id = id;
+		this.password = pwd; this.email = email;
+		this.tel = tel; this.level = level;
+	}
 	public String getName() {
 		return name;
 	}
@@ -59,4 +63,5 @@ public class UserVO {
 	public void setLevel(String level) {
 		this.level = level;
 	}
+	
 }
