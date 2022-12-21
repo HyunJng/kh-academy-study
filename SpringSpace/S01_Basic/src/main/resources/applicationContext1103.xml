@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="tv" class="p110.di.constructor3.SamsungTV">
+		<constructor-arg ref="apple"></constructor-arg>
+		<constructor-arg value="270000"></constructor-arg>
+	</bean>
+
+	<bean id="sony" class="p110.di.constructor.SonySpeaker" />
+	<bean id="apple" class="p110.di.constructor3.AppleSpeaker"/>		
+</beans>
