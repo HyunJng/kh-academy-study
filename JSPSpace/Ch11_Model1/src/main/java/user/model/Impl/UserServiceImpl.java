@@ -1,7 +1,7 @@
-package user.Impl;
+package user.model.Impl;
 
-import user.UserService;
-import user.UserVO;
+import user.model.UserService;
+import user.model.UserVO;
 
 public class UserServiceImpl implements UserService{
 	private UserDAO userDAO = new UserDAO();

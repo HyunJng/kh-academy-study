@@ -1,4 +1,4 @@
-package board.impl;
+package board.model.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import board.BoardVO;
+import board.model.BoardVO;
 import common.JDBCUtil;
 
 // DAO : Data Access Object : CRUD에 대한 SQL문 코딩

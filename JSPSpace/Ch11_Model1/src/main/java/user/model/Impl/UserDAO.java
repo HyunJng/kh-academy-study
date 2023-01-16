@@ -1,13 +1,13 @@
-package user.Impl;
+package user.model.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import board.BoardVO;
+import board.model.BoardVO;
 import common.JDBCUtil;
-import user.UserVO;
+import user.model.UserVO;
 
 public class UserDAO {
 	private Connection conn = null;

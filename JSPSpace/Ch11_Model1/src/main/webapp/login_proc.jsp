@@ -1,5 +1,5 @@
-<%@page import="user.Impl.UserDAO"%>
-<%@page import="user.UserVO"%>
+<%@page import="user.model.Impl.UserDAO"%>
+<%@page import="user.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

@@ -1,4 +1,4 @@
-package user;
+package user.model;
 
 public class UserVO {
 	private String id;

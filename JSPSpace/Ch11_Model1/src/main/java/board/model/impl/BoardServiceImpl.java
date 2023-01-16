@@ -1,9 +1,9 @@
-package board.impl;
+package board.model.impl;
 
 import java.util.List;
 
-import board.BoardService;
-import board.BoardVO;
+import board.model.BoardService;
+import board.model.BoardVO;
 
 // 고객별 web application을 개발할 경우를 고려
 // View.Controller에서 BoardServiceImpl의 메소드를 사용함
