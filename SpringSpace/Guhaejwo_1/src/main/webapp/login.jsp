@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="jquery-3.4.1.js"></script> 
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="jquery-3.4.1.js"></script> 
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
     <section class="login-form">
@@ -15,7 +15,6 @@
             <img class="logo" src="/img/logo.jpg">
         </div>
           
-        
         <form action="">
             <div class="int-area">
                 <input type="text" name="id" id="id"

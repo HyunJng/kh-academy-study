@@ -8,5 +8,6 @@
 </head>
 <body>
 	<p>Hello?</p>
+	<a href="login">로그인</a>
 </body>
 </html>
