@@ -11,6 +11,5 @@
 	
 	<!-- AOP annotation tag를 인식하라는 명령어 -->
 	<aop:aspectj-autoproxy>
-		
 	</aop:aspectj-autoproxy>
 </beans>

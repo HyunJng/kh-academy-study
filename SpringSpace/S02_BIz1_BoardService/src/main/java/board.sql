@@ -15,3 +15,7 @@ CREATE TABLE BOARD (
 	REGDATE DATE DEFAULT CURRENT_DATE(),
 	CNT NUMBER(5) DEFAULT 0
 );
+
+select * from board order by seq;
+
+commit;
