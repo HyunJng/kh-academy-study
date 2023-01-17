@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 꼭 서버에 / 지우고 실행하기 -->
 </head>
 <body>
 	<p>Hello?</p>
