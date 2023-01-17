@@ -28,11 +28,8 @@ public class UserService {
 		userRepository.delete(user);
 	}
 	
-	// 회원 수정
-	
-	
 	// 회원 검색(ID)
 	public UserDTO findById(UserDTO user) {
-		return userRepository.getUser(user);
+		return userRepository.getUserById(user);
 	}
 }

@@ -15,7 +15,7 @@
 		]]>
 	</delete>
 
-	<select id="getUser" resultType="user">
+	<select id="getUserById" resultType="user">
 		<![CDATA[
 			SELECT * 
 			FROM USERS 

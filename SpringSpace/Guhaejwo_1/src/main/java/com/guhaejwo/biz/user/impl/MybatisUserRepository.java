@@ -31,9 +31,9 @@ public class MybatisUserRepository implements UserRepository{
 		//System.out.println("---> MybatisUserRepository.delete() 완료");
 	}
 
-	public UserDTO getUser(UserDTO user) {
+	public UserDTO getUserById(UserDTO user) {
 		System.out.println("--> MybatisUserRepository.getUser() 실행");
-		return mybatis.selectOne("UserDAO.getUser", user);
+		return mybatis.selectOne("UserDAO.getUserById", user);
 	}
 
 	public List<UserDTO> getUserList() {

@@ -43,14 +43,14 @@ public class UserRepositoryTest {
 	}
  */
 /*
+
 	@Test
 	public void 회원조회() {
 		UserDTO user = new UserDTO();
 		user.setUserId("user1");
 		
-		user = userRepository.getUser(user);
-		System.out.println("김길동 = " + user.getUserName());
+		user = userRepository.getUserById(user);
+		System.out.println("김길동 = " + user.getUserPw());
 	}
  */
-
 }
