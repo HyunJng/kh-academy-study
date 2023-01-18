@@ -40,11 +40,15 @@ public class MybatisUserRepository implements UserRepository{
 	}
 	
 	@Override
+	public UserDTO getUserByEmail(UserDTO user) {
+		System.out.println("--> MybatisUserRepository.getUserByEmail() 실행");
+		return mybatis.selectOne("UserDAO.getUserByEmail", user);
+	}
+
+	@Override
 	public List<UserDTO> getUserList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }

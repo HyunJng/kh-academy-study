@@ -23,6 +23,14 @@
 			WHERE USERID = #{userId}
 		]]>
 	</select>
+
+	<select id="getUserByEmail" resultType="user">
+		<![CDATA[
+			SELECT * 
+			FROM USERS 
+			WHERE USERID = #{userId} and USEREMAIL = #{userEmail}
+		]]>
+	</select>
 	
 	<!-- 
 	<update id="updateUser">

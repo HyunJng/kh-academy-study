@@ -22,9 +22,7 @@ public class UserService {
 	public String join(UserDTO user) {
 		user.setLoginType(LoginType.BASIC);
 		user.setUserRole(Role.USER);
-		/* 
-		 * 중복회원 검사(Front에서 할건가?)
-		*/
+
 		userRepository.save(user);
 		return user.getUserId();
 	}
@@ -33,9 +31,7 @@ public class UserService {
 	public String join_kakao(UserDTO user) {
 		user.setLoginType(LoginType.KAKAO);
 		user.setUserRole(Role.USER);
-		/* 
-		 * 중복회원 검사(Front에서 할건가?)
-		*/		
+	
 		userRepository.save(user);
 		return user.getUserId();
 	}
@@ -48,5 +44,10 @@ public class UserService {
 	// 회원 검색(ID)
 	public UserDTO findById(UserDTO user) {
 		return userRepository.getUserById(user);
+	}
+	
+	// 회원 검색(ID & Email)
+	public UserDTO findByEmail(UserDTO user) {
+		return userRepository.getUserByEmail(user);
 	}
 }

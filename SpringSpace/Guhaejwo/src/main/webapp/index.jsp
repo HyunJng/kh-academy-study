@@ -9,5 +9,6 @@
 <body>
 	<p>Hello?</p>
 	<a href="login">로그인</a>
+	<a href="/login/findPw">비번찾기</a>
 </body>
 </html>

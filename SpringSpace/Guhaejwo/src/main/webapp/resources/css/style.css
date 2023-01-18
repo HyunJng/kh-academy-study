@@ -44,6 +44,7 @@ body::before {
     font-size: 18px; color: #fff;
     outline: none;
 }
+
 .int-area label {
     position: absolute; left: 10px; top: 15px;
     font-size: 18px; color: #fff;

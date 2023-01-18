@@ -7,17 +7,14 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link rel="stylesheet" href="resources/css/style.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="container">
 		<section class="login-form">
 			<div>
-				<!-- 로고 -->
+				<img class="logo" src="resources/img/logo.jpg">
+				<h1>로그인</h1>
 			</div>
 	
 			<form>
@@ -46,7 +43,7 @@
 		
 		<div class="caption">
 			<div>
-				<a href="#">비밀번호 찾기</a>
+				<a href="/login/findPw">비밀번호 찾기</a>
 			</div>
 			<div>
 				<a href="/join">회원가입</a>
@@ -87,10 +84,8 @@
 								success : function(result) {
 									if (result == 0) {
 										alert("아이디와 비밀번호를 다시 확인해주세요");
-										return false;
 									} else if (result == 9) {
 										alert("통신 오류");
-										return false;
 									} else {
 										window.location.href = "/main";
 									}

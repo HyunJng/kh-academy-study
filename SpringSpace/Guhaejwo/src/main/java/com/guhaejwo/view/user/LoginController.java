@@ -28,15 +28,15 @@ public class LoginController {
 	// 로그인 페이지 이동
 	@GetMapping("/login")
 	public String getLoginForm() {
-		return "login.jsp";
+		return "login";
 	}
 	
-	// 로그인 기능
+	// 로그인
 	@PostMapping("/login")
 	public @ResponseBody Object login(@RequestBody UserDTO user, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserDTO loginUser = new UserDTO();
-		System.out.println("/login Post 실행");
+
 		try {
 			loginUser = userService.findById(user);
 			if(loginUser != null && (loginUser.getUserPw()).equals(user.getUserPw())) {	// 성공
@@ -50,12 +50,11 @@ public class LoginController {
 		}
 	}
 	
+	// 카카오 로그인
 	@PostMapping("/login/kakao")
 	public @ResponseBody Object kakaoLogin(@RequestBody UserDTO user, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserDTO loginUser = new UserDTO();
-		System.out.println("/login/kakao 실행");
-		System.out.println("user정보 확인: " + user.getUserId() + user.getUserEmail() + user.getUserName() + user.getUserImg());
 		
 		try {
 			loginUser = userService.findById(user);
@@ -72,4 +71,26 @@ public class LoginController {
 		}
 	}
 	
+	// 비밀번호 찾기 페이지 이동
+	@GetMapping("/login/findPw")
+	public String getfindForm(){
+		return "find_pw";
+	}
+	
+	// 비밀번호 찾기
+	@PostMapping("/login/findPw")
+	public @ResponseBody Object findPw(@RequestBody UserDTO user){
+		UserDTO findedUser = new UserDTO();
+		
+		try {
+			findedUser = userService.findByEmail(user);
+			if(findedUser != null) {
+				return findedUser;
+			} else {
+				return 0;
+			}
+		} catch (Exception e) {
+			return 9;
+		}
+	}
 }
