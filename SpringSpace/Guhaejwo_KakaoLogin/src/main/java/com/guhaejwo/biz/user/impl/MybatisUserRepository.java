@@ -18,27 +18,33 @@ public class MybatisUserRepository implements UserRepository{
 	public MybatisUserRepository(SqlSessionTemplate mybatis) { 
 		this.mybatis = mybatis; 
 	}
-
+	
+	@Override
 	public void save(UserDTO user) {
 		System.out.println("---> MybatisUserRepository.save() 실행");
 		mybatis.insert("UserDAO.insertUser", user);
 		// System.out.println("---> MybatisUserRepository.save() 완료");
 	}
-
+	
+	@Override
 	public void delete(UserDTO user) {
 		System.out.println("---> MybatisUserRepository.delete() 실행");
 		mybatis.delete("UserDAO.deleteUser", user);
 		//System.out.println("---> MybatisUserRepository.delete() 완료");
 	}
 
+	@Override
 	public UserDTO getUserById(UserDTO user) {
 		System.out.println("--> MybatisUserRepository.getUser() 실행");
 		return mybatis.selectOne("UserDAO.getUserById", user);
 	}
-
+	
+	@Override
 	public List<UserDTO> getUserList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface UserRepository {
 	
-	// 회원가입
+	// 회원저장
 	public void save(UserDTO user);
 	
-	// 회원 탈퇴
+	// 회원 삭제
 	public void delete(UserDTO user);
 	
 	// 회원 검색

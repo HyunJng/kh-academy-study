@@ -4,8 +4,9 @@
 			
 <mapper namespace="UserDAO">
 	<insert id="insertUser">
-			INSERT INTO USERS(userseq, userid, userpw, username, useremail, useralias, userrole, userphone, userimg, useraddr) 
-			VALUES ((select nvl(max(userseq), 0) + 1 from users), #{userId}, #{userPw}, #{userName}, #{userEmail},  #{userAlias}, #{userRole},#{userPhone}, #{userImage, jdbcType=VARCHAR}, #{userAddr, jdbcType=VARCHAR})
+			INSERT INTO USERS(userseq, userid, userpw, username, useremail, userrole, userphone, userimg, useraddr, loginType) 
+			VALUES ((select nvl(max(userseq), 0) + 1 from users), #{userId}, #{userPw, jdbcType=VARCHAR}, #{userName}, #{userEmail, jdbcType=VARCHAR}, 
+						#{userRole},#{userPhone, jdbcType=VARCHAR}, #{userImg, jdbcType=VARCHAR}, #{userAddr, jdbcType=VARCHAR}, #{loginType})
 	</insert>
 
 	<delete id="deleteUser">

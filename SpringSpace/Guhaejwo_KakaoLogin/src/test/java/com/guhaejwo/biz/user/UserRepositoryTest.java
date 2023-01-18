@@ -24,15 +24,15 @@ public class UserRepositoryTest {
 		user1.setUserName("김길동");
 		user1.setUserId("user1");
 		user1.setUserPw("1234");
-		user1.setUserAlias("kim");
 		user1.setUserEmail("kkk@naver.com");
 		//user1.setUserAddr("서울특별시");
 		user1.setUserPhone("01053728706");
 		user1.setUserRole(Role.ADMIN);
+		user1.setLoginType(LoginType.BASIC);
 		//user1.setUserImage("이미지");
 		userRepository.save(user1);		
 	}
-*/
+ */
 
 /*
 	@Test

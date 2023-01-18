@@ -33,20 +33,39 @@ public class LoginController {
 	
 	// 로그인 기능
 	@PostMapping("/login")
-	public @ResponseBody Object Login(@RequestBody UserDTO user, HttpServletRequest req) {
+	public @ResponseBody Object login(@RequestBody UserDTO user, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserDTO loginUser = new UserDTO();
 		System.out.println("/login Post 실행");
 		try {
 			loginUser = userService.findById(user);
-			System.out.println("아이디비교: " + loginUser.getUserId() + " " + user.getUserId());
-			System.out.println("비밀번호비교: " + loginUser.getUserPw() + " " + user.getUserPw());
-			System.out.println((loginUser.getUserPw().equals(user.getUserPw()) ));
 			if(loginUser != null && (loginUser.getUserPw()).equals(user.getUserPw())) {	// 성공
 				session.setAttribute("user", loginUser);
 				return loginUser;
 			} else {
 				return 0; // 없을 때
+			}
+		} catch (Exception e) { // 통신오류
+			return 9;
+		}
+	}
+	
+	@PostMapping("/login/kakao")
+	public @ResponseBody Object kakaoLogin(@RequestBody UserDTO user, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserDTO loginUser = new UserDTO();
+		System.out.println("/login/kakao 실행");
+		System.out.println("user정보 확인: " + user.getUserId() + user.getUserEmail() + user.getUserName() + user.getUserImg());
+		
+		try {
+			loginUser = userService.findById(user);
+			if(loginUser != null) {	// 로그인 정보가 있다면
+				session.setAttribute("user", loginUser);
+				return loginUser;
+			} else { // 없으면 회원가입
+				userService.join_kakao(user);
+				session.setAttribute("user", user);
+				return user;
 			}
 		} catch (Exception e) { // 통신오류
 			return 9;
