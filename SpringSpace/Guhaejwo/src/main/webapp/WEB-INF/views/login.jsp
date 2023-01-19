@@ -194,10 +194,10 @@
 				success : function(result) {
 					if (result == 0) {
 						alert("아이디와 비밀번호를 다시 확인해주세요");
-						return false;
+						return;
 					} else if (result == 9) {
 						alert("통신 오류");
-						return false;
+						return;
 					} else {
 						window.location.href = "/main";
 					}

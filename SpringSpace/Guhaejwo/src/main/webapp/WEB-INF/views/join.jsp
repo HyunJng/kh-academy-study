@@ -20,7 +20,7 @@
 			<h1>회원가입</h1>
 		</div>
 
-		<form method="post" action="join">
+		<form method="post" action="join" id="join-form">
 			<div class="int-area">
 				<input class="join-input-area" type="text" name="userId" id="userId" autocomplete="off" required>
 				<label>아이디</label>
@@ -115,21 +115,20 @@
 			// 비밀번호 확인
 			var userPw = $('#userPw').val();
 			var pwCheck = $('#pwCheck').val();
-			
 			if(userPw !== pwCheck){
 				alert("비밀번호를 확인해주세요");
-				return false;
+				return;
 			}
 			
-			if(!($('#member').is(':checked')) || !(('#individual').is(':checked'))){
+			if(!($('#member').is(':checked') && $('#individual').is(':checked'))){
 				alert("약관에 동의해주세요");
-				return false;
+				return;
 			} else if(id_check != true){
-			// submit조건 전부 충족하면 Json으로 
 				alert("아이디 중복 확인해주세요");
-				return false;
+				return;
 			} else {
-				return true;
+				alert("환영합니다");
+				$('#join-form').submit();
 			}
 		}
 		
