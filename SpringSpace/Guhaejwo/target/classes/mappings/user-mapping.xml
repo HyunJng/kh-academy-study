@@ -12,7 +12,7 @@
 	<delete id="deleteUser">
 		<![CDATA[
 			DELETE FROM USERS
-			WHERE USERSEQ = #{userSeq}
+			WHERE USERId = #{userId}
 		]]>
 	</delete>
 

@@ -40,7 +40,7 @@ public class LoginController {
 		try {
 			loginUser = userService.findById(user);
 			if(loginUser != null && (loginUser.getUserPw()).equals(user.getUserPw())) {	// 성공
-				session.setAttribute("user", loginUser);
+				session.setAttribute("login", loginUser);
 				return loginUser;
 			} else {
 				return 0; // 없을 때
@@ -59,13 +59,26 @@ public class LoginController {
 		try {
 			loginUser = userService.findById(user);
 			if(loginUser != null) {	// 로그인 정보가 있다면
-				session.setAttribute("user", loginUser);
+				session.setAttribute("login", loginUser);
 				return loginUser;
 			} else { // 없으면 회원가입
 				userService.join_kakao(user);
-				session.setAttribute("user", user);
+				session.setAttribute("login", user);
 				return user;
 			}
+		} catch (Exception e) { // 통신오류
+			return 9;
+		}
+	}
+	
+	// 카카오 회원 탈퇴(URL나중에 수정)
+	@GetMapping("/login/kakao")
+	public @ResponseBody Object kakaoLogout(UserDTO user, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		try {
+			session.invalidate();
+			userService.withdraw(user);
+			return 0;
 		} catch (Exception e) { // 통신오류
 			return 9;
 		}

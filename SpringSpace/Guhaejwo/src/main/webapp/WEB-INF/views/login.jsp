@@ -40,26 +40,31 @@
 					기억하기
 				</div>
 			</form>
-		
-		<div class="caption">
-			<div>
-				<a href="/login/findPw">비밀번호 찾기</a>
+			
+			<div class="caption">
+				<div>
+					<a href="/login/findPw">비밀번호 찾기</a>
+				</div>
+				<div>
+					<a href="/join">회원가입</a>
+				</div>
 			</div>
-			<div>
-				<a href="/join">회원가입</a>
-			</div>
-		</div>
-	</section>
+			
+			<!-- 임시 로그아웃/탈퇴 -->
+			<button type="button" onclick="logoutKakao();">카카오 로그아웃</button>
+			<button type="button" onclick="withdrawKakao();">카카오 회원가입 탈퇴</button>
+		</section>
 	</div>
 		
 	<!----------------------- 카카오 로그인용 script  -------------------->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script type="text/javascript">
+	Kakao.init('b0abeb82c9cbc955b257f0ac94a1c45f'); // 임시 없앨 때 삭제해주기
 	$(function(){
 		$("#btn-kakao-login").click(function(event){
 			
 			// 사용자 키를 전달, 카카오 로그인 서비스 초기화.
-			Kakao.init('b0abeb82c9cbc955b257f0ac94a1c45f');
+			//Kakao.init('b0abeb82c9cbc955b257f0ac94a1c45f'); // 임시 없앨 때 풀어주기
 			// 카카오 로그인 서비스 실행하기 및 사용자 정보 가져오기.
 			Kakao.Auth.login({
 				success:function(auth){
@@ -73,7 +78,6 @@
 								"userId" : "K" + response.id,
 								"userEmail" : account.email,
 								"userName" : account.profile.nickname,
-								"userImg" :  account.profile.profile_image_url
 							};
 							$.ajax({
 								url : "/login/kakao",
@@ -107,7 +111,51 @@
 		}) // 클릭이벤트
 	})// 카카오로그인 끝.
 	</script>
-	
+
+	<!-- 임시: 카카오 로그아웃/탈퇴 용  -->
+	<script type="text/javascript">
+		function logoutKakao(){
+	        if (!Kakao.Auth.getAccessToken()) {
+	        	alert("카카오 로그인 상태가 아닙니다.");
+	            return;
+	        }
+	        
+	        Kakao.Auth.logout(function () {
+                alert("logout");
+                // session삭제 추가. JSP로 할건지 Controller에 하는게 나은지 물어보기
+            });
+
+	    }
+		
+        function withdrawKakao() {
+        	Kakao.API.request({
+                url: '/v1/user/unlink',
+                success: function (response) {
+                	$.ajax({
+                		url : "/login/kakao",
+						type : "get",
+						data : {"userId" : "K"+response.id},
+						dataType : "json",
+						contentType : "application/json",
+						success : function(result) {
+							if (result == 9) {
+								alert("통신 오류");
+							} else {
+								alert("탈퇴되었습니다.");
+								window.location.href = "/main";
+							}
+						},
+						error : function(errorThrown) {
+							alert(errorThrown.statusText);
+						}
+                	})
+                },
+                fail: function (error) {
+                    alert("카카오 로그인 상태가 아닙니다.");
+                }
+            });
+        }
+	</script>	
 	<!------------------- 일반 로그인용 script  ---------------->
 	<script type="text/javascript">
 		$(function() {
@@ -160,6 +208,6 @@
 			});
 		}
 	</script>
-
+	
 </body>
 </html>

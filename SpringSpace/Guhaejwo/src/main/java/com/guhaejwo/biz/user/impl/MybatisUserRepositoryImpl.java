@@ -10,12 +10,12 @@ import com.guhaejwo.biz.user.UserDTO;
 import com.guhaejwo.biz.user.UserRepository;
 
 @Repository("userRepository")
-public class MybatisUserRepository implements UserRepository{
+public class MybatisUserRepositoryImpl implements UserRepository{
 
 	private final SqlSessionTemplate mybatis;
 	
 	@Autowired
-	public MybatisUserRepository(SqlSessionTemplate mybatis) { 
+	public MybatisUserRepositoryImpl(SqlSessionTemplate mybatis) { 
 		this.mybatis = mybatis; 
 	}
 	
