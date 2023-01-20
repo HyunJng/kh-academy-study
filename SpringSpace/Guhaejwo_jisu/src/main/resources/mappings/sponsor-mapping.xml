@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="SponsorDAO">
+	<!-- 후원 내역 insert -->
+	<insert id="insertSponsor">
+		<![CDATA[
+			INSERT INTO SPONSOR(sponsorSeq, userSeq, sponsorItemSeq, sponsorAmount, sponsorDate, sponsorTotalPrice, sponsorShippingAddr) 
+			VALUES ((SELECT NVL(max(sponsorSeq), 0) + 1 FROM SPONSOR), #{userSeq}, #{sponsorItemSeq}, #{sponsorAmount}, SYSDATE, #{sponsorTotalPrice}, #{sponsorShippingAddr})
+		]]>
+	</insert>
+	
+	<!-- 후원 상품 상세 조회 -->
+	<select id="getSponsorItem" parameterType="int" resultType="sponsorItem">
+		<![CDATA[
+			SELECT * 
+			FROM SPONSOR_ITEM
+			WHERE sponsorItemSeq = #{sponsorItemSeq}
+		]]>
+	</select>
+	
+</mapper>
