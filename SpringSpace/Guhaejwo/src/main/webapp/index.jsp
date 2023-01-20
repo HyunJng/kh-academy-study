@@ -11,5 +11,7 @@
 	<a href="login">로그인</a>
 	<a href="/login/findPw">비번찾기</a>
 	<p>로그인 session 저장 확인 용 : "${login}"</p>
+	<a href="/sponsor/move">후원 이동</a>
+	
 </body>
 </html>

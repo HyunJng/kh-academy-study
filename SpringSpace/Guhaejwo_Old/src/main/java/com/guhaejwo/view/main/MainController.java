@@ -9,6 +9,6 @@ public class MainController {
 	
 	@GetMapping("/main")
 	public String getMainPage() {
-		return "main.jsp";
+		return "main";
 	}
 }

@@ -9,8 +9,6 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url("/img/bg.jpg") no-repeat center;
-    background-size: cover;
 }
 body::before {
     content: "";
@@ -46,6 +44,7 @@ body::before {
     font-size: 18px; color: #fff;
     outline: none;
 }
+
 .int-area label {
     position: absolute; left: 10px; top: 15px;
     font-size: 18px; color: #fff;

@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 꼭 서버에 / 지우고 실행하기 -->
 </head>
 <body>
 	<p>Hello?</p>
 	<a href="login">로그인</a>
+	<a href="/login/findPw">비번찾기</a>
+	<p>로그인 session 저장 확인 용 : "${login}"</p>
 </body>
 </html>

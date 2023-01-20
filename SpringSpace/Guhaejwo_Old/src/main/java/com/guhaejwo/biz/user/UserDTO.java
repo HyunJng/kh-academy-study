@@ -6,11 +6,11 @@ public class UserDTO {
 	private String userPw;
 	private String userName;
 	private String userEmail;
-	private String userAlias;
 	private Role userRole;
 	private String userPhone;
-	private String userImage;
+	private String userImg;
 	private String userAddr;
+	private LoginType loginType;
 	
 	public UserDTO() {}
 
@@ -46,14 +46,6 @@ public class UserDTO {
 		this.userName = userName;
 	}
 
-	public String getUserAlias() {
-		return userAlias;
-	}
-
-	public void setUserAlias(String userAlias) {
-		this.userAlias = userAlias;
-	}
-
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -78,12 +70,12 @@ public class UserDTO {
 		this.userPhone = userPhone;
 	}
 
-	public String getUserImage() {
-		return userImage;
+	public String getUserImg() {
+		return userImg;
 	}
 
-	public void setUserImage(String userImage) {
-		this.userImage = userImage;
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
 	}
 
 	public String getUserAddr() {
@@ -94,12 +86,18 @@ public class UserDTO {
 		this.userAddr = userAddr;
 	}
 
+	public LoginType getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(LoginType loginType) {
+		this.loginType = loginType;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDTO [userSeq=" + userSeq + ", userId=" + userId + ", userPw=" + userPw + ", userName=" + userName
-				+ ", userAlias=" + userAlias + ", userEmail=" + userEmail + ", userRole=" + userRole + ", userPhone="
-				+ userPhone + ", userImage=" + userImage + ", userAddr=" + userAddr + "]";
+				+ ", userEmail=" + userEmail + ", userRole=" + userRole + ", userPhone=" + userPhone + ", userImg="
+				+ userImg + ", userAddr=" + userAddr + ", loginType=" + loginType + "]";
 	}
-
-	
 }

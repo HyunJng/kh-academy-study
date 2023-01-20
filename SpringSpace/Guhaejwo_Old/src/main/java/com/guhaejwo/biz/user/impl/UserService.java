@@ -3,6 +3,8 @@ package com.guhaejwo.biz.user.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.guhaejwo.biz.user.LoginType;
+import com.guhaejwo.biz.user.Role;
 import com.guhaejwo.biz.user.UserDTO;
 import com.guhaejwo.biz.user.UserRepository;
 
@@ -16,14 +18,25 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
-	// 회원가입
+	// 일반회원가입
 	public String join(UserDTO user) {
-		// 중복회원 검사(Front에서 할건가?)
+		user.setLoginType(LoginType.BASIC);
+		user.setUserRole(Role.USER);
+
 		userRepository.save(user);
 		return user.getUserId();
 	}
 	
-	// 회원탈퇴
+	// 카카오회원가입
+	public String join_kakao(UserDTO user) {
+		user.setLoginType(LoginType.KAKAO);
+		user.setUserRole(Role.USER);
+	
+		userRepository.save(user);
+		return user.getUserId();
+	}
+	
+	// 일반회원탈퇴
 	public void withdraw(UserDTO user) {
 		userRepository.delete(user);
 	}
@@ -31,5 +44,10 @@ public class UserService {
 	// 회원 검색(ID)
 	public UserDTO findById(UserDTO user) {
 		return userRepository.getUserById(user);
+	}
+	
+	// 회원 검색(ID & Email)
+	public UserDTO findByEmail(UserDTO user) {
+		return userRepository.getUserByEmail(user);
 	}
 }

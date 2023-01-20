@@ -41,7 +41,6 @@
 	</section>
 	</div>
 	
-	<!------------------- 일반 로그인용 script  ---------------->
 	<script type="text/javascript">
 		function findPw() {
 			var userId = $('#userId').val();
