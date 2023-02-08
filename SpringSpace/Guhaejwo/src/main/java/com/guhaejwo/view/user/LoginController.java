@@ -28,7 +28,7 @@ public class LoginController {
 	// 로그인 페이지 이동
 	@GetMapping("/login")
 	public String getLoginForm() {
-		return "login";
+		return "member/login";
 	}
 	
 	// 로그인
@@ -75,6 +75,7 @@ public class LoginController {
 	@GetMapping("/login/kakao")
 	public @ResponseBody Object kakaoLogout(UserDTO user, HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		System.out.println(user.getUserId());
 		try {
 			session.invalidate();
 			userService.withdraw(user);
@@ -87,7 +88,7 @@ public class LoginController {
 	// 비밀번호 찾기 페이지 이동
 	@GetMapping("/login/findPw")
 	public String getfindForm(){
-		return "find_pw";
+		return "member/find_pw";
 	}
 	
 	// 비밀번호 찾기

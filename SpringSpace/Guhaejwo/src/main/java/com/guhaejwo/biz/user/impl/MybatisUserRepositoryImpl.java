@@ -29,8 +29,9 @@ public class MybatisUserRepositoryImpl implements UserRepository{
 	@Override
 	public void delete(UserDTO user) {
 		System.out.println("---> MybatisUserRepository.delete() 실행");
+		System.out.println("Repository "+user.getUserId());
 		mybatis.delete("UserDAO.deleteUser", user);
-		//System.out.println("---> MybatisUserRepository.delete() 완료");
+		System.out.println("---> MybatisUserRepository.delete() 완료");
 	}
 
 	@Override

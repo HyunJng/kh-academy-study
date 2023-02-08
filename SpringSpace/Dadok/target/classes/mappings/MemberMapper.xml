@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="MemberMapper">
+	<insert id="insertMember">
+			INSERT INTO MEMBER(memberEmail, memberPw, memberName, memberAddr1, memberAddr2, memberAddr3, memberCk, memberPoint, regDate, loginType) 
+			VALUES (#{memberEmail}, #{memberPw, jdbcType=VARCHAR}, #{memberName}, #{memberAddr1, jdbcType=VARCHAR}, 
+						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, #{memberCk, jdbcType=VARCHAR}, 0, SYSDATE, #{loginType})
+	</insert>
+
+	<select id="getMemberByEmail" resultType="int">
+		<![CDATA[
+			SELECT count(*) 
+			FROM member
+			WHERE memberEmail = #{memberEmail}
+		]]>
+	</select>
+
+	<!-- 
+	<delete id="deleteUser">
+		<![CDATA[
+			DELETE FROM USERS
+			WHERE USERID = #{userId}
+		]]>
+	</delete>
+
+	<select id="getUserById" resultType="user">
+		<![CDATA[
+			SELECT * 
+			FROM USERS 
+			WHERE USERID = #{userId}
+		]]>
+	</select>
+
+	<select id="getUserByEmail" resultType="user">
+		<![CDATA[
+			SELECT * 
+			FROM USERS 
+			WHERE USERID = #{userId} and USEREMAIL = #{userEmail}
+		]]>
+	</select>
+	
+	<update id="updateUser">
+		<![CDATA[
+			UPDATE BOARD SET
+				TITLE = #{title}, 
+				CONTENT = #{content} 
+			WHERE SEQ = #{seq}
+		]]>
+	</update>
+	
+	
+	
+	<select id="getUserList" resultMap="user">
+		SELECT * 
+		FROM BOARD 
+		WHERE 1 = 1 
+		<if test="searchCondition == 'TITLE'">
+			AND TITLE LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		<if test="searchCondition == 'CONTENT'">
+			AND CONTENT LIKE '%'||#{searchKeyword}||'%'
+		</if>
+		ORDER BY SEQ DESC
+	</select>
+	 -->
+	
+</mapper>

@@ -15,16 +15,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 
+<!-- JQuery -->
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- header용 CSS -->
+<link rel="stylesheet" href="/resources/css/fix.css">
 <title>header</title>
 </head>
 <body>
   <header>
     <!-- 로고 이미지 -->
     <div class="logo">
-      <a href="#"><img src="../../resources/image/logo.png" alt="logo"></a>
+      <a href="#"><img src="/resources/image/header/logo_1.png" width="100px" alt="logo"></a>
       <div id="login">
-        <a href="#">로그인</a>
-        <a href="#">회원가입</a>
+        <a href="/login">로그인</a>
+        <a href="/join">회원가입</a>
       </div>
     </div>
   
@@ -36,7 +41,8 @@
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        
+        <div class="d-flex justify-content-around navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav" id="nav_menu">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">About 구해줘!펫즈</a>

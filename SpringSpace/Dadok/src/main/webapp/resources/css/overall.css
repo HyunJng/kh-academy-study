@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+* {
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/*사실 이 블럭은 없어도 된다*/
+@media (min-width: 1200px) {
+  .container {
+    width: 750px;
+  }
+}
