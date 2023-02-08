@@ -1,0 +1,5 @@
+1. body {} 에 font를 적용했으면
+body안의 모든 글에 적용되어야하는 것이 아닌가요?
+class="font-control" input 에서 font-family: inherit으로 따로적었던데
+실제로 이걸 삭제하니 font가 적용이 안되서요.
+뭘 잘못알고있는건지 모르겠다.

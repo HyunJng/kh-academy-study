@@ -1,0 +1,276 @@
+/***** FONT SETTINGS ******/
+body {
+    font-family: Arial, Dotum, "돋움", sans-serif;
+}
+
+h1,
+h3,
+h4,
+header {
+    font-family: "Times New Roman", Dotum, "돋움", serif, sans-serif;
+    ;
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 2.2em;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 2em;
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+p {
+    font-weight: 200;
+}
+
+/***** COLOR SETTINGS ******/
+h1,
+h3,
+h4 {
+    color: #3c1967;
+}
+
+h2 {
+    color: #a9a;
+}
+
+/***** GENERAL ******/
+h4 {
+    margin-top: 10px;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    /* 중앙에 있도록 자동 setting*/
+    padding: 30px 0 50px 0;
+}
+
+.center-text {
+    text-align: center;
+}
+
+/********   HEADER  ********/
+.col-6.profile-image-box {
+    width: 20%;
+}
+
+.profile-image {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.col-6.profile-title {
+    width: 80%;
+}
+
+.name-title {
+    float: right;
+    line-height: 0;
+    clear: both;
+    padding-right: 10px;
+}
+
+hr {
+    border: 1px solid #bcbbbb;
+    margin: 10px;
+}
+
+/*********  MAIN IMAGE ***********/
+.main-image {
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-overlay {
+    position: absolute;
+    top: -440px;
+    left: 10px;
+    color: white;
+    z-index: 100;
+    width: calc(100%-20px);
+    height: calc(100%-20px);
+    transition: all 0.5s ease-in-out;
+}
+
+.main-overlay-text {
+    padding-top: 20px;
+}
+
+.main-image:hover {
+    opacity: 80%;
+}
+
+.main-image:hover .main-overlay {
+    top: 50px;
+}
+
+/****** About  *****/
+.about {
+    padding: 10px;
+    border: 5px dotted pink;
+    border-radius: 5%;
+}
+
+.about-titled {
+    padding-left: 10px;
+}
+
+.col-4.about-flex,
+.col-8.about-flex {
+    display: block;
+    width: 100%;
+}
+
+.about-image {
+    border-radius: 50%;
+    width: 200px;
+}
+
+.about-text {
+    padding: 10px;
+}
+
+.about-link {
+    padding-left: 10px;
+    padding-bottom: 0px;
+}
+
+.about-myweb {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+/****** Interested Works   *******/
+.work {
+    margin-bottom: 10px;
+}
+
+.interested-title {
+    padding-left: 10px;
+}
+
+.each-work {
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+}
+
+.work-image {
+    margin-bottom: 10px;
+    border-radius: 5%;
+}
+
+.col-4.work {
+    width: 50%;
+}
+
+.work-detail {
+    position: relative;
+    padding: 0px 10px 0px 10px;
+}
+
+.work-title {
+    margin: 10px 0 15px 0;
+    line-height: 0;
+    clear: both;
+}
+
+.work-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    columns: #333;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.work-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%)
+}
+
+.each-work:hover .work-overlay {
+    left: 5px;
+    opacity: 0.8;
+}
+
+
+
+/* 아래는 아직 이해 안된 부분 */
+
+@media screen and (min-width: 620px) {
+
+    h1 {
+        font-size: 2.7em
+    }
+
+    .main-overlay-text {
+        font-weight: 100;
+        font-size: 3em;
+        padding-top: 40px;
+    }
+
+    .col-6.profile-image-box {
+        width: 50%;
+    }
+
+    .col-6.profile-title {
+        width: 50%;
+    }
+
+    .profile-image {
+        width: 100px;
+    }
+
+    .col-4.about-flex {
+        width: 33.33%;
+    }
+
+    .col-8.about-flex {
+        width: 66.66%;
+    }
+
+    .work {
+        margin-bottom: 20px;
+    }
+
+    .work-title {
+        font-size: 2em;
+        margin: 25px 0 30px 0;
+    }
+}
+
+@media screen and (min-width: 760px) {
+
+    .main-overlay-text {
+        padding-top: 70px;
+    }
+
+    .col-4.work {
+        width: 33.33%;
+    }
+}

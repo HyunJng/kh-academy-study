@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-size: 1.5rem;
+        }
+        #container {
+            height: 100vh;
+            background-color: lightgray;
+            /* display: flex; */
+             /* 배치방향 */
+            /* flex-direction: row; */
+            /* vieport width이 작아질때 떨어지느냐 아니냐 */
+            /* flex-wrap: wrap;  */
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* alignn-content는 wrap과 같이 써야함 */
+            /* align-content: space-between; */
+
+            /* 더 넓어질 때 원래 점유하던 공간을 0으로 해서 전부 여백으로 인식하게 함 */
+            /* flex-basis: 0; */
+
+            /* 그냥 flex로 하면 알아서 flex-basis가 0이 됨
+            flex를 쓴다 = 늘어나는 item인 것
+            */
+            display: grid;
+        }
+        .item:nth-child(1) {
+            /* container의 여백을 1만큼 가짐  */
+            /* 여백이 아니라 박스를 그러고 싶으면 container에 flex-basis:0해주기 */
+            /* container가 item보다 더 넓어질 때 */
+            flex-grow: 1;
+            /* container가 item보다 더 줄어들 때  */
+            flex-shrink: 1;
+            
+            /* 각 item 혼자만 정렬 */
+            align-self: center;
+            order: 1;
+        }
+        
+        .item:nth-child(2) {
+            flex-grow: 2;
+            flex-shrink: 2;
+        }
+        
+        .item:nth-child(3) {
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .item:nth-child(odd) {
+            background-color: yellow;
+        }
+
+        .item:nth-child(even) {
+            background-color: red;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <div class="item">
+            <img src="../images/smiley.gif" alt="">
+            <p>AAAAAAAAAAAAAAAAAAAA</p>
+        </div>
+
+        <div class="item">
+            <img src="../images/note.png" alt="">
+            <p>BBBBBBB</p>
+        </div>
+
+        <div class="item">
+            <p>CCCCCCCCCCCCCCCCCCCCCCCCCCC</p>
+        </div>
+    </div>
+</body>
+
+</html>

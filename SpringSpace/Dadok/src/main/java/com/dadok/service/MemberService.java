@@ -50,6 +50,8 @@ public class MemberService {
         					+ "인증번호는 " + checkNum + " 입니다.";
         
         /*
+
+         */
         try {
             MimeMessage mail = mailSender.createMimeMessage();
             MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
@@ -64,7 +66,7 @@ public class MemberService {
         } catch(Exception e) {
             e.printStackTrace();
         }
-         * */
+
         
         return checkNum;
 	}

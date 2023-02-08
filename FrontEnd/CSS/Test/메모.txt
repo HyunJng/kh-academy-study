@@ -1,0 +1,54 @@
+<개인 Home page 만들기>
+Sub 제목 : 개인 portfolio 만들기
+
+- 홈페이지 style은 제공된 css file을 재활용하여 사용
+(개인별로 원하는 style로 변경 가능)
+- Home page 포함해야 할 필수 내용
+    1) 개인 사진, 개인 소개 내용
+    2) Featured works
+        - Home page main화면에 header부문(image사용 등), 본문, footer로 3개의 영역으로 나눌 것
+        - Home page 본문 내용으로 개인 취미, 관심사, 개인별 관심 연구 분야 등에 대하여 기술
+            + 최소 3개 category 이상 기술할 것
+        - 각 featured work별로 별도의 html page 만들 것
+            + 예 : feature work이 3개 만들 경우 home page main에 3개의 feature work이 display되고, 각 feature work을 click하면 해당 feature work에 대한 별도의 html page로 이동
+        - 별도의 html page의 conten는 개인별로 자유롭게 작성 가능
+
+-------------------
+질문
+<0. header>
+1.image 빼면 float:right를 해도 오른쪽에 빈 공간(보라색 빗금)이 생기는데 어떻게 해결하는가?
+
+<1. main-image에서>
+1. .col-6.profile-image-box 처럼 클래스 겹쳐서 작성한 이유. 어차피 쓸 때 둘다 써야하던데??
+2. main-overlay-text를 두개로 따로 쓴 이유
+3. main-image:hover .main-overlay에서 trainsition안 써도 되지 않나.
+4. main-image의 calc로 width, height를 지정한 효과를 모르겠다.
+5. position:absolute면 relative인 main-image를 기준으로 좌표가 찍히는 걸로 아는데 왜 left:0이 그림을 넘어가는지
+6. (완)main-image:hover .main-overlay 사이에 space냐, 컴마(,)냐에 따라 달라지는데 무슨 의미인지 
+    => ,이면 각 클래스에 적용되는거고 space면 main-image 하위의 main-overlay에 적용된다는 뜻
+7. hover에서 text가 항상 center로 오는게 center-text 기능은 아니던데 뭣 때문인지.(center-text는 아무 기능 못하는 이유가 뭔지.)
+
+<2. about에서>
+1. text가 옆으로 가는 것은 css가장 밑의 @media 덕분 <<관련해서 수업 하는지?
+2. 
+------------------------
+새로 알게 된 것
+1. srcset
+<img
+  srcset="경로 원본크기,
+          경로 원본크기,
+          경로 원본크기"
+  sizes="(미디어조건) 최적화출력크기,
+         (미디어조건) 최적화출력크기,
+         기본출력크기"
+  src="경로"
+  alt="대체텍스트" />
+
+  - vw(vertical width) : 뷰포트의 1/100 width
+
+2.section
+div, article, section 외형은 모두 똑갑습니다.
+하지만, html5에서 위 태그들이 생겨난 이유는 각 목적에 맞게 시멘틱한 태그를 써라 입니다.다른 사용자들이 이 코딩을 봤을때, 맥락을 잘 이해시킬 수 있게끔 코딩하면 됩니다.
+각 영역에 맞게 header, main, footer 등 정확한 구분을 해주고,
+공지사항, FAQ, 고객센터 같은 게시판 영역이라면 해당 영역에 article을 써주고,그 외 논리적인 구분은 모두 section으로 처리하면 될것 같습니다.
+굳이 구분이 필요없고, 블럭요소가 필요하다면 div 를 쓰면 되겠구요.
