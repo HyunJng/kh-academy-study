@@ -1,13 +1,20 @@
 @charset "UTF-8";
 
+#title {
+	background-color: #FFE4E1;
+}
+
+#submit {
+	background-color: #ADD8E6;
+}
+
+
 /*********** 동적인 변화 ***********/
-#email_input_re1 {
+.email_input_true {
 	color: green;
-	display: none;
 }
 
 /* 중복아이디 존재하는 경우 */
-#email_input_re2 {
+.email_input_false {
 	color: red;
-	display: none;
 }

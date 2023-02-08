@@ -6,7 +6,7 @@
 	<insert id="insertMember">
 			INSERT INTO MEMBER(memberEmail, memberPw, memberName, memberAddr1, memberAddr2, memberAddr3, memberCk, memberPoint, regDate, loginType) 
 			VALUES (#{memberEmail}, #{memberPw, jdbcType=VARCHAR}, #{memberName}, #{memberAddr1, jdbcType=VARCHAR}, 
-						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, #{memberCk, jdbcType=VARCHAR}, 0, SYSDATE, #{loginType})
+						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, 'USER', 0, SYSDATE, #{loginType})
 	</insert>
 
 	<select id="getMemberByEmail" resultType="int">

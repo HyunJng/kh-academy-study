@@ -1,5 +1,7 @@
 package com.dadok.controller;
 
+import java.util.Random;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dadok.domain.M_LoginType;
 import com.dadok.domain.MemberVO;
 import com.dadok.service.MemberService;
 
@@ -40,14 +43,15 @@ public class MemberController {
 	public String joinPost(MemberVO member) {
 		logger.info("join 진입");
 		
+		member.setLoginType(M_LoginType.GENERAL);
 		memberService.join(member);
 		
 		logger.info("join service 성공");
-		return "redirect: main";
+		return "redirect: login";
 	}
 	
-	@PostMapping("/memberEmailChk")
-	public @ResponseBody String memberEmailChkPost(MemberVO member) {
+	@PostMapping("/emailDuplChk")
+	public @ResponseBody String emailDuplChkPost(MemberVO member) {
 		logger.info("memberEmailChk 진입, 검색 emailL: " + member.getMemberEmail());
 		
 		int result = memberService.countMemberbyEmail(member);
@@ -57,6 +61,16 @@ public class MemberController {
 			return "fail";
 		else
 			return "success";
+	}
+	
+	@GetMapping("/emailAuthChk")
+	public @ResponseBody String emailAuthChk(MemberVO member) {
+		logger.info("emailAhtuChk 진입, 확인 email: " + member.getMemberEmail());
+		
+		String checkNum = String.valueOf(memberService.sendEmailforAuth(member));
+		logger.info("인증번호: " + checkNum);
+		
+		return checkNum;
 	}
 	
 }
