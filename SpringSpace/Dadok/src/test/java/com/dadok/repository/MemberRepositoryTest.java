@@ -2,6 +2,8 @@ package com.dadok.repository;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Assert;
@@ -38,7 +40,6 @@ public class MemberRepositoryTest {
 		
 		memberRepository.save(member);
 	}
-	 * */
 	
 	@Test
 	public void 이메일중복체크() {
@@ -48,4 +49,30 @@ public class MemberRepositoryTest {
 
 		assertThat(exist, is(equalTo(1)));
 	}
+	 * */
+	@Test
+	public void 회원로그인() {
+		MemberVO member = new MemberVO();
+		member.setMemberEmail("test");
+		member.setMemberPw("test");
+		
+		MemberVO loginMember = memberRepository.login(member);
+		
+		System.out.println(loginMember);
+		assertThat(loginMember.getMemberEmail(), is(member.getMemberEmail()));
+		assertThat(loginMember.getMemberPw(), is(member.getMemberPw()));
+	}
+	/*
+	@Test
+	public void 회원검색실패() {
+		MemberVO member = new MemberVO();
+		member.setMemberEmail("test");
+		member.setMemberPw("aaa");
+		
+		MemberVO loginMember = memberRepository.login(member);
+
+		assertThat(loginMember, nullValue());
+	}
+	 */
+	
 }

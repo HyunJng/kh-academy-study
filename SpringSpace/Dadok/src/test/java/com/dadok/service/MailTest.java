@@ -1,4 +1,4 @@
-package com.dadok.controller;
+package com.dadok.service;
 
 import javax.mail.internet.MimeMessage;
 

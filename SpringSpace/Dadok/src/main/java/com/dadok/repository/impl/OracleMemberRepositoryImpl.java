@@ -24,9 +24,12 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 
 	@Override
 	public int emailCheck(MemberVO member) {
-		return mybatis.selectOne("MemberMapper.getMemberByEmail", member);
+		return mybatis.selectOne("MemberMapper.countMemberByEmail", member);
 	}
 
-	
+	@Override
+	public MemberVO login(MemberVO member) {
+		return mybatis.selectOne("MemberMapper.memberLogin", member);
+	}
 	
 }

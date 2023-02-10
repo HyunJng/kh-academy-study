@@ -9,11 +9,19 @@
 						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, 'USER', 0, SYSDATE, #{loginType})
 	</insert>
 
-	<select id="getMemberByEmail" resultType="int">
+	<select id="countMemberByEmail" resultType="int">
 		<![CDATA[
 			SELECT count(*) 
 			FROM member
 			WHERE memberEmail = #{memberEmail}
+		]]>
+	</select>
+
+	<select id="memberLogin" resultType="memberVO">
+		<![CDATA[
+			SELECT * 
+			FROM member
+			WHERE memberEmail = #{memberEmail} and memberPw = #{memberPw}
 		]]>
 	</select>
 

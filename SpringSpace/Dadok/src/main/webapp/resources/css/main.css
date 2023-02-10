@@ -4,13 +4,9 @@
 	margin: 0;
 	padding:0;
 }
-/* 화면 전체 렙 */
-.wrapper{
-	width: 1900px;
-}
 /* content 랩 */
 .wrap{
-	width : 1080px;
+	width: 80%;
 	margin: auto;
 }
 /* 홈페이지 기능 네비 */ 

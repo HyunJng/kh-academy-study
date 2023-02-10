@@ -23,12 +23,15 @@ public class MemberService {
 		this.memberRepository = memberRepository;
 		this.mailSender = mailSender;
 	}
-	
-	
+	// 로그인
+	public MemberVO login(MemberVO member) {
+		return memberRepository.login(member);
+	}
+	// 회원가입
 	public void join(MemberVO member) {
 		memberRepository.save(member);
 	}
-	
+	// 회원 중복 검사
 	public int countMemberbyEmail(MemberVO member) {
 		int exist = memberRepository.emailCheck(member);
 		
@@ -38,7 +41,7 @@ public class MemberService {
 			return 0; // 중복 아이디 존재 X
 	}
 	
-	
+	// 인증 이메일 전송
 	public int sendEmailforAuth(MemberVO member) {
 		Random random = new Random();
 		int checkNum = random.nextInt(8889) + 1111; // 1111 ~ 9999
@@ -49,9 +52,6 @@ public class MemberService {
         String content = "아래 인증번호를 입력하시오" + "<br><br>"
         					+ "인증번호는 " + checkNum + " 입니다.";
         
-        /*
-
-         */
         try {
             MimeMessage mail = mailSender.createMimeMessage();
             MimeMessageHelper mailHelper = new MimeMessageHelper(mail,true,"UTF-8");
@@ -70,4 +70,6 @@ public class MemberService {
         
         return checkNum;
 	}
+	
+	
 }
