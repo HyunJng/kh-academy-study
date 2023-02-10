@@ -31,7 +31,6 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 	
-	
 	@GetMapping("/login")
 	public String loginGet() {
 		logger.info("로그인 페이지 진입");

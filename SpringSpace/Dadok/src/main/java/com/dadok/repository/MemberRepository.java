@@ -10,6 +10,6 @@ public interface MemberRepository {
 	// 회원 email로 검색
 	public int emailCheck(MemberVO member);
 	
-	// 회원 로그인(Email & Password)
-	public MemberVO login(MemberVO member);
+	// 회원찾기(Email)
+	public MemberVO findMemberbyEmail(MemberVO member);
 }

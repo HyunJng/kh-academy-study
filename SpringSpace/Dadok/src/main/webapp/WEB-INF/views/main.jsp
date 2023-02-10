@@ -28,13 +28,16 @@
 			</div>
 			<div class="login_area">
 				<c:if test="${member == null}">
-					<div class="login_button"><a href="/member/login">로그인</a></div>
-					<span><a href="/member/join">회원가입</a></span>
+					<div>
+						<div class="login_button"><a href="/member/login">로그인</a></div>
+						<span><a href="/member/join">회원가입</a></span>
+					</div>
 				</c:if>
 				<c:if test="${member != null}">
 					<div>
 						<span>${member.memberName}님 안녕하세요</span>
 						<span>포인트: <fmt:formatNumber value="${member.memberPoint}" pattern="#,###"/></span>
+						<a href="/member/logout">로그아웃</a>
 					</div>
 				</c:if>
 				

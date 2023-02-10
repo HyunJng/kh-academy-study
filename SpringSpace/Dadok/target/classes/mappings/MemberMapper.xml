@@ -17,11 +17,11 @@
 		]]>
 	</select>
 
-	<select id="memberLogin" resultType="memberVO">
+	<select id="getMemberByEmail" resultType="memberVO">
 		<![CDATA[
 			SELECT * 
 			FROM member
-			WHERE memberEmail = #{memberEmail} and memberPw = #{memberPw}
+			WHERE memberEmail = #{memberEmail}
 		]]>
 	</select>
 

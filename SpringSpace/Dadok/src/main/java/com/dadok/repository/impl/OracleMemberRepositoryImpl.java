@@ -28,8 +28,8 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	}
 
 	@Override
-	public MemberVO login(MemberVO member) {
-		return mybatis.selectOne("MemberMapper.memberLogin", member);
+	public MemberVO findMemberbyEmail(MemberVO member) {
+		return mybatis.selectOne("MemberMapper.getMemberByEmail", member);
 	}
 	
 }
