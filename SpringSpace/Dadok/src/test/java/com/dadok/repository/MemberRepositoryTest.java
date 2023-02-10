@@ -51,12 +51,12 @@ public class MemberRepositoryTest {
 	}
 	 * */
 	@Test
-	public void 회원로그인() {
+	public void 회원이메일검색() {
 		MemberVO member = new MemberVO();
 		member.setMemberEmail("test");
 		member.setMemberPw("test");
 		
-		MemberVO loginMember = memberRepository.login(member);
+		MemberVO loginMember = memberRepository.findMemberbyEmail(member);
 		
 		System.out.println(loginMember);
 		assertThat(loginMember.getMemberEmail(), is(member.getMemberEmail()));

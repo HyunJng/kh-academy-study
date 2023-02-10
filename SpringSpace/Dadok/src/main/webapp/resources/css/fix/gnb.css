@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#link_list a, #link_list a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#link_list li{
+	border-bottom: none;
+}
+
+#link_list a:hover {
+	color: #FFC0CB;
+}

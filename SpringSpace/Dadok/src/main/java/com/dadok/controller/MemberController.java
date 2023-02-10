@@ -54,6 +54,15 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("/logout")
+	public String logoutGet(HttpServletRequest req) {
+		logger.info("logoutGet 진입");
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		return "redirect: /main";
+	}
+	
 	@GetMapping("/join")
 	public String joinGet() {
 		logger.info("회원가입 페이지 진입");
@@ -68,7 +77,7 @@ public class MemberController {
 		memberService.join(member);
 		
 		logger.info("join service 성공");
-		return "redirect: login";
+		return "redirect: login"; // 상대경로
 	}
 	
 	@PostMapping("/emailDuplChk")
