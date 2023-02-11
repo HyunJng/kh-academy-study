@@ -9,21 +9,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dadok.domain.MemberVO;
+public class LoginNotInterceptor implements HandlerInterceptor{
 
-public class AdminIntercepter implements HandlerInterceptor{
-
-	private final Logger logger = LoggerFactory.getLogger(AdminIntercepter.class);
+	private final Logger logger = LoggerFactory.getLogger(LoginNotInterceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("preHandler 진입");
 		
-		// admin이면 true, 아니면 false
 		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		if(member != null && member.getMemberCk() == "ADMIN") {
+		// 로그인 상태가 아니면 controller로 이동(login, join 등)
+		if(session == null || session.getAttribute("member") == null) { 
 			return true;
 		}
 		response.sendRedirect("/main");
@@ -33,14 +30,14 @@ public class AdminIntercepter implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		// TODO Auto-generated method stub
+		
 	}
 
+	
 }
