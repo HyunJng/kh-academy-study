@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class LoginNotInterceptor implements HandlerInterceptor{
 
-	private final Logger logger = LoggerFactory.getLogger(LoginNotInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginNotInterceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

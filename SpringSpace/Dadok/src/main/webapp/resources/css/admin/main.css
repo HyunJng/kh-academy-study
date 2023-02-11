@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#admin_title {
+	background-color: #B0E0E6;
+}
+
+#admin_subtitle {
+	background-color: #F5F5F5;
+}
+
+#admin-menu {
+	height: 40rem;
+	padding-right: 0;
+}
+
+#admin-menu button {
+	flex: 0 1 auto;
+}

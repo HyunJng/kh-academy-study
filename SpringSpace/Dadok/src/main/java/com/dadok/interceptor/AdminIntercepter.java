@@ -13,21 +13,24 @@ import com.dadok.domain.MemberVO;
 
 public class AdminIntercepter implements HandlerInterceptor{
 
-	private final Logger logger = LoggerFactory.getLogger(AdminIntercepter.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminIntercepter.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("preHandler 진입");
-		
+		/*		
 		// admin이면 true, 아니면 false
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("member");
-		if(member != null && member.getMemberCk() == "ADMIN") {
+		if(member != null && member.getMemberCk().equals("ADMIN")) {
 			return true;
 		}
 		response.sendRedirect("/main");
+		
 		return false;
+		 * */
+		return true;
 	}
 
 	@Override
