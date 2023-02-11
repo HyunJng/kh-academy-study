@@ -23,4 +23,11 @@ public class AdminController {
 		logger.info("상품 등록 페이지 진입");
 		return "/admin/addGoods";
 	}
+
+	@GetMapping("/manageGoods")
+	public String manageGoodsGet() {
+		logger.info("상품 관리 페이지 진입");
+		return "/admin/manageGoods";
+	}
+	
 }
