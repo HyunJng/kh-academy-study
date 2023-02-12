@@ -8,6 +8,8 @@ public class BookVO {
 	private String publisher;
 	private String contents;
 	private int fullPrice;
+	private int salePrice;
+	private int amount;
 	
 	public BookVO() { }
 
@@ -67,9 +69,27 @@ public class BookVO {
 		this.fullPrice = fullPrice;
 	}
 
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", title=" + title + ", image=" + image + ", author=" + author
-				+ ", publisher=" + publisher + ", contents=" + contents + ", fullPrice=" + fullPrice + "]";
+				+ ", publisher=" + publisher + ", contents=" + contents + ", fullPrice=" + fullPrice + ", salePrice="
+				+ salePrice + ", amount=" + amount + "]";
 	}
 }
+

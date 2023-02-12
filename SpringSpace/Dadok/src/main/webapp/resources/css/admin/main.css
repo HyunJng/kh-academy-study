@@ -16,3 +16,8 @@
 #admin-menu button {
 	flex: 0 1 auto;
 }
+
+#book_content {
+	height: 6.25em;
+	resize: none !important;
+}

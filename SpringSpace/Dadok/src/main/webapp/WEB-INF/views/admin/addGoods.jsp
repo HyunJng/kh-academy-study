@@ -55,7 +55,7 @@
 			success: function(msg){
 				console.log(msg);
 				for(var i = 0; i<10; i++){
-					$("#search_result").append("<div class='mt-2'>"
+					$("#search_result").append("<div class='mt-2 p-2 border border-dark rounded'>"
 											+ "<div class='h4'>" 
 												+ "<a href='/admin/addGoods/form?title=" + msg.documents[i].title+"&image="+msg.documents[i].thumbnail+"&author="+msg.documents[i].authors + "&publisher="+msg.documents[i].publisher+"&contents="+msg.documents[i].contents+"&bookId=" + msg.documents[i].isbn +"&fullPrice=" +msg.documents[i].price+"'>"
 														+ msg.documents[i].title + "</a></div>"
