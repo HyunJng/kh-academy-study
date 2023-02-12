@@ -5,5 +5,5 @@ import com.dadok.domain.BookVO;
 public interface BookRepository {
 
 	// 책 저장
-	public void save(BookVO book);
+	public void save(BookVO book) throws Exception;
 }

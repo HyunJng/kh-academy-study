@@ -52,12 +52,16 @@ public class AdminController {
 	}
 	
 	@PostMapping("/addGoods/form") 
-	public void addGoodsFormPost(BookVO book, HttpServletResponse resp,RedirectAttributes reAttr) throws IOException {
+	public String addGoodsFormPost(BookVO book, RedirectAttributes reAttr) throws IOException {
 		logger.info("addGoodsFormPost 진입");
-		
-		adminService.saveBook(book);
-		reAttr.addFlashAttribute("title", book.getTitle());
-		resp.sendRedirect("/addGoods");
+
+		try {
+			adminService.saveBook(book);
+			reAttr.addFlashAttribute("result", book.getTitle());
+		} catch (Exception e) {
+			reAttr.addFlashAttribute("result", "error");
+		}
+		return "redirect:/admin/addGoods";
 	}
 	
 	@GetMapping("/manageGoods")

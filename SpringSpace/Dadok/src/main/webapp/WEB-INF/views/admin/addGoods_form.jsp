@@ -28,7 +28,7 @@
 				<div id="admin_subtitle" class="py-2 ps-2">
 					<h4>상품 등록 폼</h4>
 				</div>
-				<form class="mt-3" action="#" method="post">
+				<form class="mt-3" action="/admin/addGoods/form" method="post">
 					<input type="hidden" name="bookId" value="${book.bookId}">
 					<div class="d-flex justify-content-center">
 						<input type="hidden" name="bookImage" value="${book.bookImage}">
@@ -84,7 +84,7 @@
 					<div class="row ps-2">
 						<label class="form-label col-2">책소개</label>
 						<div class="col-10">
-							<textarea id="book_content"class="form-control" name="contents" readonly>${book.bookIntro}</textarea>
+							<textarea id="bookIntro"class="form-control" name="bookIntro" readonly>${book.bookIntro}</textarea>
 						</div>
 					</div>
 					<div class="d-flex justify-content-end mt-3">

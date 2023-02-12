@@ -16,7 +16,7 @@ public class AdminService {
 		this.bookRepository = bookRepository;
 	}
 	
-	public void saveBook(BookVO book) {
+	public void saveBook(BookVO book) throws Exception{
 		bookRepository.save(book);
 	}
 }

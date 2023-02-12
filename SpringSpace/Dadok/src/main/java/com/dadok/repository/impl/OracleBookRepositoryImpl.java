@@ -18,7 +18,7 @@ public class OracleBookRepositoryImpl implements BookRepository{
 	}
 	
 	@Override
-	public void save(BookVO book) {
+	public void save(BookVO book) throws Exception{
 		mybatis.insert("BookMapper.insertBook", book);
 	}
 	
