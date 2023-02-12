@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="BookMapper">
+	<insert id="insertBook">
+		<![CDATA[
+			INSERT INTO Book(bookId, title, bookImage, author, publisher, bookIntro, bookCate, fullPrice, bookStock, discountPer, regDate, updateDate)
+			VALUES(#{bookId}, #{title}, #{bookImage, jdbcType=VARCHAR}, #{author}, #{publisher}, #{bookIntro, jdbcType=VARCHAR}, #{bookCate}, #{fullPrice}, #{bookStock}, #{discountPer, jdbcType=INTEGER}, SYSDATE, null)
+		]]>
+	</insert>
+	
+</mapper>

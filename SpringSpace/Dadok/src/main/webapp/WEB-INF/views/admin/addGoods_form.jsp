@@ -31,8 +31,8 @@
 				<form class="mt-3" action="#" method="post">
 					<input type="hidden" name="bookId" value="${book.bookId}">
 					<div class="d-flex justify-content-center">
-						<input type="hidden" name="image" value="${book.image}">
-						<img alt="책 표지" src="${book.image}">
+						<input type="hidden" name="bookImage" value="${book.bookImage}">
+						<img alt="책 표지" src="${book.bookImage}">
 					</div>
 					<div class="row ps-2">
 						<label class="form-label col-2">제목</label>
@@ -59,21 +59,32 @@
 						</div>
 					</div>
 					<div class="row ps-2">
-						<label class="form-label col-2 text-danger">판매가</label>
+						<label class="form-label col-2 text-danger">카테고리</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="salePrice" required>
+							<select class="form-select" name="bookCate">
+								<option value="NOVEL">소설</option>
+								<option value="HUMAN">인문</option>
+								<option value="SCIENCE">과학</option>
+								<option value="PHILOSOPHY">철학</option>
+							</select>
+						</div>
+					</div>
+					<div class="row ps-2">
+						<label class="form-label col-2 text-danger">할인률</label>
+						<div class="col-10">
+							<input class="form-control" type="number" name="discountPer" required>
 						</div>
 					</div>
 					<div class="row ps-2">
 						<label class="form-label col-2 text-danger">수량</label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="amount" value="1" min="1" max="50" required>
+							<input class="form-control" type="number" name="bookStock" value="1" min="1" max="50" required>
 						</div>
 					</div>
 					<div class="row ps-2">
-						<label class="form-label col-2">요약</label>
+						<label class="form-label col-2">책소개</label>
 						<div class="col-10">
-							<textarea id="book_content"class="form-control" name="contents" readonly>${book.contents}</textarea>
+							<textarea id="book_content"class="form-control" name="contents" readonly>${book.bookIntro}</textarea>
 						</div>
 					</div>
 					<div class="d-flex justify-content-end mt-3">

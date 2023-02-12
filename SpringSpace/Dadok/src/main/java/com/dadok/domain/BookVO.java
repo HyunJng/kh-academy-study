@@ -1,15 +1,20 @@
 package com.dadok.domain;
 
+import java.sql.Date;
+
 public class BookVO {
 	private String bookId;
 	private String title;
-	private String image;
+	private String bookImage;
 	private String author;
 	private String publisher;
-	private String contents;
+	private String bookIntro;
+	private String bookCate;
 	private int fullPrice;
-	private int salePrice;
-	private int amount;
+	private int bookStock;
+	private int discountPer;
+	private Date regDate;
+	private Date updateDate;
 	
 	public BookVO() { }
 
@@ -29,12 +34,12 @@ public class BookVO {
 		this.title = title;
 	}
 
-	public String getImage() {
-		return image;
+	public String getBookImage() {
+		return bookImage;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
 	}
 
 	public String getAuthor() {
@@ -53,12 +58,20 @@ public class BookVO {
 		this.publisher = publisher;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getBookIntro() {
+		return bookIntro;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setBookIntro(String bookIntro) {
+		this.bookIntro = bookIntro;
+	}
+
+	public String getBookCate() {
+		return bookCate;
+	}
+
+	public void setBookCate(String bookCate) {
+		this.bookCate = bookCate;
 	}
 
 	public int getFullPrice() {
@@ -69,27 +82,45 @@ public class BookVO {
 		this.fullPrice = fullPrice;
 	}
 
-	public int getSalePrice() {
-		return salePrice;
+	public int getBookStock() {
+		return bookStock;
 	}
 
-	public void setSalePrice(int salePrice) {
-		this.salePrice = salePrice;
+	public void setBookStock(int bookStock) {
+		this.bookStock = bookStock;
 	}
 
-	public int getAmount() {
-		return amount;
+	public int getDiscountPer() {
+		return discountPer;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setDiscountPer(int discountPer) {
+		this.discountPer = discountPer;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	@Override
 	public String toString() {
-		return "BookVO [bookId=" + bookId + ", title=" + title + ", image=" + image + ", author=" + author
-				+ ", publisher=" + publisher + ", contents=" + contents + ", fullPrice=" + fullPrice + ", salePrice="
-				+ salePrice + ", amount=" + amount + "]";
+		return "BookVO [bookId=" + bookId + ", title=" + title + ", bookImage=" + bookImage + ", author=" + author
+				+ ", publisher=" + publisher + ", bookIntro=" + bookIntro + ", bookCate=" + bookCate + ", fullPrice="
+				+ fullPrice + ", bookStock=" + bookStock + ", discountPer=" + discountPer + ", regDate=" + regDate
+				+ ", updateDate=" + updateDate + "]";
 	}
+
 }
 
