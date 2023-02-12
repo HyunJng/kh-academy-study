@@ -3,8 +3,11 @@ package com.dadok.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.dadok.domain.BookVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,7 +26,15 @@ public class AdminController {
 		logger.info("상품 등록 페이지 진입");
 		return "/admin/addGoods";
 	}
-
+	@GetMapping("/addGoods/form")
+	public String addGoodsFormGet(BookVO book, Model model) {
+		logger.info("상품 등록 폼 페이지 진입");
+		
+		System.out.println(book);
+		model.addAttribute("book", book);
+		return "/admin/addGoods_form";
+	}
+	
 	@GetMapping("/manageGoods")
 	public String manageGoodsGet() {
 		logger.info("상품 관리 페이지 진입");

@@ -25,15 +25,13 @@
 			</div>
 			<div class="col-9">
 				<div id="admin_subtitle" class="py-2 ps-2">
-					<h4>상품 관리</h4>
+					<h4>상품 등록 Form</h4>
 				</div>
-				<form action="#" class="py-2 row">
-					<div class="col-7 m-0">
-						<input class="col-3 form-control" type="text" placeholder="제목검색">
-					</div>
-					<button class="btn btn-secondary ms-1 col-2  px-1" type="submit">검색</button>
-					<button class="btn btn-light ms-3 col-2" type="button" onclick="location.href='/admin/addGoods'">상품등록</button>
-				</form>
+				<div class="py-2 row">
+				</div>
+				
+				<div id="search_result">
+				</div>
 			</div>
 		</div>
 	</div>
