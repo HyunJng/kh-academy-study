@@ -27,12 +27,12 @@
 				<div id="admin_subtitle" class="py-2 ps-2">
 					<h4>상품 등록</h4>
 				</div>
-				<div class="py-2 row">
+				<form class="py-2 row">
 					<div class="col-8 m-0">
 						<input class="form-control" type="text" id="query" placeholder="제목검색">
 					</div>
-					<button class="btn btn-secondary ms-1 col-2  px-1" id="search_btn" type="button">검색</button>
-				</div>
+					<button class="btn btn-secondary ms-1 col-2  px-1" type="submit" onclick="search_btn(); return false;">검색</button>
+				</form>
 				
 				<div id="search_result">
 				</div>
@@ -61,69 +61,67 @@
 		alert("[" + result + "] 을(를) 등록했습니다.");
 	};
 
-	$("#search_btn")
-			.click(
-					function() {
-						var query = $('#query').val();
-						var kakao_RestAPI = "49b76132d503d959eb5ed2d9603ed8f1";
-						$
-								.ajax({
-									method : "GET",
-									url : "https://dapi.kakao.com/v3/search/book?target=title",
-									data : {
-										"query" : query
-									}, // 임시
-									headers : {
-										"Authorization" : "KakaoAK "
-												+ kakao_RestAPI
-									},
-									success : function(msg) {
-										console.log(msg);
-										for (var i = 0; i < 10; i++) {
-											$("#search_result")
-													.append(
-															"<div class='mt-2 p-2 border border-dark rounded'>"
-																	+ "<div class='h4'>"
-																	+ "<a href='/admin/addGoods/form?title="
-																	+ msg.documents[i].title
-																	+ "&bookImage="
-																	+ msg.documents[i].thumbnail
-																	+ "&author="
-																	+ msg.documents[i].authors
-																	+ "&publisher="
-																	+ msg.documents[i].publisher
-																	+ "&bookIntro="
-																	+ msg.documents[i].contents
-																	+ "&bookId="
-																	+ msg.documents[i].isbn
-																	+ "&fullPrice="
-																	+ msg.documents[i].price
-																	+ "'>"
-																	+ msg.documents[i].title
-																	+ "</a></div>"
-																	+ "<div class='row'>"
-																	+ "<div class='col-4'>"
-																	+ "<img src='" + msg.documents[i].thumbnail + "'/><br>"
-																	+ "</div>"
-																	+ "<div class='col-8'>"
-																	+ "<strong>저자:</strong> "
-																	+ msg.documents[i].authors
-																	+ "<br>"
-																	+ "<strong>출판사:</strong> "
-																	+ msg.documents[i].publisher
-																	+ "<br>"
-																	+ "<strong>요약:</strong> "
-																	+ msg.documents[i].contents
-																	+ "...<br>"
-																	+ "</div>"
-																	+ "</div>");
-										}
 
-									},
-									error : function(error) {
-										alert(error);
-									}
-								});
-					});
+			
+	function search_btn() {
+		var query = $('#query').val();
+		var kakao_RestAPI = "49b76132d503d959eb5ed2d9603ed8f1";
+		$.ajax({
+					method : "GET",
+					url : "https://dapi.kakao.com/v3/search/book?target=title",
+					data : {
+						"query" : query
+					}, // 임시
+					headers : {
+						"Authorization" : "KakaoAK " + kakao_RestAPI
+					},
+					success : function(msg) {
+						console.log(msg);
+
+						for (var i = 0; i < 10; i++) {
+							$("#search_result").append(
+											"<div class='mt-2 p-2 border border-dark rounded'>"
+													+ "<div class='h4'>"
+													+ "<a href='/admin/addGoods/form?title="
+													+ msg.documents[i].title
+													+ "&bookImage="
+													+ msg.documents[i].thumbnail
+													+ "&author="
+													+ msg.documents[i].authors
+													+ "&publisher="
+													+ msg.documents[i].publisher
+													+ "&bookIntro="
+													+ msg.documents[i].contents
+													+ "&bookId="
+													+ msg.documents[i].isbn
+													+ "&fullPrice="
+													+ msg.documents[i].price
+													+ "'>"
+													+ msg.documents[i].title
+													+ "</a></div>"
+													+ "<div class='row'>"
+													+ "<div class='col-4'>"
+													+ "<img src='" + msg.documents[i].thumbnail + "'/><br>"
+													+ "</div>"
+													+ "<div class='col-8'>"
+													+ "<strong>저자:</strong> "
+													+ msg.documents[i].authors
+													+ "<br>"
+													+ "<strong>출판사:</strong> "
+													+ msg.documents[i].publisher
+													+ "<br>"
+													+ "<strong>요약:</strong> "
+													+ msg.documents[i].contents
+													+ "...<br>"
+													+ "</div>"
+													+ "</div>");
+						}
+
+					},
+					error : function(error) {
+						alert(error);
+					}
+				});
+	};
 </script>
 </html>

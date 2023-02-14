@@ -88,7 +88,7 @@ public class BoardDAO {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
-	
+
 	public BoardVO getBoard(BoardVO vo) {
 		System.out.println("---> JDBC로 getBoard() 기능 처리");
 		BoardVO board = null;

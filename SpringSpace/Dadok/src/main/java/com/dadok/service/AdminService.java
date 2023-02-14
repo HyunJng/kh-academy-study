@@ -1,9 +1,13 @@
 package com.dadok.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dadok.domain.BookVO;
+import com.dadok.domain.Criteria;
+import com.dadok.domain.PageMaker;
 import com.dadok.repository.BookRepository;
 
 @Service
@@ -18,5 +22,15 @@ public class AdminService {
 	
 	public void saveBook(BookVO book) throws Exception{
 		bookRepository.save(book);
+	}
+	
+	public List<BookVO> getBookList(Criteria cri) {
+		return bookRepository.getBookList(cri);
+	}
+	
+	public PageMaker getPageMaker(Criteria cri) {
+		int total = bookRepository.getTotal();
+		PageMaker pageMaker = new PageMaker(cri, total);
+		return pageMaker;
 	}
 }

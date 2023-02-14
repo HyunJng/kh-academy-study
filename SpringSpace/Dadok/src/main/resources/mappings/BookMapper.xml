@@ -10,4 +10,18 @@
 		]]>
 	</insert>
 	
+	<select id="getBookList" resultType="bookVO">
+		<![CDATA[
+			select * from (
+				select /*+ INDEX_DESC(b book_ix02)*/ rownum as rn, b.*
+				from  book b where rownum <= #{pageNum} * #{amount}) 
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+
+	<select id="getTotal" resultType="int">
+		<![CDATA[
+			select count(*) from book
+		]]>
+	</select>
 </mapper>

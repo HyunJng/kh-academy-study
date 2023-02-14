@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dadok.domain.BookVO;
+import com.dadok.domain.Criteria;
+import com.dadok.repository.BookRepository;
 import com.dadok.service.AdminService;
 
 @Controller
@@ -65,8 +67,12 @@ public class AdminController {
 	}
 	
 	@GetMapping("/manageGoods")
-	public String manageGoodsGet() {
+	public String manageGoodsGet(Model model, Criteria cri) {
 		logger.info("상품 관리 페이지 진입");
+		
+		model.addAttribute("bookList", adminService.getBookList(cri));
+		model.addAttribute("pageMaker", adminService.getPageMaker(cri));
+		
 		return "/admin/manageGoods";
 	}
 	

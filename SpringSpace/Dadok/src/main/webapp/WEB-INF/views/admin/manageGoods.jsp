@@ -34,6 +34,45 @@
 					<button class="btn btn-secondary ms-1 col-2  px-1" type="submit">검색</button>
 					<button class="btn btn-light ms-3 col-2" type="button" onclick="location.href='/admin/addGoods'">상품등록</button>
 				</form>
+				
+				<table class="table">
+					<thead class="table-success">
+						<tr>
+							<th>#</th>
+							<th>책 제목</th>
+							<th>작가</th>
+							<th>출판사</th>
+							<th>수량</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="book" items="${bookList}">
+							<tr>
+								<td></td>
+								<td>${book.title}</td>
+								<td>${book.author}</td>
+								<td>${book.publisher}</td>
+								<td>${book.bookStock}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+				<form id="pageForm" method="get">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+					<ul class="pagination">
+						<c:if test="${pageMaker.prev}">
+							<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+							<li class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }"><a class="page-link" href="${num}" >${num}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next }">
+							<li class="page-item"><a class="page-link" href="${pageMaker.endPage+1}">Next</a></li>
+						</c:if>
+					</ul>
+				</form>
+				
 			</div>
 		</div>
 	</div>
@@ -41,4 +80,12 @@
 		<jsp:include page="/WEB-INF/views/fix/footer.jsp"></jsp:include>
 	</footer>
 </body>
+<script type="text/javascript">
+	$("#pageForm a").click(function(e){
+		e.preventDefault();
+		$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+		$("#pageForm").attr("action", "/admin/manageGoods");
+		$("#pageForm").submit();
+	});
+</script>
 </html>
