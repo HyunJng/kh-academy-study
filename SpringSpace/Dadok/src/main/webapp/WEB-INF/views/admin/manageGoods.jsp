@@ -18,18 +18,22 @@
 			<h1>관리자페이지</h1>
 		</div>
 		<div class="row mt-2">
-			<div id="admin-menu" class="col-3 btn-group-vertical justify-content-start">
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/addGoods'">상품 등록</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageGoods'">상품 관리</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageMember'">회원 관리</button>	
-			</div>
-			<div class="col-9">
+			<jsp:include page="/WEB-INF/views/fix/admin_menu.jsp"></jsp:include>
+			<div class="col-10">
 				<div id="admin_subtitle" class="py-2 ps-2">
 					<h4>상품 관리</h4>
 				</div>
-				<form action="#" class="py-2 row">
-					<div class="col-7 m-0">
-						<input class="col-3 form-control" type="text" placeholder="제목검색">
+				<form id="search_form" action="/admin/manageGoods" class="py-2 row">
+					<div class="col-2">
+						<select name="type" class="form-select">
+							<option value="" class="">선택</option>
+							<option value="T" >제목</option>
+							<option value="A" >작가</option>
+							<option value="P" >출판사</option>
+						</select>
+					</div>
+					<div class="col-5 m-0">
+						<input class="form-control" type="text" name="keyword" placeholder="검색어입력">
 					</div>
 					<button class="btn btn-secondary ms-1 col-2  px-1" type="submit">검색</button>
 					<button class="btn btn-light ms-3 col-2" type="button" onclick="location.href='/admin/addGoods'">상품등록</button>
@@ -58,7 +62,7 @@
 					</tbody>
 				</table>
 
-				<form id="pageForm" method="get">
+				<form class="d-flex justify-content-center" id="pageForm" method="get">
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">
@@ -86,6 +90,22 @@
 		$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
 		$("#pageForm").attr("action", "/admin/manageGoods");
 		$("#pageForm").submit();
+	});
+	
+	$("#search_form button[type='submit']").click(function(e){
+		var type = $("#search_form select").val();
+		var keyword = $("#search_form input[name='keyword']").val();
+		
+		if(!type){
+			alert("검색 종류를 선택하세요.");
+			return false;
+		}
+		if(!keyword){
+			alert("검색어를 입력하세요.");
+			return false;
+		}
+		
+		return true;
 	});
 </script>
 </html>

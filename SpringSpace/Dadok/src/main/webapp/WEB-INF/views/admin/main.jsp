@@ -17,13 +17,10 @@
 		<div id="admin_title"class="pt-4 pb-4 ps-3">
 			<h1>관리자페이지</h1>
 		</div>
-		<div id="admin-menu"class="row mt-2">
-			<div class="col-3 btn-group-vertical justify-content-start">
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/addGoods'">상품 등록</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageGoods'">상품 관리</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageMember'">회원 관리</button>	
-			</div>
-			<div class="col-9">
+		<div class="row mt-2">
+			<jsp:include page="/WEB-INF/views/fix/admin_menu.jsp"></jsp:include>
+
+			<div class="col-10">
 			
 			</div>
 		</div>

@@ -18,12 +18,8 @@
 			<h1>관리자페이지</h1>
 		</div>
 		<div class="row mt-2">
-			<div id="admin-menu" class="col-3 btn-group-vertical justify-content-start">
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/addGoods'">상품 등록</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageGoods'">상품 관리</button>	
-				<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageMember'">회원 관리</button>	
-			</div>
-			<div class="col-9">
+			<jsp:include page="/WEB-INF/views/fix/admin_menu.jsp"></jsp:include>
+			<div class="col-10">
 				<div id="admin_subtitle" class="py-2 ps-2">
 					<h4>상품 등록</h4>
 				</div>
