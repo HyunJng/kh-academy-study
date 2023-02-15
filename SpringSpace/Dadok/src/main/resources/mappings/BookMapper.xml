@@ -32,6 +32,13 @@
 		]]>
 	</insert>
 	
+	<!-- 상품(책) 검색 -->
+	<select id="getBookById" resultType="bookVO">
+		<![CDATA[
+			select * from book where bookId = #{bookId}
+		]]>
+	</select>
+	
 	<!-- 상품(책) 목록(페이징처리까지) -->
 	<select id="getBookList" resultType="bookVO">
 		<![CDATA[
@@ -57,4 +64,13 @@
 			where bookId > 0 <include refid="criteria"></include>
 		</if>
 	</select>
+	
+	<!-- 책 정보 수정 -->
+	<update id="updateBook">
+		<![CDATA[
+			update book set bookcate=#{bookCate}, bookStock=#{bookStock}, discountPer=#{discountPer}, updateDate=SYSDATE
+			where bookId = #{bookId}
+		]]>
+	</update>
+	
 </mapper>

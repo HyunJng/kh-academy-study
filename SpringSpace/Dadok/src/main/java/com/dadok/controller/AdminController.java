@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -76,4 +77,28 @@ public class AdminController {
 		return "/admin/manageGoods";
 	}
 	
+	@GetMapping("/manageGoods/{bookId}")
+	public String manageGoodsDetailGet(Model model, @PathVariable("bookId")String bookId) {
+		logger.info("상품 관리 - 수정페이지 진입");
+		BookVO book = new BookVO();
+		book.setBookId(bookId);
+		
+		model.addAttribute("book", adminService.findBookById(book));
+		
+		return "/admin/manageGoods_detail";
+	}
+	
+	@PostMapping("/manageGoods/update")
+	public String manageGoodsUpdatePost(RedirectAttributes rattr, BookVO book) {
+		logger.info("manageGoodsUpdatePost 진입");
+		System.out.println(book);
+		try {
+			adminService.updateBook(book);
+			rattr.addFlashAttribute("result", book.getTitle());
+		} catch (Exception e) {
+			rattr.addFlashAttribute("result", "error");
+		}
+		
+		return "redirect:/admin/manageGoods";
+	}
 }

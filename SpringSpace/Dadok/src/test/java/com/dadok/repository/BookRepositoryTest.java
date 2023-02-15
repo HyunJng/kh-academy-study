@@ -48,10 +48,37 @@ public class BookRepositoryTest {
 		
 		list.forEach(book -> System.out.println(book));
 	}
-	 * */
 	@Test 
 	public void 책개수() {
 		int result = bookRepository.getTotal();
 		System.out.println(result);
+	}
+	@Test
+	public void 책검색byId() {
+		BookVO book = new BookVO();
+		book.setBookId("1168340772 9791168340770");
+		BookVO result = bookRepository.getBookById(book);
+		System.out.println(result);
+	}
+	 * */
+	
+	@Test
+	public void 책수정() {
+		BookVO book1 = new BookVO();
+		book1.setBookId("1168340772 9791168340770");
+		BookVO book2 = bookRepository.getBookById(book1);
+		System.out.println("책id검색 결과: " + book2.getBookStock() + " " + book2.getUpdateDate());
+		System.out.println(book2);
+		// 수량 변경
+		book2.setBookStock(3);
+		
+		try {
+			// update
+			bookRepository.update(book2);
+			BookVO book3 = bookRepository.getBookById(book1);
+			System.out.println("수정 결과: " + book3.getBookStock() + " " + book3.getUpdateDate());
+		} catch(Exception e) {
+			System.out.println("에러발생");
+		}
 	}
 }

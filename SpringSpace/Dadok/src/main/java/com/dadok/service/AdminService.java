@@ -24,6 +24,10 @@ public class AdminService {
 		bookRepository.save(book);
 	}
 	
+	public BookVO findBookById(BookVO book) {
+		return bookRepository.getBookById(book);
+	}
+	
 	public List<BookVO> getBookList(Criteria cri) {
 		return bookRepository.getBookList(cri);
 	}
@@ -32,5 +36,9 @@ public class AdminService {
 		int total = bookRepository.getTotal();
 		PageMaker pageMaker = new PageMaker(cri, total);
 		return pageMaker;
+	}
+	
+	public void updateBook(BookVO book) throws Exception{
+		bookRepository.update(book);
 	}
 }

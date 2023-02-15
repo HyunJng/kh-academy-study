@@ -30,11 +30,20 @@ public class OracleBookRepositoryImpl implements BookRepository{
 		return mybatis.selectList("BookMapper.getBookList", cri);
 	}
 
+	
+	@Override
+	public BookVO getBookById(BookVO book) {
+		return mybatis.selectOne("BookMapper.getBookById", book);
+	}
+
 	@Override
 	public int getTotal() {
 		return mybatis.selectOne("BookMapper.getTotal");
 	}
-	
-	
+
+	@Override
+	public void update(BookVO book) throws Exception {
+		mybatis.update("BookMapper.updateBook", book);
+	}
 	
 }

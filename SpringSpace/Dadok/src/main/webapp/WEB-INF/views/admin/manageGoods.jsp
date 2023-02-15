@@ -40,6 +40,17 @@
 				</form>
 				
 				<table class="table">
+					<colgroup>
+						<col width="5%" />
+						<col width="20%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="5%" />
+						<col width="10%" />
+						<col width="5" />
+						<col width="10%" />
+						<col width="10%" />
+					</colgroup>
 					<thead class="table-success">
 						<tr>
 							<th>#</th>
@@ -47,16 +58,24 @@
 							<th>작가</th>
 							<th>출판사</th>
 							<th>수량</th>
+							<th>정가</th>
+							<th>할인률</th>
+							<th>등록일</th>
+							<th>수정일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="book" items="${bookList}">
 							<tr>
 								<td></td>
-								<td>${book.title}</td>
+								<td><a href="/admin/manageGoods/${book.bookId}">${book.title}</a></td>
 								<td>${book.author}</td>
 								<td>${book.publisher}</td>
 								<td>${book.bookStock}</td>
+								<td>${book.fullPrice}</td>
+								<td>${book.discountPer}%</td>
+								<td>${book.regDate}</td>
+								<td>${book.updateDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -85,26 +104,44 @@
 	</footer>
 </body>
 <script type="text/javascript">
-	$("#pageForm a").click(function(e){
+	
+	$(function() {
+		var add_result = "${result}";
+		check_afterUpdate(add_result);
+	});
+
+	function check_afterUpdate(result) {
+		if (result == '') {
+			return;
+		}
+		if (result == 'error') {
+			alert("수정에 실패했습니다.");
+			return;
+		}
+
+		alert("[" + result + "] 이(가) 수정되었습니다.");
+	};
+
+	$("#pageForm a").click(function(e) {
 		e.preventDefault();
 		$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
 		$("#pageForm").attr("action", "/admin/manageGoods");
 		$("#pageForm").submit();
 	});
-	
-	$("#search_form button[type='submit']").click(function(e){
+
+	$("#search_form button[type='submit']").click(function(e) {
 		var type = $("#search_form select").val();
 		var keyword = $("#search_form input[name='keyword']").val();
-		
-		if(!type){
+
+		if (!type) {
 			alert("검색 종류를 선택하세요.");
 			return false;
 		}
-		if(!keyword){
+		if (!keyword) {
 			alert("검색어를 입력하세요.");
 			return false;
 		}
-		
+
 		return true;
 	});
 </script>
