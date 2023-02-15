@@ -21,4 +21,7 @@ public interface BookRepository {
 	
 	// 책 정보 수정
 	public void update(BookVO book) throws Exception;
+	
+	// 책 정보 삭제
+	public void delete(BookVO book);
 }

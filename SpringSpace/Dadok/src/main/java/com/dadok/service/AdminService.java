@@ -41,4 +41,8 @@ public class AdminService {
 	public void updateBook(BookVO book) throws Exception{
 		bookRepository.update(book);
 	}
+	
+	public void deleteBook(BookVO book) {
+		bookRepository.delete(book);
+	}
 }

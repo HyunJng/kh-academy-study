@@ -91,14 +91,30 @@ public class AdminController {
 	@PostMapping("/manageGoods/update")
 	public String manageGoodsUpdatePost(RedirectAttributes rattr, BookVO book) {
 		logger.info("manageGoodsUpdatePost 진입");
-		System.out.println(book);
+
 		try {
 			adminService.updateBook(book);
-			rattr.addFlashAttribute("result", book.getTitle());
+			rattr.addFlashAttribute("update", book.getTitle());
 		} catch (Exception e) {
-			rattr.addFlashAttribute("result", "error");
+			rattr.addFlashAttribute("update", "error");
 		}
 		
+		return "redirect:/admin/manageGoods";
+	}
+	
+	@GetMapping("/manageGoods/delete/{bookId}")
+	public String manageGoodsDeleteGet(RedirectAttributes rattr, @PathVariable("bookId")String bookId) {
+		logger.info("manageGoodsDeleteGet 진입");
+		BookVO bookInfo= new BookVO();
+		bookInfo.setBookId(bookId);
+		
+		BookVO target = adminService.findBookById(bookInfo);
+		if(target.getBookStock() > 0) {
+			rattr.addFlashAttribute("delete", "error");
+		} else {
+			adminService.deleteBook(target);
+			rattr.addFlashAttribute("delete", target.getTitle());
+		}
 		return "redirect:/admin/manageGoods";
 	}
 }

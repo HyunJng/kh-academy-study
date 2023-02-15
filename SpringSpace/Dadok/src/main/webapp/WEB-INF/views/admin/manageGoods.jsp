@@ -62,6 +62,7 @@
 							<th>할인률</th>
 							<th>등록일</th>
 							<th>수정일</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,6 +77,7 @@
 								<td>${book.discountPer}%</td>
 								<td>${book.regDate}</td>
 								<td>${book.updateDate}</td>
+								<td><a href="/admin/manageGoods/delete/${book.bookId}"><span class="badge bg-danger">X</span></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -104,10 +106,12 @@
 	</footer>
 </body>
 <script type="text/javascript">
-	
+
 	$(function() {
-		var add_result = "${result}";
-		check_afterUpdate(add_result);
+		var update_result = "${updaet}";
+		var delete_result = "${delete}";
+		check_afterUpdate(update_result);
+		check_afterDelete(delete_result);
 	});
 
 	function check_afterUpdate(result) {
@@ -115,13 +119,25 @@
 			return;
 		}
 		if (result == 'error') {
-			alert("수정에 실패했습니다.");
+			alert("수정에 실패했습니다. 잠시후 다시 시도해주세요.");
 			return;
 		}
 
 		alert("[" + result + "] 이(가) 수정되었습니다.");
 	};
 
+	function check_afterDelete(result) {
+		if (result == '') {
+			return;
+		}
+		if (result == 'error') {
+			alert("삭제에 실패했습니다. 재고가 존재하는지 확인해주세요.");
+			return;
+		}
+
+		alert("[" + result + "] 이(가) 삭제되었습니다.");
+	};
+	
 	$("#pageForm a").click(function(e) {
 		e.preventDefault();
 		$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));

@@ -73,4 +73,9 @@
 		]]>
 	</update>
 	
+	<delete id="deleteBook">
+		<![CDATA[
+			delete from book where bookId=#{bookId}	
+		]]>
+	</delete>
 </mapper>

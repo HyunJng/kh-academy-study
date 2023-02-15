@@ -68,7 +68,7 @@
 					<div class="row ps-2">
 						<label class="form-label col-2 text-danger">할인률</label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="discountPer" required>
+							<input class="form-control" type="number" name="discountPer" min="0" max="100" required>
 						</div>
 					</div>
 					<div class="row ps-2">
