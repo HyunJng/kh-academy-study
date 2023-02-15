@@ -3,6 +3,7 @@ package com.dadok.domain;
 import java.sql.Date;
 
 public class MemberVO {
+	private int memberNum;
 	private String memberEmail;
 	private String memberPw;
 	private String memberName;
@@ -15,6 +16,14 @@ public class MemberVO {
 	private M_LoginType loginType;
 	
 	public MemberVO() { }
+
+	public int getMemberNum() {
+		return memberNum;
+	}
+
+	public void setMemberNum(int memberNum) {
+		this.memberNum = memberNum;
+	}
 
 	public String getMemberEmail() {
 		return memberEmail;
@@ -98,9 +107,9 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [memberEmail=" + memberEmail + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", memberAddr1=" + memberAddr1 + ", memberAddr2=" + memberAddr2 + ", memberAddr3=" + memberAddr3
-				+ ", memberCk=" + memberCk + ", memberPoint=" + memberPoint + ", regDate=" + regDate + ", loginType="
-				+ loginType + "]";
+		return "MemberVO [memberNum=" + memberNum + ", memberEmail=" + memberEmail + ", memberPw=" + memberPw
+				+ ", memberName=" + memberName + ", memberAddr1=" + memberAddr1 + ", memberAddr2=" + memberAddr2
+				+ ", memberAddr3=" + memberAddr3 + ", memberCk=" + memberCk + ", memberPoint=" + memberPoint
+				+ ", regDate=" + regDate + ", loginType=" + loginType + "]";
 	}
 }

@@ -41,19 +41,17 @@
 				
 				<table class="table">
 					<colgroup>
-						<col width="5%" />
-						<col width="20%" />
+						<col width="30%" />
 						<col width="15%" />
-						<col width="15%" />
+						<col width="13%" />
 						<col width="5%" />
-						<col width="10%" />
+						<col width="7%" />
 						<col width="5" />
 						<col width="10%" />
 						<col width="10%" />
 					</colgroup>
 					<thead class="table-success">
 						<tr>
-							<th>#</th>
 							<th>책 제목</th>
 							<th>작가</th>
 							<th>출판사</th>
@@ -66,9 +64,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="book" items="${bookList}" varStatus="status">
+						<c:forEach var="book" items="${bookList}">
 							<tr>
-								<td>${status.count}</td>
 								<td><a href="/admin/manageGoods/${book.bookId}">${book.title}</a></td>
 								<td>${book.author}</td>
 								<td>${book.publisher}</td>

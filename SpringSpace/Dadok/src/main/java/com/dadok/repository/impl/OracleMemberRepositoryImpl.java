@@ -36,6 +36,11 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	}
 
 	@Override
+	public MemberVO findMemberbyNum(MemberVO member) {
+		return mybatis.selectOne("MemberMapper.getMemberByNum", member);
+	}
+
+	@Override
 	public List<MemberVO> getMemberList(Criteria cri) {
 		return mybatis.selectList("MemberMapper.getMemberList", cri);
 	}
@@ -43,6 +48,11 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	@Override
 	public int getTotal() {
 		return mybatis.selectOne("MemberMapper.getTotal");
+	}
+
+	@Override
+	public void updateBan(MemberVO member) {
+		mybatis.update("MemberMapper.updateBAN", member);
 	}
 	
 }

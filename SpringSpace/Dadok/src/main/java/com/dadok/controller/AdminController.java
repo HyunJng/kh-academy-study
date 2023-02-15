@@ -18,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dadok.domain.BookVO;
 import com.dadok.domain.Criteria;
+import com.dadok.domain.MemberVO;
 import com.dadok.repository.BookRepository;
+import com.dadok.repository.MemberRepository;
 import com.dadok.service.AdminService;
 import com.dadok.service.MemberService;
 
@@ -125,5 +127,17 @@ public class AdminController {
 		model.addAttribute("memberList", adminService.getMemberList(cri));
 		model.addAttribute("pageMaker", adminService.getMemberPageMaker(cri));
 		return "/admin/manageMember";
+	}
+	
+	@GetMapping("/manageMember/{memberNum}")
+	public String manageMemberBanGet(@PathVariable("memberNum")String memberNum) {
+		logger.info("manageMemberBanGet 진입");
+		
+		MemberVO memberInfo = new MemberVO();
+		memberInfo.setMemberNum(Integer.valueOf(memberNum));
+		MemberVO target = adminService.findMemberbyNum(memberInfo);
+		adminService.changeMemberBan(target);
+		
+		return "redirect:/admin/manageMember";
 	}
 }

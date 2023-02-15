@@ -52,7 +52,10 @@ function general_login(){
 			if(result == 0){ // 로그인 실패
 				$('#wrong_login').show();
 				return false;
-			} else { // 로그인 성공
+			} else if(result == 2){
+				alert("[활동 금지] 조치된 회원입니다.")
+				return false;
+			}else { // 로그인 성공
 				window.location.href="/main";
 			}
 		},

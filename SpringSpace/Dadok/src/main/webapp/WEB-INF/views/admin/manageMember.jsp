@@ -59,13 +59,13 @@
 							<th>포인트</th>
 							<th>가입일</th>
 							<th>가입방법</th>
-							<th>삭제</th>
+							<th>BAN</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="member" items="${memberList}" varStatus="status">
+						<c:forEach var="member" items="${memberList}">
 							<tr>
-								<td>${status.count}</td>
+								<td>${member.memberNum}</td>
 								<td><a href="#">${member.memberEmail}</a></td>
 								<td>${member.memberName}</td>
 								<td>(${member.memberAddr1}) ${member.memberAddr2} ${member.memberAddr3}</td>
@@ -73,7 +73,16 @@
 								<td>${member.memberPoint}</td>
 								<td>${member.regDate}</td>
 								<td>${member.loginType}</td>
-								<td><a href="#"><span class="badge bg-danger">X</span></a></td>
+								<td>
+									<a href="/admin/manageMember/${member.memberNum}">
+										<c:if test="${member.memberCk == 'USER'}">
+											<span class="badge bg-danger" >X</span>
+										</c:if>
+										<c:if test="${member.memberCk == 'BAN'}">
+											<span class="badge bg-success" >O</span>
+										</c:if>
+									</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

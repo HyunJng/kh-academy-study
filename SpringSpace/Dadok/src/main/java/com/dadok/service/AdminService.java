@@ -59,4 +59,12 @@ public class AdminService {
 		int total = memberRepository.getTotal();
 		return new PageMaker(cri, total);
 	}
+	
+	public void changeMemberBan(MemberVO member) {
+		memberRepository.updateBan(member);
+	}
+	
+	public MemberVO findMemberbyNum(MemberVO member) {
+		return memberRepository.findMemberbyNum(member);
+	}
 }

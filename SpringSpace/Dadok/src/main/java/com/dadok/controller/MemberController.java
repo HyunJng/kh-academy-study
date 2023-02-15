@@ -45,11 +45,16 @@ public class MemberController {
 		MemberVO loginMember = memberService.login(member);
 		
 		if(loginMember != null) { // 로그인 성공
-			logger.info("login 성공");
-			session.setAttribute("member", loginMember);
-			return 1;
+			if(loginMember.getMemberCk().equals("BAN")) {
+				logger.info("login 실패 - ban회원");
+				return 2;
+			}else {
+				logger.info("login 성공");
+				session.setAttribute("member", loginMember);
+				return 1;
+			}
 		}else {	// 로그인 실패
-			logger.info("login 실패");
+			logger.info("login 실패 - 통신오류");
 			return 0;
 		}
 	}

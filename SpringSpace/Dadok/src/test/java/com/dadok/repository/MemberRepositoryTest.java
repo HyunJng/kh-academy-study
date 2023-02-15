@@ -76,7 +76,6 @@ public class MemberRepositoryTest {
 
 		assertThat(loginMember, nullValue());
 	}
-	 */
 	
 	@Test
 	public void 회원목록조회() {
@@ -85,5 +84,21 @@ public class MemberRepositoryTest {
 		
 		list.forEach(member -> System.out.println(member));
 	}
+
+	@Test
+	public void 회원검색byNum() {
+		MemberVO member = new MemberVO();
+		member.setMemberNum(1);
+		MemberVO result = memberRepository.findMemberbyNum(member);
+		assertThat(member.getMemberNum(), is(result.getMemberNum()));
+	}
+	 */
 	
+	@Test
+	public void 회원BAN처리() {
+		MemberVO member = new MemberVO();
+		member.setMemberNum(2);
+		member.setMemberCk("USER");
+		memberRepository.updateBan(member);
+	}
 }
