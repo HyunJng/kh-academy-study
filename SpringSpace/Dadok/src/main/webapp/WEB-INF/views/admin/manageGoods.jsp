@@ -66,9 +66,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="book" items="${bookList}">
+						<c:forEach var="book" items="${bookList}" varStatus="status">
 							<tr>
-								<td></td>
+								<td>${status.count}</td>
 								<td><a href="/admin/manageGoods/${book.bookId}">${book.title}</a></td>
 								<td>${book.author}</td>
 								<td>${book.publisher}</td>
@@ -87,13 +87,13 @@
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev}">
-							<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a></li>
+							<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">&lt;</a></li>
 						</c:if>
 						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 							<li class="page-item ${pageMaker.cri.pageNum == num ? 'active':'' }"><a class="page-link" href="${num}" >${num}</a></li>
 						</c:forEach>
 						<c:if test="${pageMaker.next }">
-							<li class="page-item"><a class="page-link" href="${pageMaker.endPage+1}">Next</a></li>
+							<li class="page-item"><a class="page-link" href="${pageMaker.endPage+1}">&gt;</a></li>
 						</c:if>
 					</ul>
 				</form>

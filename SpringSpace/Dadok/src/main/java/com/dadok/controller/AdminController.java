@@ -20,6 +20,7 @@ import com.dadok.domain.BookVO;
 import com.dadok.domain.Criteria;
 import com.dadok.repository.BookRepository;
 import com.dadok.service.AdminService;
+import com.dadok.service.MemberService;
 
 @Controller
 @RequestMapping("/admin")
@@ -72,7 +73,7 @@ public class AdminController {
 		logger.info("상품 관리 페이지 진입");
 		
 		model.addAttribute("bookList", adminService.getBookList(cri));
-		model.addAttribute("pageMaker", adminService.getPageMaker(cri));
+		model.addAttribute("pageMaker", adminService.getBookPageMaker(cri));
 		
 		return "/admin/manageGoods";
 	}
@@ -116,5 +117,13 @@ public class AdminController {
 			rattr.addFlashAttribute("delete", target.getTitle());
 		}
 		return "redirect:/admin/manageGoods";
+	}
+	
+	@GetMapping("/manageMember")
+	public String manageMemberGet(Model model,  Criteria cri) {
+		logger.info("manageMember 페이지 진입");
+		model.addAttribute("memberList", adminService.getMemberList(cri));
+		model.addAttribute("pageMaker", adminService.getMemberPageMaker(cri));
+		return "/admin/manageMember";
 	}
 }

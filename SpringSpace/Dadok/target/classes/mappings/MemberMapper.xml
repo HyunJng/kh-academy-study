@@ -3,12 +3,14 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			
 <mapper namespace="MemberMapper">
+	<!-- 회원 정보 저장 -->
 	<insert id="insertMember">
 			INSERT INTO MEMBER(memberEmail, memberPw, memberName, memberAddr1, memberAddr2, memberAddr3, memberCk, memberPoint, regDate, loginType) 
-			VALUES (#{memberEmail}, #{memberPw, jdbcType=VARCHAR}, #{memberName}, #{memberAddr1, jdbcType=VARCHAR}, 
+			VALUES (#{memberEmail}, #{memberPw, jdbcType=VARCHAR}, upper(#{memberName}), #{memberAddr1, jdbcType=VARCHAR}, 
 						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, 'USER', 0, SYSDATE, #{loginType})
 	</insert>
 
+	<!-- 회원  존재 여부 검사 -->
 	<select id="countMemberByEmail" resultType="int">
 		<![CDATA[
 			SELECT count(*) 
@@ -17,6 +19,7 @@
 		]]>
 	</select>
 
+	<!-- 회원 검색 (by Email) -->
 	<select id="getMemberByEmail" resultType="memberVO">
 		<![CDATA[
 			SELECT * 
@@ -24,54 +27,47 @@
 			WHERE memberEmail = #{memberEmail}
 		]]>
 	</select>
-
-	<!-- 
-	<delete id="deleteUser">
+	
+	<sql id="criteria">
+		<foreach collection="typeArr" item="type">
+			<trim prefix="(" suffix=")">
+				<choose>
+					<when test="type=='E'.toString()">
+						memberEmail like '%'||#{keyword}||'%'
+					</when>
+					<when test="type=='N'.toString()">
+						memberName like upper('%'||#{keyword}||'%')
+					</when>
+					<when test="type=='C'.toString()">
+						memberCk like upper('%'||#{keyword}||'%')
+					</when>
+				</choose>
+			</trim>
+		</foreach>
+	</sql>
+	
+	<!-- 회원 목록 -->
+	<select id="getMemberList" resultType="memberVO">
 		<![CDATA[
-			DELETE FROM USERS
-			WHERE USERID = #{userId}
+			select * from (
+				select /*+ INDEX_DESC(m member_ix02)*/ rownum as rn, m.*
+				from member m where rownum <= #{pageNum} * #{amount}
 		]]>
-	</delete>
-
-	<select id="getUserById" resultType="user">
+			<if test="keyword != null">
+				and <include refid="criteria"></include>
+			</if>
 		<![CDATA[
-			SELECT * 
-			FROM USERS 
-			WHERE USERID = #{userId}
+			) where rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
-
-	<select id="getUserByEmail" resultType="user">
+	
+	<select id="getTotal" resultType="int">
 		<![CDATA[
-			SELECT * 
-			FROM USERS 
-			WHERE USERID = #{userId} and USEREMAIL = #{userEmail}
+			select count(*) from member	
 		]]>
+			<if test="keyword != null">
+				where <include refid="criteria"></include>
+			</if>
 	</select>
-	
-	<update id="updateUser">
-		<![CDATA[
-			UPDATE BOARD SET
-				TITLE = #{title}, 
-				CONTENT = #{content} 
-			WHERE SEQ = #{seq}
-		]]>
-	</update>
-	
-	
-	
-	<select id="getUserList" resultMap="user">
-		SELECT * 
-		FROM BOARD 
-		WHERE 1 = 1 
-		<if test="searchCondition == 'TITLE'">
-			AND TITLE LIKE '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'CONTENT'">
-			AND CONTENT LIKE '%'||#{searchKeyword}||'%'
-		</if>
-		ORDER BY SEQ DESC
-	</select>
-	 -->
 	
 </mapper>

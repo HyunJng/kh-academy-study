@@ -6,6 +6,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,13 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.dadok.domain.Criteria;
 import com.dadok.domain.M_LoginType;
 import com.dadok.domain.MemberVO;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@Transactional
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 public class MemberRepositoryTest {
 
 	@Autowired MemberRepository memberRepository;
@@ -49,7 +52,6 @@ public class MemberRepositoryTest {
 
 		assertThat(exist, is(equalTo(1)));
 	}
-	 * */
 	@Test
 	public void 회원이메일검색() {
 		MemberVO member = new MemberVO();
@@ -62,6 +64,7 @@ public class MemberRepositoryTest {
 		assertThat(loginMember.getMemberEmail(), is(member.getMemberEmail()));
 		assertThat(loginMember.getMemberPw(), is(member.getMemberPw()));
 	}
+	 * */
 	/*
 	@Test
 	public void 회원검색실패() {
@@ -74,5 +77,13 @@ public class MemberRepositoryTest {
 		assertThat(loginMember, nullValue());
 	}
 	 */
+	
+	@Test
+	public void 회원목록조회() {
+		Criteria cri = new Criteria();
+		List<MemberVO> list = memberRepository.getMemberList(cri);
+		
+		list.forEach(member -> System.out.println(member));
+	}
 	
 }
