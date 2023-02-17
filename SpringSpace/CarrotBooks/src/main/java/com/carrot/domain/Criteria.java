@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Criteria {
 	// 목록 관련
 	private int pageNum;
-	private int amount = 5;
+	private int amount;
 	// 검색관련
 	private String type;
 	private String[] typeArr;
@@ -13,6 +13,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this.pageNum = 1;
+		this.amount = 5;
 	}
 	
 	public Criteria(int pageNum) {
@@ -25,6 +26,10 @@ public class Criteria {
 
 	public void setPageNum(int pageNum) {
 		this.pageNum = pageNum;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public int getAmount() {

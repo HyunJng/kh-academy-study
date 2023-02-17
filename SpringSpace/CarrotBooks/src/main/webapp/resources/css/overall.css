@@ -4,7 +4,9 @@
 * {
 	font-family: 'Gowun Dodum', sans-serif;
 }
-
+.container {
+	padding: 0;
+}
 @media (min-width: 768px) {
   .container {
     width: 800px;

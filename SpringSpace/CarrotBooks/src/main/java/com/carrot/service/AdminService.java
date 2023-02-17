@@ -29,19 +29,6 @@ public class AdminService {
 		bookRepository.save(book);
 	}
 	
-	public BookVO findBookById(BookVO book) {
-		return bookRepository.getBookById(book);
-	}
-	
-	public List<BookVO> getBookList(Criteria cri) {
-		return bookRepository.getBookList(cri);
-	}
-	
-	public PageMaker getBookPageMaker(Criteria cri) {
-		int total = bookRepository.getTotal();
-		return new PageMaker(cri, total);
-	}
-	
 	public void updateBook(BookVO book) throws Exception{
 		bookRepository.update(book);
 	}

@@ -22,6 +22,7 @@ import com.carrot.domain.MemberVO;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
 import com.carrot.service.AdminService;
+import com.carrot.service.BookService;
 import com.carrot.service.MemberService;
 
 @Controller
@@ -30,10 +31,12 @@ public class AdminController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private AdminService adminService;
+	private BookService bookService;
 	
 	@Autowired
-	public AdminController(AdminService adminService) {
+	public AdminController(AdminService adminService, BookService bookService) {
 		this.adminService = adminService;
+		this.bookService = bookService;
 	}
 	
 	@GetMapping("/main")
@@ -74,8 +77,8 @@ public class AdminController {
 	public String manageGoodsGet(Model model, Criteria cri) {
 		logger.info("상품 관리 페이지 진입");
 		
-		model.addAttribute("bookList", adminService.getBookList(cri));
-		model.addAttribute("pageMaker", adminService.getBookPageMaker(cri));
+		model.addAttribute("bookList", bookService.getBookList(cri));
+		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
 		
 		return "/admin/manageGoods";
 	}
@@ -86,7 +89,7 @@ public class AdminController {
 		BookVO book = new BookVO();
 		book.setBookId(bookId);
 		
-		model.addAttribute("book", adminService.findBookById(book));
+		model.addAttribute("book", bookService.findBookById(book));
 		
 		return "/admin/manageGoods_detail";
 	}
@@ -111,7 +114,7 @@ public class AdminController {
 		BookVO bookInfo= new BookVO();
 		bookInfo.setBookId(bookId);
 		
-		BookVO target = adminService.findBookById(bookInfo);
+		BookVO target = bookService.findBookById(bookInfo);
 		if(target.getBookStock() > 0) {
 			rattr.addFlashAttribute("delete", "error");
 		} else {
