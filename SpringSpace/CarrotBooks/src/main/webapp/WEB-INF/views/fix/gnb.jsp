@@ -15,8 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="container" class="container">
-		<div class="d-flex justify-content-end">
+	<div id="container" class="container sticky-top">
+		<div class="d-flex justify-content-end gnd_back">
 			<ul id="link_list" class="list-group list-group-flush list-group-horizontal">
 				<c:if test='${member == null}'>
 					<li class="list-group-item">

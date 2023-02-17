@@ -5,10 +5,15 @@
 	text-decoration: none;
 }
 
-#link_list li{
-	border-bottom: none;
+#link_list li {
+	border: none;
 }
 
 #link_list a:hover {
 	color: #FFC0CB;
 }
+
+.gnd_back {
+	background-color: white;
+}
+
