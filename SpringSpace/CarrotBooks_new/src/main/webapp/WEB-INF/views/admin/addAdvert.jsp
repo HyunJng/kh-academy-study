@@ -40,6 +40,14 @@
 					<input class="form-control" type="text" name="bookId" required>
 					<label class="form-label mt-2">이미지</label>
 					<input class="form-control" type="file" name="advertImage" required>
+					<div id="uploadResult">
+<!-- 						<div class="card">
+							<div class="card-header">X</div>
+							<div class="card-body">
+								<img alt="업로드이미지" src="/display?fileName=test.jpg">
+							</div>
+						</div> -->
+					</div>
 				</form>
 			</div>
 		</div>
@@ -52,12 +60,15 @@
 <script type="text/javascript">
 	// 파일 서버에 전송(저장)
 	$('input[type="file"]').on("change", function(e){
+		if($("#deleteBtn").length > 0) {
+			deleteFile();
+		}
+		
 		let formData = new FormData();
 		let fileList = $("input[name='advertImage']")[0].files;
 		let file = fileList[0];
 		
 		if(!fileCheck(file.name, file.size)){
-			$('input[name="advertImage"]').val("");
 			return false;
 		}
 		
@@ -72,6 +83,7 @@
 			dataType:'json',
 			success: function(result){
 				console.log(result);
+				showUploadImage(result);
 			},
 			error: function(result){
 				alert("이미지 파일이 아닙니다.");
@@ -94,5 +106,51 @@
 		}
 		return true;
 	};
+	
+	// 업로드 이미지 출력
+	function showUploadImage(uploadResultArr){
+		if(!uploadResultArr || uploadResultArr.length == 0){return};
+		
+		let uploadResult = $("#uploadResult");
+		let obj = uploadResultArr[0];
+		let str = "";
+ 		let fileCallPath = "advert/" + obj.uploadPath.replace(/\\/g, '/')+ "/" + obj.uuid + "_" + obj.fileName; 
+		console.log(fileCallPath);
+		str += '<div class="card">';
+		str += '<div class="card-header">';
+		str += '<button class="btn btn-warning" id="deleteBtn" data-file="'+ fileCallPath +'" type="button">X</button>'
+		str += '</div>'
+		str += '<div class="card-body">';
+		str += '<img alt="업로드이미지" src="/display?fileName='+ fileCallPath +'">';
+		str += '</div></div>';
+		
+		uploadResult.append(str);
+	};
+	
+	// 업로드된 파일 삭제
+	function deleteFile(){
+		let targetFile = $('#deleteBtn').data("file");
+		let targetDiv = $(".card");
+		
+		$.ajax({
+			url: '/deleteFile',
+			data : {fileName : targetFile},
+			dataType : 'text',
+			type : 'POST',
+			success : function(result){
+				console.log(result);
+				targetDiv.remove();
+				$('input[name="advertImage"]').val("");
+			},
+			error : function(result){
+				console.log(result);
+				alert("파일을 삭제하지 못했습니다.");
+			}
+       });
+	};
+	
+	$("#uploadResult").on("click", "#deleteBtn", function(e){
+		deleteFile();
+	});
 </script>
 </html>
