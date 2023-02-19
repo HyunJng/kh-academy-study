@@ -13,7 +13,6 @@
  -->
  <link rel="stylesheet" href="/resources/css/overall.css">
 <link rel="stylesheet" href="/resources/css/fix/gnb.css">
-<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <link rel="shortcut icon" href="#">
 <meta charset="UTF-8">
 <title>Insert title here</title>

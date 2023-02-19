@@ -5,6 +5,7 @@ public class AttachImageVO {
 	private String uuid;
 	private String fileName;
 	private String advertId;
+	
 	public String getUploadPath() {
 		return uploadPath;
 	}

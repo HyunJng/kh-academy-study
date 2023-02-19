@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/member/join.css">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
 	<div class="container">

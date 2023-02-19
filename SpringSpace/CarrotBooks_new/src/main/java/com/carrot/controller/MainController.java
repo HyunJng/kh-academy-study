@@ -49,7 +49,6 @@ public class MainController {
 		ResponseEntity<byte[]> result= null;
 		
 		try {
-			
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
@@ -66,7 +65,6 @@ public class MainController {
 		File file = null;
 		
 		try {
-			logger.info(URLDecoder.decode(fileName, "UTF-8"));
 			file = new File("c:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
 			file.delete();
 		} catch(Exception e) {

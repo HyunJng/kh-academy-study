@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/admin/main.css">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
  
 </head>
@@ -41,13 +42,8 @@
 					<label class="form-label mt-2">이미지</label>
 					<input class="form-control" type="file" name="advertImage" required>
 					<div id="uploadResult">
-<!-- 						<div class="card">
-							<div class="card-header">X</div>
-							<div class="card-body">
-								<img alt="업로드이미지" src="/display?fileName=test.jpg">
-							</div>
-						</div> -->
 					</div>
+					<button class="btn btn-secondary" type="submit">저장</button>
 				</form>
 			</div>
 		</div>
@@ -58,6 +54,7 @@
 </body>
 
 <script type="text/javascript">
+
 	// 파일 서버에 전송(저장)
 	$('input[type="file"]').on("change", function(e){
 		if($("#deleteBtn").length > 0) {
@@ -68,6 +65,7 @@
 		let fileList = $("input[name='advertImage']")[0].files;
 		let file = fileList[0];
 		
+		// 이미지 파일인지 체크
 		if(!fileCheck(file.name, file.size)){
 			return false;
 		}
@@ -75,7 +73,7 @@
 		formData.append("uploadFile", file);
 		
 		$.ajax({
-			url: '/admin/uploadImage',
+			url: '/admin/uploadAdvertImage',
 			processData: false,
 			contentType: false,
 			data: formData,
@@ -115,7 +113,7 @@
 		let obj = uploadResultArr[0];
 		let str = "";
  		let fileCallPath = "advert/" + obj.uploadPath.replace(/\\/g, '/')+ "/" + obj.uuid + "_" + obj.fileName; 
-		console.log(fileCallPath);
+		
 		str += '<div class="card">';
 		str += '<div class="card-header">';
 		str += '<button class="btn btn-warning" id="deleteBtn" data-file="'+ fileCallPath +'" type="button">X</button>'
@@ -149,6 +147,7 @@
        });
 	};
 	
+	// 출력된 이미지 삭제
 	$("#uploadResult").on("click", "#deleteBtn", function(e){
 		deleteFile();
 	});

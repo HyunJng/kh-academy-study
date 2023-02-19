@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/admin/main.css">
 <title>Insert title here</title>
- 
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 </head>
 <body>
 	

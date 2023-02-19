@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.carrot.domain.AdvertVO;
 import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
@@ -35,6 +36,7 @@ import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
 import com.carrot.service.AdminService;
 import com.carrot.service.BookService;
+import com.carrot.service.FileService;
 import com.carrot.service.MemberService;
 
 @Controller
@@ -44,11 +46,13 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private AdminService adminService;
 	private BookService bookService;
+	private FileService fileService;
 	
 	@Autowired
-	public AdminController(AdminService adminService, BookService bookService) {
+	public AdminController(AdminService adminService, BookService bookService, FileService fileService) {
 		this.adminService = adminService;
 		this.bookService = bookService;
+		this.fileService = fileService;
 	}
 	
 	@GetMapping("/main")
@@ -168,68 +172,29 @@ public class AdminController {
 		return "/admin/addAdvert";
 	}
 	
-	@PostMapping(path = "/uploadImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<List<AttachImageVO>> uploadImagePost(MultipartFile[] uploadFile) {
-		logger.info("uploadImagePost 실행");
+	@PostMapping("/manageAdvert/add")
+	public void manageAdvertAddPost(AdvertVO advert) {
+		logger.info("manageAdvertAddPost 실행");
+		logger.info(advert.toString());
 		
-		// 이미지 파일 체크
-		for(MultipartFile file: uploadFile) {
-			File checkFile = new File(file.getOriginalFilename());
-			String type = null;
-			
-			try {
-				type = Files.probeContentType(checkFile.toPath());
-				logger.info("MIME TYPE: " + type);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			if(!type.startsWith("image")) {
-				List<AttachImageVO> list = null;
+	}
+	
+	@PostMapping(path = "/uploadAdvertImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> uploadAdvertImagePost(MultipartFile[] uploadFile) {
+		logger.info("uploadImagePost 실행");
+		List<AttachImageVO> list = null;
+		
+		try {
+			// 이미지 파일인지 체크
+			if(!fileService.checkImageFile(uploadFile)) {
 				return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.BAD_REQUEST);
 			}
+			// 파일 저장
+			list = fileService.uploadImage("c:\\upload\\advert", uploadFile);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
-		List<AttachImageVO> list = new ArrayList<>();
-		// root 폴더 이름
-		String uploadFolder = "c:\\upload\\advert";
-		
-		// 하위 폴더 이름 생성(date별로 구분)
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String str = sdf.format(date);
-		String datePath = str.replace("-", File.separator);
-		
-		// 폴더 생성
-		File uploadPath = new File(uploadFolder, datePath);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		}
-
-		for(MultipartFile file : uploadFile) {
-			AttachImageVO image = new AttachImageVO();
-			String uploadFileName = file.getOriginalFilename();
-			image.setFileName(uploadFileName);
-			image.setUploadPath(datePath);
-
-			// uuid적용
-			String uuid = UUID.randomUUID().toString();
-			uploadFileName = uuid + "_" + uploadFileName;
-			image.setUuid(uuid);
-			
-			File saveFile = new File(uploadPath, uploadFileName);
-			
-			try {
-				file.transferTo(saveFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			list.add(image);
-		}
-		
-		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
-		return result;
+		return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
 	}
 }

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/main.css">
+<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 	#logo {
