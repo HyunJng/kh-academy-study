@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="BookMapper">
+	<!-- 검색 조건문 -->
+	<sql id="criteria">
+		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='A'.toString()">
+							author like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='P'.toString()">
+							publisher like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!-- 상품(책) 저장 -->
+	<insert id="insertBook">
+		<![CDATA[
+			INSERT INTO Book(bookId, title, bookImage, author, publisher, bookIntro, bookCate, fullPrice, bookStock, discountPer, regDate, updateDate)
+			VALUES(#{bookId}, #{title}, #{bookImage, jdbcType=VARCHAR}, #{author}, #{publisher}, #{bookIntro, jdbcType=VARCHAR}, #{bookCate}, #{fullPrice}, #{bookStock}, #{discountPer, jdbcType=INTEGER}, SYSDATE, null)
+		]]>
+	</insert>
+	
+	<!-- 상품(책) 검색 -->
+	<select id="getBookById" resultType="bookVO">
+		<![CDATA[
+			select * from book where bookId = #{bookId}
+		]]>
+	</select>
+	
+	<!-- 상품(책) 목록(페이징처리까지) -->
+	<select id="getBookList" resultType="bookVO">
+		<![CDATA[
+			select * from (
+				select /*+ INDEX_DESC(b book_ix02)*/ rownum as rn, b.*
+				from  book b where rownum <= #{pageNum} * #{amount} 
+		]]>
+			<if test="keyword != null">
+				<include refid="criteria"></include>
+			</if>
+		<![CDATA[
+			)
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+
+	<!-- 전체 상품 갯수 -->
+	<select id="getTotal" resultType="int">
+		<![CDATA[
+			select count(*) from book
+		]]>
+		<if test="keyword != null">
+			where bookId > 0 <include refid="criteria"></include>
+		</if>
+	</select>
+	
+	<!-- 책 정보 수정 -->
+	<update id="updateBook">
+		<![CDATA[
+			update book set bookcate=#{bookCate}, bookStock=#{bookStock}, discountPer=#{discountPer}, updateDate=SYSDATE
+			where bookId = #{bookId}
+		]]>
+	</update>
+	
+	<delete id="deleteBook">
+		<![CDATA[
+			delete from book where bookId=#{bookId}	
+		]]>
+	</delete>
+</mapper>

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#wrong_login {
+	display: none;
+}
+
+/*********** 화면사이즈 조정***********/
+@media (min-width: 768px) {
+  .container {
+    width: 750px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 750px !important;
+  }
+}
