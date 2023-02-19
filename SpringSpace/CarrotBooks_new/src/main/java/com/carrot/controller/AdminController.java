@@ -1,12 +1,22 @@
 package com.carrot.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +24,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
@@ -142,5 +154,82 @@ public class AdminController {
 		adminService.changeMemberBan(target);
 		
 		return "redirect:/admin/manageMember";
+	}
+	
+	@GetMapping("/manageAdvert")
+	public String manageAdvertGet() {
+		logger.info("manageAdvert 페이지 진입");
+		return "/admin/manageAdvert";
+	}
+	
+	@GetMapping("/manageAdvert/add")
+	public String manageAdvertAddGet() {
+		logger.info("manageAdvertAdd 페이지 진입");
+		return "/admin/addAdvert";
+	}
+	
+	@PostMapping(path = "/uploadImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> uploadImagePost(MultipartFile[] uploadFile) {
+		logger.info("uploadImagePost 실행");
+		
+		// 이미지 파일 체크
+		for(MultipartFile file: uploadFile) {
+			File checkFile = new File(file.getOriginalFilename());
+			String type = null;
+			
+			try {
+				type = Files.probeContentType(checkFile.toPath());
+				logger.info("MIME TYPE: " + type);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(!type.startsWith("image")) {
+				List<AttachImageVO> list = null;
+				return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.BAD_REQUEST);
+			}
+		}
+		
+		List<AttachImageVO> list = new ArrayList<>();
+		// root 폴더 이름
+		String uploadFolder = "c:\\upload\\advert";
+		
+		// 하위 폴더 이름 생성(date별로 구분)
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(date);
+		String datePath = str.replace("-", File.separator);
+		
+		// 폴더 생성
+		File uploadPath = new File(uploadFolder, datePath);
+		
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+
+		for(MultipartFile file : uploadFile) {
+			AttachImageVO image = new AttachImageVO();
+			String uploadFileName = file.getOriginalFilename();
+			image.setFileName(uploadFileName);
+			image.setUploadPath(datePath);
+
+			// uuid적용
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			image.setUuid(uuid);
+			
+			File saveFile = new File(uploadPath, uploadFileName);
+			
+			try {
+				file.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			list.add(image);
+		}
+		
+		ResponseEntity<List<AttachImageVO>> result = new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+		return result;
 	}
 }
