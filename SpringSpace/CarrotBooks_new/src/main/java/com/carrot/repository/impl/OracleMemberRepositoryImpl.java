@@ -36,8 +36,8 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	}
 
 	@Override
-	public MemberVO findMemberbyNum(MemberVO member) {
-		return mybatis.selectOne("MemberMapper.getMemberByNum", member);
+	public MemberVO findMemberbyId(MemberVO member) {
+		return mybatis.selectOne("MemberMapper.getMemberById", member);
 	}
 
 	@Override

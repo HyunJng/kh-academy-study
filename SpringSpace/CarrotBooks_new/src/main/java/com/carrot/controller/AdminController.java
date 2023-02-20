@@ -32,6 +32,7 @@ import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
+import com.carrot.domain.PageMaker;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
 import com.carrot.service.AdminService;
@@ -92,6 +93,7 @@ public class AdminController {
 		}
 		return "redirect:/admin/addGoods";
 	}
+
 	
 	/* 상품 관리 관련 */
 	@GetMapping("/manageGoods")
@@ -155,12 +157,12 @@ public class AdminController {
 	}
 	
 	@GetMapping("/manageMember/{memberNum}")
-	public String manageMemberBanGet(@PathVariable("memberNum")String memberNum) {
+	public String manageMemberBanGet(@PathVariable("memberNum")String memberId) {
 		logger.info("manageMemberBanGet 진입");
 		
 		MemberVO memberInfo = new MemberVO();
-		memberInfo.setMemberNum(Integer.valueOf(memberNum));
-		MemberVO target = adminService.findMemberbyNum(memberInfo);
+		memberInfo.setMemberId(Integer.valueOf(memberId));
+		MemberVO target = adminService.findMemberbyId(memberInfo);
 		adminService.changeMemberBan(target);
 		
 		return "redirect:/admin/manageMember";
@@ -170,8 +172,9 @@ public class AdminController {
 	@GetMapping("/manageAdvert")
 	public String manageAdvertGet(Model model,  Criteria cri) {
 		logger.info("manageAdvert 페이지 진입");
+		List<AdvertVO> list = advertService.getAdvertList(cri);
 		
-		model.addAttribute("advertList", advertService.getAdvertList(cri));
+		model.addAttribute("advertList", list);
 		model.addAttribute("pageMaker", advertService.getAdvertPageMaker(cri));
 		
 		return "/admin/manageAdvert";
@@ -187,6 +190,7 @@ public class AdminController {
 	public String manageAdvertAddPost(AdvertVO advert, RedirectAttributes rattr) {
 		logger.info("manageAdvertAddPost 실행");
 		logger.info(advert.toString());
+		
 		try {
 			adminService.saveAdvert(advert);
 			rattr.addFlashAttribute("save", advert.getAdvertName());
@@ -221,5 +225,22 @@ public class AdminController {
 		logger.info("getAttachList 진입 " + refId);
 		
 		return new ResponseEntity<List<AttachImageVO>>(imageService.getImageList(refId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/bookPop")
+	public String bookPopGet(Criteria cri, Model model) throws Exception {
+		logger.info("bookPopGet 진입");
+		
+		cri.setAmount(5);
+		List<BookVO> list = bookService.getBookList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
+		return "/admin/bookPop";
 	}
 }

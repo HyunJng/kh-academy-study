@@ -8,11 +8,11 @@ public class AdvertVO {
 	private String advertName;
 	private Date regDate;
 	private Date endDate;
+	private MemberVO uploaderInfo;
 	private int uploader;
 	private String company;
 	private String bookId;
 	private List<AttachImageVO> imageList;
-	
 	public int getAdvertId() {
 		return advertId;
 	}
@@ -36,6 +36,12 @@ public class AdvertVO {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public MemberVO getUploaderInfo() {
+		return uploaderInfo;
+	}
+	public void setUploaderInfo(MemberVO uploaderInfo) {
+		this.uploaderInfo = uploaderInfo;
 	}
 	public int getUploader() {
 		return uploader;
@@ -61,11 +67,11 @@ public class AdvertVO {
 	public void setImageList(List<AttachImageVO> imageList) {
 		this.imageList = imageList;
 	}
-
 	@Override
 	public String toString() {
 		return "AdvertVO [advertId=" + advertId + ", advertName=" + advertName + ", regDate=" + regDate + ", endDate="
-				+ endDate + ", uploader=" + uploader + ", company=" + company + ", bookId=" + bookId + ", imageList="
-				+ imageList + "]";
+				+ endDate + ", uploaderInfo=" + uploaderInfo + ", uploader=" + uploader + ", company=" + company
+				+ ", bookId=" + bookId + ", imageList=" + imageList + "]";
 	}
+	
 }

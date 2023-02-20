@@ -67,7 +67,7 @@
 					<tbody>
 						<c:forEach var="member" items="${memberList}">
 							<tr>
-								<td>${member.memberNum}</td>
+								<td>${member.memberId}</td>
 								<td><a href="#">${member.memberEmail}</a></td>
 								<td>${member.memberName}</td>
 								<td>(${member.memberAddr1}) ${member.memberAddr2} ${member.memberAddr3}</td>
@@ -76,7 +76,7 @@
 								<td>${member.regDate}</td>
 								<td>${member.loginType}</td>
 								<td>
-									<a href="/admin/manageMember/${member.memberNum}">
+									<a href="/admin/manageMember/${member.memberId}">
 										<c:if test="${member.memberCk == 'USER'}">
 											<span class="badge bg-danger" >X</span>
 										</c:if>

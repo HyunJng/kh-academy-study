@@ -57,8 +57,8 @@ public class AdminService {
 		memberRepository.updateBan(member);
 	}
 	
-	public MemberVO findMemberbyNum(MemberVO member) {
-		return memberRepository.findMemberbyNum(member);
+	public MemberVO findMemberbyId(MemberVO member) {
+		return memberRepository.findMemberbyId(member);
 	}
 	
 	// 광고 관련

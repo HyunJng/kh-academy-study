@@ -16,8 +16,8 @@ public interface MemberRepository {
 	// 회원찾기(Email)
 	public MemberVO findMemberbyEmail(MemberVO member);
 	
-	// 회원찾기(Num)
-	public MemberVO findMemberbyNum(MemberVO member);
+	// 회원찾기(Id)
+	public MemberVO findMemberbyId(MemberVO member);
 	
 	// 회원 목록 검색
 	public List<MemberVO> getMemberList(Criteria cri);

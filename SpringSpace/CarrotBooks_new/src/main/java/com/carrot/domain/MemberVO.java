@@ -3,7 +3,7 @@ package com.carrot.domain;
 import java.sql.Date;
 
 public class MemberVO {
-	private int memberNum;
+	private int memberId;
 	private String memberEmail;
 	private String memberPw;
 	private String memberName;
@@ -17,12 +17,12 @@ public class MemberVO {
 	
 	public MemberVO() { }
 
-	public int getMemberNum() {
-		return memberNum;
+	public int getMemberId() {
+		return memberId;
 	}
 
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getMemberEmail() {
@@ -107,7 +107,7 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [memberNum=" + memberNum + ", memberEmail=" + memberEmail + ", memberPw=" + memberPw
+		return "MemberVO [memberId=" + memberId + ", memberEmail=" + memberEmail + ", memberPw=" + memberPw
 				+ ", memberName=" + memberName + ", memberAddr1=" + memberAddr1 + ", memberAddr2=" + memberAddr2
 				+ ", memberAddr3=" + memberAddr3 + ", memberCk=" + memberCk + ", memberPoint=" + memberPoint
 				+ ", regDate=" + regDate + ", loginType=" + loginType + "]";

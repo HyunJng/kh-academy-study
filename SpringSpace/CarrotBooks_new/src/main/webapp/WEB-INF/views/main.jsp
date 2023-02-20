@@ -72,7 +72,7 @@
 								<option value="P">출판사</option>
 							</select> 
 							<input class="border border-0 col-6" type="text">
-							<button class="btn col-2">검색</button>
+							<button class="btn col-2 border-start">검색</button>
 						</form>
 					</div>
 				</div>

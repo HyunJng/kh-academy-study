@@ -35,11 +35,18 @@
 					<label class="form-label mt-2">마감일</label>
 					<input class="form-control" type="text" name="endDate" autocomplete="off" readonly required>
 					<label class="form-label mt-2">담당자</label>
-					<input class="form-control" type="text" name="uploader" required>
+					<input class="form-control" type="text" value="${member.memberName}" readonly>
+					<input type="hidden" name="uploader" value="${member.memberId}">
 					<label class="form-label mt-2">계약자</label>
 					<input class="form-control" type="text" name="company" required>
 					<label class="form-label mt-2">관련책</label>
-					<input class="form-control" type="text" name="bookId" required>
+					<div class="row">
+						<div class="col-9">
+							<input id="bookName_input" class="form-control" type="text" readonly>
+						</div>
+						<input id="bookId_input" name="bookId" type="hidden">
+						<button id="bookId_btn" class="btn btn-sm btn-light col-2 ms-2">책 선택</button>
+					</div>
 					<label class="form-label mt-2">이미지</label>
 					<input class="form-control" type="file" name="advertImage" required>
 					<div id="uploadResult">
@@ -55,6 +62,15 @@
 </body>
 
 <script type="text/javascript">
+
+	// 책 선택 버튼
+	$('#bookId_btn').on("click", function(e){
+		e.preventDefault();
+		let popUrl = "/admin/bookPop";
+		let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+		
+		window.open(popUrl, "책 찾기", popOption);
+	});
 	// 달력 위젯
 	$(function(){
 		$("input[name='regDate']").datepicker(config);

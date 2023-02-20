@@ -5,7 +5,7 @@
 <mapper namespace="MemberMapper">
 	<!-- 회원 정보 저장 -->
 	<insert id="insertMember">
-			INSERT INTO MEMBER(memberNum, memberEmail, memberPw, memberName, memberAddr1, memberAddr2, memberAddr3, memberCk, memberPoint, regDate, loginType) 
+			INSERT INTO MEMBER(memberId, memberEmail, memberPw, memberName, memberAddr1, memberAddr2, memberAddr3, memberCk, memberPoint, regDate, loginType) 
 			VALUES (memberSeq.NEXTVAL, #{memberEmail}, #{memberPw, jdbcType=VARCHAR}, upper(#{memberName}), #{memberAddr1, jdbcType=VARCHAR}, 
 						#{memberAddr2, jdbcType=VARCHAR},#{memberAddr3, jdbcType=VARCHAR}, 'USER', 0, SYSDATE, #{loginType})
 	</insert>
@@ -28,12 +28,12 @@
 		]]>
 	</select>
 
-	<!-- 회원 검색 (by Num) -->
-	<select id="getMemberByNum" resultType="memberVO">
+	<!-- 회원 검색 (by Id) -->
+	<select id="getMemberById" resultType="memberVO">
 		<![CDATA[
 			SELECT * 
 			FROM member
-			WHERE memberNum = #{memberNum}
+			WHERE memberId = #{memberId}
 		]]>
 	</select>
 	
@@ -59,7 +59,7 @@
 	<select id="getMemberList" resultType="memberVO">
 		<![CDATA[
 			select * from (
-				select /*+ INDEX_DESC(m SYS_C008572)*/ rownum as rn, m.*
+				select /*+ INDEX_DESC(m MEMBER_IX02)*/ rownum as rn, m.*
 				from member m where rownum <= #{pageNum} * #{amount}
 		]]>
 			<if test="keyword != null">
@@ -91,6 +91,6 @@
 				memberCk = 'USER' 
 			</when>
 		</choose>
-		where memberNum = #{memberNum}
+		where memberId = #{memberId}
 	</update>
 </mapper>
