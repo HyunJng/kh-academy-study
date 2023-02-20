@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carrot.domain.AdvertVO;
+import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.PageMaker;
+import com.carrot.repository.AdvertRepository;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
 
@@ -17,11 +20,13 @@ public class AdminService {
 
 	private BookRepository bookRepository;
 	private MemberRepository memberRepository;
+	private AdvertRepository advertRepository;
 	
 	@Autowired
-	public AdminService(BookRepository bookRepository, MemberRepository memberRepository) {
+	public AdminService(BookRepository bookRepository, MemberRepository memberRepository, AdvertRepository advertRepository) {
 		this.bookRepository = bookRepository;
 		this.memberRepository = memberRepository;
+		this.advertRepository = advertRepository;
 	}
 	
 	/// 책 관련
@@ -53,5 +58,14 @@ public class AdminService {
 	
 	public MemberVO findMemberbyNum(MemberVO member) {
 		return memberRepository.findMemberbyNum(member);
+	}
+	
+	// 광고 관련
+	public void saveAdvert(AdvertVO advert) {
+		advertRepository.saveAdvert(advert);
+		for(AttachImageVO image : advert.getImageList()) {
+			image.setAdvertId(advert.getAdvertId());
+			advertRepository.saveAdvertImage(image);
+		}
 	}
 }

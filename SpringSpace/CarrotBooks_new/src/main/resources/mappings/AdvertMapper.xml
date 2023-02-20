@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="AdvertMapper">
+	
+	<!-- 광고 저장 -->
+	<insert id="insertAdvert" parameterType="advertVO">
+		<selectKey resultType="int" keyProperty="advertId" order="BEFORE">
+				select advertSeq.NEXTVAL from dual
+		</selectKey>
+		
+		INSERT INTO advert(advertId, advertName, regDate, endDate, uploader, company, bookId)
+		VALUES(#{advertId}, #{advertName}, #{regDate}, #{endDate}, #{uploader}, #{company, jdbcType=VARCHAR}, #{bookId, jdbcType=INTEGER})
+	</insert>
+	
+	<!-- 광고 이미지 저장-->
+	<insert id="insertImage">
+		<![CDATA[
+			INSERT INTO advertImage(advertImgId, fileName, uploadPath, uuid, advertId)
+			VALUES(advertImgSeq.NEXTVAL, #{fileName}, #{uploadPath}, #{uuid}, #{advertId})
+		]]>
+	</insert>
+	
+</mapper>

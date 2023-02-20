@@ -4,7 +4,7 @@ public class AttachImageVO {
 	private String uploadPath;
 	private String uuid;
 	private String fileName;
-	private String advertId;
+	private int advertId;
 	
 	public String getUploadPath() {
 		return uploadPath;
@@ -24,12 +24,13 @@ public class AttachImageVO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	public String getAdvertId() {
+	public int getAdvertId() {
 		return advertId;
 	}
-	public void setAdvertId(String advertId) {
+	public void setAdvertId(int advertId) {
 		this.advertId = advertId;
 	}
+	
 	@Override
 	public String toString() {
 		return "AttachImageVO [uploadPath=" + uploadPath + ", uuid=" + uuid + ", fileName=" + fileName + ", advertId="

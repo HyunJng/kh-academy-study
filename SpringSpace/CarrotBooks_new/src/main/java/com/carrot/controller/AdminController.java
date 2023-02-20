@@ -177,10 +177,17 @@ public class AdminController {
 	}
 	
 	@PostMapping("/manageAdvert/add")
-	public void manageAdvertAddPost(AdvertVO advert) {
+	public String manageAdvertAddPost(AdvertVO advert, RedirectAttributes rattr) {
 		logger.info("manageAdvertAddPost 실행");
 		logger.info(advert.toString());
+		try {
+			adminService.saveAdvert(advert);
+			rattr.addFlashAttribute("save", advert.getAdvertName());
+		}catch(Exception e) {
+			rattr.addFlashAttribute("save", "error");
+		}
 		
+		return "redirect:/admin/manageAdvert";
 	}
 	
 	@PostMapping(path = "/uploadAdvertImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

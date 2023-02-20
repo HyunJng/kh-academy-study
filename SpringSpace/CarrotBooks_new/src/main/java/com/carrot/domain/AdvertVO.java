@@ -1,20 +1,22 @@
 package com.carrot.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class AdvertVO {
-	private Long advertId;
+	private int advertId;
 	private String AdvertName;
 	private Date regDate;
 	private Date endDate;
 	private int uploader;
 	private String company;
 	private String bookId;
+	private List<AttachImageVO> imageList;
 	
-	public Long getAdvertId() {
+	public int getAdvertId() {
 		return advertId;
 	}
-	public void setAdvertId(Long advertId) {
+	public void setAdvertId(int advertId) {
 		this.advertId = advertId;
 	}
 	public String getAdvertName() {
@@ -53,10 +55,17 @@ public class AdvertVO {
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
+
 	@Override
 	public String toString() {
 		return "AdvertVO [advertId=" + advertId + ", AdvertName=" + AdvertName + ", regDate=" + regDate + ", endDate="
-				+ endDate + ", uploader=" + uploader + ", company=" + company + ", bookId=" + bookId + "]";
+				+ endDate + ", uploader=" + uploader + ", company=" + company + ", bookId=" + bookId + ", imageList="
+				+ imageList + "]";
 	}
-	
 }

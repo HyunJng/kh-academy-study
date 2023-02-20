@@ -9,12 +9,14 @@
 	<typeAliases>
 		<typeAlias alias="memberVO" type="com.carrot.domain.MemberVO"></typeAlias>
 		<typeAlias alias="bookVO" type="com.carrot.domain.BookVO"></typeAlias>
+		<typeAlias alias="advertVO" type="com.carrot.domain.AdvertVO"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
 	<mappers>
 		<mapper resource="mappings/MemberMapper.xml" />
 		<mapper resource="mappings/BookMapper.xml" />
+		<mapper resource="mappings/AdvertMapper.xml" />
 	</mappers>
 	
 </configuration>
