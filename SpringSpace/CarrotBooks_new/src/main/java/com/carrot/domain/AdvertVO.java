@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AdvertVO {
 	private int advertId;
-	private String AdvertName;
+	private String advertName;
 	private Date regDate;
 	private Date endDate;
 	private int uploader;
@@ -20,10 +20,10 @@ public class AdvertVO {
 		this.advertId = advertId;
 	}
 	public String getAdvertName() {
-		return AdvertName;
+		return advertName;
 	}
 	public void setAdvertName(String advertName) {
-		AdvertName = advertName;
+		this.advertName = advertName;
 	}
 	public Date getRegDate() {
 		return regDate;
@@ -64,7 +64,7 @@ public class AdvertVO {
 
 	@Override
 	public String toString() {
-		return "AdvertVO [advertId=" + advertId + ", AdvertName=" + AdvertName + ", regDate=" + regDate + ", endDate="
+		return "AdvertVO [advertId=" + advertId + ", advertName=" + advertName + ", regDate=" + regDate + ", endDate="
 				+ endDate + ", uploader=" + uploader + ", company=" + company + ", bookId=" + bookId + ", imageList="
 				+ imageList + "]";
 	}

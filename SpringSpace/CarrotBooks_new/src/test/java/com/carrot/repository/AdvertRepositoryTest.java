@@ -72,6 +72,6 @@ public class AdvertRepositoryTest {
 		for(AttachImageVO image : advert.getImageList()) {
 			advertRepository.saveAdvertImage(image);
 		}
-		* */
 	}
+	 * */
 }

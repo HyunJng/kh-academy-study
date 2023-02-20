@@ -35,6 +35,7 @@ import com.carrot.domain.MemberVO;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
 import com.carrot.service.AdminService;
+import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 import com.carrot.service.FileService;
 import com.carrot.service.MemberService;
@@ -47,12 +48,14 @@ public class AdminController {
 	private AdminService adminService;
 	private BookService bookService;
 	private FileService fileService;
+	private AdvertService advertService;
 	
 	@Autowired
-	public AdminController(AdminService adminService, BookService bookService, FileService fileService) {
+	public AdminController(AdminService adminService, BookService bookService, FileService fileService, AdvertService advertService) {
 		this.adminService = adminService;
 		this.bookService = bookService;
 		this.fileService = fileService;
+		this.advertService = advertService;
 	}
 	
 	@GetMapping("/main")
@@ -165,8 +168,12 @@ public class AdminController {
 	
 	/* 광고 관리 관련 */
 	@GetMapping("/manageAdvert")
-	public String manageAdvertGet() {
+	public String manageAdvertGet(Model model,  Criteria cri) {
 		logger.info("manageAdvert 페이지 진입");
+		
+		model.addAttribute("advertList", advertService.getAdvertList(cri));
+		model.addAttribute("pageMaker", advertService.getAdvertPageMaker(cri));
+		
 		return "/admin/manageAdvert";
 	}
 	

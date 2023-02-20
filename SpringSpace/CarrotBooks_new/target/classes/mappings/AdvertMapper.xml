@@ -3,6 +3,27 @@
 			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 			
 <mapper namespace="AdvertMapper">
+	<!-- 검색 조건문 -->
+	<sql id="criteria">
+		<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='N'.toString()">
+							advertName like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='P'.toString()">
+							uploader like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='B'.toString()">
+							bookId like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	
 	<!-- 광고 저장 -->
 	<insert id="insertAdvert" parameterType="advertVO">
@@ -22,4 +43,29 @@
 		]]>
 	</insert>
 	
+	<!-- 광고 목록 가져오기 -->
+	<select id="getAdvertList" resultType="advertVO">
+		<![CDATA[
+			select * from (
+				select /*+ INDEX_DESC(SYS_C008608)*/ rownum as rn, a.*
+				from advert a where rownum <= #{pageNum} * #{amount}
+		]]>
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+		<![CDATA[
+			)
+			where rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
+	<!-- 전체 광고 개수 -->
+	<select id="getTotal" resultType="int">
+		<![CDATA[
+			select count(*) from advert
+		]]>
+		<if test="keyword != null">
+			<include refid="criteria"></include>
+		</if>
+	</select>
 </mapper>

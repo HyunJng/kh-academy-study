@@ -29,9 +29,9 @@
 					<div class="col-2">
 						<select name="type" class="form-select">
 							<option value="" class="">선택</option>
-							<option value="E" >이메일</option>
-							<option value="N" >회원이름</option>
-							<option value="C" >구분</option>
+							<option value="N" >광고이름</option>
+							<option value="P" >담당자</option>
+							<option value="B" >책</option>
 						</select>
 					</div>
 					<div class="col-5 m-0">
@@ -46,46 +46,32 @@
 						<col width="5%" />
 						<col width="20%" />
 						<col width="10%" />
+						<col width="10%" />
+						<col width="15%" />
+						<col width="20%" />
 						<col width="25%" />
-						<col width="5%" />
-						<col width="10%" />
-						<col width="10%" />
-						<col width="10%" />
 					</colgroup>
 					<thead class="table-success">
 						<tr>
 							<th>#</th>
-							<th>이메일</th>
-							<th>회원이름</th>
-							<th>주소</th>
-							<th>구분</th>
-							<th>포인트</th>
-							<th>가입일</th>
-							<th>가입방법</th>
-							<th>BAN</th>
+							<th>광고 이름</th>
+							<th>등록일</th>
+							<th>마감일</th>
+							<th>담당자</th>
+							<th>계약회사</th>
+							<th>관련책/이미지보기</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="member" items="${memberList}">
+						<c:forEach var="advert" items="${advertList}">
 							<tr>
-								<td>${member.memberNum}</td>
-								<td><a href="#">${member.memberEmail}</a></td>
-								<td>${member.memberName}</td>
-								<td>(${member.memberAddr1}) ${member.memberAddr2} ${member.memberAddr3}</td>
-								<td>${member.memberCk}</td>
-								<td>${member.memberPoint}</td>
-								<td>${member.regDate}</td>
-								<td>${member.loginType}</td>
-								<td>
-									<a href="/admin/manageMember/${member.memberNum}">
-										<c:if test="${member.memberCk == 'USER'}">
-											<span class="badge bg-danger" >X</span>
-										</c:if>
-										<c:if test="${member.memberCk == 'BAN'}">
-											<span class="badge bg-success" >O</span>
-										</c:if>
-									</a>
-								</td>
+								<td>${advert.advertId }</td>
+								<td>${advert.advertName }</td>
+								<td>${advert.regDate }</td>
+								<td>${advert.endDate }</td>
+								<td>${advert.uploader }</td>
+								<td>${advert.company }</td>
+								<td>${advert.bookId }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -131,5 +117,29 @@ function check_afterAdd(result) {
 	
 	alert("[" + result + "] 을(를) 등록했습니다.");
 };
+
+
+$("#pageForm a").click(function(e) {
+	e.preventDefault();
+	$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
+	$("#pageForm").attr("action", "/admin/manageAdvert");
+	$("#pageForm").submit();
+});
+
+$("#search_form button[type='submit']").click(function(e) {
+	var type = $("#search_form select").val();
+	var keyword = $("#search_form input[name='keyword']").val();
+
+	if (!type) {
+		alert("검색 종류를 선택하세요.");
+		return false;
+	}
+	if (!keyword) {
+		alert("검색어를 입력하세요.");
+		return false;
+	}
+
+	return true;
+});
 </script>
 </html>
