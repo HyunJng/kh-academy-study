@@ -9,16 +9,27 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.carrot.domain.AttachImageVO;
+import com.carrot.repository.ImageRepository;
 
 @Service
-public class FileService {
-
+public class ImageService {
+	
+	private ImageRepository imageRepository;
+	
+	@Autowired
+	public ImageService(ImageRepository imageRepository) {
+		this.imageRepository = imageRepository;
+	}
+	
+	public List<AttachImageVO> getImageList(int refId){
+		return imageRepository.getAttachList(refId);
+	}
+	
 	// 이미지 파일 저장
 	public List<AttachImageVO> uploadImage(String rootPath, MultipartFile[] uploadFile) throws IllegalStateException, IOException {
 		List<AttachImageVO> list = new ArrayList<>();
@@ -73,7 +84,5 @@ public class FileService {
 		}
 		return true;
 	}
-	
-
 	
 }

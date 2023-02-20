@@ -141,8 +141,8 @@
 		str += '<div class="card-header">';
 		str += '<button class="btn btn-warning" id="deleteBtn" data-file="'+ fileCallPath +'" type="button">X</button>'
 		str += '</div>'
-		str += '<div class="card-body">';
-		str += '<img alt="업로드이미지" src="/display?fileName=' + fileCallPath+ '">';
+		str += '<div class="card-body d-flex justify-content-center">';
+		str += '<img width="400px" alt="업로드이미지" src="/display?fileName=' + fileCallPath+ '">';
 		str += '<input type="hidden" name="imageList[0].fileName" value="'+obj.fileName +'">';
 		str += '<input type="hidden" name="imageList[0].uuid" value="'+obj.uuid +'">';
 		str += '<input type="hidden" name="imageList[0].uploadPath" value="'+obj.uploadPath+'">';

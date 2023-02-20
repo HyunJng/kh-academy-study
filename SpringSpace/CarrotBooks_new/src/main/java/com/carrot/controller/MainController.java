@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.carrot.domain.Criteria;
+import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 
 @Controller
@@ -25,9 +26,11 @@ public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private BookService bookService;
+	private AdvertService advertService;
 	
-	public MainController(BookService bookService) {
+	public MainController(BookService bookService, AdvertService advertService) {
 		this.bookService = bookService;
+		this.advertService = advertService;
 	}
 	
 	@GetMapping("/main")
@@ -36,7 +39,7 @@ public class MainController {
 		
 		cri.setAmount(8);
 		model.addAttribute("newestList", bookService.getBookList(cri));
-		
+		model.addAttribute("advertList", advertService.getAdvertList(cri));
 		return "main";
 	}
 	

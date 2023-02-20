@@ -77,12 +77,16 @@
 			
 			  <!-- The slideshow/carousel -->
 			  <div class="carousel-inner">
-			    <div class="carousel-item active">
-			      <img src="/resources/image/tempImage/advert1.jpg" alt="advert1" class="d-block w-100">
-			    </div>
-			    <div class="carousel-item">
-			      <img src="/resources/image/tempImage/advert2.jpg" alt="advert2" class="d-block w-100">
-			    </div>
+<%--
+ 			  	<c:forEach var="advert" items="${advertList}">
+				    <div class="carousel-item active">
+				      <img src="/display?fileName=advert/${advert.uploadPath}/${advert.uuid}/${advert.fileName}" alt="advert" class="d-block w-100">
+				    </div>
+			  	</c:forEach>
+ --%>
+ 				    <div class="carousel-item active">
+				      <img src="/resources/image/tempImage/advert1.jpg" alt="advert" class="d-block w-100">
+				    </div>
 			  </div>
 			
 			  <!-- Left and right controls/icons -->
@@ -101,7 +105,7 @@
 				<h2 class=" my-1 p-3">오늘의 신간</h2>
 			</div>
 				
-			<div id="newest_list" class="carousel slide mt-3 border rounded-1" data-bs-ride="carousel" data-interval="false">
+			<div id="newest_list" class="carousel slide mt-3 border rounded-1" >
 				<!-- The slideshow/carousel -->
 				<div class="carousel-inner ms-6">
 					<div class="carousel-item active">

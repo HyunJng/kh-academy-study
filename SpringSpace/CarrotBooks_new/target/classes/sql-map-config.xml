@@ -10,6 +10,7 @@
 		<typeAlias alias="memberVO" type="com.carrot.domain.MemberVO"></typeAlias>
 		<typeAlias alias="bookVO" type="com.carrot.domain.BookVO"></typeAlias>
 		<typeAlias alias="advertVO" type="com.carrot.domain.AdvertVO"></typeAlias>
+		<typeAlias alias="attachImageVO" type="com.carrot.domain.AttachImageVO"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
@@ -17,6 +18,7 @@
 		<mapper resource="mappings/MemberMapper.xml" />
 		<mapper resource="mappings/BookMapper.xml" />
 		<mapper resource="mappings/AdvertMapper.xml" />
+		<mapper resource="mappings/ImageMapper.xml" />
 	</mappers>
 	
 </configuration>

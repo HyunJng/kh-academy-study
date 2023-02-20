@@ -71,11 +71,26 @@
 								<td>${advert.endDate }</td>
 								<td>${advert.uploader }</td>
 								<td>${advert.company }</td>
-								<td>${advert.bookId }</td>
+								<td>
+									<button id="imagebtn" type="button" data-id="${advert.advertId}" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal">이미지</button>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				
+				<!-- 이미지 출력 -->
+				<div class="modal" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal body -->
+							<div class="modal-body d-flex justify-content-center">
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
 
 				<form class="d-flex justify-content-center" id="pageForm" method="get">
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
@@ -141,5 +156,20 @@ $("#search_form button[type='submit']").click(function(e) {
 
 	return true;
 });
+$("#imagebtn").click(function(){
+	let target = $("#imagebtn").data("id");
+	let targetDiv = $(".modal-body");
+	
+	$.getJSON("/admin/getAttachList", {refId:target}, function(arr){
+		let str ="";
+		let obj = arr[0];
+		
+		let fileCallPath = "advert/"+obj.uploadPath.replace(/\\/g, '/') + "/"+obj.uuid+"_"+obj.fileName;
+		console.log(fileCallPath);
+		str+="<img width='400px' src='/display?fileName=" + fileCallPath +"'>";
+		targetDiv.html(str);
+	})
+}) 
+
 </script>
 </html>

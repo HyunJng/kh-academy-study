@@ -37,7 +37,7 @@ import com.carrot.repository.MemberRepository;
 import com.carrot.service.AdminService;
 import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
-import com.carrot.service.FileService;
+import com.carrot.service.ImageService;
 import com.carrot.service.MemberService;
 
 @Controller
@@ -47,14 +47,14 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	private AdminService adminService;
 	private BookService bookService;
-	private FileService fileService;
+	private ImageService imageService;
 	private AdvertService advertService;
 	
 	@Autowired
-	public AdminController(AdminService adminService, BookService bookService, FileService fileService, AdvertService advertService) {
+	public AdminController(AdminService adminService, BookService bookService, ImageService imageService, AdvertService advertService) {
 		this.adminService = adminService;
 		this.bookService = bookService;
-		this.fileService = fileService;
+		this.imageService = imageService;
 		this.advertService = advertService;
 	}
 	
@@ -204,15 +204,22 @@ public class AdminController {
 		
 		try {
 			// 이미지 파일인지 체크
-			if(!fileService.checkImageFile(uploadFile)) {
+			if(!imageService.checkImageFile(uploadFile)) {
 				return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.BAD_REQUEST);
 			}
 			// 파일 저장
-			list = fileService.uploadImage("c:\\upload\\advert", uploadFile);
+			list = imageService.uploadImage("c:\\upload\\advert", uploadFile);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageVO>> getAttachList(int refId){
+		logger.info("getAttachList 진입 " + refId);
+		
+		return new ResponseEntity<List<AttachImageVO>>(imageService.getImageList(refId), HttpStatus.OK);
 	}
 }
