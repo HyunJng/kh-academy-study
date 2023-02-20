@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/admin/main.css">
-<script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-<title>Insert title here</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><title>Insert title here</title>
  
 </head>
 <body>
@@ -30,9 +31,9 @@
 					<label class="form-label mt-2">광고 이름</label>
 					<input class="form-control" type="text" name="advertName" required>
 					<label class="form-label mt-2">등록일</label>
-					<input class="form-control" type="text" name="regDate" readonly required>
+					<input class="form-control" type="text" name="regDate" autocomplete="off" readonly required>
 					<label class="form-label mt-2">마감일</label>
-					<input class="form-control" type="text" name="endDate" readonly required>
+					<input class="form-control" type="text" name="endDate" autocomplete="off" readonly required>
 					<label class="form-label mt-2">담당자</label>
 					<input class="form-control" type="text" name="uploader" required>
 					<label class="form-label mt-2">계약자</label>
@@ -54,101 +55,126 @@
 </body>
 
 <script type="text/javascript">
+	// 달력 위젯
+	$(function(){
+		$("input[name='regDate']").datepicker(config);
+		$("input[name='endDate']").datepicker(config);
+	});
+	
+	/* 설정 */
+	const config = {
+		dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    dayNames: ['일','월','화','수','목','금','토'],
+	    dayNamesShort: ['일','월','화','수','목','금','토'],
+	    dayNamesMin: ['일','월','화','수','목','금','토'],
+	    yearSuffix: '년'
+	}
 
 	// 파일 서버에 전송(저장)
-	$('input[type="file"]').on("change", function(e){
-		if($("#deleteBtn").length > 0) {
+	$('input[type="file"]').on("change", function(e) {
+		if ($("#deleteBtn").length > 0) {
 			deleteFile();
 		}
-		
+
 		let formData = new FormData();
 		let fileList = $("input[name='advertImage']")[0].files;
 		let file = fileList[0];
-		
+
 		// 이미지 파일인지 체크
-		if(!fileCheck(file.name, file.size)){
+		if (!fileCheck(file.name, file.size)) {
 			return false;
 		}
-		
+
 		formData.append("uploadFile", file);
-		
+
 		$.ajax({
-			url: '/admin/uploadAdvertImage',
-			processData: false,
-			contentType: false,
-			data: formData,
-			type:'POST',
-			dataType:'json',
-			success: function(result){
+			url : '/admin/uploadAdvertImage',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType : 'json',
+			success : function(result) {
 				console.log(result);
 				showUploadImage(result);
 			},
-			error: function(result){
+			error : function(result) {
 				alert("이미지 파일이 아닙니다.");
 			}
 		});
 	});
-	
+
 	// 입력된 파일 종류 체크
 	function fileCheck(fileName, fileSize) {
 		let regex = new RegExp("(.*?)\.(jpg|png)$");
 		let maxSize = 1048576; //1MB
-		
-		if(fileSize >= maxSize){
+
+		if (fileSize >= maxSize) {
 			alert("파일 사이즈 초과");
 			return false;
 		}
-		if(!regex.test(fileName)){
+		if (!regex.test(fileName)) {
 			alert("해당 종류의 파일은 업로드할 수 없습니다.");
 			return false;
 		}
 		return true;
 	};
-	
+
 	// 업로드 이미지 출력
-	function showUploadImage(uploadResultArr){
-		if(!uploadResultArr || uploadResultArr.length == 0){return};
-		
+	function showUploadImage(uploadResultArr) {
+		if (!uploadResultArr || uploadResultArr.length == 0) {
+			return
+		}
+		;
+
 		let uploadResult = $("#uploadResult");
 		let obj = uploadResultArr[0];
 		let str = "";
- 		let fileCallPath = "advert/" + obj.uploadPath.replace(/\\/g, '/')+ "/" + obj.uuid + "_" + obj.fileName; 
-		
+		let fileCallPath = "advert/" + obj.uploadPath.replace(/\\/g, '/') + "/"
+				+ obj.uuid + "_" + obj.fileName;
+
 		str += '<div class="card">';
 		str += '<div class="card-header">';
 		str += '<button class="btn btn-warning" id="deleteBtn" data-file="'+ fileCallPath +'" type="button">X</button>'
 		str += '</div>'
 		str += '<div class="card-body">';
-		str += '<img alt="업로드이미지" src="/display?fileName='+ fileCallPath +'">';
+		str += '<img alt="업로드이미지" src="/display?fileName=' + fileCallPath
+				+ '">';
 		str += '</div></div>';
-		
+
 		uploadResult.append(str);
 	};
-	
+
 	// 업로드된 파일 삭제
-	function deleteFile(){
+	function deleteFile() {
 		let targetFile = $('#deleteBtn').data("file");
 		let targetDiv = $(".card");
-		
+
 		$.ajax({
-			url: '/deleteFile',
-			data : {fileName : targetFile},
+			url : '/deleteFile',
+			data : {
+				fileName : targetFile
+			},
 			dataType : 'text',
 			type : 'POST',
-			success : function(result){
+			success : function(result) {
 				console.log(result);
 				targetDiv.remove();
 				$('input[name="advertImage"]').val("");
 			},
-			error : function(result){
+			error : function(result) {
 				console.log(result);
 				alert("파일을 삭제하지 못했습니다.");
 			}
-       });
+		});
 	};
-	
+
 	// 출력된 이미지 삭제
-	$("#uploadResult").on("click", "#deleteBtn", function(e){
+	$("#uploadResult").on("click", "#deleteBtn", function(e) {
 		deleteFile();
 	});
 </script>

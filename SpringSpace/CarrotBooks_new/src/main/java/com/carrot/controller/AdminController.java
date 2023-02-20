@@ -61,6 +61,7 @@ public class AdminController {
 		return "/admin/main";
 	}
 	
+	/* 상품 등록 관련 */
 	@GetMapping("/addGoods")
 	public String addGoodsGet() {
 		logger.info("상품 등록 페이지 진입");
@@ -89,6 +90,7 @@ public class AdminController {
 		return "redirect:/admin/addGoods";
 	}
 	
+	/* 상품 관리 관련 */
 	@GetMapping("/manageGoods")
 	public String manageGoodsGet(Model model, Criteria cri) {
 		logger.info("상품 관리 페이지 진입");
@@ -140,6 +142,7 @@ public class AdminController {
 		return "redirect:/admin/manageGoods";
 	}
 	
+	/* 회원 관리 관련 */
 	@GetMapping("/manageMember")
 	public String manageMemberGet(Model model,  Criteria cri) {
 		logger.info("manageMember 페이지 진입");
@@ -160,6 +163,7 @@ public class AdminController {
 		return "redirect:/admin/manageMember";
 	}
 	
+	/* 광고 관리 관련 */
 	@GetMapping("/manageAdvert")
 	public String manageAdvertGet() {
 		logger.info("manageAdvert 페이지 진입");
