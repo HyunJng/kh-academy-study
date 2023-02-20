@@ -72,7 +72,7 @@
 								<td>${advert.uploader }</td>
 								<td>${advert.company }</td>
 								<td>
-									<button id="imagebtn" type="button" data-id="${advert.advertId}" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal">이미지</button>
+									<button id="imagebtn" type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal" onclick="showImage(${advert.advertId})">이미지</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -156,8 +156,10 @@ $("#search_form button[type='submit']").click(function(e) {
 
 	return true;
 });
-$("#imagebtn").click(function(){
-	let target = $("#imagebtn").data("id");
+
+// 이미지 보여주기
+function showImage(id){
+	let target = id;
 	let targetDiv = $(".modal-body");
 	
 	$.getJSON("/admin/getAttachList", {refId:target}, function(arr){
@@ -169,7 +171,7 @@ $("#imagebtn").click(function(){
 		str+="<img width='400px' src='/display?fileName=" + fileCallPath +"'>";
 		targetDiv.html(str);
 	})
-}) 
+}
 
 </script>
 </html>

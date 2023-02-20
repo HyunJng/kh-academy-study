@@ -26,9 +26,16 @@ public class ImageService {
 		this.imageRepository = imageRepository;
 	}
 	
+	// 특정 이미지 가져오기
 	public List<AttachImageVO> getImageList(int refId){
 		return imageRepository.getAttachList(refId);
 	}
+	
+	// 모든 이미지 가져오기
+	public List<AttachImageVO> getImageList() {
+		return imageRepository.getAttachList();
+	}
+	
 	
 	// 이미지 파일 저장
 	public List<AttachImageVO> uploadImage(String rootPath, MultipartFile[] uploadFile) throws IllegalStateException, IOException {

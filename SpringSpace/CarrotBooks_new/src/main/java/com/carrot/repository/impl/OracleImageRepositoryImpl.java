@@ -24,5 +24,10 @@ public class OracleImageRepositoryImpl implements ImageRepository{
 		return mybatis.selectList("ImageMapper.getAttachList", refId);
 	}
 
+	@Override
+	public List<AttachImageVO> getAttachList() {
+		return mybatis.selectList("ImageMapper.getAttachAll");
+	}
+
 	
 }
