@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carrot.domain.AdvertVO;
 import com.carrot.domain.AttachImageVO;
@@ -61,6 +62,7 @@ public class AdminService {
 	}
 	
 	// 광고 관련
+	@Transactional
 	public void saveAdvert(AdvertVO advert) {
 		advertRepository.saveAdvert(advert);
 		for(AttachImageVO image : advert.getImageList()) {

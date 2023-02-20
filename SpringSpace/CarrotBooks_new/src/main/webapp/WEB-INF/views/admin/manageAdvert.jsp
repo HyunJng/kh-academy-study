@@ -114,6 +114,22 @@
 	</footer>
 </body>
 <script type="text/javascript">
+/* 광고 저장하고 온 상태인지 확인 */
+$(function(){
+	var add_result = "${save}"; 
+	check_afterAdd(add_result);
+});
 
+function check_afterAdd(result) {
+	if (result == '') {
+		return;
+	}
+	if(result == 'error'){
+		alert("저장할 떄 문제가 발생했습니다. 다시 시도해주세요.");
+		return;
+	}
+	
+	alert("[" + result + "] 을(를) 등록했습니다.");
+};
 </script>
 </html>
