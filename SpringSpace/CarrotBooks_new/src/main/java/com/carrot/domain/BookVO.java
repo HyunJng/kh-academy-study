@@ -10,6 +10,7 @@ public class BookVO {
 	private String publisher;
 	private String bookIntro;
 	private String bookCate;
+	private String bookCateName;
 	private int fullPrice;
 	private int bookStock;
 	private int discountPer;
@@ -114,13 +115,20 @@ public class BookVO {
 		this.updateDate = updateDate;
 	}
 
+	public String getBookCateName() {
+		return bookCateName;
+	}
+
+	public void setBookCateName(String bookCateName) {
+		this.bookCateName = bookCateName;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", title=" + title + ", bookImage=" + bookImage + ", author=" + author
-				+ ", publisher=" + publisher + ", bookIntro=" + bookIntro + ", bookCate=" + bookCate + ", fullPrice="
-				+ fullPrice + ", bookStock=" + bookStock + ", discountPer=" + discountPer + ", regDate=" + regDate
-				+ ", updateDate=" + updateDate + "]";
+				+ ", publisher=" + publisher + ", bookIntro=" + bookIntro + ", bookCate=" + bookCate + ", bookCateName="
+				+ bookCateName + ", fullPrice=" + fullPrice + ", bookStock=" + bookStock + ", discountPer="
+				+ discountPer + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
 	}
-
 }
 

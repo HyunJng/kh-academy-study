@@ -42,7 +42,7 @@ public class BookRepositoryTest {
 			e.printStackTrace();
 		}
 	}
-	
+	*/
 	@Test
 	public void 책리스트Get() {
 		Criteria cri = new Criteria();
@@ -50,6 +50,7 @@ public class BookRepositoryTest {
 		
 		list.forEach(book -> System.out.println(book));
 	}
+	/*
 	@Test 
 	public void 책개수() {
 		int result = bookRepository.getTotal();
@@ -82,11 +83,11 @@ public class BookRepositoryTest {
 			System.out.println("에러발생");
 		}
 	}
-	 * */
 	@Test
 	public void 카테고리리스트() {
 		List<BCateVO> list = bookRepository.getCateList();
 
 		list.forEach(cate -> System.out.println(cate));
 	}
+	 * */
 }

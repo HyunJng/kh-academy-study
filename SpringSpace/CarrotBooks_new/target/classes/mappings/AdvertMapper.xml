@@ -47,7 +47,8 @@
 	<select id="getAdvertList" resultType="advertVO">
 		<![CDATA[
 			select * from (
-				select /*+ INDEX_DESC(SYS_C008608)*/ rownum as rn, a.*
+				select /*+ INDEX_DESC(SYS_C008608)*/ rownum as rn, a.*,
+				(select memberName from member m where m.memberId = a.uploader)as uploaderName
 				from advert a where rownum <= #{pageNum} * #{amount}
 		]]>
 		<if test="keyword != null">

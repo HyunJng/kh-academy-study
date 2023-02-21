@@ -69,7 +69,7 @@
 								<td>${advert.advertName }</td>
 								<td>${advert.regDate }</td>
 								<td>${advert.endDate }</td>
-								<td>${advert.uploader }</td>
+								<td>${advert.uploaderName }</td>
 								<td>${advert.company }</td>
 								<td>
 									<button id="imagebtn" type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#myModal" onclick="showImage(${advert.advertId})">이미지</button>

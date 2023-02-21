@@ -44,20 +44,23 @@
 				
 				<table class="table">
 					<colgroup>
-						<col width="30%" />
-						<col width="15%" />
+						<col width="25%" />
 						<col width="13%" />
+						<col width="10%" />
+						<col width="8%" />
 						<col width="5%" />
 						<col width="7%" />
-						<col width="5" />
+						<col width="7%" />
 						<col width="10%" />
 						<col width="10%" />
+						<col width="5%" />
 					</colgroup>
 					<thead class="table-success">
 						<tr>
 							<th>책 제목</th>
 							<th>작가</th>
 							<th>출판사</th>
+							<th>분류</th>
 							<th>수량</th>
 							<th>정가</th>
 							<th>할인률</th>
@@ -72,6 +75,7 @@
 								<td><a href="/admin/manageGoods/${book.bookId}">${book.title}</a></td>
 								<td>${book.author}</td>
 								<td>${book.publisher}</td>
+								<td>${book.bookCateName}</td>
 								<td>${book.bookStock}</td>
 								<td>${book.fullPrice}</td>
 								<td>${book.discountPer}%</td>
