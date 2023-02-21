@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.PageMaker;
@@ -30,5 +31,9 @@ public class BookService {
 	public PageMaker getBookPageMaker(Criteria cri) {
 		int total = bookRepository.getTotal();
 		return new PageMaker(cri, total);
+	}
+	
+	public List<BCateVO> getCateList(){
+		return bookRepository.getCateList();
 	}
 }

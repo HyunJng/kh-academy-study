@@ -29,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carrot.domain.AdvertVO;
 import com.carrot.domain.AttachImageVO;
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
@@ -40,6 +41,8 @@ import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 import com.carrot.service.ImageService;
 import com.carrot.service.MemberService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/admin")
@@ -75,9 +78,17 @@ public class AdminController {
 	@GetMapping("/addGoods/form")
 	public String addGoodsFormGet(BookVO book, Model model) {
 		logger.info("상품 등록 폼 페이지 진입");
+		ObjectMapper objm = new ObjectMapper();
+		List<BCateVO> list = bookService.getCateList();
 		
-		System.out.println(book);
-		model.addAttribute("book", book);
+		try {
+			model.addAttribute("book", book); // get으로 온 것이 book에 담기게
+			model.addAttribute("cateList", objm.writeValueAsString(list));
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			model.addAttribute("cateList", "error");
+		}
+
 		return "/admin/addGoods_form";
 	}
 	

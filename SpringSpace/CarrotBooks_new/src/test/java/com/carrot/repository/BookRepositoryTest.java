@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.repository.BookRepository;
@@ -61,7 +62,6 @@ public class BookRepositoryTest {
 		BookVO result = bookRepository.getBookById(book);
 		System.out.println(result);
 	}
-	 * */
 	
 	@Test
 	public void 책수정() {
@@ -81,5 +81,12 @@ public class BookRepositoryTest {
 		} catch(Exception e) {
 			System.out.println("에러발생");
 		}
+	}
+	 * */
+	@Test
+	public void 카테고리리스트() {
+		List<BCateVO> list = bookRepository.getCateList();
+
+		list.forEach(cate -> System.out.println(cate));
 	}
 }

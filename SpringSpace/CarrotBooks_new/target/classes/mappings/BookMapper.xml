@@ -78,4 +78,9 @@
 			delete from book where bookId=#{bookId}	
 		]]>
 	</delete>
+	
+	<!-- 책 카테고리 리스트 -->
+	<select id="getCateList" resultType="bCateVO">
+		select * from bcate order by catecode
+	</select>
 </mapper>

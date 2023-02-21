@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.repository.BookRepository;
@@ -48,6 +49,11 @@ public class OracleBookRepositoryImpl implements BookRepository{
 	@Override
 	public void update(BookVO book) throws Exception {
 		mybatis.update("BookMapper.updateBook", book);
+	}
+
+	@Override
+	public List<BCateVO> getCateList() {
+		return mybatis.selectList("BookMapper.getCateList");
 	}
 	
 }

@@ -9,6 +9,7 @@
 	<typeAliases>
 		<typeAlias alias="memberVO" type="com.carrot.domain.MemberVO"></typeAlias>
 		<typeAlias alias="bookVO" type="com.carrot.domain.BookVO"></typeAlias>
+		<typeAlias alias="bCateVO" type="com.carrot.domain.BCateVO"></typeAlias>
 		<typeAlias alias="advertVO" type="com.carrot.domain.AdvertVO"></typeAlias>
 		<typeAlias alias="attachImageVO" type="com.carrot.domain.AttachImageVO"></typeAlias>
 	</typeAliases>

@@ -90,7 +90,7 @@
 	    yearSuffix: '년'
 	}
 
-	// 파일 서버에 전송(저장)
+	/* 파일 서버에 전송(저장) */
 	$('input[type="file"]').on("change", function(e) {
 		if ($("#deleteBtn").length > 0) {
 			deleteFile();
@@ -124,7 +124,7 @@
 		});
 	});
 
-	// 입력된 파일 종류 체크
+	/* 입력된 파일 종류 체크 */
 	function fileCheck(fileName, fileSize) {
 		let regex = new RegExp("(.*?)\.(jpg|png)$");
 		let maxSize = 1048576; //1MB

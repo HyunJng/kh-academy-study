@@ -2,6 +2,7 @@ package com.carrot.repository;
 
 import java.util.List;
 
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 
@@ -24,4 +25,7 @@ public interface BookRepository {
 	
 	// 책 정보 삭제
 	public void delete(BookVO book);
+	
+	// 카테고리 리스트 
+	public List<BCateVO> getCateList();
 }

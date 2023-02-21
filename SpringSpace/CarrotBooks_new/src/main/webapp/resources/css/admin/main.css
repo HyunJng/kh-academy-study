@@ -22,3 +22,13 @@
 	resize: none !important;
 }
 
+.cate_span {
+	display: inline !important;
+	width: 20% !important;
+	margin-right: 5%;
+}
+
+.cate_select {
+	display: inline !important;
+	width: 50% !important;
+}

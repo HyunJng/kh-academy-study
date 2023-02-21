@@ -98,7 +98,7 @@ public class MemberRepositoryTest {
 	@Test
 	public void 회원BAN처리() {
 		MemberVO member = new MemberVO();
-		member.setMemberNum(2);
+		member.setMemberId(2);
 		member.setMemberCk("USER");
 		memberRepository.updateBan(member);
 	}

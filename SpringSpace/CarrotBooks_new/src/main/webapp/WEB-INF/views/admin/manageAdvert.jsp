@@ -133,14 +133,14 @@ function check_afterAdd(result) {
 	alert("[" + result + "] 을(를) 등록했습니다.");
 };
 
-
+/* 페이징 처리 */
 $("#pageForm a").click(function(e) {
 	e.preventDefault();
 	$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
 	$("#pageForm").attr("action", "/admin/manageAdvert");
 	$("#pageForm").submit();
 });
-
+/* 검색 처리 */
 $("#search_form button[type='submit']").click(function(e) {
 	var type = $("#search_form select").val();
 	var keyword = $("#search_form input[name='keyword']").val();
@@ -157,7 +157,7 @@ $("#search_form button[type='submit']").click(function(e) {
 	return true;
 });
 
-// 이미지 보여주기
+/* 이미지 출력  */
 function showImage(id){
 	let target = id;
 	let targetDiv = $(".modal-body");
