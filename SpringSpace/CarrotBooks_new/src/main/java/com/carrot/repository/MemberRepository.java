@@ -23,7 +23,7 @@ public interface MemberRepository {
 	public List<MemberVO> getMemberList(Criteria cri);
 	
 	// 회원 전체 수 검색
-	public int getTotal();
+	public int getTotal(Criteria cri);
 	
 	// BAN회원 정보 변경
 	public void updateBan(MemberVO member);

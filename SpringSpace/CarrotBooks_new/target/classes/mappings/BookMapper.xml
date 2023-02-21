@@ -18,6 +18,9 @@
 						<when test="type=='P'.toString()">
 							publisher like '%'||#{keyword}||'%'
 						</when>
+						<when test="type=='C'.toString()">
+							bookCate like '%'||#{keyword}||'%'
+						</when>
 					</choose>
 				</trim>
 			</foreach>
@@ -62,7 +65,7 @@
 			select count(*) from book
 		]]>
 		<if test="keyword != null">
-			where bookId > 0 <include refid="criteria"></include>
+			where bookStock >= 0 <include refid="criteria"></include>
 		</if>
 	</select>
 	

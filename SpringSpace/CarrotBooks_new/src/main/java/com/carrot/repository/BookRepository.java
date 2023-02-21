@@ -18,7 +18,7 @@ public interface BookRepository {
 	public List<BookVO> getBookList(Criteria cri);
 	
 	// 전체 게시글 개수 구하기
-	public int getTotal();
+	public int getTotal(Criteria cri);
 	
 	// 책 정보 수정
 	public void update(BookVO book) throws Exception;

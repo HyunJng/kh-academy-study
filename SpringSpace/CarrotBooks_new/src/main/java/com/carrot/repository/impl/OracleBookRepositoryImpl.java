@@ -42,8 +42,8 @@ public class OracleBookRepositoryImpl implements BookRepository{
 	}
 
 	@Override
-	public int getTotal() {
-		return mybatis.selectOne("BookMapper.getTotal");
+	public int getTotal(Criteria cri) {
+		return mybatis.selectOne("BookMapper.getTotal", cri);
 	}
 
 	@Override

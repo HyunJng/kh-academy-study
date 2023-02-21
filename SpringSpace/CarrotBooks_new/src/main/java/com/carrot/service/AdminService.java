@@ -49,7 +49,7 @@ public class AdminService {
 	}
 	
 	public PageMaker getMemberPageMaker(Criteria cri) {
-		int total = memberRepository.getTotal();
+		int total = memberRepository.getTotal(cri);
 		return new PageMaker(cri, total);
 	}
 	

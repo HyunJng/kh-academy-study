@@ -10,6 +10,8 @@ public class Criteria {
 	private String type;
 	private String[] typeArr;
 	private String keyword;
+	// 책관련
+	private String cateCode;
 	
 	public Criteria() {
 		this.pageNum = 1;
@@ -57,10 +59,17 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 
+	public String getCateCode() {
+		return cateCode;
+	}
+
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", typeArr="
-				+ Arrays.toString(typeArr) + ", keyword=" + keyword + "]";
+				+ Arrays.toString(typeArr) + ", keyword=" + keyword + ", cateCode=" + cateCode + "]";
 	}
-	
 }

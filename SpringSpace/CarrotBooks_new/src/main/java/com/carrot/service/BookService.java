@@ -29,7 +29,7 @@ public class BookService {
 	}
 	
 	public PageMaker getBookPageMaker(Criteria cri) {
-		int total = bookRepository.getTotal();
+		int total = bookRepository.getTotal(cri);
 		return new PageMaker(cri, total);
 	}
 	

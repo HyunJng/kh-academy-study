@@ -46,8 +46,8 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	}
 
 	@Override
-	public int getTotal() {
-		return mybatis.selectOne("MemberMapper.getTotal");
+	public int getTotal(Criteria cri) {
+		return mybatis.selectOne("MemberMapper.getTotal", cri);
 	}
 
 	@Override
