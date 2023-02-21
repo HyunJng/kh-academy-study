@@ -100,7 +100,7 @@ public class AdminController {
 			adminService.saveBook(book);
 			reAttr.addFlashAttribute("result", book.getTitle());
 		} catch (Exception e) {
-			reAttr.addFlashAttribute("result", "error");
+			reAttr.addFlashAttribute("result", "");
 		}
 		return "redirect:/admin/addGoods";
 	}
@@ -121,10 +121,15 @@ public class AdminController {
 	public String manageGoodsDetailGet(Model model, @PathVariable("bookId")String bookId) {
 		logger.info("상품 관리 - 수정페이지 진입");
 		BookVO book = new BookVO();
+		ObjectMapper objm = new ObjectMapper();
+		
 		book.setBookId(bookId);
-		
 		model.addAttribute("book", bookService.findBookById(book));
-		
+		try {
+			model.addAttribute("cateList", objm.writeValueAsString(bookService.getCateList()));
+		} catch(Exception e) {
+			model.addAttribute("cateList", "");
+		}
 		return "/admin/manageGoods_detail";
 	}
 	

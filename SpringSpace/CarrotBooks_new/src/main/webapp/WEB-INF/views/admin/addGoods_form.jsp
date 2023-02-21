@@ -9,12 +9,6 @@
 <link rel="stylesheet" href="/resources/css/admin/main.css">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
- <style type="text/css">
-	.warn_span {
-		display:none;
-		color: red;
-	}
- </style>
 </head>
 <body>
 	

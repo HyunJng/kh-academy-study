@@ -32,3 +32,8 @@
 	display: inline !important;
 	width: 50% !important;
 }
+
+.warn_span {
+	display: none;
+	color: red;
+}
