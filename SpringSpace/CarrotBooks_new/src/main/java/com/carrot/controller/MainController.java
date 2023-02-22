@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.carrot.domain.AttachImageVO;
+import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 import com.carrot.service.ImageService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class MainController {
@@ -48,7 +51,7 @@ public class MainController {
 		
 		model.addAttribute("newestList", bookService.getBookList(cri));
 		model.addAttribute("advertList", imageService.getImageList());
-		model.addAttribute("cateList", bookService.getCateList());
+
 		return "/main";
 	}
 	
@@ -68,6 +71,13 @@ public class MainController {
 		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
 		return "/search";
 	}
-
+	
+	// 헤더에서 카테고리 가져오기
+	@GetMapping("/admin/getCateJson")
+	public ResponseEntity<List<BCateVO>> getCateJson(){
+		List<BCateVO> list = bookService.getCateList();
+		
+		return new ResponseEntity<List<BCateVO>>(list, HttpStatus.OK);
+	}
 	
 }

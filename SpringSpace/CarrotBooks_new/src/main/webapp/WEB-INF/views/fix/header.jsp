@@ -79,24 +79,15 @@
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
+
 					<li class="dropdown">
-					  <button class="dropbtn">국내 </button>
-					  <div class="dropdown-content">
-					  	<c:forEach var="cate" items="${cateList}">
-						  	<c:if test="${cate.tier == 3 && cate.cateCode < 200000}">
-						    	<a href="/main/search?cateCode=${cate.cateCode}">${cate.cateName}</a>
-					  		</c:if>
-					  	</c:forEach>
+					  <button class="dropbtn">국내</button>
+					  <div class="dropdown-content" id="cateKorea">
 					  </div>
 					</li>
 					<li class="dropdown">
 					  <button class="dropbtn">국외 </button>
-					  <div class="dropdown-content">
-					  	<c:forEach var="cate" items="${cateList}">
-						  	<c:if test="${cate.tier == 3 && cate.cateCode > 200000}">
-						    	<a href="/main/search?cateCode=${cate.cateCode}">${cate.cateName}</a>
-					  		</c:if>
-					  	</c:forEach>
+					  <div class="dropdown-content" id="cateForeign">
 					  </div>
 					</li>
 
@@ -110,6 +101,48 @@
 	</div>
 </body>
 <script type="text/javascript">
-
+	$(function(){
+		// 카테고리 추가
+		$.ajax({
+			url : '/admin/getCateJson',
+			type : 'GET',
+			dataType : 'json',
+			success : function(cateList) {
+				let cateForeignArr = new Array(); // 국외
+				let cateKoreaArr = new Array(); // 국내
+				
+				let cateKorea = $("#cateKorea");
+				let cateForeign = $("#cateForeign");
+				
+				for(let i = 0; i<cateList.length; i++){
+					if(cateList[i].tier == 3 && cateList[i].cateCode > 200000) {
+						let obj = new Object();
+						obj.cateName = cateList[i].cateName;
+						obj.cateCode = cateList[i].cateCode;
+						obj.cateParent = cateList[i].cateParent;
+						
+						cateForeignArr.push(obj);
+					}
+					if(cateList[i].tier == 3 && cateList[i].cateCode < 200000) {
+						let obj = new Object();
+						obj.cateName = cateList[i].cateName;
+						obj.cateCode = cateList[i].cateCode;
+						obj.cateParent = cateList[i].cateParent;
+						
+						cateKoreaArr.push(obj);
+					}
+				}
+				
+				for(let i = 0; i<cateForeignArr.length; i++){
+					cateForeign.append("<a href='/main/search?cateCode=" + cateForeignArr[i].cateCode + "'>" + cateForeignArr[i].cateName + "</a>");
+				}
+				for(let i = 0; i<cateKoreaArr.length; i++){
+					cateKorea.append("<a href='/main/search?cateCode=" + cateKoreaArr[i].cateCode + "'>" + cateKoreaArr[i].cateName + "</a>");
+				}
+			}
+		});
+	})
+	
+	
 </script>
 </html>

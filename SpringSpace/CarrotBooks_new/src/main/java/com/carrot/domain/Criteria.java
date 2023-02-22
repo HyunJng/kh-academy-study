@@ -64,12 +64,12 @@ public class Criteria {
 	}
 
 	public void setCateCode(String cateCode) {
-		this.cateCode = cateCode;
 		if(typeArr == null) {
 			typeArr = new String[] {"C"};
-		} else {
+		} else { // 키워드가 있는 상태에서는 C 추가
 			typeArr[typeArr.length] = "C";
 		}
+		this.cateCode = cateCode;
 	}
 
 	@Override
