@@ -80,6 +80,7 @@
 			</table>
 			<form class="d-flex justify-content-center" id="pageForm" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+				<input type="hidden" name="cateCode" value="${pageMaker.cri.cateCode}">
 					<ul class="pagination">
 					<c:if test="${pageMaker.prev}">
 						<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a></li>

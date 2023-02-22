@@ -19,7 +19,7 @@
 							publisher like '%'||#{keyword}||'%'
 						</when>
 						<when test="type=='C'.toString()">
-							bookCate like '%'||#{keyword}||'%'
+							bookCate = #{cateCode}
 						</when>
 					</choose>
 				</trim>
@@ -50,7 +50,7 @@
 				(select cateName from bCate c where b.bookCate = c.catecode) as bookCateName
 				from  book b where rownum <= #{pageNum} * #{amount} 
 		]]>
-			<if test="keyword != null">
+			<if test="keyword != null || cateCode != null">
 				<include refid="criteria"></include>
 			</if>
 		<![CDATA[
@@ -64,7 +64,7 @@
 		<![CDATA[
 			select count(*) from book
 		]]>
-		<if test="keyword != null">
+		<if test="keyword != null || cateCode != null">
 			where bookStock >= 0 <include refid="criteria"></include>
 		</if>
 	</select>
@@ -85,6 +85,9 @@
 	
 	<!-- 책 카테고리 리스트 -->
 	<select id="getCateList" resultType="bCateVO">
-		select * from bcate order by catecode
+		<![CDATA[
+			select * from bcate order by catecode
+		]]>
 	</select>
+
 </mapper>

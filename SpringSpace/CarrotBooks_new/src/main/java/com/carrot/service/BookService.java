@@ -36,4 +36,12 @@ public class BookService {
 	public List<BCateVO> getCateList(){
 		return bookRepository.getCateList();
 	}
+	/*
+	public List<BCateVO> getKoreaCate(){
+		return bookRepository.getKoreaCate();
+	}
+	public List<BCateVO> getForeignCate(){
+		return bookRepository.getForeignCate();
+	}
+	 * */
 }

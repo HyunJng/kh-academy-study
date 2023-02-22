@@ -65,6 +65,11 @@ public class Criteria {
 
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
+		if(typeArr == null) {
+			typeArr = new String[] {"C"};
+		} else {
+			typeArr[typeArr.length] = "C";
+		}
 	}
 
 	@Override

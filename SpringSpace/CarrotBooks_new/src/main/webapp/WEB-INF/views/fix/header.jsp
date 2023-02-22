@@ -10,6 +10,46 @@
 <link rel="stylesheet" href="/resources/css/main.css">
 <title>Insert title here</title>
 <style type="text/css">
+.dropbtn {
+  background-color: #f7f7f7;
+  color: black;
+  border:none;
+  padding: 0.5rem 0.25rem;
+  margin: 0 0.5rem;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255,243,224,1.0);
+   min-width: 500px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: inline-block;
+  z-index: 20;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+.dropdown-content:hover{
+	display: block;
+}
 </style>
 </head>
 <body>
@@ -39,14 +79,27 @@
 		<nav class="navbar navbar-expand-sm bg-light navbar-light">
 			<div class="container-fluid">
 				<ul class="navbar-nav">
-					<li class="nav-item dropdown">
-					  <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">카테고리</a>
-					  <ul class="dropdown-menu">
-					    <li><a class="dropdown-item" href="#">Link</a></li>
-					    <li><a class="dropdown-item" href="#">Another link</a></li>
-					    <li><a class="dropdown-item" href="#">A third link</a></li>
-					  </ul>
+					<li class="dropdown">
+					  <button class="dropbtn">국내 </button>
+					  <div class="dropdown-content">
+					  	<c:forEach var="cate" items="${cateList}">
+						  	<c:if test="${cate.tier == 3 && cate.cateCode < 200000}">
+						    	<a href="/main/search?cateCode=${cate.cateCode}">${cate.cateName}</a>
+					  		</c:if>
+					  	</c:forEach>
+					  </div>
 					</li>
+					<li class="dropdown">
+					  <button class="dropbtn">국외 </button>
+					  <div class="dropdown-content">
+					  	<c:forEach var="cate" items="${cateList}">
+						  	<c:if test="${cate.tier == 3 && cate.cateCode > 200000}">
+						    	<a href="/main/search?cateCode=${cate.cateCode}">${cate.cateName}</a>
+					  		</c:if>
+					  	</c:forEach>
+					  </div>
+					</li>
+
 					<li class="nav-item"><a class="nav-link active" href="#">베스트</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="#">신상품</a></li>
@@ -55,6 +108,8 @@
 			</div>
 		</nav>
 	</div>
-	
 </body>
+<script type="text/javascript">
+
+</script>
 </html>

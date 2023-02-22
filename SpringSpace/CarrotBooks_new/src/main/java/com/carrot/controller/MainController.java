@@ -48,14 +48,14 @@ public class MainController {
 		
 		model.addAttribute("newestList", bookService.getBookList(cri));
 		model.addAttribute("advertList", imageService.getImageList());
-
+		model.addAttribute("cateList", bookService.getCateList());
 		return "/main";
 	}
 	
 	@GetMapping("/main/search")
 	public String searchGet(Criteria cri, Model model) {
 		logger.info("search페이지 진입");
-
+		
 		cri.setAmount(5);
 		List<BookVO> list = bookService.getBookList(cri);
 		
