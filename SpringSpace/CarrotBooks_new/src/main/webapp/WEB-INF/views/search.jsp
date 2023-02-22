@@ -33,7 +33,9 @@
 					<c:forEach var="book" items="${bookList}">
 						<tr class="pt-2">
 							<td>
-								<img alt="이미지" src="${book.bookImage}">
+								<a href="/product/detail/${book.bookId}">
+									<img alt="이미지" src="${book.bookImage}">
+								</a>
 							</td>
 							<td>
 								<div class="mt-2">

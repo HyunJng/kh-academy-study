@@ -11,6 +11,12 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	.main_book_li {
+		width: 200px;
+	}
+
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
@@ -62,18 +68,18 @@
 				<h2 class=" my-1 p-3">오늘의 신간</h2>
 			</div>
 				
-			<div id="newest_list" class="carousel slide mt-3 border rounded-1" >
+			<div id="newest_list" class="carousel slide pt-3 border rounded-1" >
 				<!-- The slideshow/carousel -->
 				<div class="carousel-inner ms-6">
 					<div class="carousel-item active">
-						<ul class="row">
+						<ul class="d-flex justify-content-center">
 						    <c:forEach var="book" items="${newestList}" begin="0" end="3">
-								<li class="col pt-2">
+								<li class="mx-2 main_book_li">
 									<p>
-										<a href="#"><img alt="신간" src="${book.bookImage}"></a>
+										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
 									</p>
 									<div>
-										<p><a href="#">${book.title}</a></p>
+										<p><a href="/product/detail/${book.bookId}">${book.title}</a></p>
 										<p>${book.author}</p>
 										<p>${book.fullPrice}</p>
 									</div>
@@ -82,11 +88,11 @@
 					    </ul>
 					</div>
 					<div class="carousel-item">
-					    <ul class="row">
+					    <ul class="d-flex justify-content-center">
 						    <c:forEach var="book" items="${newestList}" begin="4" end="7">
-								<li class="col pt-2">
+								<li class="mx-2 main_book_li">
 									<p>
-										<a href="#"><img alt="신간" src="${book.bookImage}"></a>
+										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
 									</p>
 									<div>
 										<p><a href="#">${book.title}</a></p>
