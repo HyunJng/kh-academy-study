@@ -37,8 +37,10 @@
 	
 	<!-- 상품(책) 검색 -->
 	<select id="getBookById" resultType="bookVO">
+		<!-- select * from book where bookId = #{bookId} -->
 		<![CDATA[
-			select * from book where bookId = #{bookId}
+			select b.*, c.cateName bookCateName from book b 
+			left outer join  bcate c on (b.bookcate = c.catecode) where bookId = #{bookId}				
 		]]>
 	</select>
 	

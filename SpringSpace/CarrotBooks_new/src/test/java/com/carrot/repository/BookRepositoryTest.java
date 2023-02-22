@@ -42,7 +42,6 @@ public class BookRepositoryTest {
 			e.printStackTrace();
 		}
 	}
-	*/
 	@Test
 	public void 책리스트Get() {
 		Criteria cri = new Criteria();
@@ -50,20 +49,22 @@ public class BookRepositoryTest {
 		
 		list.forEach(book -> System.out.println(book));
 	}
+	 */
 	/*
 	@Test 
 	public void 책개수() {
 		int result = bookRepository.getTotal();
 		System.out.println(result);
 	}
+	*/
 	@Test
 	public void 책검색byId() {
 		BookVO book = new BookVO();
-		book.setBookId("1168340772 9791168340770");
+		book.setBookId("1196168075 9791196168070");
 		BookVO result = bookRepository.getBookById(book);
 		System.out.println(result);
 	}
-	
+	/*
 	@Test
 	public void 책수정() {
 		BookVO book1 = new BookVO();

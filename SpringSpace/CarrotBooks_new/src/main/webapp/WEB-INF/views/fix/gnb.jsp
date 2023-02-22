@@ -37,7 +37,7 @@
 				<c:if test='${member.memberCk=="ADMIN"}'>
 					<li class="list-group-item">
 						${member.memberName}관리자입니다.
-						<a href="admin/main">관리자페이지</a>
+						<a href="/admin/main">관리자페이지</a>
 					</li>
 				</c:if>
 				<c:if test='${member != null}'>

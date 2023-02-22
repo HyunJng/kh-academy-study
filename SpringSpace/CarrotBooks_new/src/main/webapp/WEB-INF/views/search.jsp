@@ -10,16 +10,6 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-<style type="text/css">
-	.table_empty {
-		width : 100%;
-		height: 300px;
-	}
-	.table_empty h5 {
-		margin: auto;
-	}
-
-</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -48,7 +38,7 @@
 							<td>
 								<div class="mt-2">
 									[${book.bookCateName }]
-									${book.title }
+									<a href="/product/detail/${book.bookId}">${book.title }</a>
 								</div>
 								<div class="mt-1">
 									${book.author} 지음 | '${book.publisher }' 출판사

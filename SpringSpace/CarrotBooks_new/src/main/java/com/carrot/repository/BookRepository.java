@@ -28,13 +28,5 @@ public interface BookRepository {
 	
 	// 카테고리 리스트 
 	public List<BCateVO> getCateList();
-	
-	/*
-	// 국내 카테고리
-	public List<BCateVO> getKoreaCate();
 
-	// 국내 카테고리
-	public List<BCateVO> getForeignCate();
-	
-	 * */
 }
