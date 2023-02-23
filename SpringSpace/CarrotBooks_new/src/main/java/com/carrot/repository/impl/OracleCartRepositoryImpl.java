@@ -21,7 +21,7 @@ public class OracleCartRepositoryImpl implements CartRepository{
 	}
 
 	@Override
-	public int addCart(CartVO cart) {
+	public int addCart(CartVO cart) throws Exception {
 		return mybatis.insert("CartMapper.insertCart", cart);
 	}
 
