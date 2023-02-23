@@ -88,3 +88,16 @@
 .table_empty h5 {
 	margin: auto;
 }
+
+/* 책 상세 페이지 */
+#book_detail {
+	margin: auto 0;
+}
+
+#detail_quantity_btn button {
+	border: 1px solid grey;
+}
+
+#detail_quantity_btn input {
+	width: 50px;
+}

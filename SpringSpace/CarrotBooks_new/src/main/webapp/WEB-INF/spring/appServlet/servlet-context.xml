@@ -33,22 +33,25 @@
 
 	<!-- 인터셉터 적용 -->
  	<mvc:interceptors>
-		<mvc:interceptor>
+<!-- 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<bean id="AdminInterceptor"
 				class="com.carrot.interceptor.AdminIntercepter" />
 		</mvc:interceptor>
+		 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/member/login" />
 			<mvc:mapping path="/member/join" />
 			<bean id="LoginNotInterceptor"
 				class="com.carrot.interceptor.LoginNotInterceptor" />
 		</mvc:interceptor>
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/member/logout" />
 			<bean id="LoginInterceptor"
 				class="com.carrot.interceptor.LoginInterceptor" />
 		</mvc:interceptor>
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/cart/**"/>
 			<mvc:exclude-mapping path="/cart/add"/>

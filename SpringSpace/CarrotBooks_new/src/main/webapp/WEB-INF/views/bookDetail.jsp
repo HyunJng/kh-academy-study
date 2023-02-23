@@ -11,17 +11,6 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-	#book_detail {
-		margin: auto 0;
-	}
-	#detail_quantity_btn button{
-		border: 1px solid grey;
-	}
-	#detail_quantity_btn input{
-		width: 50px;
-	}
-</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
@@ -52,14 +41,14 @@
 					</div>
 					<div class="py-2">
 						<div id="detail_quantity_btn">
-							주문수량: <input type="text" value="1">
+							주문수량: <input type="text" class="quentity_input" value="1">
 							<span>
-								<button>+</button>
-								<button>-</button>
+								<button class="plus_btn">+</button>
+								<button class="minus_btn">-</button>
 							</span>
 						</div>
 						<div class="my-3">
-							<button class="btn btn-secondary">장바구니 담기</button>
+							<button id="addCart_btn" class="btn btn-secondary">장바구니 담기</button>
 							<button class="btn btn-light">바로 구매</button>
 						</div>
 					</div>
@@ -84,4 +73,53 @@
 		<jsp:include page="/WEB-INF/views/fix/footer.jsp"></jsp:include>
 	</footer>
 </body>
+<script type="text/javascript">
+	
+	/* 수량 조절 버튼 조작*/
+	$(".plus_btn").on("click", function(){
+		let quantity = $(".quentity_input").val();
+		$(".quentity_input").val(++quantity);
+	})
+	$(".minus_btn").on("click", function(){
+		let quantity = $(".quentity_input").val();
+		if(quantity > 1){
+			$(".quentity_input").val(--quantity);
+		}
+	})
+
+	/* 장바구니 추가 */
+	const form = {
+			bookId : '${book.bookId}',
+			bookCount: '',
+			memberId : '${member.memberId}'
+	}
+	// 장바구니 버튼 클릭
+	$('#addCart_btn').on("click", function(e){
+		form.bookCount = $(".quentity_input").val();
+		
+		// post로 int값을 공백 넣어주면 에러가 발생하므로 임의의 값 넣기
+		if(form.memberId === ""){
+			form.memberId = 0;
+		}
+
+		$.ajax({
+			url: '/cart/add',
+			type: 'POST',
+			data: form,
+			success: function(result){
+				console.log("ajax result: "+result);
+				if(result == "0"){
+					alert("장바구니에 추가를 하지 못하였습니다.");
+				} else if(result == "1"){
+					alert("장바구니에 추가되었습니다.");
+				} else if(result == "2"){
+					alert("장바구니에 이미 존재합니다.");
+				} else if(result == "5"){
+					alert("로그인이 필요합니다.");
+					location.href="/member/login";
+				}
+			}
+	});
+	
+</script>
 </html>
