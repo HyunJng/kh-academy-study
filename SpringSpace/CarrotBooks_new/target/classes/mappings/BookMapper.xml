@@ -27,7 +27,7 @@
 		</trim>
 	</sql>
 	
-	<!-- 상품(책) 저장 -->
+	<!-- 책 저장 -->
 	<insert id="insertBook">
 		<![CDATA[
 			INSERT INTO Book(bookId, title, bookImage, author, publisher, bookIntro, bookCate, fullPrice, bookStock, discountPer, regDate, updateDate)
@@ -35,7 +35,7 @@
 		]]>
 	</insert>
 	
-	<!-- 상품(책) 검색 -->
+	<!-- 책  검색 -->
 	<select id="getBookById" resultType="bookVO">
 		<!-- select * from book where bookId = #{bookId} -->
 		<![CDATA[
@@ -44,7 +44,7 @@
 		]]>
 	</select>
 	
-	<!-- 상품(책) 목록(페이징처리까지) -->
+	<!-- 책 목록 가져오기 -->
 	<select id="getBookList" resultType="bookVO">
 		<![CDATA[
 			select * from (

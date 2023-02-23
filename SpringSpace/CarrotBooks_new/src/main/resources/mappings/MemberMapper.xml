@@ -37,6 +37,7 @@
 		]]>
 	</select>
 	
+	<!-- 조건 검색문 -->
 	<sql id="criteria">
 		<foreach collection="typeArr" item="type">
 			<trim prefix="(" suffix=")">

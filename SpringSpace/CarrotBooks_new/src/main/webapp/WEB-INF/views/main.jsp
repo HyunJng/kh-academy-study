@@ -11,28 +11,6 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-	.main_book_li {
-		width: 17%;
-		margin-right: 30px;
-	}
-	.main_book_li img{
-		width: 100%;
-	}
-	.main_book_li div p {
-		margin-bottom: 5px;
-	}
-	.carousel_author {
-		width: inherit;
-		color:graytext;
-		overflow:hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-	}
-	.carousel_title {
-		font-weight: 600;
-	}
-</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>

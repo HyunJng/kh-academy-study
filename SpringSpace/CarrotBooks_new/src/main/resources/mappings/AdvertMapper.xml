@@ -60,7 +60,7 @@
 		]]>
 	</select>
 	
-	<!-- 전체 광고 개수 -->
+	<!-- 전체 광고 개수 가져오기-->
 	<select id="getTotal" resultType="int">
 		<![CDATA[
 			select count(*) from advert
