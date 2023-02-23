@@ -6,6 +6,7 @@
 	align-items: center;
 }
 
+/* 메인화면 */
 .main_title {
 	background-color: #f4a460;
 }
@@ -35,19 +36,47 @@
 	align-items: center;
 }
 
+.main_book_li {
+	width: 17%;
+	margin-right: 30px;
+}
+
+.main_book_li img {
+	width: 100%;
+}
+
+.main_book_li div p {
+	margin-bottom: 5px;
+}
+
+.carousel_author {
+	width: inherit;
+	color: graytext;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.carousel_title {
+	font-weight: 600;
+}
+
 /* 헤더 */
 #header_div select[name='type'] {
 	display: inline-block;
-	width: 20% !important;
+	width: 30% !important;
 }
 
 #header_div select, 
 #header_div select:focus, 
-#header_div input,
-#header_div button:hover {
+#header_div input {
 	border: none !important;
 	outline: none !important;
 	box-shadow: none !important;
+}
+#header_div button:focus {
+	border: none;
+	outline: none;
 }
 
 /* search 페이지 */

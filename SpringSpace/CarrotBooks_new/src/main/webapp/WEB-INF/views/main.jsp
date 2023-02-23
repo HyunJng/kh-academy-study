@@ -13,9 +13,25 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.main_book_li {
-		width: 200px;
+		width: 17%;
+		margin-right: 30px;
 	}
-
+	.main_book_li img{
+		width: 100%;
+	}
+	.main_book_li div p {
+		margin-bottom: 5px;
+	}
+	.carousel_author {
+		width: inherit;
+		color:graytext;
+		overflow:hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.carousel_title {
+		font-weight: 600;
+	}
 </style>
 </head>
 <body>
@@ -65,7 +81,7 @@
 		<!-- 신간 -->
 		<div>
 			<div class="main_title">
-				<h2 class=" my-1 p-3">오늘의 신간</h2>
+				<h2 class=" my-1 p-3">#오늘의 신간</h2>
 			</div>
 				
 			<div id="newest_list" class="carousel slide pt-3 border rounded-1" >
@@ -74,14 +90,15 @@
 					<div class="carousel-item active">
 						<ul class="d-flex justify-content-center">
 						    <c:forEach var="book" items="${newestList}" begin="0" end="3">
-								<li class="mx-2 main_book_li">
+								<li class="main_book_li">
 									<p>
 										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
 									</p>
 									<div>
-										<p><a href="/product/detail/${book.bookId}">${book.title}</a></p>
-										<p>${book.author}</p>
-										<p>${book.fullPrice}</p>
+										<p class="carousel_title"><a href="/product/detail/${book.bookId}">${book.title}</a></p>
+										<p class="carousel_author">${book.author}</p>
+										<p><strong><fmt:formatNumber value="${book.fullPrice}" pattern="##,###"/></strong>원(${book.discountPer}% 할인)</p>
+										<p>${book.publisher }</p>
 									</div>
 								</li>
 							</c:forEach>
@@ -90,14 +107,15 @@
 					<div class="carousel-item">
 					    <ul class="d-flex justify-content-center">
 						    <c:forEach var="book" items="${newestList}" begin="4" end="7">
-								<li class="mx-2 main_book_li">
+								<li class="main_book_li">
 									<p>
 										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
 									</p>
 									<div>
-										<p><a href="#">${book.title}</a></p>
-										<p>${book.author}</p>
-										<p>${book.fullPrice}</p>
+										<p class="carousel_title"><a href="/product/detail/${book.bookId}">${book.title}</a></p>
+										<p class="carousel_author">${book.author}</p>
+										<p><strong><fmt:formatNumber value="${book.fullPrice}" pattern="##,###"/></strong>원(${book.discountPer}% 할인)</p>
+										<p>${book.publisher }</p>
 									</div>
 								</li>
 							</c:forEach>
