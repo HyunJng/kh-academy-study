@@ -56,7 +56,6 @@ public class CartRepositoryTest {
 		result = cartRepository.modifyCount(cart);
 		System.out.println(result);
 	}
-	 * */
 	
 	@Test
 	public void 카트목록() {
@@ -65,4 +64,5 @@ public class CartRepositoryTest {
 		List<CartVO> list = cartRepository.getCart(memberId);
 		list.forEach(cart -> System.out.println(cart));
 	}
+	 * */
 }

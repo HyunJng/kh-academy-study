@@ -8,13 +8,16 @@ public class CartVO {
 	private int bookCount;
 	
 	/* book 관련 */
-	private String bookName;
+	private String title;
+	private String bookImage;
 	private int fullPrice;
 	private int discountPer;
 	
 	/* 편리를 위해 추가 */
 	private int salePrice;
 	private int totalPrice;
+	private int point;
+	private int totalPoint;
 	
 	public int getCartId() {
 		return cartId;
@@ -40,11 +43,17 @@ public class CartVO {
 	public void setBookCount(int bookCount) {
 		this.bookCount = bookCount;
 	}
-	public String getBookName() {
-		return bookName;
+	public String getTitle() {
+		return title;
 	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getBookImage() {
+		return bookImage;
+	}
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
 	}
 	public int getFullPrice() {
 		return fullPrice;
@@ -67,11 +76,26 @@ public class CartVO {
 		return totalPrice;
 	}
 	
+	public int getPoint() {
+		return point;
+	}
+	
+	public int getTotalPoint() {
+		return totalPoint;
+	}
+	
+	public void initSaleTotal() {
+		this.salePrice = (int)(this.fullPrice * (1 - (this.discountPer / 100.0)));
+		this.totalPrice = (int)(this.salePrice * this.bookCount);
+		this.point = (int)(Math.floor(this.salePrice * 0.05));
+		this.totalPoint = this.point * this.bookCount;
+	}
+	
 	@Override
 	public String toString() {
 		return "CartVO [cartId=" + cartId + ", memberId=" + memberId + ", bookId=" + bookId + ", bookCount=" + bookCount
-				+ ", bookName=" + bookName + ", fullPrice=" + fullPrice + ", discountPer=" + discountPer
-				+ ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + "]";
+				+ ", title=" + title + ", fullPrice=" + fullPrice + ", discountPer=" + discountPer
+				+ ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint="
+				+ totalPoint + "]";
 	}
-
 }

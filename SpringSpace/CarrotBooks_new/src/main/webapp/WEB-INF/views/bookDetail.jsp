@@ -33,6 +33,9 @@
 						'${book.author }' 지음 | '${book.publisher }' 출판사
 					</div>
 					<div class="py-2 border-bottom">
+						적립 포인트: <span class="point_span"></span> point
+					</div>
+					<div class="py-2 border-bottom">
 						<p>정가: <fmt:formatNumber value="${book.fullPrice }" pattern="##,### 원"/> </p>
 						<p>
 							판매가: <span class="h5 text-danger"><fmt:formatNumber value="${book.fullPrice * (1 - book.discountPer / 100)}" pattern="##,### 원" /></span>
@@ -74,18 +77,27 @@
 	</footer>
 </body>
 <script type="text/javascript">
+	$(function(){
+		/*포인트 삽입*/
+ 		let salePrice = "${book.fullPrice * (1 - book.discountPer / 100)}";
+		console.log(salePrice);
+		let point = salePrice * 0.05;
+		point = Math.floor(point);
+		$(".point_span").text(point);
+	});
 	
 	/* 수량 조절 버튼 조작*/
 	$(".plus_btn").on("click", function(){
 		let quantity = $(".quentity_input").val();
 		$(".quentity_input").val(++quantity);
-	})
+	});
+	
 	$(".minus_btn").on("click", function(){
 		let quantity = $(".quentity_input").val();
 		if(quantity > 1){
 			$(".quentity_input").val(--quantity);
 		}
-	})
+	});
 
 	/* 장바구니 추가 */
 	const form = {
@@ -119,7 +131,7 @@
 					location.href="/member/login";
 				}
 			}
+		});
 	});
-	
 </script>
 </html>

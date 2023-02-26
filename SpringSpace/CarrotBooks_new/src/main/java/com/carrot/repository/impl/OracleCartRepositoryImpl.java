@@ -36,8 +36,8 @@ public class OracleCartRepositoryImpl implements CartRepository{
 	}
 
 	@Override
-	public List<CartVO> getCart(int memberId) {
-		return mybatis.selectList("CartMapper.getCart", memberId);
+	public List<CartVO> getCart(MemberVO member) {
+		return mybatis.selectList("CartMapper.getCart", member);
 	}
 
 	@Override

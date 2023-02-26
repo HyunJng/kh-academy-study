@@ -17,7 +17,7 @@ public interface CartRepository {
 	public int modifyCount(CartVO cart);
 	
 	// 카트 목록
-	public List<CartVO> getCart(int memberId);
+	public List<CartVO> getCart(MemberVO member);
 	
 	// 카트 확인
 	public CartVO checkCart(CartVO cart); 
