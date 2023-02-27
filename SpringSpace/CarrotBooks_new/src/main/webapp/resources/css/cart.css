@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+#cart_div {
+	text-align: center;
+}
+
+#item_div {
+	display: inline-block;
+	background-color: #fff5ee;
+	margin-top: 5px;
+	padding: 0 2%;
+}
+
+#item_div table tbody tr {
+	border-bottom: 1rem solid;
+	border-color: transparent;
+}
+
+#item_div table thead tr {
+	border-bottom: 4px dashed white;
+}
+
+#cal_div {
+	display: inline-block;
+	border: 1px solid black;
+	position: relative;
+	height: 400px;
+	background-color: white;
+}
+
+#cal_div .table-borderless {
+	text-align: left;
+}
+
+.cart_quantity_td input[type='number'] {
+	width: 40px;
+}
+
+.page_sub_header {
+	margin-top: 3px;
+	padding: 10px 10px;
+	border-top: 3px dashed #faf0e6;
+	border-bottom: 3px dashed #faf0e6;
+}
+
+@media ( max-width : 992px) {
+	#cal_div {
+		height: 500px;
+	}
+}

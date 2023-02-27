@@ -10,53 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="/resources/css/cart.css">
 <title>Insert title here</title>
-<style type="text/css">
-	#cart_div {
-		text-align: center;
-	}
-	#item_div {
-		display: inline-block;
-		background-color: #fff5ee;
-		margin-top: 5px;
-		padding: 0 2%;
-	}
-	
-	#item_div table tbody tr{
-	  border-bottom: 1rem solid;
-	  border-color: transparent;
-	}
-
-	#item_div table thead tr{
-		border-bottom: 4px dashed white;
-	}
-	#cal_div {
-		display: inline-block;
-		border: 1px solid black;	
-		position:relative;
-		height: 400px;
-		background-color: white;
-	}
-	#cal_div .table-borderless {
-		text-align: left;
-	}
-	.cart_quantity_td input[type='number'] {
-		width: 40px;
-	}
-	.page_sub_header {
-		margin-top: 3px; 
-		padding: 10px 10px;
-		border-top: 3px dashed #faf0e6;
-		border-bottom: 3px dashed #faf0e6;
-	}
-	
-	@media (max-width: 992px) {
-		#cal_div {
-			height: 500px;
-		}
-	}
-}
-</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
@@ -110,7 +65,7 @@
 									<fmt:formatNumber value="${cart.totalPrice}" pattern="##,###원"/>
 								</td>
 								<td>
-									<button class="btn btn-sm btn-outline-danger" type="button">X</button>
+									<button class="btn btn-sm btn-outline-danger delete_btn" data-cartid="${cart.cartId}" type="button">X</button>
 								</td>
 							</tr>
 						</c:forEach>
@@ -157,6 +112,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<div>
+		<form class="delete_form" action="/cart/delete" method="post" >
+			<input type="hidden" name="cartId">
+			<input type="hidden" name="memberId" value="${member.memberId}">
+		</form>
+	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/fix/footer.jsp"></jsp:include>
 	</footer>
@@ -174,6 +136,14 @@
 		setTotalInfo();
 	});
 
+	/* 카트 삭제 */
+	$(".delete_btn").on("click", function(e){
+		e.preventDefault();
+		const cartId = $(this).data("cartid");
+		$(".delete_form").find("input[name='cartId']").val(cartId);
+		$(".delete_form").submit();
+	});
+	
 	/* 수량 변경시 업데이트*/
 	$(".cart_quantity_td").find("input[type='number']").on("change", function(){
 		let cartInfoObj = $(this).closest(".cart_quantity_td").siblings(".cart_info_td");

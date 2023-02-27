@@ -63,4 +63,11 @@ public class CartController {
 			return "false";
 		}
 	}
+	
+	@PostMapping("/cart/delete")
+	public String cartDeletePost(CartVO cart) {
+		cartService.deleteCart(cart);
+		
+		return "redirect:/cart/" + cart.getMemberId();
+	}
 }

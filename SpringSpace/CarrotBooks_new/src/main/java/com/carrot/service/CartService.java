@@ -48,4 +48,9 @@ public class CartService {
 	public int modifyCount(CartVO cart) {
 		return cartRepository.modifyCount(cart);
 	}
+	
+	// 카트 삭제
+	public int deleteCart(CartVO cart) {
+		return cartRepository.deleteCart(cart);
+	}
 }
