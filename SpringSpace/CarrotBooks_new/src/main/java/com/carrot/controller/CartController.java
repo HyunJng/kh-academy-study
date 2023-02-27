@@ -51,4 +51,16 @@ public class CartController {
 		model.addAttribute("cartList", cartService.getCartList(member));
 		return "/cart";
 	}
+	
+	/* 카트 내의 책 수랑 수정 */
+	@PostMapping("/cart/update")
+	public @ResponseBody String cartUpdatePost(CartVO cart) {
+		int result = cartService.modifyCount(cart);
+		
+		if(result == 1) { // 성공
+			return "true";
+		} else {		// 실패
+			return "false";
+		}
+	}
 }

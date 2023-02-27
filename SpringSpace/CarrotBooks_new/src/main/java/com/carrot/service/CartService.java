@@ -43,4 +43,9 @@ public class CartService {
 		}
 		return cart;
 	}
+	
+	// 카트 수량 수정
+	public int modifyCount(CartVO cart) {
+		return cartRepository.modifyCount(cart);
+	}
 }

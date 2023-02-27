@@ -40,7 +40,7 @@
 	#cal_div .table-borderless {
 		text-align: left;
 	}
-	.cart_quantity_btn input[type='number'] {
+	.cart_quantity_td input[type='number'] {
 		width: 40px;
 	}
 	.page_sub_header {
@@ -89,12 +89,12 @@
 							<tr>
 								<td class="cart_info_td">
 									<input type="checkbox" class="cart_info_checkbox" checked>
+									<input type="hidden" class="cart_info_cartId " value="${cart.cartId }">
+									<input type="hidden" class="cart_info_memberId " value="${cart.memberId}">
 									<input type="hidden" class="cart_info_fullPrice " value="${cart.fullPrice }">
 									<input type="hidden" class="cart_info_salePrice " value="${cart.salePrice }">
 									<input type="hidden" class="cart_info_bookCount " value="${cart.bookCount }">
-									<input type="hidden" class="cart_info_totalPrice " value="${cart.totalPrice}">
 									<input type="hidden" class="cart_info_point " value="${cart.point }">
-									<input type="hidden" class="cart_info_totalPoint " value="${cart.totalPoint }">
 								</td>
 								<td><img alt="책" src="${cart.bookImage}" width="100px"></td>
 								<td>${cart.title }</td>
@@ -103,13 +103,10 @@
 									판매가: <strong class="text-danger"><fmt:formatNumber value="${cart.salePrice }" pattern="##,###원" /></strong><br>
 									포인트: <span class="text-success"><fmt:formatNumber value="${cart.point}" pattern="##,###p"/></span>
 								</td>
-								<td>
-									<div class="cart_quantity_btn">
-										<input type="number" value="${cart.bookCount}" min="1" max="100"> 
-										<button class="btn btn-sm btn-secondary" type="button">변경</button>
-									</div>
+								<td class="cart_quantity_td">
+									<input type="number" value="${cart.bookCount}" min="1" max="100"> 
 								</td>
-								<td>
+								<td class="cart_totalPrice_td">
 									<fmt:formatNumber value="${cart.totalPrice}" pattern="##,###원"/>
 								</td>
 								<td>
@@ -177,6 +174,37 @@
 		setTotalInfo();
 	});
 
+	/* 수량 변경시 업데이트*/
+	$(".cart_quantity_td").find("input[type='number']").on("change", function(){
+		let cartInfoObj = $(this).closest(".cart_quantity_td").siblings(".cart_info_td");
+		let cartId = cartInfoObj.find(".cart_info_cartId").val();
+		let bookCount = $(this).val();
+		let cartSalePrice = cartInfoObj.find(".cart_info_salePrice").val();
+		let memberId = cartInfoObj.find(".cart_info_memberId").val();
+		const form = {
+				"cartId" : cartId,
+				"bookCount": bookCount
+		}
+		
+		// DB업데이트
+		$.ajax({
+			url: '/cart/update',
+			type: 'POST',
+			data: form,
+			success: function(result){
+				if(result !== "true"){
+					alert("오류입니다. 다시 시도해주세요");
+					window.location.href ="/cart/"+memberId;
+				}
+			}
+		});
+		
+		// view 수정
+		cartInfoObj.find(".cart_info_bookCount").val(bookCount);
+ 		setTotalInfo();
+ 		$(this).closest(".cart_quantity_td").siblings(".cart_totalPrice_td").text((cartSalePrice * bookCount).toLocaleString() + "원" );
+	});
+	
  	/* 체크박스에 따른 종합정보 변화 */
  	$(".cart_info_checkbox").on("change", function(){
  		setTotalInfo();
@@ -214,14 +242,15 @@
 		$(".cart_info_td").each(function(index, element){
 			
 			if($(element).find(".cart_info_checkbox").is(":checked") === true){
-				// 총 가격
-				totalPrice += parseInt($(element).find(".cart_info_totalPrice").val());
+				let tempBookCount = $(element).find(".cart_info_bookCount").val();
+				// 총 가격 
+				totalPrice += parseInt($(element).find(".cart_info_salePrice").val() * tempBookCount);
 				// 총 개수
-				totalCount += parseInt($(element).find(".cart_info_bookCount").val());
+				totalCount += parseInt(tempBookCount);
 				// 총 종류
 				totalKind += 1;
 				// 총 포인트
-				totalPoint += parseInt($(element).find(".cart_info_totalPoint").val());
+				totalPoint += parseInt($(element).find(".cart_info_point").val() * tempBookCount);
 			}
 		});
 		
