@@ -35,8 +35,9 @@
 		border: 1px solid black;	
 		position:relative;
 		height: 400px;
+		background-color: white;
 	}
-	.table-borderless {
+	#cal_div .table-borderless {
 		text-align: left;
 	}
 	.cart_quantity_btn input[type='number'] {
@@ -48,6 +49,13 @@
 		border-top: 3px dashed #faf0e6;
 		border-bottom: 3px dashed #faf0e6;
 	}
+	
+	@media (max-width: 992px) {
+		#cal_div {
+			height: 500px;
+		}
+	}
+}
 </style>
 </head>
 <body>
@@ -65,7 +73,9 @@
  				<table>
  					<thead>
  						<tr>
-							<th width="5%"></th>
+							<th width="5%">
+								<input type="checkbox" id="all_check" checked>
+							</th>
 							<th width="18%"></th>
 							<th width="*">상품명</th>
  							<th width="25%">상품가</th>
@@ -78,6 +88,7 @@
 						<c:forEach var="cart" items="${cartList}">
 							<tr>
 								<td class="cart_info_td">
+									<input type="checkbox" class="cart_info_checkbox" checked>
 									<input type="hidden" class="cart_info_fullPrice " value="${cart.fullPrice }">
 									<input type="hidden" class="cart_info_salePrice " value="${cart.salePrice }">
 									<input type="hidden" class="cart_info_bookCount " value="${cart.bookCount }">
@@ -143,6 +154,9 @@
 						<td class="output_totalPoint"></td>
 					</tr>
 				</table>
+				<div class="d-grid">
+					<button class="btn btn-warning btn-block" >결제하기</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -151,30 +165,64 @@
 	</footer>
 </body>
 <script type="text/javascript">
+	let totalKind = 0; // 결제할 상품 종류 수 확인 용
+	
  	$(function(){
 		/* 결제 내역 스크롤 처리 */
 		$(window).scroll(function(){
 			$('#cal_div').css('top',$(window).scrollTop());
 		});
 	
-		/* 결제 가격 출력 */
+		/* 종합 정보 출력 */
+		setTotalInfo();
+	});
+
+ 	/* 체크박스에 따른 종합정보 변화 */
+ 	$(".cart_info_checkbox").on("change", function(){
+ 		setTotalInfo();
+ 		
+ 		// 개별에 따른 전체 선택 체크 변화
+ 		let totalCount = $(".cart_info_td").length;
+
+		if(totalCount === totalKind){
+			$("#all_check").prop("checked", true);
+		} else {
+			$("#all_check").prop("checked", false);
+		}
+ 	});
+ 	
+ 	/* 전체 선택 */
+ 	$("#all_check").on("click", function(){
+ 		if($("#all_check").prop("checked")){
+ 			$(".cart_info_checkbox").prop("checked", true);
+ 		}else {
+ 			$(".cart_info_checkbox").prop("checked", false);
+ 		}
+ 		
+ 		setTotalInfo();
+ 	});
+ 	
+ 	/* 종합정보 출력 메서드 */
+ 	function setTotalInfo(){
 		let totalPrice = 0;
 		let totalCount = 0;
-		let totalKind = 0;
+		totalKind = 0;
 		let totalPoint = 0;
 		let deliveryPrice = 0;
 		let finalTotalPrice = 0; // 최종 가격(총가격 + 배송비)
 		
-		
 		$(".cart_info_td").each(function(index, element){
-			// 총 가격
-			totalPrice += parseInt($(element).find(".cart_info_totalPrice").val());
-			// 총 개수
-			totalCount += parseInt($(element).find(".cart_info_bookCount").val());
-			// 총 종류
-			totalKind += 1;
-			// 총 포인트
-			totalPoint += parseInt($(element).find(".cart_info_totalPoint").val());
+			
+			if($(element).find(".cart_info_checkbox").is(":checked") === true){
+				// 총 가격
+				totalPrice += parseInt($(element).find(".cart_info_totalPrice").val());
+				// 총 개수
+				totalCount += parseInt($(element).find(".cart_info_bookCount").val());
+				// 총 종류
+				totalKind += 1;
+				// 총 포인트
+				totalPoint += parseInt($(element).find(".cart_info_totalPoint").val());
+			}
 		});
 		
 		if(totalPrice >= 20000) { // 배송비
@@ -190,10 +238,10 @@
 		
 		$(".output_totalPrice").text(totalPrice.toLocaleString() + " 원");
 		$(".output_delivaryPrice").text(deliveryPrice.toLocaleString() + " 원");
-		$(".output_totalCount").text(totalCount);
-		$(".output_totalKind").text(totalKind);
+		$(".output_totalCount").text(totalCount + " 개");
+		$(".output_totalKind").text(totalKind + " 종류");
 		$(".output_finalTotalPrice").text(finalTotalPrice.toLocaleString() + " 원");
 		$(".output_totalPoint").text(totalPoint.toLocaleString() + " p");
-	});
+ 	}
 </script>
 </html>
