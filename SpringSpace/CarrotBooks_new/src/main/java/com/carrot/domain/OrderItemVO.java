@@ -8,6 +8,8 @@ public class OrderItemVO {
 	private int bookPrice;
 	private int discountPer;
 	private String bookName;
+	private String bookImage;
+	
 	/* 편의를 위한 변수 */
 	private int salePrice;
 	private int totalPrice;
@@ -67,6 +69,12 @@ public class OrderItemVO {
 	public void setTotalPoint(int totalPoint) {
 		this.totalPoint = totalPoint;
 	}
+	public String getBookImage() {
+		return bookImage;
+	}
+	public void setBookImage(String bookImage) {
+		this.bookImage = bookImage;
+	}
 	
 	public void initSaleTotal() {
 		this.salePrice =(int) (this.bookPrice * (1 - (this.discountPer / 100)));
@@ -77,9 +85,9 @@ public class OrderItemVO {
 	
 	@Override
 	public String toString() {
-		return "OrderItem [bookId=" + bookId + ", bookCount=" + bookCount + ", bookName=" + bookName + ", bookPrice="
-				+ bookPrice + ", discountPer=" + discountPer + ", salePrice=" + salePrice + ", totalPrice=" + totalPrice
-				+ ", point=" + point + ", totalPoint=" + totalPoint + "]";
+		return "OrderItemVO [bookId=" + bookId + ", bookCount=" + bookCount + ", bookPrice=" + bookPrice
+				+ ", discountPer=" + discountPer + ", bookName=" + bookName + ", bookImage=" + bookImage
+				+ ", salePrice=" + salePrice + ", totalPrice=" + totalPrice + ", point=" + point + ", totalPoint="
+				+ totalPoint + "]";
 	}
-	
 }

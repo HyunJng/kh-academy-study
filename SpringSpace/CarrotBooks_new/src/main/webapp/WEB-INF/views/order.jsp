@@ -22,7 +22,6 @@
 	background-color: white;
 	margin-top: 5px;
 	padding: 0;
-	height: 800px;
 }
 #right_div {
 	display: inline-block;
@@ -63,7 +62,7 @@
 			<jsp:include page="/WEB-INF/views/fix/header.jsp"></jsp:include>
 		</header>
 		<div class="page_sub_header">
-			<h4>#주문</h4>
+			<h4>#주문정보</h4>
 		</div>
 		<div id="order_div" class="row p-1">
 			<div id="left_div" class="rounded-3 col-8 mx-3">
@@ -78,7 +77,7 @@
 				</div>
 				<!-- 배송지 정보 -->
 				<div class="info_div">
-					<div class="">
+					<div>
 						<button class="btn address_btn address_btn_1" onclick="showAddress('1');" style="background-color: #696969 !important;">사용자 주소록</button>
 						<button class="btn address_btn address_btn_2" onclick="showAddress('2');">직접 입력</button>
 					</div>
@@ -91,7 +90,7 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th>이름</th>
+										<th>수령인</th>
 										<td>${memberInfo.memberName }</td>
 									</tr>
 									<tr>
@@ -115,7 +114,7 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<th>이름</th>
+										<th>수령인</th>
 										<td>
 											<input class="form-control" type="text" name="addressee">
 										</td>
@@ -147,8 +146,60 @@
 					</div>
 				</div>
 				<!-- 상품 정보 -->
+				<div class="info_div">
+					<table class="table">
+						<colgroup>
+							<col width="15%">
+							<col width="*%">
+							<col width="15%">
+							<col width="15%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>주문상품 </th>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<c:forEach var="item" items="${orderList}">
+								<tr>
+									<td>
+										<img alt="책" src="${item.bookImage}" width="90px"/>
+									</td>
+									<td>${item.bookName}</td>
+									<td>${item.bookCount}개</td>
+									<td class="item_price_td">
+										<fmt:formatNumber value="${item.totalPrice}" pattern="##,###원" />
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 				<!-- 포인트 정보 -->
+				<div  class="info_div">
+					<table class="table table-borderless">
+						<colgroup>
+							<col width="25%">
+							<col width="*">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>포인트 사용</th>
+								<td>
+									${memberInfo.memberPoint} p | <input class="order_point_input" value="0"> p 
+									<button class="btn btn-outline-warning btn-sm point_input_btn point_input_btn_N" data-state="N">모두사용</button>
+									<button class="btn btn-outline-warning btn-sm point_input_btn point_input_btn_Y" data-state="Y" style="display: none;">사용취소</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 				<!-- 종합 정보 -->
+				<div  class="info_div">
+					
+				</div>
+				
 			</div>
 			<div id="right_div" class="rounded-3 col-3">
 				

@@ -10,7 +10,7 @@
 	
 	<!-- 주문 책 정보 가져오기 -->
 	<select id="getGoodsInfo" resultMap="orderItem">
-		select bookId, title, fullPrice, discountPer
+		select bookId, title, fullPrice, discountPer, bookImage
 		from book where bookId = #{bookId}
 	</select>
 	
