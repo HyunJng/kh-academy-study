@@ -19,6 +19,9 @@
 		<header>
 			<jsp:include page="/WEB-INF/views/fix/header.jsp"></jsp:include>
 		</header>
+		<div class="page_sub_header">
+			<h4>#도서목록</h4>
+		</div>
 		<div>
 		<c:if test="${bookListChk != 'empty'}">
 			<table class="table">
