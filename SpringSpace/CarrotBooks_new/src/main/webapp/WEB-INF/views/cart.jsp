@@ -50,6 +50,7 @@
 									<input type="hidden" class="cart_info_salePrice " value="${cart.salePrice }">
 									<input type="hidden" class="cart_info_bookCount " value="${cart.bookCount }">
 									<input type="hidden" class="cart_info_point " value="${cart.point }">
+									<input type="hidden" class="cart_info_bookId " value="${cart.bookId}">
 								</td>
 								<td><img alt="책" src="${cart.bookImage}" width="100px"></td>
 								<td>${cart.title }</td>
@@ -107,16 +108,20 @@
 					</tr>
 				</table>
 				<div class="d-grid">
-					<button class="btn btn-warning btn-block" >결제하기</button>
+					<button id="order_btn" class="btn btn-warning btn-block" >결제하기</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div>
+		<!-- 삭제 form -->
 		<form class="delete_form" action="/cart/delete" method="post" >
 			<input type="hidden" name="cartId">
 			<input type="hidden" name="memberId" value="${member.memberId}">
+		</form>
+		<!-- 주문 form  -->
+		<form action="/order/${member.memberId}" method="get" class="order_form">
 		</form>
 	</div>
 	<footer>
@@ -136,6 +141,32 @@
 		setTotalInfo();
 	});
 
+	/* 주문 버튼 클릭 */
+	$("#order_btn").on("click", function(e){
+		e.preventDefault();
+		
+		let form_contents = '';
+		let orderNumber = 0;
+		
+		$(".cart_info_td").each(function(index, element){
+			if($(element).find(".cart_info_checkbox").is(":checked") === true){
+				let bookId = $(element).find(".cart_info_bookId").val();
+				let bookCount = $(element).find(".cart_info_bookCount").val();
+				
+				let bookId_input = "<input type='hidden' name='orders["+orderNumber + "].bookId' value='" + bookId + "'>";
+				let bookCount_input = "<input type='hidden' name='orders["+orderNumber + "].bookCount' value='" + bookCount + "'>";
+				
+				form_contents += bookId_input;
+				form_contents += bookCount_input;
+				
+				orderNumber++;
+			}
+		});
+		
+		$(".order_form").append(form_contents);
+		$(".order_form").submit();
+	})
+	
 	/* 카트 삭제 */
 	$(".delete_btn").on("click", function(e){
 		e.preventDefault();

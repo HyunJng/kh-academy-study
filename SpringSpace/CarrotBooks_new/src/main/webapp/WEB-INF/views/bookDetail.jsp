@@ -52,7 +52,7 @@
 						</div>
 						<div class="my-3">
 							<button id="addCart_btn" class="btn btn-secondary">장바구니 담기</button>
-							<button class="btn btn-light">바로 구매</button>
+							<button id="order_btn" class="btn btn-light">바로 구매</button>
 						</div>
 					</div>
 				</div>
@@ -69,6 +69,12 @@
 			<div>
 				리뷰
 			</div>
+			
+			<!-- 바로 주문 form  -->
+			<form action="/order/${member.memberId}" method="get" class="order_form">
+				<input type="hidden" name="orders[0].bookId" value="${book.bookId }">
+				<input type="hidden" name="orders[0].bookCount" value="">
+			</form>
 		</div>
 	</div><!-- 헤더 끝 -->
 	
@@ -99,6 +105,13 @@
 		}
 	});
 
+	/* 바로주문 클릭 */
+	$("#order_btn").on("click", function(){
+			let bookCount = $(".quentity_input").val();
+			$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
+			$(".order_form").submit();
+	});
+	
 	/* 장바구니 추가 */
 	const form = {
 			bookId : '${book.bookId}',

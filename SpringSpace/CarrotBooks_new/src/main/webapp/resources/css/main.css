@@ -6,6 +6,13 @@
 	align-items: center;
 }
 
+.page_sub_header {
+	margin-top: 3px;
+	padding: 10px 10px;
+	border-top: 3px dashed #faf0e6;
+	border-bottom: 3px dashed #faf0e6;
+}
+
 /* 메인화면 */
 .main_title {
 	background-color: #f4a460;

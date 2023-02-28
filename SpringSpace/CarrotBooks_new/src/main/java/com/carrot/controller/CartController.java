@@ -31,7 +31,6 @@ public class CartController {
 		
 		// 로그인 체크
 		HttpSession session = req.getSession();
-		System.out.println((MemberVO)session.getAttribute("member"));
 		if(session.isNew() || session.getAttribute("member") == null) { // 로그인 중이 아니라면
 			return "5";
 		}

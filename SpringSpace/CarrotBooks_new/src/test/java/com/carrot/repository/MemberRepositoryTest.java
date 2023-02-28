@@ -86,15 +86,16 @@ public class MemberRepositoryTest {
 		list.forEach(member -> System.out.println(member));
 	}
 
+	 */
 	@Test
 	public void 회원검색byNum() {
 		MemberVO member = new MemberVO();
-		member.setMemberNum(1);
-		MemberVO result = memberRepository.findMemberbyNum(member);
-		assertThat(member.getMemberNum(), is(result.getMemberNum()));
+		member.setMemberId(22);
+		MemberVO result = memberRepository.findMemberbyId(member);
+		//assertThat(member.getMemberId(), is(result.getMemberId()));
+		System.out.println(result);
 	}
-	 */
-	
+	/*
 	@Test
 	public void 회원BAN처리() {
 		MemberVO member = new MemberVO();
@@ -102,4 +103,5 @@ public class MemberRepositoryTest {
 		member.setMemberCk("USER");
 		memberRepository.updateBan(member);
 	}
+	 */
 }

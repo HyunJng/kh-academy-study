@@ -53,6 +53,7 @@ public class AdminController {
 	private BookService bookService;
 	private ImageService imageService;
 	private AdvertService advertService;
+	@Autowired private MemberService memberService;
 	
 	@Autowired
 	public AdminController(AdminService adminService, BookService bookService, ImageService imageService, AdvertService advertService) {
@@ -178,7 +179,7 @@ public class AdminController {
 		
 		MemberVO memberInfo = new MemberVO();
 		memberInfo.setMemberId(Integer.valueOf(memberId));
-		MemberVO target = adminService.findMemberbyId(memberInfo);
+		MemberVO target = memberService.findMemberbyId(memberInfo);
 		adminService.changeMemberBan(target);
 		
 		return "redirect:/admin/manageMember";

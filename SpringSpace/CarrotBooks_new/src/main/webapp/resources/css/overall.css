@@ -7,6 +7,11 @@
 .container {
 	padding: 0;
 }
+
+input:read-only {
+	background-color: #f5f5f5;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 800px;
@@ -19,7 +24,6 @@
   }
 }
 
-/*사실 이 블럭은 없어도 된다*/
 @media (min-width: 1200px) {
   .container {
     width: 1200px;

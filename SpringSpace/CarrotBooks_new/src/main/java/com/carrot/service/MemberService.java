@@ -48,6 +48,11 @@ public class MemberService {
 		memberRepository.save(member);
 	}
 	
+	// Id로 멤버 검색
+	public MemberVO findMemberbyId(MemberVO member) {
+		return memberRepository.findMemberbyId(member);
+	}
+	
 	// 비밀번호 인코드
 	public void passwordEncode(MemberVO member) {
 		String rawPassword = member.getMemberPw();
