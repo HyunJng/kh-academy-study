@@ -128,9 +128,9 @@
 										<input type="hidden" name="bookPrice" value="${item.bookPrice}">
 										<input type="hidden" name="totalPoint" value="${item.totalPoint}">
 										<input type="hidden" name="totalPrice" value="${item.totalPrice}">
-										<img alt="책" src="${item.bookImage}" width="90px"/>
+										<a href="/product/detail/${item.bookId}"><img alt="책" src="${item.bookImage}" width="90px"/></a>
 									</td>
-									<td>${item.bookName}</td>
+									<td><a href="/product/detail/${item.bookId}">${item.bookName}</a></td>
 									<td class="item_count_td">
 										${item.bookCount}개
 									</td>
