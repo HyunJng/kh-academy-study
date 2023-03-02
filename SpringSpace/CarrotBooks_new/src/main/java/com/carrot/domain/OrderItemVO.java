@@ -77,7 +77,7 @@ public class OrderItemVO {
 	}
 	
 	public void initSaleTotal() {
-		this.salePrice =(int) (this.bookPrice * (1 - (this.discountPer / 100)));
+		this.salePrice =(int) (this.bookPrice * (1 - (this.discountPer / 100.0)));
 		this.point = (int)(Math.floor(this.salePrice * 0.05));
 		this.totalPrice = this.salePrice * this.bookCount;
 		this.totalPoint = this.point * this.bookCount;

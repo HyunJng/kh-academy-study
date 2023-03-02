@@ -12,47 +12,7 @@
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  <title>Insert title here</title>
-<style type="text/css">
-#order_div {
-	text-align: center;
-}
-
-#left_div {
-	display: inline-block;
-	background-color: white;
-	margin-top: 5px;
-	padding: 0;
-}
-#right_div {
-	display: inline-block;
-	border: 1px solid #dcdcdc;
-	position: relative;
-	height: 400px;
-	background-color: white;
-}
-
-.info_div {
-	border: 1.8px solid #dcdcdc;
-	border-radius: .25rem;
-	margin-bottom: 1rem;
-	padding-top: .3rem;
-}
-.info_div table {
-	margin: .7rem 0;
-}
-.address_btn{
-	width: 49%;
-	padding: 0.3rem 0 !important;
-	border: 0 !important;
-	border-radius: .25rem !important;
-	background-color: #d3d3d3 !important;
-	color: white !important;
-}
-.address_input_div {
-	display: none;
-}
-
-</style>
+<link rel="stylesheet" href="/resources/css/order.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
@@ -163,11 +123,17 @@
 							</tr>
 							<c:forEach var="item" items="${orderList}">
 								<tr>
-									<td>
+									<td class="item_info_td">
+										<input type="hidden" name="bookCount" value="${item.bookCount}">
+										<input type="hidden" name="bookPrice" value="${item.bookPrice}">
+										<input type="hidden" name="totalPoint" value="${item.totalPoint}">
+										<input type="hidden" name="totalPrice" value="${item.totalPrice}">
 										<img alt="책" src="${item.bookImage}" width="90px"/>
 									</td>
 									<td>${item.bookName}</td>
-									<td>${item.bookCount}개</td>
+									<td class="item_count_td">
+										${item.bookCount}개
+									</td>
 									<td class="item_price_td">
 										<fmt:formatNumber value="${item.totalPrice}" pattern="##,###원" />
 									</td>
@@ -187,7 +153,7 @@
 							<tr>
 								<th>포인트 사용</th>
 								<td>
-									${memberInfo.memberPoint} p | <input class="order_point_input" value="0"> p 
+									${memberInfo.memberPoint} p | <input class="point_input" value="0"> p 
 									<button class="btn btn-outline-warning btn-sm point_input_btn point_input_btn_N" data-state="N">모두사용</button>
 									<button class="btn btn-outline-warning btn-sm point_input_btn point_input_btn_Y" data-state="Y" style="display: none;">사용취소</button>
 								</td>
@@ -195,14 +161,44 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- 종합 정보 -->
-				<div  class="info_div">
-					
-				</div>
-				
 			</div>
 			<div id="right_div" class="rounded-3 col-3">
-				
+				<table class="table">
+					<tr>
+						<th colspan="2">결제 정보</th>
+					</tr>
+				</table>
+				<table class="table table-borderless">
+					<tr>
+						<td>상품금액</td>
+						<td class="totalbookPrice"></td>
+					</tr>
+					<tr>
+						<td>배송비</td>
+						<td class="delivaryPrice"></td>
+					</tr>
+					<tr>
+						<td>할인금액</td>
+						<td class="salePrice"></td>
+					</tr>
+					<tr>
+						<td>사용 포인트</td>
+						<td class="usePoint"></td>
+					</tr>
+				</table>
+				<table class="table table-borderless border-top">
+					<tr>
+						<th>최종결제결제</th>
+						<th class="finalTotalPrice"></th>
+					</tr>
+					<tr>
+						<td>적립예정포인트</td>
+						<td class="totalPoint"></td>
+					</tr>
+				</table>
+				<div class="d-grid">
+					<button id="order_btn" class="btn btn-warning btn-block" >결제하기</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -213,12 +209,94 @@
 </body>
 
 <script type="text/javascript">
+	let limitPoint = 0;
+	
 	$(function(){
 		/* 결제 칸 스크롤 처리 */
 		$(window).scroll(function(){
 			$('#right_div').css('top',$(window).scrollTop());
 		});
+		
+		/* 총 주문 정보 출력 */
+		setTotalInfo();
 	});
+	
+	/* 총 주문 정보 세팅 */
+	function setTotalInfo(){
+		let totalPrice = 0;
+		let totalCount = 0;
+		let totalKind = 0;
+		let totalbookPrice = 0;
+		let totalPoint = 0;
+		let deliveryPrice = 0;
+		let usePoint = 0;
+		let finalTotalPrice = 0;
+		
+		$(".item_info_td").each(function(index, element){
+			totalPrice += parseInt($(element).find("input[name='totalPrice']").val());
+			totalCount += parseInt($(element).find("input[name='bookCount']").val());
+			totalPoint += parseInt($(element).find("input[name='totalPoint']").val());
+			totalbookPrice += parseInt($(element).find("input[name='bookPrice']").val() * $(element).find("input[name='bookCount']").val());
+			totalKind += 1;
+		});
+		
+		if(totalPrice >= 20000){
+			deliveryPrice = 0;
+		} else if(totalPrice == 0){
+			deliveryPrice = 0;
+		} else {
+			deliveryPrice = 3000;
+		}
+		
+		usePoint = $(".point_input").val();
+		finalTotalPrice = totalPrice + deliveryPrice - usePoint;
+		limitPoint = totalPrice + deliveryPrice;
+
+		$(".totalbookPrice").text(totalbookPrice.toLocaleString() + "원");
+		$(".delivaryPrice").text(deliveryPrice.toLocaleString() + "원");
+		$(".salePrice").text((totalbookPrice - totalPrice).toLocaleString() + "원");
+		$(".usePoint").text((usePoint).toLocaleString() + "P");
+		$(".finalTotalPrice").text(finalTotalPrice.toLocaleString() + "원");
+		$(".totalPoint").text(totalPoint.toLocaleString() + "P");
+	}
+	
+	
+	/* 포인트 입력 */
+	$(".point_input").on("propertychange change keyup paste input", function(){
+		limitPointFunction(parseInt($(this).val()));
+	});
+	
+	/* 포인트 모두 사용 버튼 */
+	$(".point_input_btn").on("click", function(){
+		const maxPoint = parseInt("${memberInfo.memberPoint}");
+
+		let state = $(this).data("state");
+		
+		if(state == 'N'){
+			limitPointFunction(parseInt(maxPoint));
+			$(".point_input_btn_N").css("display", "none");
+			$(".point_input_btn_Y").css("display", "inline-block");
+		} else {
+			limitPointFunction(parseInt(0));
+			$(".point_input_btn_N").css("display", "inline-block");
+			$(".point_input_btn_Y").css("display", "none");
+		}
+	});
+	
+	/* 포인트 사용 제한 && 총정보 업데이트 */
+	function limitPointFunction(inputValue){
+		const maxPoint = parseInt("${memberInfo.memberPoint}");
+		const pointInput = $(".point_input");
+		if(inputValue <= 0){
+			pointInput.val(0);
+		} else if(inputValue >= maxPoint && maxPoint < limitPoint){
+			pointInput.val(maxPoint);
+		} else if(inputValue >= limitPoint){
+			pointInput.val(limitPoint);
+		}
+		
+		setTotalInfo();
+	}
 	
 	/* 주소입력란 버튼 */
 	function showAddress(className){

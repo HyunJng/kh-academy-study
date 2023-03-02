@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+#order_div {
+	text-align: center;
+}
+
+#left_div {
+	display: inline-block;
+	background-color: white;
+	margin-top: 5px;
+	padding: 0;
+}
+#right_div {
+	display: inline-block;
+	border: 1px solid #dcdcdc;
+	position: relative;
+	height: 400px;
+	background-color: white;
+}
+
+.info_div {
+	border: 1.8px solid #dcdcdc;
+	border-radius: .25rem;
+	margin-bottom: 1rem;
+	padding-top: .3rem;
+}
+.info_div table {
+	margin: .7rem 0;
+}
+.address_btn{
+	width: 49%;
+	padding: 0.3rem 0 !important;
+	border: 0 !important;
+	border-radius: .25rem !important;
+	background-color: #d3d3d3 !important;
+	color: white !important;
+}
+.address_input_div {
+	display: none;
+}
+
+@media ( max-width : 992px) {
+	#right_div {
+		height: 500px;
+	}
+}
