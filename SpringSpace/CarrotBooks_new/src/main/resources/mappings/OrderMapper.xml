@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="OrderMapper">
+	<resultMap type="orderPageItemVO" id="orderPageItem">
+		<result column="title" property="bookName"/>
+		<result column="fullPrice" property="bookPrice"/>
+	</resultMap>
+
+	<resultMap type="orderItemVO" id="orderItem">
+		<result column="title" property="bookName"/>
+		<result column="fullPrice" property="bookPrice"/>
+	</resultMap>
+	
+	<!-- 주문 책 정보 가져오기 -->
+	<select id="getGoodsInfo" resultMap="orderPageItem">
+		select bookId, title, fullPrice, discountPer, bookImage
+		from book where bookId = #{bookId}
+	</select>
+	
+	<!-- 결제 정보 가져오기 -->
+	<select id="getOrderInfo" resultMap="orderItem">
+		select bookId, fullPrice, discountPer
+		from book where bookId = #{bookId}
+	</select>
+
+	<!-- 주문 테이블 등록 -->	
+	<insert id="enrollOrder">
+		insert into bOrder(orderId, addressee, memberId, memberAddr1, memberAddr2, memberAddr3, orderState, deliveryCost, usePoint)
+		values(#{orderId},#{addressee}, #{memberId}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, '배송준비', #{deliveryCost}, #{usePoint})
+	</insert>
+	
+	<!-- 주문 상품 테이블 등록 -->
+	<insert id="enrollOrderItem">
+		insert into orderItem(orderItemId, orderId, bookId, bookCount, bookPrice, discountPer, savePoint)
+		values(orderItemSeq.NEXTVAL, #{orderId}, #{bookId}, #{bookCount}, #{bookPrice}, #{discountPer}, #{savePoint})
+	</insert>
+	
+	<!-- 사용자 포인트 차감 -->
+	<update id="deductPoint">
+		update member set memberPoint = #{memberPoint} where memberId = #{memberId}
+	</update>
+	
+	<!-- 상품 재고 차감 -->
+	<update id="deductStock">
+		update book set bookStock = #{bookStock} where bookId = #{bookId}
+	</update>
+	
+	<delete id="deleteOrderCart">
+		delete from cart where memberId = #{memberId} and bookId = #{bookId}
+	</delete>
+</mapper>

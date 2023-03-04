@@ -1,6 +1,7 @@
 package com.carrot.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +40,21 @@ public class OrderController {
 	@PostMapping("/order")
 	public String orderPagePost(OrderVO order, HttpServletRequest req) {
 		logger.info("orderPagePost 진입");
-		System.out.println(order);
+
+		orderService.order(order);
+		
+		MemberVO member = new MemberVO();
+		member.setMemberId(order.getMemberId());
+		
+		HttpSession session = req.getSession();
+		
+		try {
+			MemberVO memberLogin = memberService.findMemberbyId(member);
+			session.setAttribute("member", memberLogin);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return "redirect:/main";
 	}
 	
