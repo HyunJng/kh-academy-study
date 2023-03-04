@@ -48,7 +48,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RequestMapping("/admin")
 public class AdminController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	private AdminService adminService;
 	private BookService bookService;
 	private ImageService imageService;

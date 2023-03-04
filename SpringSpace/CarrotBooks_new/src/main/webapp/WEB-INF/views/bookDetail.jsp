@@ -107,9 +107,17 @@
 
 	/* 바로주문 클릭 */
 	$("#order_btn").on("click", function(){
-			let bookCount = $(".quentity_input").val();
-			$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
-			$(".order_form").submit();
+		let member = '${member}';
+		
+		if(member === ""){ 
+			alert("로그인이 필요합니다.");
+			location.href="/member/login";
+			return;
+		}
+		
+		let bookCount = $(".quentity_input").val();
+		$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
+		$(".order_form").submit();
 	});
 	
 	/* 장바구니 추가 */

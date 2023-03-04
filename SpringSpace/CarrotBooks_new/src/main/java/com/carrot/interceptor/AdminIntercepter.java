@@ -19,7 +19,7 @@ public class AdminIntercepter implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("preHandler 진입");
-		/*		
+				
 		// admin이면 true, 아니면 false
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO)session.getAttribute("member");
@@ -29,8 +29,6 @@ public class AdminIntercepter implements HandlerInterceptor{
 		response.sendRedirect("/main");
 		
 		return false;
-		 * */
-		return true;
 	}
 
 	@Override
