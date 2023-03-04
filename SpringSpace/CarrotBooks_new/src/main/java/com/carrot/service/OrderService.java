@@ -6,26 +6,27 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.carrot.domain.OrderItemVO;
+import com.carrot.domain.OrderPageItemVO;
 import com.carrot.repository.MemberRepository;
-import com.carrot.repository.OrderRepository;
+import com.carrot.repository.OrderPageRepository;
+import com.carrot.repository.OrderPageRepository;
 
 @Service
 public class OrderService {
 
-	private OrderRepository orderRepository;
+	private OrderPageRepository orderPageRepository;
 	
 	@Autowired
-	public OrderService(OrderRepository orderRepository) {
-		this.orderRepository = orderRepository;
+	public OrderService(OrderPageRepository orderPageRepository) {
+		this.orderPageRepository = orderPageRepository;
 	}
 	
 	// 주문리스트 정보 가져오기
-	public List<OrderItemVO> getGoodsInfo(List<OrderItemVO> orders){
-		List<OrderItemVO> result = new ArrayList<>();
+	public List<OrderPageItemVO> getGoodsInfo(List<OrderPageItemVO> orders){
+		List<OrderPageItemVO> result = new ArrayList<>();
 		
-		for(OrderItemVO order: orders) {
-			OrderItemVO info = orderRepository.getGoodsInfo(order);
+		for(OrderPageItemVO order: orders) {
+			OrderPageItemVO info = orderPageRepository.getGoodsInfo(order);
 			info.setBookCount(order.getBookCount());
 			info.initSaleTotal();
 			

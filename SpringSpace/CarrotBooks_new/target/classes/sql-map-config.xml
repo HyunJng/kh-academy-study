@@ -13,7 +13,7 @@
 		<typeAlias alias="advertVO" type="com.carrot.domain.AdvertVO"></typeAlias>
 		<typeAlias alias="attachImageVO" type="com.carrot.domain.AttachImageVO"></typeAlias>
 		<typeAlias alias="cartVO" type="com.carrot.domain.CartVO"></typeAlias>
-		<typeAlias alias="orderItemVO" type="com.carrot.domain.OrderItemVO"></typeAlias>
+		<typeAlias alias="orderPageItemVO" type="com.carrot.domain.OrderPageItemVO"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
@@ -23,7 +23,7 @@
 		<mapper resource="mappings/AdvertMapper.xml" />
 		<mapper resource="mappings/ImageMapper.xml" />
 		<mapper resource="mappings/CartMapper.xml" />
-		<mapper resource="mappings/OrderMapper.xml" />
+		<mapper resource="mappings/OrderPageMapper.xml" />
 	</mappers>
 	
 </configuration>

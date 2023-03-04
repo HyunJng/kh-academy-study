@@ -55,7 +55,14 @@
 									</tr>
 									<tr>
 										<th rowspan="3"><br>주소</th>
-										<td>${memberInfo.memberAddr1}</td>
+										<td>
+											${memberInfo.memberAddr1}
+											<input class="selectAddress" value="T" type="hidden">
+											<input class="addressee_input" value="${memberInfo.memberName }" type="hidden">
+											<input class="address1_input" value="${memberInfo.memberAddr1 }" type="hidden">
+											<input class="address2_input" value="${memberInfo.memberAddr2 }" type="hidden">
+											<input class="address3_input" value="${memberInfo.memberAddr3 }" type="hidden">
+										</td>
 									</tr>
 									<tr>
 										<td>${memberInfo.memberAddr2}</td>
@@ -76,14 +83,15 @@
 									<tr>
 										<th>수령인</th>
 										<td>
-											<input class="form-control" type="text" name="addressee">
+											<input class="form-control addressee_input" type="text">
 										</td>
 									</tr>
 									<tr>
 										<th rowspan="3"><br>주소</th>
 										<td class="row">
 											<div class="col-8">
-												<input class="form-control" type="text" name="memberAddr1" readonly>
+												<input class="selectAddress" value="F" type="hidden">
+												<input class="form-control address1_input" type="text" readonly>
 											</div>
 											<div class="col-4">
 												<button class="btn btn-secondary" id="address_search_btn">주소 검색</button>
@@ -92,12 +100,12 @@
 									</tr>
 									<tr>
 										<td>
-											<input class="form-control" type="text" name="memberAddr2" readonly>
+											<input class="form-control address2_input" type="text" readonly>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											<input class="form-control" type="text" name="memberAddr3" readonly>
+											<input class="form-control address3_input" type="text" readonly>
 										</td>
 									</tr>
 								</tbody>
@@ -124,6 +132,7 @@
 							<c:forEach var="item" items="${orderList}">
 								<tr>
 									<td class="item_info_td">
+										<input type="hidden" name="bookId" value="${item.bookId}">
 										<input type="hidden" name="bookCount" value="${item.bookCount}">
 										<input type="hidden" name="bookPrice" value="${item.bookPrice}">
 										<input type="hidden" name="totalPoint" value="${item.totalPoint}">
@@ -203,6 +212,18 @@
 		</div>
 	</div>
 	
+	<div>
+		<!-- 주문하기 form -->
+		<form class="order_form" action="/order" method="post">
+			<input name="memberId" value="${memberInfo.memberId }" type="hidden">
+			<input name="addressee" type="hidden">
+			<input name="memberAddr1" type="hidden">
+			<input name="memberAddr2" type="hidden">
+			<input name="memberAddr3" type="hidden">
+			<input name="usePoint" type="hidden">
+		</form>
+	</div>
+	
 	<footer>
 		<jsp:include page="/WEB-INF/views/fix/footer.jsp"></jsp:include>
 	</footer>
@@ -219,6 +240,35 @@
 		
 		/* 총 주문 정보 출력 */
 		setTotalInfo();
+	});
+
+
+	/* 주문하기 버튼 */
+	$("#order_btn").on("click", function(){
+		let formObj = $(".order_form");
+		$(".address_input_div").each(function(i, obj){
+			if($(obj).find(".selectAddress").val() === 'T'){
+				formObj.find("input[name='addressee']").val($(obj).find(".addressee_input").val());
+				formObj.find("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
+				formObj.find("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
+				formObj.find("input[name='memberAddr3']").val($(obj).find(".address3_input").val());
+			}
+		});
+		formObj.find("input[name='usePoint']").val($(".point_input").val());
+		
+		// 상품 정보
+		let form_contents = '';
+		$(".item_info_td").each(function(index, element){
+			let bookId = $(element).find("input[name='bookId']").val();
+			let bookCount = $(element).find("input[name='bookCount']").val();
+			let bookId_input = "<input name='orders[" + index + "].bookId' type='hidden' value='"+bookId+"'>";
+			form_contents += bookId_input;
+			let bookCount_input = "<input name='orders[" + index + "].bookCount' type='hidden' value='"+bookCount+"'>";
+			form_contents += bookCount_input;
+		});
+		
+		$(".order_form").append(form_contents);
+		$(".order_form").submit();
 	});
 	
 	/* 총 주문 정보 세팅 */
@@ -305,6 +355,11 @@
 		
 		$(".address_btn").css("background-color", "#d3d3d3");
 		$(".address_btn_" + className).prop("style", 'background-color: #696969 !important');
+		
+		$(".address_input_div").each(function(i, obj){
+			$(obj).find(".selectAddress").val("F");
+		});
+		$(".address_input_div" + className).find(".selectAddress").val("T");
 	}
 	
 	/* 주소찾기  */
