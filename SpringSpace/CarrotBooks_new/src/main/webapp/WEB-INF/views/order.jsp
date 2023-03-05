@@ -359,7 +359,7 @@
 		$(".address_input_div").each(function(i, obj){
 			$(obj).find(".selectAddress").val("F");
 		});
-		$(".address_input_div" + className).find(".selectAddress").val("T");
+		$(".address_input_div_" + className).find(".selectAddress").val("T");
 	}
 	
 	/* 주소찾기  */
@@ -383,13 +383,13 @@
 	                }
 	                
 	                // 필드에 넣기
-	                $('input[name="memberAddr1"]').val(data.zonecode);
-	                $('input[name="memberAddr2"]').val(roadAddr + extraRoadAddr);
-	                $('input[name="memberAddr3"]').attr({
+	                $('.address1_input').val(data.zonecode);
+	                $('.address2_input').val(roadAddr + extraRoadAddr);
+	                $('.address3_input').attr({
 	                	"readonly": false,
 	                	"placeholder": "상세주소입력"
 	                });
-	                $('#memberAddr3').focus();
+	                $('.address3_input').focus();
 		        }
 		    }).open();
 		});

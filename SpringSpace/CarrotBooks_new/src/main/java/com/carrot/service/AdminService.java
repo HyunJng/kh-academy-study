@@ -11,10 +11,12 @@ import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
+import com.carrot.domain.OrderVO;
 import com.carrot.domain.PageMaker;
 import com.carrot.repository.AdvertRepository;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
+import com.carrot.repository.OrderRepository;
 
 @Service
 public class AdminService {
@@ -22,6 +24,7 @@ public class AdminService {
 	private BookRepository bookRepository;
 	private MemberRepository memberRepository;
 	private AdvertRepository advertRepository;
+	@Autowired private OrderRepository orderRepository;
 	
 	@Autowired
 	public AdminService(BookRepository bookRepository, MemberRepository memberRepository, AdvertRepository advertRepository) {
@@ -66,5 +69,15 @@ public class AdminService {
 			image.setAdvertId(advert.getAdvertId());
 			advertRepository.saveAdvertImage(image);
 		}
+	}
+	
+	// 주문 관련
+	public List<OrderVO> getOrderList(Criteria cri){
+		return orderRepository.getOrderList(cri);
+	}
+	
+	public PageMaker getOrderPageMaker(Criteria cri) {
+		int total = orderRepository.getOrderTotal(cri);
+		return new PageMaker(cri, total);
 	}
 }

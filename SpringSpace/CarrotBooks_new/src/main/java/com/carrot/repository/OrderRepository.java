@@ -1,7 +1,10 @@
 package com.carrot.repository;
 
+import java.util.List;
+
 import com.carrot.domain.BookVO;
 import com.carrot.domain.CartVO;
+import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderItemVO;
 import com.carrot.domain.OrderPageItemVO;
@@ -29,4 +32,10 @@ public interface OrderRepository {
 	
 	// 카트 제거
 	public int deleteOrderCart(CartVO cart);
+	
+	// 주문 상품 리스트(ALL)
+	public List<OrderVO> getOrderList(Criteria cri);
+	
+	// 주문 총 개수(ALL)
+	public int getOrderTotal(Criteria cri);
 }

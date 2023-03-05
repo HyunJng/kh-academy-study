@@ -33,6 +33,7 @@ import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
+import com.carrot.domain.OrderVO;
 import com.carrot.domain.PageMaker;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.MemberRepository;
@@ -259,5 +260,28 @@ public class AdminController {
 		
 		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
 		return "/admin/bookPop";
+	}
+	
+	/* 주문 페이지 */
+	@GetMapping("/orderList")
+	public String orderListGet(Criteria cri, Model model) {
+		logger.info("orderList페이지 진입");
+	
+		// 회원 이메일 -> 아이디 찾기
+		if(cri.getKeyword() != null) {
+			int id = memberService.findMemberIdbyEmail(cri.getKeyword());
+			cri.setKeyword(String.valueOf(id));
+		}
+		
+		List<OrderVO> list = adminService.getOrderList(cri); 
+	
+		if(!list.isEmpty()) {
+			model.addAttribute("orderList", list);
+			model.addAttribute("pageMaker", adminService.getOrderPageMaker(cri));
+		} else {
+			model.addAttribute("orderListCheck", "empty");
+		}
+		
+		return "/admin/manageOrder";
 	}
 }

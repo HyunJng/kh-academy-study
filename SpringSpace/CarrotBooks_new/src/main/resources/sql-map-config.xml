@@ -15,6 +15,7 @@
 		<typeAlias alias="cartVO" type="com.carrot.domain.CartVO"></typeAlias>
 		<typeAlias alias="orderPageItemVO" type="com.carrot.domain.OrderPageItemVO"></typeAlias>
 		<typeAlias alias="orderItemVO" type="com.carrot.domain.OrderItemVO"></typeAlias>
+		<typeAlias alias="orderVO" type="com.carrot.domain.OrderVO"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->

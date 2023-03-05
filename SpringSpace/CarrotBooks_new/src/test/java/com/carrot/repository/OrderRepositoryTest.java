@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.carrot.domain.BookVO;
 import com.carrot.domain.CartVO;
+import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderItemVO;
 import com.carrot.domain.OrderPageItemVO;
@@ -97,7 +98,6 @@ public class OrderRepositoryTest {
 		book.setBookStock(3);
 		orderRepository.deductStock(book);
 	}
- * */
 	
 	@Test
 	public void deleteOrderCart() {
@@ -106,5 +106,13 @@ public class OrderRepositoryTest {
 		cart.setBookId("8959136417 9788959136414");
 		
 		orderRepository.deleteOrderCart(cart);
+	}
+ * */
+	@Test
+	public void getOrderListTest() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("22");
+		List<OrderVO> list = orderRepository.getOrderList(cri);
+		System.out.println(list);
 	}
 }

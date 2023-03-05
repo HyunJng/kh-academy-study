@@ -53,6 +53,14 @@ public class MemberService {
 		return memberRepository.findMemberbyId(member);
 	}
 	
+	// email로 id 검색
+	public int findMemberIdbyEmail(String email) {
+		MemberVO memberInfo = new MemberVO();
+		memberInfo.setMemberEmail(email);
+		MemberVO member = memberRepository.findMemberbyEmail(memberInfo);
+		return (member != null)? member.getMemberId(): -1;
+	}
+	
 	// 비밀번호 인코드
 	public void passwordEncode(MemberVO member) {
 		String rawPassword = member.getMemberPw();

@@ -17,6 +17,7 @@ public class OrderVO {
 	private Date orderDate;
 	
 	/* 편의를 위한 변수*/
+	private String memberEmail;
 	private List<OrderItemVO> orders;
 	private int orderSalePrice;
 	private int orderSavePoint;
@@ -105,7 +106,13 @@ public class OrderVO {
 	public void setOrderFinalSalePrice(int orderFinalSalePrice) {
 		this.orderFinalSalePrice = orderFinalSalePrice;
 	}
-	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+
 	public void getOrderPriceInfo() {
 		/* 상품 비용 & 적립포인트 */
 		for (OrderItemVO order : orders) {
@@ -121,14 +128,13 @@ public class OrderVO {
 		/* 최종 비용(상품 비용 + 배송비 - 사용 포인트) */
 		orderFinalSalePrice = orderSalePrice + deliveryCost - usePoint;
 	}
-	
 	@Override
 	public String toString() {
 		return "OrderVO [orderId=" + orderId + ", addressee=" + addressee + ", memberId=" + memberId + ", memberAddr1="
 				+ memberAddr1 + ", memberAddr2=" + memberAddr2 + ", memberAddr3=" + memberAddr3 + ", orderState="
 				+ orderState + ", deliveryCost=" + deliveryCost + ", usePoint=" + usePoint + ", orderDate=" + orderDate
-				+ ", orders=" + orders + ", orderSalePrice=" + orderSalePrice + ", orderSavePoint=" + orderSavePoint
-				+ ", orderFinalSalePrice=" + orderFinalSalePrice + "]";
+				+ ", memberEmail=" + memberEmail + ", orders=" + orders + ", orderSalePrice=" + orderSalePrice
+				+ ", orderSavePoint=" + orderSavePoint + ", orderFinalSalePrice=" + orderFinalSalePrice + "]";
 	}
 	
 }

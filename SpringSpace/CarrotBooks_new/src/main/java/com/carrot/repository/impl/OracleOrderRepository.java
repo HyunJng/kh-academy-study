@@ -1,11 +1,14 @@
 package com.carrot.repository.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.carrot.domain.BookVO;
 import com.carrot.domain.CartVO;
+import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderItemVO;
 import com.carrot.domain.OrderPageItemVO;
@@ -50,5 +53,15 @@ public class OracleOrderRepository implements OrderRepository{
 	@Override
 	public int deleteOrderCart(CartVO cart) {
 		return mybatis.delete("OrderMapper.deleteOrderCart", cart);
+	}
+
+	@Override
+	public List<OrderVO> getOrderList(Criteria cri) {
+		return mybatis.selectList("OrderMapper.getOrderList", cri);
+	}
+
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return mybatis.selectOne("OrderMapper.getOrderTotal", cri);
 	}
 }

@@ -12,6 +12,7 @@
 		<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageGoods'">상품 관리</button>	
 		<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageMember'">회원 관리</button>	
 		<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/manageAdvert'">광고 관리</button>	
+		<button class="btn btn-outline-secondary" type="button" onclick="location.href='/admin/orderList'">주문 관리</button>	
 	</div>	
 </body>
 </html>
