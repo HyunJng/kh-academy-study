@@ -11,6 +11,34 @@
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+
+#reply_form fieldset {
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#reply_form fieldset legend{
+    text-align: right;
+}
+#reply_form input[type=radio]{
+    display: none;
+}
+#reply_form label{
+	font-size: 2.5vw;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#reply_form label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reply_form label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reply_form input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
@@ -58,16 +86,37 @@
 				</div>
 			</div>
 			<!-- 책 내용  -->
-			<div class="px-5 py-3">
+			<div class="px-5 py-3 border-bottom">
 				<div class="h5">책 소개</div>
 				<div>${book.bookIntro}...</div>
 			</div>
 			<!-- 리뷰 -->
-			<div>
-				
-			</div>
-			<div>
-				리뷰
+			<div class="px-5 py-3">
+				<h3>review</h3>
+				<!-- 리뷰등록창 -->
+				<c:if test="${member != null}">
+					<form id="reply_form" action="/reply/enroll" method="post">
+						<input type="hidden" name="memberId" value="${member.memberId}">
+						<input type="hidden" name="bookId" value="${book.bookId}">
+						<div class="row">
+							<div class="col-3">
+								<fieldset>
+									<input type="radio" name="rating" value="5" id="rate5"><label for="rate5">★</label>
+									<input type="radio" name="rating" value="4" id="rate4"><label for="rate4">★</label>
+									<input type="radio" name="rating" value="3" id="rate3"><label for="rate3">★</label>
+									<input type="radio" name="rating" value="2" id="rate2"><label for="rate2">★</label>
+									<input type="radio" name="rating" value="1" id="rate1"><label for="rate1">★</label>
+								</fieldset>
+							</div>
+							<div class="col-7">
+								<textarea name="content" style="width:100%"></textarea>
+							</div>
+							<div class="col-2 d-grid">
+								<button id="reply_submit_btn" class="btn btn-secondary btn-block">등록</button>
+							</div>
+						</div>
+					</form>
+				</c:if>
 			</div>
 			
 			<!-- 바로 주문 form  -->
@@ -90,8 +139,25 @@
 		let point = salePrice * 0.05;
 		point = Math.floor(point);
 		$(".point_span").text(point);
+		
+		/* 기존 댓글 확인 */
+		let member_reply_check = "${member_reply_check}"
+		if(member_reply_check !=="false"){
+			let member_reply = JSON.parse('${member_reply}');
+			// 댓글
+			$("#reply_form").find("textarea").text(member_reply.content);
+			$("#reply_form").find("textarea").prop("disabled", "true");
+			// 별점
+			let rate_num = member_reply.rating;
+			$("#reply_form").find("#rate" + rate_num).prop("checked", "true");
+			$("#reply_form").find("input[name='rating']").each(function(index, item){
+				$(item).prop("disabled", true);
+			});
+			// 등록버튼
+			$("#reply_submit_btn").prop("disabled", true);
+		}
 	});
-	
+
 	/* 수량 조절 버튼 조작*/
 	$(".plus_btn").on("click", function(){
 		let quantity = $(".quentity_input").val();
@@ -140,7 +206,6 @@
 			type: 'POST',
 			data: form,
 			success: function(result){
-				console.log("ajax result: "+result);
 				if(result == "0"){
 					alert("장바구니에 추가를 하지 못하였습니다.");
 				} else if(result == "1"){

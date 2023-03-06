@@ -89,7 +89,7 @@
 					<div class="row ps-2 mt-2">
 						<label class="form-label col-2 text-danger">수량</label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="bookStock" value="1" min="1" max="50" required>
+							<input class="form-control" type="number" name="bookStock" value="1" min="1" max="1000" required>
 						</div>
 					</div>
 					<div class="row ps-2 mt-2">

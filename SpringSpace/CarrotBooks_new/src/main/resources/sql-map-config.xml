@@ -16,6 +16,7 @@
 		<typeAlias alias="orderPageItemVO" type="com.carrot.domain.OrderPageItemVO"></typeAlias>
 		<typeAlias alias="orderItemVO" type="com.carrot.domain.OrderItemVO"></typeAlias>
 		<typeAlias alias="orderVO" type="com.carrot.domain.OrderVO"></typeAlias>
+		<typeAlias alias="replyVO" type="com.carrot.domain.ReplyVO"></typeAlias>
 	</typeAliases>
 	
 	<!-- Sql Mapper 설정 -->
@@ -26,6 +27,7 @@
 		<mapper resource="mappings/ImageMapper.xml" />
 		<mapper resource="mappings/CartMapper.xml" />
 		<mapper resource="mappings/OrderMapper.xml" />
+		<mapper resource="mappings/ReplyMapper.xml" />
 	</mappers>
 	
 </configuration>
