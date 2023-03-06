@@ -41,13 +41,13 @@ public class OracleOrderRepository implements OrderRepository{
 	}
 
 	@Override
-	public int deductPoint(MemberVO member) {
-		return mybatis.update("OrderMapper.deductPoint", member);
+	public int updatePoint(MemberVO member) {
+		return mybatis.update("OrderMapper.updatePoint", member);
 	}
 
 	@Override
-	public int deductStock(BookVO book) {
-		return mybatis.update("OrderMapper.deductStock", book);
+	public int updateStock(BookVO book) {
+		return mybatis.update("OrderMapper.updateStock", book);
 	}
 
 	@Override
@@ -64,4 +64,21 @@ public class OracleOrderRepository implements OrderRepository{
 	public int getOrderTotal(Criteria cri) {
 		return mybatis.selectOne("OrderMapper.getOrderTotal", cri);
 	}
+
+	@Override
+	public int orderCancle(String orderId) {
+		return mybatis.update("OrderMapper.orderCancle", orderId);
+	}
+
+	@Override
+	public List<OrderItemVO> getOrderItemInfo(String orderId) {
+		return mybatis.selectList("OrderMapper.getOrderItemInfo", orderId);
+	}
+
+	@Override
+	public OrderVO getOrder(String orderId) {
+		return mybatis.selectOne("OrderMapper.getOrder", orderId);
+	}
+	
+	
 }

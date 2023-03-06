@@ -33,6 +33,7 @@ import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
+import com.carrot.domain.OrderCancleVO;
 import com.carrot.domain.OrderVO;
 import com.carrot.domain.PageMaker;
 import com.carrot.repository.BookRepository;
@@ -42,6 +43,7 @@ import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 import com.carrot.service.ImageService;
 import com.carrot.service.MemberService;
+import com.carrot.service.OrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -55,6 +57,7 @@ public class AdminController {
 	private ImageService imageService;
 	private AdvertService advertService;
 	@Autowired private MemberService memberService;
+	@Autowired private OrderService orderService;
 	
 	@Autowired
 	public AdminController(AdminService adminService, BookService bookService, ImageService imageService, AdvertService advertService) {
@@ -266,9 +269,9 @@ public class AdminController {
 	@GetMapping("/orderList")
 	public String orderListGet(Criteria cri, Model model) {
 		logger.info("orderList페이지 진입");
-	
+		
 		// 회원 이메일 -> 아이디 찾기
-		if(cri.getKeyword() != null) {
+		if(cri.getKeyword() != null && cri.getKeyword() != "") {
 			int id = memberService.findMemberIdbyEmail(cri.getKeyword());
 			cri.setKeyword(String.valueOf(id));
 		}
@@ -283,5 +286,14 @@ public class AdminController {
 		}
 		
 		return "/admin/manageOrder";
+	}
+	
+	/* 주문 삭제 */
+	@PostMapping("/orderCancle")
+	public String orderCanclePost(OrderCancleVO vo) {
+		logger.info("orderCanclePost 진입");
+		
+		orderService.orderCancle(vo);
+		return "redirect:/admin/orderList?keyword=" + vo.getKeyword() + "&amount=" + vo.getAmount() + "&pageNum=" + vo.getPageNum();
 	}
 }

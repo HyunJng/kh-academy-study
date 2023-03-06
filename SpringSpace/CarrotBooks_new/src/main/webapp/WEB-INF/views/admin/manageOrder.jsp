@@ -67,7 +67,14 @@
 								<td>${order.memberEmail}</td>
 								<td>${order.orderState}</td>
 								<td><fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd"/></td>
-								<td><button class="btn btn-sm btn-danger">X</button></td>
+								<td>
+									<c:if test="${order.orderState =='배송준비'}">
+										<button class="btn btn-sm btn-danger delete_btn" data-orderid="${order.orderId}">X</button>
+									</c:if>
+									<c:if test="${order.orderState !='배송준비'}">
+										<button class="btn btn-sm btn-secondary" data-orderid="${order.orderId}" disabled>X</button>
+									</c:if>
+								</td>
 								<td><button class="btn btn-sm btn-secondary">click</button></td>
 							</tr>
 						</c:forEach>
@@ -91,6 +98,16 @@
 				
 			</div>
 		</div>
+		<div>
+			<!-- 주문 취소 form -->
+			<form id="deleteForm" action="/admin/orderCancle" method="post">
+				<input type="hidden" name="orderId">			
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+				<input type="hidden" name="memberId" value="${member.memberId}">			
+			</form>
+		</div>
 	</div>
 	<footer>
 		<jsp:include page="/WEB-INF/views/fix/footer.jsp"></jsp:include>
@@ -98,6 +115,14 @@
 </body>
 <script type="text/javascript">
 
+/* 주문 취소 버튼 */
+$(".delete_btn").on("click", function(e){
+	e.preventDefault();
+	let id = $(this).data("orderid");
+
+	$("#deleteForm").find("input[name='orderId']").val(id);
+	$("#deleteForm").submit();
+})
 
 
 /* 페이지 버튼 */

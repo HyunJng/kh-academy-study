@@ -37,13 +37,13 @@
 		values(orderItemSeq.NEXTVAL, #{orderId}, #{bookId}, #{bookCount}, #{bookPrice}, #{discountPer}, #{savePoint})
 	</insert>
 	
-	<!-- 사용자 포인트 차감 -->
-	<update id="deductPoint">
+	<!-- 사용자 포인트 수정 -->
+	<update id="updatePoint">
 		update member set memberPoint = #{memberPoint} where memberId = #{memberId}
 	</update>
 	
-	<!-- 상품 재고 차감 -->
-	<update id="deductStock">
+	<!-- 상품 재고 수정 -->
+	<update id="updateStock">
 		update book set bookStock = #{bookStock} where bookId = #{bookId}
 	</update>
 	
@@ -77,5 +77,22 @@
 		<if test="keyword != null">
 			where memberId like '%'||#{keyword}||'%'
 		</if>
+	</select>
+	
+	<!-- 주문 취소 -->
+	<update id="orderCancle">
+		update border set orderState = '주문취소' where orderId = #{orderId}
+	</update>
+	
+	<!-- 주문 상품 정보  -->
+	<select id="getOrderItemInfo" resultType="orderItemVO">
+		select * from orderItem
+		where orderId = #{orderId}
+	</select>
+	
+	<!-- 주문 정보 -->
+	<select id="getOrder" resultType="orderVO">
+		select * from border
+		where orderId = #{orderId}
 	</select>
 </mapper>

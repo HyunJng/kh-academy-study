@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.CartVO;
 import com.carrot.domain.MemberVO;
+import com.carrot.domain.OrderCancleVO;
 import com.carrot.domain.OrderItemVO;
 import com.carrot.domain.OrderPageItemVO;
 import com.carrot.domain.OrderVO;
@@ -80,10 +81,8 @@ public class OrderService {
 		calPoint = calPoint - order.getUsePoint() + order.getOrderSavePoint();
 		member.setMemberPoint(calPoint);
 		
-		/*
-		 */	
 		// DB 변경
-		orderRepository.deductPoint(member);
+		orderRepository.updatePoint(member);
 		
 		// 재고 변동
 		for(OrderItemVO oi : order.getOrders()) {
@@ -91,9 +90,9 @@ public class OrderService {
 			bookInfo.setBookId(oi.getBookId());
 			
 			BookVO book = bookRepository.getBookById(bookInfo);
-			book.setBookStock(bookInfo.getBookStock() - oi.getBookCount());
+			book.setBookStock(book.getBookStock() - oi.getBookCount());
 			
-			orderRepository.deductStock(book);
+			orderRepository.updateStock(book);
 		}
 		// 장바구니 제거
 		for(OrderItemVO oi : order.getOrders()) {
@@ -104,4 +103,52 @@ public class OrderService {
 			orderRepository.deleteOrderCart(cart);
 		}
 	}
+	
+	@Transactional
+	public void orderCancle(OrderCancleVO vo) {
+		// 회원 정보 가져오기
+		MemberVO memberInfo = new MemberVO();
+		memberInfo.setMemberId(vo.getMemberId());
+		MemberVO member = memberRepository.findMemberbyId(memberInfo);
+		
+		System.out.println("서비스 member: " + member);
+		
+		// 주문 상세 정보 가져오기
+		List<OrderItemVO> ords = orderRepository.getOrderItemInfo(vo.getOrderId());
+		for(OrderItemVO temp : ords) {
+			temp.initSaleTotal();
+		}
+
+		System.out.println("서비스 주문 상세정보 : " + ords);
+		
+		// 주문 정보 가져오기
+		OrderVO orw = orderRepository.getOrder(vo.getOrderId());
+		orw.setOrders(ords);
+		orw.getOrderPriceInfo();
+		
+		System.out.println("서비스 주문정보: " + orw);
+		/*
+		 * */
+		// 주문 상태 변경
+		orderRepository.orderCancle(orw.getOrderId());
+
+		// 포인트 반환
+		int calPoint = member.getMemberPoint();
+		calPoint = calPoint + orw.getUsePoint() - orw.getOrderSavePoint();
+		member.setMemberPoint(calPoint);
+		
+		orderRepository.updatePoint(member);
+		
+		// 재고 반환
+		for(OrderItemVO ord : orw.getOrders()) {
+			BookVO bookInfo = new BookVO();
+			bookInfo.setBookId(ord.getBookId());
+			BookVO book = bookRepository.getBookById(bookInfo);
+			book.setBookStock(book.getBookStock() + ord.getBookCount());
+			orderRepository.updateStock(book);
+		}
+				
+	}
+	
+	
 }

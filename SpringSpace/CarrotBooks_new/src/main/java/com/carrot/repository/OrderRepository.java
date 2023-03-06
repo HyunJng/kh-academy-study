@@ -25,17 +25,26 @@ public interface OrderRepository {
 	public int enrollOrderItem(OrderItemVO orderItem);
 	
 	// 포인트 차감
-	public int deductPoint(MemberVO member);
+	public int updatePoint(MemberVO member);
 	
 	// 상품 재고 차감
-	public int deductStock(BookVO book);
+	public int updateStock(BookVO book);
 	
 	// 카트 제거
 	public int deleteOrderCart(CartVO cart);
 	
-	// 주문 상품 리스트(ALL)
+	// 주문 상품 리스트
 	public List<OrderVO> getOrderList(Criteria cri);
 	
-	// 주문 총 개수(ALL)
+	// 주문 총 개수
 	public int getOrderTotal(Criteria cri);
+	
+	// 주문 취소로 상태 변경
+	public int orderCancle(String orderId);
+	
+	// 주문 상품 정보
+	public List<OrderItemVO> getOrderItemInfo(String orderId);
+	
+	// 주문 정보
+	public OrderVO getOrder(String orderId);
 }
