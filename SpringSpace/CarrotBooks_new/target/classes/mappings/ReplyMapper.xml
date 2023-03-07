@@ -14,4 +14,24 @@
 		select * from reply
 		where memberId = #{memberId} and bookId = #{bookId}
 	</select>
+	
+	<!-- 댓글 리스트 가져오기 -->
+	<select id="getReplyList" resultType="replyVO">
+		<![CDATA[
+			select * from (
+				select rownum as rn, r.*
+				from reply r
+				where rownum <= #{pageNum} * #{amount} and bookId = #{bookId}
+				order by regDate desc
+			)
+			where rn > (#{pageNum} - 1) * #{amount} 
+		]]>
+	</select>
+	
+	<!-- 댓글 총 개수 가져오기 -->
+	<select id="getReplyTotal" resultType="int">
+		select count(*)
+		from reply
+		where bookId = #{bookId}
+	</select>
 </mapper>

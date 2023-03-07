@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+#reply_form fieldset {
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#reply_form fieldset legend{
+    text-align: right;
+}
+#reply_form input[type=radio]{
+    display: none;
+}
+#reply_form label{
+	font-size: 2.5vw;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#reply_form label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reply_form label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reply_form input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}

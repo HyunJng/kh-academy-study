@@ -12,6 +12,8 @@ public class Criteria {
 	private String keyword;
 	// 책관련
 	private String cateCode;
+	// 댓글관련
+	private String bookId;
 	
 	public Criteria() {
 		this.pageNum = 1;
@@ -62,6 +64,13 @@ public class Criteria {
 	public String getCateCode() {
 		return cateCode;
 	}
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
 
 	public void setCateCode(String cateCode) {
 		if(typeArr == null) {
@@ -75,6 +84,8 @@ public class Criteria {
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", typeArr="
-				+ Arrays.toString(typeArr) + ", keyword=" + keyword + ", cateCode=" + cateCode + "]";
+				+ Arrays.toString(typeArr) + ", keyword=" + keyword + ", cateCode=" + cateCode + ", bookId=" + bookId
+				+ "]";
 	}
+
 }

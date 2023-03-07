@@ -3,6 +3,9 @@ package com.carrot.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.carrot.domain.Criteria;
+import com.carrot.domain.PageMaker;
+import com.carrot.domain.ReplyPageVO;
 import com.carrot.domain.ReplyVO;
 import com.carrot.repository.ReplyRepository;
 
@@ -24,5 +27,14 @@ public class ReplyService {
 		vo.setMemberId(memberId);
 		
 		return replyRepository.getReply(vo);
+	}
+	
+	// 댓글 페이징
+	public ReplyPageVO getReplyList(Criteria cri) {
+		ReplyPageVO vo = new ReplyPageVO();
+		
+		vo.setReplyList(replyRepository.getReplyList(cri));
+		vo.setPageInfo(new PageMaker(cri, replyRepository.getReplyTotal(cri.getBookId())));
+		return vo;
 	}
 }

@@ -10,34 +10,24 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+<link rel="stylesheet" href="/resources/css/bookDetail.css">
 <title>Insert title here</title>
 <style type="text/css">
-
-#reply_form fieldset {
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#reply_form fieldset legend{
-    text-align: right;
-}
-#reply_form input[type=radio]{
-    display: none;
-}
-#reply_form label{
-	font-size: 2.5vw;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
-#reply_form label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reply_form label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reply_form input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
+	.reply_content_div ul li{
+		list-style: none;
+	}
+	.reply_content_div ul {
+		padding: 0;
+	}
+	
+	.reply_not_div {
+		text-align: center;
+		display: none;
+		margin: 20% 0;
+	}
+	.rating_span {
+		color: #ffd700;
+	}
 </style>
 </head>
 <body>
@@ -117,6 +107,19 @@
 						</div>
 					</form>
 				</c:if>
+				<div>
+					<div class="reply_not_div">
+						리뷰가 없습니다.
+					</div>
+					<div class="reply_content_div">
+						<ul></ul>
+					</div>
+					<div class="reply_pageInfo_div d-flex justify-content-center">
+						<ul class="pageMaker pagination">
+
+						</ul>
+					</div>
+				</div>
 			</div>
 			
 			<!-- 바로 주문 form  -->
@@ -135,7 +138,6 @@
 	$(function(){
 		/*포인트 삽입*/
  		let salePrice = "${book.fullPrice * (1 - book.discountPer / 100)}";
-		console.log(salePrice);
 		let point = salePrice * 0.05;
 		point = Math.floor(point);
 		$(".point_span").text(point);
@@ -156,8 +158,89 @@
 			// 등록버튼
 			$("#reply_submit_btn").prop("disabled", true);
 		}
+		
+		/* 댓글 가져오기 */
+		let bookId = "${book.bookId}"
+		$.getJSON("/reply/list", {"bookId" : bookId}, function(obj){
+			makeReply(obj);
+		});
 	});
-
+	/* 페이지 버튼 눌렀을 때 */
+	$(document).on("click",".page-link", function(e){
+		e.preventDefault();
+		let pageNum = $(this).attr("href");
+		let bookId = "${book.bookId}";
+		
+		$.getJSON("/reply/list", {"bookId" : bookId, "pageNum": pageNum}, function(obj){
+			makeReply(obj);
+		});
+	});
+	
+	/* 댓글 동적 생성 메서드*/
+	function makeReply(obj){
+		if(obj.replyList.length === 0){
+			// 댓글 없을 때 
+			$(".reply_not_div").css("display", "block");
+			$(".reply_content_div").css("display", "none");
+			$(".reply_pageInfo_div").attr("style", "display: none !important");
+		} else {
+			// 댓글 있을 때
+			let list = obj.replyList;
+			let pageMaker = obj.pageInfo;
+			
+			$(".reply_content_div").find('ul').html("");
+			$('.pageMaker').html("");
+			
+			// 댓글 목록
+			$(list).each(function(index, obj){
+				let date = new Date(obj.regDate);
+				let date_string = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+				let rate_star = "";
+				for(let i = 0; i < obj.rating; i++){ rate_star += "★"}
+				for(let i = 0; i < 5 - obj.rating; i++){ rate_star += "☆"}
+				
+				let content = "";
+				content += '<li class="border-bottom my-2 py-3">';
+				content += '<div class="reply_top pb-1">';
+				content += '<span class="id_span">' + obj.memberId + '</span> | ';
+				content += '<span class="date_span">' + date_string + '</span> | ';
+				content += '<span class="rating_span">' + rate_star + '</span> | ';
+				content += '</div>';
+				content += '<div class="reply_bottom">' + obj.content + '</div>';
+				content += '</li>';
+				
+				$(".reply_content_div").find('ul').append(content);
+			});
+			
+			// 댓글 페이징
+			let pageMaker_html = "";
+			
+			if(pageMaker.prev){
+				let prev_num = pageMaker.startPage - 1; 
+				pageMaker_html += '<li class="pageMaker_btn prev page-item">';
+				pageMaker_html += '<a class="page-link" href="'+ prev_num+'">이전</a>'
+				pageMaker_html += '</li>';
+			}
+			
+			for(let i = pageMaker.startPage; i < pageMaker.endPage + 1; i++){
+				pageMaker_html += '<li class="page-item ';
+				if(pageMaker.cri.pageNum === i){
+					pageMaker_html += 'active';
+				}
+				pageMaker_html += '">';
+				pageMaker_html += '<a class="page-link" href="'+ i +'">' + i + '</a>';
+				pageMaker_html += '</li>';
+			}
+			
+			if(pageMaker.next){
+				let next_num = pageMaker.endPage + 1; 
+				pageMaker_html += '<li class="pageMaker_btn next page-item">';
+				pageMaker_html += '<a class="page-link" href="'+ next_num+'">이후</a>'
+				pageMaker_html += '</li>';
+			}
+			$('.pageMaker').append(pageMaker_html);
+		}
+	}
 	/* 수량 조절 버튼 조작*/
 	$(".plus_btn").on("click", function(){
 		let quantity = $(".quentity_input").val();
