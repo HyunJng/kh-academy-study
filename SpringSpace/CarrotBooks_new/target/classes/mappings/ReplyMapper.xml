@@ -19,6 +19,18 @@
 	<select id="getReplyList" resultType="replyVO">
 		<![CDATA[
 			select * from (
+   				select rownum as rn, r.*, m.memberName, m.memberEmail
+				from reply r left outer join member m on (m.memberid = r.memberid)
+				where rownum <= #{pageNum} * #{amount} and bookId = #{bookId}
+				order by r.regDate desc
+			)
+			where rn > (#{pageNum} - 1) * #{amount} 
+		]]>
+	</select>
+	
+<!-- 	<select id="getReplyList" resultType="replyVO">
+		<![CDATA[
+			select * from (
 				select rownum as rn, r.*
 				from reply r
 				where rownum <= #{pageNum} * #{amount} and bookId = #{bookId}
@@ -26,7 +38,7 @@
 			)
 			where rn > (#{pageNum} - 1) * #{amount} 
 		]]>
-	</select>
+	</select> -->
 	
 	<!-- 댓글 총 개수 가져오기 -->
 	<select id="getReplyTotal" resultType="int">

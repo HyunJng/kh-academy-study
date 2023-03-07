@@ -26,3 +26,21 @@
 #reply_form input[type=radio]:checked ~ label{
     text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+
+.reply_content_div ul li {
+	list-style: none;
+}
+
+.reply_content_div ul {
+	padding: 0;
+}
+
+.reply_not_div {
+	text-align: center;
+	display: none;
+	margin: 20% 0;
+}
+
+.rating_span {
+	color: #ffd700;
+}

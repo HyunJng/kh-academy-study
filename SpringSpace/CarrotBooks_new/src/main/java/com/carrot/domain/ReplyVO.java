@@ -11,6 +11,10 @@ public class ReplyVO {
 	private int rating;
 	private Date regDate;
 	
+	// 편의를 위해 추가
+	private String memberEmail;
+	private String memberName;
+	
 	public int getReplyId() {
 		return replyId;
 	}
@@ -48,9 +52,23 @@ public class ReplyVO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVO [replyId=" + replyId + ", bookId=" + bookId + ", memberId=" + memberId + ", content=" + content
-				+ ", rating=" + rating + ", regDate=" + regDate + "]";
+				+ ", rating=" + rating + ", regDate=" + regDate + ", memberEmail=" + memberEmail + ", memberName="
+				+ memberName + "]";
 	}
+
 }

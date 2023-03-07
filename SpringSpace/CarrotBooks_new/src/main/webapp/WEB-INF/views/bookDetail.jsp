@@ -13,21 +13,7 @@
 <link rel="stylesheet" href="/resources/css/bookDetail.css">
 <title>Insert title here</title>
 <style type="text/css">
-	.reply_content_div ul li{
-		list-style: none;
-	}
-	.reply_content_div ul {
-		padding: 0;
-	}
-	
-	.reply_not_div {
-		text-align: center;
-		display: none;
-		margin: 20% 0;
-	}
-	.rating_span {
-		color: #ffd700;
-	}
+
 </style>
 </head>
 <body>
@@ -202,7 +188,7 @@
 				let content = "";
 				content += '<li class="border-bottom my-2 py-3">';
 				content += '<div class="reply_top pb-1">';
-				content += '<span class="id_span">' + obj.memberId + '</span> | ';
+				content += '<span class="id_span">' + obj.memberName + "(" + obj.memberEmail + ")" + '</span> | ';
 				content += '<span class="date_span">' + date_string + '</span> | ';
 				content += '<span class="rating_span">' + rate_star + '</span> | ';
 				content += '</div>';
