@@ -46,4 +46,9 @@
 		from reply
 		where bookId = #{bookId}
 	</select>
+	
+	<update id="updateReply">
+		update reply set content = #{content}, rating = #{rating}
+		where replyId = #{replyId} 
+	</update>
 </mapper>

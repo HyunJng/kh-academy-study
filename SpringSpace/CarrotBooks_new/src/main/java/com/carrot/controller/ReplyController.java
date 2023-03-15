@@ -39,4 +39,10 @@ public class ReplyController {
 		
 		return replyService.getReplyList(cri);
 	}
+	
+	@PostMapping("/update")
+	public String replyModifyPOST(ReplyVO vo) {
+		replyService.updateReply(vo);
+		return "redirect: /product/detail/" + vo.getBookId();
+	}
 }

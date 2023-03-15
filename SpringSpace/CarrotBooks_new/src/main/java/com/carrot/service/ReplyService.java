@@ -37,4 +37,11 @@ public class ReplyService {
 		vo.setPageInfo(new PageMaker(cri, replyRepository.getReplyTotal(cri.getBookId())));
 		return vo;
 	}
+
+	// 댓글 수정
+	public int updateReply(ReplyVO vo) {
+		int result = replyRepository.updateReply(vo);
+		
+		return result;
+	}
 }

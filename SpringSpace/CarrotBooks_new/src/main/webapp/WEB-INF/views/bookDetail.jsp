@@ -71,9 +71,13 @@
 				<h3>review</h3>
 				<!-- 리뷰등록창 -->
 				<c:if test="${member != null}">
+					<div class="d-flex justify-content-end mb-2">
+						<a id="reply_modify" class="me-2">수정</a> <a class="reply_delete">삭제</a>
+					</div>
 					<form id="reply_form" action="/reply/enroll" method="post">
 						<input type="hidden" name="memberId" value="${member.memberId}">
 						<input type="hidden" name="bookId" value="${book.bookId}">
+						<input type="hidden" name="replyId" value="0">
 						<div class="row">
 							<div class="col-3">
 								<fieldset>
@@ -133,6 +137,7 @@
 		if(member_reply_check !=="false"){
 			let member_reply = JSON.parse('${member_reply}');
 			// 댓글
+			$("#reply_form").find("input[name='replyId']").val(member_reply.replyId);
 			$("#reply_form").find("textarea").text(member_reply.content);
 			$("#reply_form").find("textarea").prop("disabled", "true");
 			// 별점
@@ -151,6 +156,19 @@
 			makeReply(obj);
 		});
 	});
+	/* 댓글 수정 버튼 클릭했을 떄 */
+	$("#reply_modify").on("click", function(e){
+		e.preventDefault();
+		
+		// 댓글 form 속성 변경
+		$("#reply_form").attr("action", "/reply/update");
+		$("#reply_form").find("textarea").prop("disabled", false);
+		$("#reply_form").find("input[name='rating']").each(function(index, item){
+			$(item).prop("disabled", false);
+		});
+		$("#reply_submit_btn").prop("disabled", false);
+	})
+	
 	/* 페이지 버튼 눌렀을 때 */
 	$(document).on("click",".page-link", function(e){
 		e.preventDefault();

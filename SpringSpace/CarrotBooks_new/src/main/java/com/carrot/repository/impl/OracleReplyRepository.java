@@ -34,5 +34,10 @@ public class OracleReplyRepository implements ReplyRepository {
 	public int getReplyTotal(String bookId) {
 		return mybatis.selectOne("ReplyMapper.getReplyTotal", bookId);
 	}
+
+	@Override
+	public int updateReply(ReplyVO vo) {
+		return mybatis.update("ReplyMapper.updateReply", vo);
+	}
 	
 }

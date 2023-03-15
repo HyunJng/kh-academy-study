@@ -17,4 +17,7 @@ public interface ReplyRepository {
 	
 	// 댓글 총 개수
 	int getReplyTotal(String bookId);
+	
+	// 댓글 수정
+	int updateReply(ReplyVO vo);
 }
