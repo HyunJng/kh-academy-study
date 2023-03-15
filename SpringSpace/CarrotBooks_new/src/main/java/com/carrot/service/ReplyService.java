@@ -44,4 +44,10 @@ public class ReplyService {
 		
 		return result;
 	}
+	
+	// 댓글 삭제
+	public int deleteReply(int replyId) {
+		int result = replyRepository.deleteReply(replyId);
+		return result;
+	}
 }

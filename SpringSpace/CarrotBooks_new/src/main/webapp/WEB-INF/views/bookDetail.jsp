@@ -13,7 +13,12 @@
 <link rel="stylesheet" href="/resources/css/bookDetail.css">
 <title>Insert title here</title>
 <style type="text/css">
-
+	#reply_modify {
+		cursor: pointer;
+	}
+	.reply_delete {
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
@@ -72,7 +77,7 @@
 				<!-- 리뷰등록창 -->
 				<c:if test="${member != null}">
 					<div class="d-flex justify-content-end mb-2">
-						<a id="reply_modify" class="me-2">수정</a> <a class="reply_delete">삭제</a>
+						<a id="reply_modify" class="me-2" data-modify="false">수정</a> <a class="reply_delete" data-replyid="">삭제</a>
 					</div>
 					<form id="reply_form" action="/reply/enroll" method="post">
 						<input type="hidden" name="memberId" value="${member.memberId}">
@@ -117,6 +122,11 @@
 				<input type="hidden" name="orders[0].bookId" value="${book.bookId }">
 				<input type="hidden" name="orders[0].bookCount" value="">
 			</form>
+			<!-- 댓글 삭제 form  -->
+			<form action="/reply/delete" method="post" id="reply_delete_form">
+				<input type="hidden" name="bookId" value="${book.bookId }">
+				<input type="hidden" name="replyId">
+			</form>
 		</div>
 	</div><!-- 헤더 끝 -->
 	
@@ -125,6 +135,9 @@
 	</footer>
 </body>
 <script type="text/javascript">
+let exist_reply ="";
+let exist_rating = "";
+
 	$(function(){
 		/*포인트 삽입*/
  		let salePrice = "${book.fullPrice * (1 - book.discountPer / 100)}";
@@ -137,12 +150,14 @@
 		if(member_reply_check !=="false"){
 			let member_reply = JSON.parse('${member_reply}');
 			// 댓글
+			exist_reply = member_reply.content;
+			exist_rating = member_reply.rating;
+			$(".reply_delete").attr("data-replyid", member_reply.replyId);
 			$("#reply_form").find("input[name='replyId']").val(member_reply.replyId);
-			$("#reply_form").find("textarea").text(member_reply.content);
+			$("#reply_form").find("textarea").text(exist_reply);
 			$("#reply_form").find("textarea").prop("disabled", "true");
 			// 별점
-			let rate_num = member_reply.rating;
-			$("#reply_form").find("#rate" + rate_num).prop("checked", "true");
+			$("#reply_form").find("#rate" + exist_rating).prop("checked", "true");
 			$("#reply_form").find("input[name='rating']").each(function(index, item){
 				$(item).prop("disabled", true);
 			});
@@ -156,17 +171,43 @@
 			makeReply(obj);
 		});
 	});
-	/* 댓글 수정 버튼 클릭했을 떄 */
+	/* 댓글 삭제 */
+	$(document).on("click",".reply_delete", function(e){
+		e.preventDefault();
+		$("#reply_delete_form").find("input[name='replyId']").val($(this).attr("data-replyid"));
+		$("#reply_delete_form").submit();
+	});
+	
+	/* 댓글 수정 버튼 클릭했을 떄(취소) */
 	$("#reply_modify").on("click", function(e){
 		e.preventDefault();
-		
 		// 댓글 form 속성 변경
-		$("#reply_form").attr("action", "/reply/update");
-		$("#reply_form").find("textarea").prop("disabled", false);
-		$("#reply_form").find("input[name='rating']").each(function(index, item){
-			$(item).prop("disabled", false);
-		});
-		$("#reply_submit_btn").prop("disabled", false);
+		let modify_check = $(this).attr("data-modify");
+
+		if(modify_check === "false"){
+			$(this).attr("data-modify","true");
+			$(this).text("취소");
+			$("#reply_form").attr("action", "/reply/update");
+			$("#reply_form").find("textarea").prop("disabled", false);
+			$("#reply_form").find("input[name='rating']").each(function(index, item){
+				$(item).prop("disabled", false);
+			});
+			$("#reply_submit_btn").prop("disabled", false);
+			$("#reply_submit_btn").text("수정");
+		}else {
+			$("#reply_form").find("textarea").val(exist_reply);
+			$("#reply_form").find("#rate" + exist_rating).prop("checked", "true");
+			
+			$(this).attr("data-modify","false");
+			$(this).text("수정");
+			
+			$("#reply_form").find("textarea").prop("disabled", true);
+			$("#reply_form").find("input[name='rating']").each(function(index, item){
+				$(item).prop("disabled", true);
+			});
+			$("#reply_submit_btn").prop("disabled", true);
+			$("#reply_submit_btn").text("등록");
+		}
 	})
 	
 	/* 페이지 버튼 눌렀을 때 */
@@ -209,6 +250,10 @@
 				content += '<span class="id_span">' + obj.memberName + "(" + obj.memberEmail + ")" + '</span> | ';
 				content += '<span class="date_span">' + date_string + '</span> | ';
 				content += '<span class="rating_span">' + rate_star + '</span> | ';
+				
+				if("${member.memberCk}" === "ADMIN" || obj.memberId == "${member.memberId}"){
+					content += '<a class="reply_delete" data-replyid="'+ obj.replyId+'">삭제</a> ';
+				}
 				content += '</div>';
 				content += '<div class="reply_bottom">' + obj.content + '</div>';
 				content += '</li>';

@@ -20,4 +20,7 @@ public interface ReplyRepository {
 	
 	// 댓글 수정
 	int updateReply(ReplyVO vo);
+	
+	// 댓글 삭제
+	int deleteReply(int replyId);
 }

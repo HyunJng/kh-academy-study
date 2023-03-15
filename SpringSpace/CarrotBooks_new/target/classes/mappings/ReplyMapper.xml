@@ -47,8 +47,15 @@
 		where bookId = #{bookId}
 	</select>
 	
+	<!-- 댓글 수정 -->
 	<update id="updateReply">
 		update reply set content = #{content}, rating = #{rating}
 		where replyId = #{replyId} 
 	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		delete from reply
+		where replyId = #{replyId}
+	</delete>
 </mapper>

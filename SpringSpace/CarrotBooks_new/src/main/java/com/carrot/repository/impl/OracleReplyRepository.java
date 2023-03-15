@@ -39,5 +39,9 @@ public class OracleReplyRepository implements ReplyRepository {
 	public int updateReply(ReplyVO vo) {
 		return mybatis.update("ReplyMapper.updateReply", vo);
 	}
-	
+
+	@Override
+	public int deleteReply(int replyId) {
+		return mybatis.delete("ReplyMapper.deleteReply", replyId);
+	}
 }

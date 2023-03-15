@@ -40,9 +40,17 @@ public class ReplyController {
 		return replyService.getReplyList(cri);
 	}
 	
+	// 댓글 수정
 	@PostMapping("/update")
-	public String replyModifyPOST(ReplyVO vo) {
+	public String replyModifyPost(ReplyVO vo) {
 		replyService.updateReply(vo);
+		return "redirect: /product/detail/" + vo.getBookId();
+	}
+	
+	// 댓글 삭제
+	@PostMapping("/delete")
+	public String replyDeletePost(ReplyVO vo) {
+		replyService.deleteReply(vo.getReplyId());
 		return "redirect: /product/detail/" + vo.getBookId();
 	}
 }
