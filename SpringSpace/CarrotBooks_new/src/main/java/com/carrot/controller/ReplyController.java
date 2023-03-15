@@ -50,7 +50,7 @@ public class ReplyController {
 	// 댓글 삭제
 	@PostMapping("/delete")
 	public String replyDeletePost(ReplyVO vo) {
-		replyService.deleteReply(vo.getReplyId());
+		replyService.deleteReply(vo);
 		return "redirect: /product/detail/" + vo.getBookId();
 	}
 }

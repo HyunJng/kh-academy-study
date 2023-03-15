@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.carrot.domain.Criteria;
 import com.carrot.domain.ReplyVO;
+import com.carrot.domain.UpdateReplyVO;
 import com.carrot.repository.ReplyRepository;
 
 @Repository("replyRepository")
@@ -44,4 +45,15 @@ public class OracleReplyRepository implements ReplyRepository {
 	public int deleteReply(int replyId) {
 		return mybatis.delete("ReplyMapper.deleteReply", replyId);
 	}
+
+	@Override
+	public double getRatingAvarage(String bookId) {
+		return mybatis.selectOne("ReplyMapper.getRatingAverage", bookId);
+	}
+
+	@Override
+	public int updateRating(UpdateReplyVO vo) {
+		return mybatis.update("ReplyMapper.updateRating", vo);
+	}
+	
 }

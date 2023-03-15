@@ -7,6 +7,7 @@ import com.carrot.domain.Criteria;
 import com.carrot.domain.PageMaker;
 import com.carrot.domain.ReplyPageVO;
 import com.carrot.domain.ReplyVO;
+import com.carrot.domain.UpdateReplyVO;
 import com.carrot.repository.ReplyRepository;
 
 @Service
@@ -17,7 +18,10 @@ public class ReplyService {
 	
 	// 댓글 등록
 	public int enrollReply(ReplyVO reply) {
-		return replyRepository.enrollReply(reply);
+		int result = replyRepository.enrollReply(reply); 
+		setRating(reply.getBookId());
+		
+		return result;
 	}
 	
 	// 댓글 찾기
@@ -42,12 +46,28 @@ public class ReplyService {
 	public int updateReply(ReplyVO vo) {
 		int result = replyRepository.updateReply(vo);
 		
+		setRating(vo.getBookId());
+
 		return result;
 	}
 	
 	// 댓글 삭제
-	public int deleteReply(int replyId) {
-		int result = replyRepository.deleteReply(replyId);
+	public int deleteReply(ReplyVO vo) {
+		int result = replyRepository.deleteReply(vo.getReplyId());
+		
+		setRating(vo.getBookId());
+		
 		return result;
+	}
+	
+	// 평점 평균값 책에 setting
+	public void setRating(String bookId) {
+		double ratingAvg = replyRepository.getRatingAvarage(bookId);
+		
+		UpdateReplyVO urd = new UpdateReplyVO();
+		urd.setBookId(bookId);
+		urd.setRatingAvg(ratingAvg);
+		
+		replyRepository.updateRating(urd);
 	}
 }

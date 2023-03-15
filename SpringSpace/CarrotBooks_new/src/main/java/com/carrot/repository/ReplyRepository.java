@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.carrot.domain.Criteria;
 import com.carrot.domain.ReplyVO;
+import com.carrot.domain.UpdateReplyVO;
 
 public interface ReplyRepository {
 	// 댓글 등록
@@ -23,4 +24,10 @@ public interface ReplyRepository {
 	
 	// 댓글 삭제
 	int deleteReply(int replyId);
+	
+	// 평균 평점 구하기
+	double getRatingAvarage(String bookId);
+	
+	// 평점 평균 반영하기
+	int updateRating(UpdateReplyVO vo);
 }
