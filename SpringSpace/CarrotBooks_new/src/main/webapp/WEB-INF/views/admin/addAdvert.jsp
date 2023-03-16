@@ -15,7 +15,7 @@
 <body>
 	
 	<!-- gnd -->
-	<jsp:include page="/WEB-INF/views/fix/gnb.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/fix/gnb_admin.jsp"></jsp:include>
 	
 	<div class="container">
 		<div id="admin_title"class="pt-4 pb-4 ps-3">
