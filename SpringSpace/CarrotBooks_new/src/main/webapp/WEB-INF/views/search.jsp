@@ -27,10 +27,10 @@
 			<table class="table">
 				<colgroup>
 					<col width="18%">
-					<col width="45%">
-					<col width="10%">
+					<col width="35%">
+					<col width="15%">
 					<col width="14%">
-					<col width="13%">
+					<col width="18%">
 				</colgroup>
 				<tbody>
 					<c:forEach var="book" items="${bookList}">
@@ -50,12 +50,13 @@
 								</div>
 							</td>
 							<td>
-								<div>
-									평점
+								<div class="mt-2">
+									<h6>평점: ${book.ratingAvg}</h6> 
+									<span class="rating_star"><c:forEach begin="1" end="${Math.round(book.ratingAvg)}">★</c:forEach><c:forEach begin="1" end="${5 - Math.round(book.ratingAvg)}">☆</c:forEach></span>
 								</div>
 							</td>
 							<td>
-								<div>
+								<div class="mt-1">
 									<del>
 										<fmt:formatNumber value="${book.fullPrice}" pattern="##,### 원" />
 									</del>
@@ -67,7 +68,10 @@
 								</div>
 							</td>
 							<td>
-								추후추가
+								<div class="d-grid gap-2 mt-2">
+									<button class="btn btn-secondary btn-block addCart_btn" data-bookid="${book.bookId}">장바구니 담기</button>
+									<button class="btn btn-light btn-block order_btn" data-bookid="${book.bookId}">바로 구매</button>
+								</div>
 							</td>
 						</tr>
 					</c:forEach>
@@ -95,6 +99,12 @@
 			</div>
 		</c:if>
 		</div>
+		
+		<!-- 바로 주문 form  -->
+		<form action="/order/${member.memberId}" method="get" class="order_form">
+			<input type="hidden" name="orders[0].bookId">
+			<input type="hidden" name="orders[0].bookCount" value="1">
+		</form>
 	</div>
 	
 	<footer>
@@ -116,6 +126,56 @@ $("#pageForm a").click(function(e) {
 	$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
 	$("#pageForm").attr("action", "/main/search");
 	$("#pageForm").submit();
+});
+
+/* 바로주문 클릭 */
+$(".order_btn").on("click", function(){
+	let member = '${member}';
+	let bookid = $(this).data("bookid");
+	
+	if(member === ""){ 
+		alert("로그인이 필요합니다.");
+		location.href="/member/login";
+		return;
+	}
+	
+	$(".order_form").find("input[name='orders[0].bookId']").val(bookid);
+	$(".order_form").submit();
+});
+
+/* 장바구니 추가 */
+const form = {
+		bookId : '',
+		bookCount: '1',
+		memberId : '${member.memberId}'
+}
+
+// 장바구니 버튼 클릭
+$('.addCart_btn').on("click", function(e){
+	form.bookId = $(this).data("bookid");
+	
+	// post로 int값을 공백 넣어주면 에러가 발생하므로 임의의 값 넣기
+	if(form.memberId === ""){
+		form.memberId = 0;
+	}
+
+	$.ajax({
+		url: '/cart/add',
+		type: 'POST',
+		data: form,
+		success: function(result){
+			if(result == "0"){
+				alert("장바구니에 추가를 하지 못하였습니다.");
+			} else if(result == "1"){
+				alert("장바구니에 추가되었습니다.");
+			} else if(result == "2"){
+				alert("장바구니에 이미 존재합니다.");
+			} else if(result == "5"){
+				alert("로그인이 필요합니다.");
+				location.href="/member/login";
+			}
+		}
+	});
 });
 </script>
 </html>

@@ -18,11 +18,11 @@
 	background-color: #f4a460;
 }
 
-#newest_list {
+#newest_list, #like_list {
 	position: relative;
 }
 
-#newest_list ul {
+#newest_list ul , #like_list ul{
 	list-style: none;
 	font-size: 0.9rem;
 }
@@ -36,7 +36,7 @@
 	color: #FFC0CB;
 }
 
-#newest_list div[class='next'] {
+#newest_list div[class='next'], #like_list div[class='next'] {
 	position: absolute;
 	top: 45%;
 	right: 0;
@@ -96,6 +96,9 @@
 	margin: auto;
 }
 
+.rating_star {
+	color: #ffd700;
+}
 /* 책 상세 페이지 */
 #book_detail {
 	margin: auto 0;

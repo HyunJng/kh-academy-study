@@ -56,7 +56,7 @@
 			</div>
 		</div>
 		
-		<!-- 신간 -->
+		<!-- 오늘의 신간 -->
 		<div>
 			<div class="main_title">
 				<h2 class=" my-1 p-3">#오늘의 신간</h2>
@@ -100,8 +100,7 @@
 					    </ul>
 					</div>
 				</div>
-					
-				<!-- Left and right controls/icons -->
+				<!-- 오늘의 신간 양쪽 버튼-->	
 				<button class="carousel-control-prev" type="button" data-bs-target="#newest_list" data-bs-slide="prev">
 					    <span><img alt="prev" src="/resources/image/tempImage/prev.png" width="50px"></span>
 				</button>
@@ -111,6 +110,59 @@
 			</div>
 		</div>
 		
+		<!-- 회원들의 추천  -->
+		<div>
+			<div class="main_title mt-2">
+				<h2 class=" my-1 p-3">#회원님들의 추천</h2>
+			</div>
+				
+			<div id="like_list" class="carousel slide pt-3 border rounded-1" >
+				<!-- The slideshow/carousel -->
+				<div class="carousel-inner ms-6">
+					<div class="carousel-item active">
+						<ul class="d-flex justify-content-center">
+						    <c:forEach var="book" items="${likeList}" begin="0" end="3">
+								<li class="main_book_li">
+									<p>
+										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
+									</p>
+									<div>
+										<p class="carousel_title"><a href="/product/detail/${book.bookId}">${book.title}</a></p>
+										<p class="carousel_author">${book.author}</p>
+										<p><strong><fmt:formatNumber value="${book.fullPrice}" pattern="##,###"/></strong>원(${book.discountPer}% 할인)</p>
+										<p>${book.publisher }</p>
+									</div>
+								</li>
+							</c:forEach>
+					    </ul>
+					</div>
+					<div class="carousel-item">
+					    <ul class="d-flex justify-content-center">
+						    <c:forEach var="book" items="${likeList}" begin="4" end="7">
+								<li class="main_book_li">
+									<p>
+										<a href="/product/detail/${book.bookId}"><img alt="신간" src="${book.bookImage}"></a>
+									</p>
+									<div>
+										<p class="carousel_title"><a href="/product/detail/${book.bookId}">${book.title}</a></p>
+										<p class="carousel_author">${book.author}</p>
+										<p><strong><fmt:formatNumber value="${book.fullPrice}" pattern="##,###"/></strong>원(${book.discountPer}% 할인)</p>
+										<p>${book.publisher }</p>
+									</div>
+								</li>
+							</c:forEach>
+					    </ul>
+					</div>
+				</div>
+				<!-- 오늘의 신간 양쪽 버튼-->	
+				<button class="carousel-control-prev" type="button" data-bs-target="#like_list" data-bs-slide="prev">
+					    <span><img alt="prev" src="/resources/image/tempImage/prev.png" width="50px"></span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#like_list" data-bs-slide="next">
+					    <span><img alt="next" src="/resources/image/tempImage/next.png" width="30px"></span>
+				</button>
+			</div>
+		</div>
 	</div>
 	
 	<footer>

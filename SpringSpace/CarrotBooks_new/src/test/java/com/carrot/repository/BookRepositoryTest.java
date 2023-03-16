@@ -56,7 +56,6 @@ public class BookRepositoryTest {
 		int result = bookRepository.getTotal();
 		System.out.println(result);
 	}
-	*/
 	@Test
 	public void 책검색byId() {
 		BookVO book = new BookVO();
@@ -64,6 +63,7 @@ public class BookRepositoryTest {
 		BookVO result = bookRepository.getBookById(book);
 		System.out.println(result);
 	}
+	 */
 	/*
 	@Test
 	public void 책수정() {
@@ -91,4 +91,12 @@ public class BookRepositoryTest {
 		list.forEach(cate -> System.out.println(cate));
 	}
 	 * */
+	
+	@Test
+	public void 좋아요순책목록() {
+		Criteria cri = new Criteria();
+		List<BookVO> list = bookRepository.getLikeBookList(cri);
+		
+		list.forEach(book -> System.out.println(book));
+	}
 }

@@ -51,7 +51,7 @@ public class MainController {
 		
 		model.addAttribute("newestList", bookService.getBookList(cri));
 		model.addAttribute("advertList", imageService.getImageList());
-
+		model.addAttribute("likeList", bookService.getLikeBookList(cri));
 		return "/main";
 	}
 	

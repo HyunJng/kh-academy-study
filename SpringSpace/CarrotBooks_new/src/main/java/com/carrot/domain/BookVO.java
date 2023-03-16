@@ -16,6 +16,7 @@ public class BookVO {
 	private int discountPer;
 	private Date regDate;
 	private Date updateDate;
+	private double ratingAvg;
 	
 	public BookVO() { }
 
@@ -123,12 +124,22 @@ public class BookVO {
 		this.bookCateName = bookCateName;
 	}
 
+	public double getRatingAvg() {
+		return ratingAvg;
+	}
+
+	public void setRatingAvg(double ratingAvg) {
+		this.ratingAvg = ratingAvg;
+	}
+
 	@Override
 	public String toString() {
 		return "BookVO [bookId=" + bookId + ", title=" + title + ", bookImage=" + bookImage + ", author=" + author
 				+ ", publisher=" + publisher + ", bookIntro=" + bookIntro + ", bookCate=" + bookCate + ", bookCateName="
 				+ bookCateName + ", fullPrice=" + fullPrice + ", bookStock=" + bookStock + ", discountPer="
-				+ discountPer + ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+				+ discountPer + ", regDate=" + regDate + ", updateDate=" + updateDate + ", ratingAvg=" + ratingAvg
+				+ "]";
 	}
+
 }
 

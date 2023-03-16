@@ -55,5 +55,10 @@ public class OracleBookRepositoryImpl implements BookRepository{
 	public List<BCateVO> getCateList() {
 		return mybatis.selectList("BookMapper.getCateList");
 	}
+
+	@Override
+	public List<BookVO> getLikeBookList(Criteria cri) {
+		return mybatis.selectList("BookMapper.getLikeBookList", cri);
+	}
 	
 }
