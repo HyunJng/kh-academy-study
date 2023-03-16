@@ -30,10 +30,20 @@ public class OracleReplyRepository implements ReplyRepository {
 	public List<ReplyVO> getReplyList(Criteria cri) {
 		return mybatis.selectList("ReplyMapper.getReplyList", cri);
 	}
-
+	
 	@Override
 	public int getReplyTotal(String bookId) {
 		return mybatis.selectOne("ReplyMapper.getReplyTotal", bookId);
+	}
+
+	@Override
+	public List<ReplyVO> getReplyListbyMemberId(Criteria cri) {
+		return mybatis.selectList("ReplyMapper.getReplyListByMemberId", cri);
+	}
+	
+	@Override
+	public int getReplyTotalByMemberId(String keyword) {
+		return mybatis.selectOne("ReplyMapper.getReplyTotalByMemberId", keyword);
 	}
 
 	@Override
@@ -48,7 +58,9 @@ public class OracleReplyRepository implements ReplyRepository {
 
 	@Override
 	public double getRatingAvarage(String bookId) {
-		return mybatis.selectOne("ReplyMapper.getRatingAverage", bookId);
+		Double avg = mybatis.selectOne("ReplyMapper.getRatingAverage", bookId);
+		if(avg == null) return 0;
+		else return avg;
 	}
 
 	@Override

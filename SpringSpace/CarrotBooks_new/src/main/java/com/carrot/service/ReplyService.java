@@ -2,6 +2,7 @@ package com.carrot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carrot.domain.Criteria;
 import com.carrot.domain.PageMaker;
@@ -24,7 +25,7 @@ public class ReplyService {
 		return result;
 	}
 	
-	// 댓글 찾기
+	// 댓글 검색 (책, 아이디)
 	public ReplyVO getReply(String bookId, int memberId) {
 		ReplyVO vo = new ReplyVO();
 		vo.setBookId(bookId);
@@ -33,7 +34,7 @@ public class ReplyService {
 		return replyRepository.getReply(vo);
 	}
 	
-	// 댓글 페이징
+	// 댓글 리스트(bookid)
 	public ReplyPageVO getReplyList(Criteria cri) {
 		ReplyPageVO vo = new ReplyPageVO();
 		
@@ -42,6 +43,16 @@ public class ReplyService {
 		return vo;
 	}
 
+	// 댓글 리스트(memberId)
+	public ReplyPageVO getReplyListByMemberId(Criteria cri) {
+		ReplyPageVO vo = new ReplyPageVO();
+		
+		vo.setReplyList(replyRepository.getReplyListbyMemberId(cri));
+		vo.setPageInfo(new PageMaker(cri, replyRepository.getReplyTotalByMemberId(cri.getKeyword())));
+		
+		return vo;
+	}
+	
 	// 댓글 수정
 	public int updateReply(ReplyVO vo) {
 		int result = replyRepository.updateReply(vo);
@@ -52,9 +63,9 @@ public class ReplyService {
 	}
 	
 	// 댓글 삭제
+	@Transactional
 	public int deleteReply(ReplyVO vo) {
 		int result = replyRepository.deleteReply(vo.getReplyId());
-		
 		setRating(vo.getBookId());
 		
 		return result;

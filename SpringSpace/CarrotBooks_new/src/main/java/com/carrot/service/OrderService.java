@@ -29,7 +29,7 @@ public class OrderService {
 	@Autowired private MemberRepository memberRepository;
 	@Autowired private BookRepository bookRepository;
 	
-	// 주문리스트 정보 가져오기
+	// 전체 주문리스트 정보 가져오기
 	public List<OrderPageItemVO> getGoodsInfo(List<OrderPageItemVO> orders){
 		List<OrderPageItemVO> result = new ArrayList<>();
 		
@@ -118,17 +118,12 @@ public class OrderService {
 		for(OrderItemVO temp : ords) {
 			temp.initSaleTotal();
 		}
-
-		System.out.println("서비스 주문 상세정보 : " + ords);
 		
 		// 주문 정보 가져오기
 		OrderVO orw = orderRepository.getOrder(vo.getOrderId());
 		orw.setOrders(ords);
 		orw.getOrderPriceInfo();
 		
-		System.out.println("서비스 주문정보: " + orw);
-		/*
-		 * */
 		// 주문 상태 변경
 		orderRepository.orderCancle(orw.getOrderId());
 

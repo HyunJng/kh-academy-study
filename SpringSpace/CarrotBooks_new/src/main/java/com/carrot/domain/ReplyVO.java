@@ -14,6 +14,7 @@ public class ReplyVO {
 	// 편의를 위해 추가
 	private String memberEmail;
 	private String memberName;
+	private String bookName;
 	
 	public int getReplyId() {
 		return replyId;
@@ -64,11 +65,16 @@ public class ReplyVO {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVO [replyId=" + replyId + ", bookId=" + bookId + ", memberId=" + memberId + ", content=" + content
 				+ ", rating=" + rating + ", regDate=" + regDate + ", memberEmail=" + memberEmail + ", memberName="
-				+ memberName + "]";
+				+ memberName + ", bookName=" + bookName + "]";
 	}
-
 }

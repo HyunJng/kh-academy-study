@@ -1,15 +1,7 @@
 package com.carrot.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,18 +25,19 @@ import com.carrot.domain.AttachImageVO;
 import com.carrot.domain.BCateVO;
 import com.carrot.domain.BookVO;
 import com.carrot.domain.Criteria;
+import com.carrot.domain.MemberInfoVO;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderCancleVO;
 import com.carrot.domain.OrderVO;
-import com.carrot.domain.PageMaker;
-import com.carrot.repository.BookRepository;
-import com.carrot.repository.MemberRepository;
+import com.carrot.domain.ReplyPageVO;
+import com.carrot.domain.ReplyVO;
 import com.carrot.service.AdminService;
 import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
 import com.carrot.service.ImageService;
 import com.carrot.service.MemberService;
 import com.carrot.service.OrderService;
+import com.carrot.service.ReplyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -58,6 +52,7 @@ public class AdminController {
 	private AdvertService advertService;
 	@Autowired private MemberService memberService;
 	@Autowired private OrderService orderService;
+	@Autowired private ReplyService replyService;
 	
 	@Autowired
 	public AdminController(AdminService adminService, BookService bookService, ImageService imageService, AdvertService advertService) {
@@ -67,6 +62,7 @@ public class AdminController {
 		this.advertService = advertService;
 	}
 	
+	// 관리자 메인페이지 이동
 	@GetMapping("/main")
 	public String adminMainGet() {
 		logger.info("관리자 페이지 진입");
@@ -74,12 +70,14 @@ public class AdminController {
 	}
 	
 	/* 상품 등록 관련 */
+	// 등록 상품 검색 페이지 이동
 	@GetMapping("/addGoods")
 	public String addGoodsGet() {
 		logger.info("상품 등록 페이지 진입");
 		return "/admin/addGoods";
 	}
 	
+	// 등록 상품 세부사항 지정 페이지 이동
 	@GetMapping("/addGoods/form")
 	public String addGoodsFormGet(BookVO book, Model model) {
 		logger.info("상품 등록 폼 페이지 진입");
@@ -97,6 +95,7 @@ public class AdminController {
 		return "/admin/addGoods_form";
 	}
 	
+	// 상품 등록
 	@PostMapping("/addGoods/form") 
 	public String addGoodsFormPost(BookVO book, RedirectAttributes reAttr) throws IOException {
 		logger.info("addGoodsFormPost 진입");
@@ -112,6 +111,7 @@ public class AdminController {
 
 	
 	/* 상품 관리 관련 */
+	// 상품 관리 페이지 이동
 	@GetMapping("/manageGoods")
 	public String manageGoodsGet(Model model, Criteria cri) {
 		logger.info("상품 관리 페이지 진입");
@@ -122,6 +122,7 @@ public class AdminController {
 		return "/admin/manageGoods";
 	}
 	
+	// 상품 수정 페이지 이동
 	@GetMapping("/manageGoods/{bookId}")
 	public String manageGoodsDetailGet(Model model, @PathVariable("bookId")String bookId) {
 		logger.info("상품 관리 - 수정페이지 진입");
@@ -138,6 +139,7 @@ public class AdminController {
 		return "/admin/manageGoods_detail";
 	}
 	
+	// 상품 수정
 	@PostMapping("/manageGoods/update")
 	public String manageGoodsUpdatePost(RedirectAttributes rattr, BookVO book) {
 		logger.info("manageGoodsUpdatePost 진입");
@@ -152,6 +154,7 @@ public class AdminController {
 		return "redirect:/admin/manageGoods";
 	}
 	
+	// 상품 삭제
 	@GetMapping("/manageGoods/delete/{bookId}")
 	public String manageGoodsDeleteGet(RedirectAttributes rattr, @PathVariable("bookId")String bookId) {
 		logger.info("manageGoodsDeleteGet 진입");
@@ -169,6 +172,7 @@ public class AdminController {
 	}
 	
 	/* 회원 관리 관련 */
+	// 회원 관리 페이지 이동
 	@GetMapping("/manageMember")
 	public String manageMemberGet(Model model,  Criteria cri) {
 		logger.info("manageMember 페이지 진입");
@@ -177,7 +181,8 @@ public class AdminController {
 		return "/admin/manageMember";
 	}
 	
-	@GetMapping("/manageMember/{memberNum}")
+	// BAN 회원으로 수정
+	@GetMapping("/manageMember/ban/{memberNum}")
 	public String manageMemberBanGet(@PathVariable("memberNum")String memberId) {
 		logger.info("manageMemberBanGet 진입");
 		
@@ -189,7 +194,55 @@ public class AdminController {
 		return "redirect:/admin/manageMember";
 	}
 	
+	// 회원 상세정보
+	@GetMapping("/manageMember/{memberId}")
+	public @ResponseBody MemberInfoVO manageMemberDetailGet(@PathVariable("memberId")int memberId, Criteria cri) {
+		logger.info("manageMemberDetailGet 진입");
+		MemberInfoVO result = new MemberInfoVO();
+		cri.setAmount(4);
+		// 회원 정보
+		MemberVO memberInfo = new MemberVO();
+		memberInfo.setMemberId(memberId);
+		result.setMember(memberService.findMemberbyId(memberInfo));
+		
+		// 회원 댓글 리스트
+		cri.setKeyword(memberId + "");
+		result.setReply(replyService.getReplyListByMemberId(cri));
+		
+		return result;
+	}
+	
+	// 회원 상세 정보 댓글
+	@GetMapping("/manageMember/reply")
+	public @ResponseBody ReplyPageVO manageMemberDetailReplyGet(Criteria cri) {
+		logger.info("manageMemberDetailReplyGet 진입");
+		cri.setAmount(4);
+		return replyService.getReplyListByMemberId(cri);
+	}
+	
+	// 회원 상세 정보 댓글 삭제
+	@GetMapping("/manageMember/reply/delete")
+	public @ResponseBody ReplyPageVO manageMemberDetailReplyDeleteGet(Criteria cri, int replyId) {
+		logger.info("manageMemberDetailReplyDeleteGet 진입");
+		cri.setAmount(4);
+	
+		ReplyVO vo = new ReplyVO();
+		vo.setReplyId(replyId);
+		vo.setBookId(cri.getBookId());
+		
+		replyService.deleteReply(vo);
+		return replyService.getReplyListByMemberId(cri);
+	}
+	
+	// 회원 강퇴
+	@PostMapping("/manageMember/delete")
+	public String manageMemberDeletePost(Criteria cri, int memberId, RedirectAttributes ratr) {
+		
+		ratr.addAttribute("cri", cri);
+		return "redirect:/admin/manageMember";
+	}
 	/* 광고 관리 관련 */
+	// 광고 관리 페이지로 이동
 	@GetMapping("/manageAdvert")
 	public String manageAdvertGet(Model model,  Criteria cri) {
 		logger.info("manageAdvert 페이지 진입");
@@ -201,12 +254,14 @@ public class AdminController {
 		return "/admin/manageAdvert";
 	}
 	
+	// 광고 등록 페이지로 이동
 	@GetMapping("/manageAdvert/add")
 	public String manageAdvertAddGet() {
 		logger.info("manageAdvertAdd 페이지 진입");
 		return "/admin/addAdvert";
 	}
 	
+	// 광고 등록
 	@PostMapping("/manageAdvert/add")
 	public String manageAdvertAddPost(AdvertVO advert, RedirectAttributes rattr) {
 		logger.info("manageAdvertAddPost 실행");
@@ -222,6 +277,7 @@ public class AdminController {
 		return "redirect:/admin/manageAdvert";
 	}
 	
+	// 광고 이미지 등록
 	@PostMapping(path = "/uploadAdvertImage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<AttachImageVO>> uploadAdvertImagePost(MultipartFile[] uploadFile) {
 		logger.info("uploadImagePost 실행");
@@ -241,6 +297,7 @@ public class AdminController {
 		return new ResponseEntity<List<AttachImageVO>>(list, HttpStatus.OK);
 	}
 	
+	// 등록 광고 이미지 보이기
 	@GetMapping(path = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<AttachImageVO>> getAttachList(int refId){
 		logger.info("getAttachList 진입 " + refId);
@@ -248,6 +305,7 @@ public class AdminController {
 		return new ResponseEntity<List<AttachImageVO>>(imageService.getImageList(refId), HttpStatus.OK);
 	}
 	
+	// 연관 책 등록 팝화면 이동 
 	@GetMapping("/bookPop")
 	public String bookPopGet(Criteria cri, Model model) throws Exception {
 		logger.info("bookPopGet 진입");
@@ -266,6 +324,7 @@ public class AdminController {
 	}
 	
 	/* 주문 페이지 */
+	// 주문 관리 페이지 이동
 	@GetMapping("/orderList")
 	public String orderListGet(Criteria cri, Model model) {
 		logger.info("orderList페이지 진입");
@@ -289,6 +348,7 @@ public class AdminController {
 	}
 	
 	/* 주문 삭제 */
+	// 주문 삭제
 	@PostMapping("/orderCancle")
 	public String orderCanclePost(OrderCancleVO vo) {
 		logger.info("orderCanclePost 진입");

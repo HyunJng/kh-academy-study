@@ -13,11 +13,17 @@ public interface ReplyRepository {
 	// 댓글 존재 체크용(memberId, bookId)
 	ReplyVO getReply(ReplyVO vo);
 	
-	// 댓글 페이징
+	// 댓글 리스트(bookId)
 	List<ReplyVO> getReplyList(Criteria cri);
 	
-	// 댓글 총 개수
+	// 댓글 총 개수(bookId)
 	int getReplyTotal(String bookId);
+	
+	// 댓글 리스트(keyword = memberId)
+	List<ReplyVO> getReplyListbyMemberId(Criteria cri);
+	
+	// 댓글 총 개수(keyword = memberId)
+	int getReplyTotalByMemberId(String keyword);
 	
 	// 댓글 수정
 	int updateReply(ReplyVO vo);
