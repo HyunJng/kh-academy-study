@@ -44,6 +44,7 @@ public class MainController {
 		this.imageService = imageService;
 	}
 	
+	// 메인 페이지
 	@GetMapping("/main")
 	public String mainpageGet(Model model, Criteria cri) {
 		logger.info("메인 페이지 진입");
@@ -55,6 +56,7 @@ public class MainController {
 		return "/main";
 	}
 	
+	// 도서목록 페이지
 	@GetMapping("/main/search")
 	public String searchGet(Criteria cri, Model model) {
 		logger.info("search페이지 진입");
@@ -72,7 +74,7 @@ public class MainController {
 		return "/search";
 	}
 	
-	// 헤더에서 카테고리 가져오기
+	// 헤더 카테고리 리스트
 	@GetMapping("/admin/getCateJson")
 	public ResponseEntity<List<BCateVO>> getCateJson(){
 		List<BCateVO> list = bookService.getCateList();
@@ -80,4 +82,20 @@ public class MainController {
 		return new ResponseEntity<List<BCateVO>>(list, HttpStatus.OK);
 	}
 	
+	// 베스트 도서목록
+	@GetMapping("/best")
+	public String bestListGet(Model model, Criteria cri) {
+		logger.info("bestList 페이지 진입");
+		cri.setAmount(7);
+		List<BookVO> list = bookService.getLikeBookList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("bestList", list);
+		} else {
+			model.addAttribute("bestListChk", "empty");
+		}
+		
+		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
+		return "/bestList";
+	}
 }

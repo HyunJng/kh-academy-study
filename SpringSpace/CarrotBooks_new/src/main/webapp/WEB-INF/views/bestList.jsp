@@ -20,7 +20,7 @@
 			<jsp:include page="/WEB-INF/views/fix/header.jsp"></jsp:include>
 		</header>
 		<div class="page_sub_header mt-2">
-			<h4>#도서목록</h4>
+			<h4>#회원님들의 추천 목록</h4>
 		</div>
 		<div>
 		<c:if test="${bookListChk != 'empty'}">
@@ -33,7 +33,7 @@
 					<col width="18%">
 				</colgroup>
 				<tbody>
-					<c:forEach var="book" items="${bookList}">
+					<c:forEach var="book" items="${bestList}">
 						<tr class="pt-2">
 							<td>
 								<a href="/product/detail/${book.bookId}">
@@ -79,8 +79,7 @@
 			</table>
 			<form class="d-flex justify-content-center" id="pageForm" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-				<input type="hidden" name="cateCode" value="${pageMaker.cri.cateCode}">
-					<ul class="pagination">
+				<ul class="pagination">
 					<c:if test="${pageMaker.prev}">
 						<li class="page-item"><a class="page-link" href="${pageMaker.startPage-1}">Previous</a></li>
 					</c:if>
@@ -93,7 +92,7 @@
 				</ul>
 			</form>
 		</c:if>
-		<c:if test="${bookListChk == 'empty'}">
+		<c:if test="${bestListChk == 'empty'}">
 			<div class="table_empty d-flex justify-content-center">
 				<h5>검색 결과가 없습니다</h5>
 			</div>
@@ -124,7 +123,7 @@ $(function(){
 $("#pageForm a").click(function(e) {
 	e.preventDefault();
 	$("#pageForm").find("input[name='pageNum']").val($(this).attr("href"));
-	$("#pageForm").attr("action", "/main/search");
+	$("#pageForm").attr("action", "/best");
 	$("#pageForm").submit();
 });
 
