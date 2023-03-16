@@ -1,23 +1,25 @@
 @charset "UTF-8";
-
 #cart_div {
 	text-align: center;
 }
 
 #item_div {
 	display: inline-block;
-	background-color: #fff5ee;
+	background-color: white;
+	border: 1px solid #dcdcdc;
 	margin-top: 5px;
 	padding: 0 2%;
 }
-
+#item_div thead th{
+	padding: 0.5em;
+}
 #item_div table tbody tr {
 	border-bottom: 1rem solid;
 	border-color: transparent;
 }
 
 #item_div table thead tr {
-	border-bottom: 4px dashed white;
+	border-bottom: 4px dashed #fff5ee;
 }
 
 #cal_div {

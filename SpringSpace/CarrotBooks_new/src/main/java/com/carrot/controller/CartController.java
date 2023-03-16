@@ -1,5 +1,7 @@
 package com.carrot.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -47,7 +49,10 @@ public class CartController {
 		MemberVO member = new MemberVO();
 		member.setMemberId(memberId);
 		
-		model.addAttribute("cartList", cartService.getCartList(member));
+		List<CartVO> cartList = cartService.getCartList(member);
+		if(!cartList.isEmpty()) {
+			model.addAttribute("cartList", cartList);
+		} else model.addAttribute("cartListChk", "empty");
 		return "/cart";
 	}
 	

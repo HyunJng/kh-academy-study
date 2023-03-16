@@ -31,8 +31,8 @@
 							<th width="5%">
 								<input type="checkbox" id="all_check" checked>
 							</th>
-							<th width="18%"></th>
-							<th width="*">상품명</th>
+							<th width="20%"></th>
+							<th width="16%">상품명</th>
  							<th width="25%">상품가</th>
  							<th width="13%">수량</th>
  							<th width="15%">합계</th>
@@ -40,6 +40,13 @@
  						</tr>
  					</thead>
 					<tbody >
+						<c:if test="${cartListChk == 'empty' }">
+							<tr>
+								<td colspan="7" class="pt-5">
+									<h5>장바구니가 비어있습니다</h5>
+								</td>
+							</tr>
+						</c:if>
 						<c:forEach var="cart" items="${cartList}">
 							<tr>
 								<td class="cart_info_td">
@@ -162,7 +169,10 @@
 				orderNumber++;
 			}
 		});
-		
+		if(orderNumber == 0){
+			alert("구매할 상품을 선택해주세요");
+			return;
+		}
 		$(".order_form").append(form_contents);
 		$(".order_form").submit();
 	})
