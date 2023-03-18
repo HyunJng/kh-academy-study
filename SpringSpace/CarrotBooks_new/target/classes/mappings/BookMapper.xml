@@ -67,7 +67,7 @@
 			select * from (
 				select rownum as rn, b.*,
 				(select cateName from bCate c where b.bookCate = c.catecode) as bookCateName
-				from book b where rownum <= #{pageNum} * #{amount} order by b.ratingAvg desc, b.regdate desc
+				from (select * from book order by ratingAvg desc, regdate desc) b where rownum <= #{pageNum} * #{amount}
 			) where rn > (#{pageNum} - 1) * #{amount}
 		]]>
 	</select>
