@@ -108,4 +108,8 @@ public class MemberService {
         return checkNum;
 	}	
 	
+	// 회원 탈퇴
+	public int deleteMember(int memberId) {
+		return memberRepository.deleteMember(memberId);
+	}
 }

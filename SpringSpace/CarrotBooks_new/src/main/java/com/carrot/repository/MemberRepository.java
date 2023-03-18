@@ -28,4 +28,7 @@ public interface MemberRepository {
 	// BAN회원 정보 변경
 	public void updateBan(MemberVO member);
 	
+	// 회원 탈퇴
+	public int deleteMember(int memberId);
+	
 }

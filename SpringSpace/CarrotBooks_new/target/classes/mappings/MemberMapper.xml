@@ -94,4 +94,10 @@
 		</choose>
 		where memberId = #{memberId}
 	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMember">
+		delete from member
+		where memberId = #{memberId}
+	</delete>
 </mapper>

@@ -54,5 +54,10 @@ public class OracleMemberRepositoryImpl implements MemberRepository{
 	public void updateBan(MemberVO member) {
 		mybatis.update("MemberMapper.updateBAN", member);
 	}
+
+	@Override
+	public int deleteMember(int memberId) {
+		return mybatis.delete("MemberMapper.deleteMember", memberId);
+	}
 	
 }

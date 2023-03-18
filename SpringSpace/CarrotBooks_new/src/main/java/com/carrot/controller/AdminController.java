@@ -236,11 +236,14 @@ public class AdminController {
 	
 	// 회원 강퇴
 	@PostMapping("/manageMember/delete")
-	public String manageMemberDeletePost(Criteria cri, int memberId, RedirectAttributes ratr) {
+	public String manageMemberDeletePost(int pageNum, int memberId, RedirectAttributes ratr) {
 		
-		ratr.addAttribute("cri", cri);
+		memberService.deleteMember(memberId);
+		
+		ratr.addAttribute("pageNum", pageNum);
 		return "redirect:/admin/manageMember";
 	}
+	
 	/* 광고 관리 관련 */
 	// 광고 관리 페이지로 이동
 	@GetMapping("/manageAdvert")

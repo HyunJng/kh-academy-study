@@ -187,7 +187,7 @@
 		</div>
 		
 		<!-- 회원 삭제 form -->
-		<form action="/admin/manageMember/delete" id="deleteMember_form">
+		<form action="/admin/manageMember/delete" id="deleteMember_form" method="post">
 			<input type="hidden" name="memberId">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		</form>
