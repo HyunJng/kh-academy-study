@@ -5,7 +5,8 @@ import java.util.List;
 public class OrderPageVO {
 
 	private List<OrderPageItemVO> orders;
-
+	private OrderVO orderInfo;
+	
 	public List<OrderPageItemVO> getOrders() {
 		return orders;
 	}
@@ -14,9 +15,17 @@ public class OrderPageVO {
 		this.orders = orders;
 	}
 
+	public OrderVO getOrderInfo() {
+		return orderInfo;
+	}
+
+	public void setOrderInfo(OrderVO orderInfo) {
+		this.orderInfo = orderInfo;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderVO [orders=" + orders + "]";
+		return "OrderPageVO [orders=" + orders + ", orderInfo=" + orderInfo + "]";
 	}
-	
+
 }

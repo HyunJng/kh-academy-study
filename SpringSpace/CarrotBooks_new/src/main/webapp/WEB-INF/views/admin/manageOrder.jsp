@@ -75,7 +75,7 @@
 										<button class="btn btn-sm btn-secondary" data-orderid="${order.orderId}" disabled>X</button>
 									</c:if>
 								</td>
-								<td><button class="btn btn-sm btn-secondary">click</button></td>
+								<td><button class="btn btn-sm btn-secondary orderChk_btn" data-orderid="${order.orderId}">click</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -132,5 +132,16 @@ $("#pageForm a").click(function(e) {
 	$("#pageForm").attr("action", "/admin/orderList");
 	$("#pageForm").submit();
 });
+
+/* 주문 상세 버튼 클릭 */
+$(".orderChk_btn").on("click", function(e){
+	e.preventDefault();
+
+	let orderId = $(this).data("orderid");
+	$.getJSON('/admin/orderDetail/' + orderId, function(result){
+		console.log(result);
+	});
+});
+ 
 </script>
 </html>

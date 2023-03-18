@@ -13,7 +13,7 @@ import com.carrot.domain.OrderVO;
 public interface OrderRepository {
 
 	// 주문 상품 정보(주문 페이지)
-	public OrderPageItemVO getGoodsInfo(OrderPageItemVO orderItem);
+	public OrderPageItemVO getGoodsInfo(String bookId);
 	
 	// 주문 상품 정보(주문 처리)
 	public OrderItemVO getOrderInfo(String bookId);

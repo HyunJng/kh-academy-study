@@ -21,8 +21,8 @@ public class OracleOrderRepository implements OrderRepository{
 	@Autowired private SqlSessionTemplate mybatis;
 
 	@Override
-	public OrderPageItemVO getGoodsInfo(OrderPageItemVO orderItem) {
-		return mybatis.selectOne("OrderMapper.getGoodsInfo", orderItem);
+	public OrderPageItemVO getGoodsInfo(String bookId) {
+		return mybatis.selectOne("OrderMapper.getGoodsInfo", bookId);
 	}
 
 	@Override

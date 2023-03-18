@@ -14,6 +14,8 @@ public class OrderItemVO {
 	private int salePrice;
 	private int totalPrice;
 	private int totalSavePoint;
+	private String bookName;
+	
 	public int getOrderItemId() {
 		return orderItemId;
 	}
@@ -73,6 +75,12 @@ public class OrderItemVO {
 	}
 	public void setTotalSavePoint(int totalSavePoint) {
 		this.totalSavePoint = totalSavePoint;
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 	
 	public void initSaleTotal() {

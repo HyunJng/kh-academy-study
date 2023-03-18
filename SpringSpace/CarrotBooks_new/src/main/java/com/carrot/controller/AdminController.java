@@ -28,9 +28,11 @@ import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberInfoVO;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderCancleVO;
+import com.carrot.domain.OrderPageVO;
 import com.carrot.domain.OrderVO;
 import com.carrot.domain.ReplyPageVO;
 import com.carrot.domain.ReplyVO;
+import com.carrot.repository.OrderRepository;
 import com.carrot.service.AdminService;
 import com.carrot.service.AdvertService;
 import com.carrot.service.BookService;
@@ -358,5 +360,15 @@ public class AdminController {
 		
 		orderService.orderCancle(vo);
 		return "redirect:/admin/orderList?keyword=" + vo.getKeyword() + "&amount=" + vo.getAmount() + "&pageNum=" + vo.getPageNum();
+	}
+	
+	// 주문 상세정보
+	@GetMapping("/orderDetail/{orderId}")
+	public @ResponseBody OrderPageVO getOrderDetailGet(@PathVariable("orderId") String orderId) {
+		OrderPageVO result = new OrderPageVO();
+		result.setOrderInfo(orderService.getOrderInfobyOrderId(orderId));
+		result.setOrders(orderService.getOrderItemListbyOrderId(orderId));
+		
+		return result;
 	}
 }

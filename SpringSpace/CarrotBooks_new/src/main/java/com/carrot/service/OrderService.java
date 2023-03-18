@@ -29,12 +29,32 @@ public class OrderService {
 	@Autowired private MemberRepository memberRepository;
 	@Autowired private BookRepository bookRepository;
 	
-	// 전체 주문리스트 정보 가져오기
+	// 주문 정보 가져오기(orderId)
+	public OrderVO getOrderInfobyOrderId(String orderId) {
+		return orderRepository.getOrder(orderId);
+	}
+	
+	// 주문 리스트 가져오기(orderId)
+	public List<OrderPageItemVO> getOrderItemListbyOrderId(String orderId){
+		List<OrderItemVO> list = orderRepository.getOrderItemInfo(orderId);
+		List<OrderPageItemVO> result = new ArrayList<>();
+		
+		for(OrderItemVO order : list) {
+			OrderPageItemVO info = orderRepository.getGoodsInfo(order.getBookId());
+			info.setBookCount(order.getBookCount());
+			info.initSaleTotal();
+			result.add(info);
+		}
+		
+		return result;
+	}
+	
+	// 전체 주문리스트 정보 보충(책 정보 보충)
 	public List<OrderPageItemVO> getGoodsInfo(List<OrderPageItemVO> orders){
 		List<OrderPageItemVO> result = new ArrayList<>();
 		
 		for(OrderPageItemVO order: orders) {
-			OrderPageItemVO info = orderRepository.getGoodsInfo(order);
+			OrderPageItemVO info = orderRepository.getGoodsInfo(order.getBookId());
 			info.setBookCount(order.getBookCount());
 			info.initSaleTotal();
 			
@@ -104,6 +124,7 @@ public class OrderService {
 		}
 	}
 	
+	// 주문 취소
 	@Transactional
 	public void orderCancle(OrderCancleVO vo) {
 		// 회원 정보 가져오기
