@@ -75,7 +75,8 @@
 										<button class="btn btn-sm btn-secondary" data-orderid="${order.orderId}" disabled>X</button>
 									</c:if>
 								</td>
-								<td><button class="btn btn-sm btn-secondary orderChk_btn" data-orderid="${order.orderId}">click</button></td>
+								<td><button class="btn btn-sm btn-secondary orderChk_btn" data-orderid="${order.orderId}"  data-bs-toggle="modal" data-bs-target="#orderDetail_modal">click</button></td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -98,6 +99,82 @@
 				
 			</div>
 		</div>
+		
+		<!--  주문 상세 모달창  -->
+		<div class="modal" id="orderDetail_modal">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		
+		      <!-- 모달 헤더 -->
+		     <div class="modal-header">
+				<h4 class="modal-title">주문상세정보</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			 </div>
+		
+		      <!-- 모달 바디-->
+		      <div class="modal-body">
+		        <table class="table border border-secondary">
+					<tr>
+						<th width="30%">수신자</th>
+						<td width="70%" class="modal_addressee"></td>
+					</tr>
+					<tr>
+						<th>배송지</th>
+						<td class="modal_memberAddr"></td>
+					</tr>
+					<tr>
+						<th>주문일</th>
+						<td class="modal_orderDate"></td>
+					</tr>
+					<tr>
+						<th>배송비</th>
+						<td class="modal_deliveryCost"></td>
+					</tr>
+					<tr>
+						<th>사용포인트</th>
+						<td class="modal_usePoint"></td>
+					</tr>
+					<tr>
+						<th>결제금액</th>
+						<td class="modal_orderSalePrice"></td>
+					</tr>
+					<tr>
+						<th>적립포인트</th>
+						<td class="modal_orderSavePoint"></td>
+					</tr>
+					<tr>
+						<th>주문상태</th>
+						<td class="modal_orderState"></td>
+					</tr>
+		        </table>
+		        
+				<hr class="mt-4">
+				<h5 class="mt-4"># 구매목록</h5>
+				<table class="table">
+					<thead>
+						<tr>
+							<th width="25%"></th>
+							<th width="50%">책이름</th>
+						    <th width="10%">개수</th>
+						    <th width="15%">가격</th>
+						</tr>
+					</thead>
+					<tbody class="orderItemList">
+					</tbody>
+				</table>
+		      </div>
+			  
+
+		      <!-- 모달 푸터 -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
+				
+		
 		<div>
 			<!-- 주문 취소 form -->
 			<form id="deleteForm" action="/admin/orderCancle" method="post">
@@ -140,8 +217,41 @@ $(".orderChk_btn").on("click", function(e){
 	let orderId = $(this).data("orderid");
 	$.getJSON('/admin/orderDetail/' + orderId, function(result){
 		console.log(result);
+		printOrderInfo(result.orderInfo);
+		printOrderItemList(result.orders);
 	});
 });
- 
+
+/* 주문 정보 출력 함수 */
+function printOrderInfo(orderInfo) {
+	let date = new Date(orderInfo.orderDate);
+	let date_string = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+	
+	$(".modal_addressee").text(orderInfo.addressee);
+	$(".modal_memberAddr").text("(" + orderInfo.memberAddr1 + ")" + orderInfo.memberAddr2 + " " + orderInfo.memberAddr3);
+	$(".modal_orderDate").text(date_string);
+	$(".modal_deliveryCost").text(orderInfo.deliveryCost.toLocaleString() + "원");
+	$(".modal_usePoint").text(orderInfo.usePoint.toLocaleString() + "p");
+	$(".modal_orderSalePrice").text(orderInfo.orderSalePrice.toLocaleString() + "원");
+	$(".modal_orderSavePoint").text(orderInfo.orderSavePoint.toLocaleString() + "p");
+	$(".modal_orderState").text(orderInfo.orderState);
+}
+
+/* 주문 아이템 리스트 출력 함수 */
+function printOrderItemList(list){
+	$(".orderItemList").html("");
+	
+	$(list).each(function(index, obj){
+		let content = "";
+		content += "<tr>";
+		content += "<td><img width='70px' src='" + obj.bookImage + "'></td>";
+		content += "<td>" + obj.bookName + "</td>";
+		content += "<td>" + obj.bookCount + "</td>";
+		content += "<td>" + obj.totalPrice.toLocaleString() + "</td>";
+		
+		$(".orderItemList").append(content);
+	});
+}
+
 </script>
 </html>

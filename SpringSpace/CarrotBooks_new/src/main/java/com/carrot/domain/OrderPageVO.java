@@ -23,6 +23,16 @@ public class OrderPageVO {
 		this.orderInfo = orderInfo;
 	}
 
+	public void setTotalPrice() {
+		int priceSum = 0, pointSum = 0;
+		for(OrderPageItemVO order : orders) {
+			priceSum += order.getTotalPrice();
+			pointSum += order.getTotalPoint();
+		}
+		orderInfo.setOrderSalePrice(priceSum);
+		orderInfo.setOrderSavePoint(pointSum);
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderPageVO [orders=" + orders + ", orderInfo=" + orderInfo + "]";

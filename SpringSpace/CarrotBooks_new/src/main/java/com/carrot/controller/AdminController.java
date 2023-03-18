@@ -369,6 +369,7 @@ public class AdminController {
 		result.setOrderInfo(orderService.getOrderInfobyOrderId(orderId));
 		result.setOrders(orderService.getOrderItemListbyOrderId(orderId));
 		
+		result.setTotalPrice();
 		return result;
 	}
 }
