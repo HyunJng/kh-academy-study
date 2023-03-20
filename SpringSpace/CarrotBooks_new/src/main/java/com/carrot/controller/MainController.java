@@ -98,4 +98,5 @@ public class MainController {
 		model.addAttribute("pageMaker", bookService.getBookPageMaker(cri));
 		return "/bestList";
 	}
+	
 }

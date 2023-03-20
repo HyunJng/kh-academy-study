@@ -45,7 +45,7 @@
 						<a href="/member/logout">로그아웃</a>
 					</li>
 					<li class="list-group-item">
-						<a href="#">마이룸</a>
+						<a href="/mypage/main">마이룸</a>
 					</li>
 					<li class="list-group-item">
 						<a href="/cart/${member.memberId}">장바구니</a>
