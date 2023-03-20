@@ -21,7 +21,7 @@
 	<div class="d-flex flex-column">
 		<button class="btn mypage_menu" onclick="location.href='/mypage/main'">내 정보</button>
 		<button class="btn mypage_menu" onclick="location.href='/mypage/myreply/${member.memberId}'">내가작성한댓글</button>
-		<button class="btn mypage_menu" >구매내역</button>
+		<button class="btn mypage_menu" onclick="location.href='/mypage/orderlist/${member.memberId}'">구매내역</button>
 	</div>
 </body>
 </html>

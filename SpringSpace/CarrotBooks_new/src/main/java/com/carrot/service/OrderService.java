@@ -11,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.carrot.domain.BookVO;
 import com.carrot.domain.CartVO;
+import com.carrot.domain.Criteria;
 import com.carrot.domain.MemberVO;
 import com.carrot.domain.OrderCancleVO;
 import com.carrot.domain.OrderItemVO;
 import com.carrot.domain.OrderPageItemVO;
 import com.carrot.domain.OrderVO;
+import com.carrot.domain.PageMaker;
 import com.carrot.repository.BookRepository;
 import com.carrot.repository.CartRepository;
 import com.carrot.repository.MemberRepository;
@@ -166,5 +168,13 @@ public class OrderService {
 				
 	}
 	
+	// 주문 정보 가져오기(keyword = memberId)
+	public List<OrderVO> getOrderList(Criteria cri){
+		return orderRepository.getOrderList(cri);
+	}
 	
+	public PageMaker getOrderPageMaker(Criteria cri) {
+		int total = orderRepository.getOrderTotal(cri);
+		return new PageMaker(cri, total);
+	}
 }

@@ -340,11 +340,11 @@ public class AdminController {
 			cri.setKeyword(String.valueOf(id));
 		}
 		
-		List<OrderVO> list = adminService.getOrderList(cri); 
+		List<OrderVO> list = orderService.getOrderList(cri); 
 	
 		if(!list.isEmpty()) {
 			model.addAttribute("orderList", list);
-			model.addAttribute("pageMaker", adminService.getOrderPageMaker(cri));
+			model.addAttribute("pageMaker", orderService.getOrderPageMaker(cri));
 		} else {
 			model.addAttribute("orderListCheck", "empty");
 		}

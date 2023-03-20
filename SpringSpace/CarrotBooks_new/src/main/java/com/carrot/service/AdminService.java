@@ -71,13 +71,4 @@ public class AdminService {
 		}
 	}
 	
-	// 주문 관련
-	public List<OrderVO> getOrderList(Criteria cri){
-		return orderRepository.getOrderList(cri);
-	}
-	
-	public PageMaker getOrderPageMaker(Criteria cri) {
-		int total = orderRepository.getOrderTotal(cri);
-		return new PageMaker(cri, total);
-	}
 }
